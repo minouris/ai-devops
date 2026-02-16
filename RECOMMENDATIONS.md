@@ -1,5 +1,22 @@
 # Recommendations: Import Plan for AI-DevOps Project
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Quick Import Plan](#quick-import-plan)
+- [Files NOT to Import](#files-not-to-import)
+- [Key Architectural Decisions](#key-architectural-decisions)
+- [Critical Issues to Review](#critical-issues-to-review)
+- [Suggested Directory Structure](#suggested-directory-structure)
+- [Implementation Commands](#implementation-commands)
+- [Success Criteria](#success-criteria)
+- [Risk Mitigation](#risk-mitigation)
+- [Timeline Estimate](#timeline-estimate)
+- [Next Immediate Actions](#next-immediate-actions)
+- [Resources](#resources)
+
+---
+
 ## Executive Summary
 
 After examining 5 projects (spafw37, prompt-driven-development, claude-code-container, nightingale-truenas, simbox), we recommend importing artifacts in 7 priority phases focusing on:
@@ -18,6 +35,10 @@ After examining 5 projects (spafw37, prompt-driven-development, claude-code-cont
 - PDD contains valuable research on AI development pitfalls to learn from
 
 See [ANALYSIS.md](ANALYSIS.md) for full details.
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Quick Import Plan
 
@@ -123,6 +144,10 @@ See [ANALYSIS.md](ANALYSIS.md) for full details.
 
 **Why Later**: Needed for architecture and design phases, but those aren't defined yet.
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Files NOT to Import
 
 ❌ **Critical Avoidance - Causes spafw37's Context Overflow**:
@@ -138,6 +163,10 @@ See [ANALYSIS.md](ANALYSIS.md) for full details.
 
 ❌ **Wrong Scope**:
 - Python-specific instructions as-is - Need language-agnostic (but adapt concepts)
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Key Architectural Decisions
 
@@ -179,6 +208,10 @@ Before implementing, review these issues from source projects:
 
 **Command to view**: `gh issue view <number> -R minouris/<repo>`
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Suggested Directory Structure
 
 ```
@@ -203,6 +236,10 @@ ai-devops/
 ├── RECOMMENDATIONS.md         # This file
 └── README.md
 ```
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Implementation Commands
 
@@ -233,6 +270,10 @@ Visit each file URL and download manually:
 - https://github.com/minouris/spafw37/tree/main/.github/instructions
 - etc.
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Success Criteria
 
 ✅ Core meta-instructions imported, especially **step-files as self-contained prompts approach**  
@@ -244,6 +285,10 @@ Visit each file URL and download manually:
 ✅ Field lessons from first project documented  
 ✅ Can link/adapt instructions into other projects easily  
 ✅ Business analysis template structure defined
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Risk Mitigation
 
@@ -269,6 +314,10 @@ Visit each file URL and download manually:
 **Risk**: Ignoring research lessons  
 **Mitigation**: Review PDD issues during Phase 6 for documented AI development pitfalls
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Timeline Estimate
 
 - **Phase 1**: 2-3 hours (copy and review core instructions, especially step-files approach)
@@ -283,6 +332,10 @@ Visit each file URL and download manually:
 
 **Critical Path**: Phases 1-3 must be done well - they fix spafw37's context overflow issues
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Next Immediate Actions
 
 1. ✅ Complete analysis with corrected understanding (DONE)
@@ -294,8 +347,14 @@ Visit each file URL and download manually:
 6. **Before Phase 3**: Review spafw37 #68, #93, #100 and PDD #75 to understand context overflow problem
 7. During Phase 3: Actively adapt workflow from feature-focus to solution-focus
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Resources
 
 - Full Analysis: [ANALYSIS.md](ANALYSIS.md)
 - Source Projects: All under github.com/minouris/
 - Contact: Based on Issue #1 context, user is actively working on this
+
+[↑ Back to top](#table-of-contents)

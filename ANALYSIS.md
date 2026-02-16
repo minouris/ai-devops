@@ -1,7 +1,24 @@
 # Analysis: Aggregating Research from Multiple Projects
 
+## Table of Contents
+
+- [Issue #1 Summary](#issue-1-summary)
+- [Projects Examined](#projects-examined)
+- [Timeline of Development](#timeline-of-development)
+- [Maturity Assessment](#maturity-assessment)
+- [Key Themes Across Projects](#key-themes-across-projects)
+- [Recommended Artifacts for Import](#recommended-artifacts-for-import)
+- [Key Issues to Reference](#key-issues-to-reference)
+- [Recommended Unified Approach](#recommended-unified-approach)
+- [Next Steps](#next-steps)
+
+---
+
 ## Issue #1 Summary
+
 This analysis examines five projects to identify artifacts and approaches for creating a unified AI-driven DevOps methodology.
+
+[↑ Back to top](#table-of-contents)
 
 ## Projects Examined
 
@@ -131,7 +148,7 @@ Requirements → Business Analysis (simbox format)
   → Architecture Phase 
   → Design Phase 
   → Features/Tickets (broken down) 
-  → Plans (analyzed and structured)
+  → Plans (analysed and structured)
   → Steps (self-contained prompts with policy)
   → Implementation
 ```
@@ -182,7 +199,7 @@ design/
 
 **Key Findings**:
 - **No open issues**: Clean slate implementation
-- **Different instruction paradigm**: Focus on memory-files, step-files, plan-files (structural organization)
+- **Different instruction paradigm**: Focus on memory-files, step-files, plan-files (structural organisation)
 - **Simpler structure**: Fewer files than spafw37 but more focused
 - **Key discovery: Step files as prompts with self-contained policy**: Each step file is a complete prompt that includes all necessary instructions and context. This is the target model for spafw37's eventual refactoring.
 - **Memory-based approach**: Captures decisions and research in preliminary files before formally committing to plan files. Avoids "vibe coding" by making decisions explicit.
@@ -251,6 +268,10 @@ doc/
 └── requirements.md
 ```
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Timeline of Development
 
 ### Phase 1: Early Exploration (Sept - Oct 2025)
@@ -272,6 +293,10 @@ doc/
 ### Phase 4: Consolidation (Feb 2026)
 - **Feb 16, 2026 (TODAY)**: claude-code-container created - aggregating latest learning
 - **Current state**: Multiple mature but inconsistent systems; need for unification
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Maturity Assessment
 
@@ -349,6 +374,10 @@ doc/
 - Waiting for framework before continuing
 - Limited to documentation examples
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Key Themes Across Projects
 
 ### 1. Planning Workflow Evolution
@@ -357,11 +386,11 @@ doc/
 - **claude-code-container**: Full SDLC with Requirements → Business Analysis → Architecture → Design → Features → Plans → Steps
 - **Trend**: Moving from feature-focused monolithic plans to solution-focused step-based execution with self-contained prompts
 
-### 2. Instruction Organization
+### 2. Instruction Organisation
 - **spafw37**: Domain-specific files (python, git, accuracy, communication)
 - **PDD**: Composition-focused (instruction-composition, prompt-composition)
 - **nightingale-truenas & claude-code**: File-type focus (plan-files, step-files, instruction-files)
-- **Trend**: Moving from domain-specific to structural organization
+- **Trend**: Moving from domain-specific to structural organisation
 
 ### 3. Context Management
 - **spafw37**: **Critical context overflow** - large plans push out instructions during Step 8, causing implementation errors
@@ -375,6 +404,10 @@ doc/
 - **PDD**: Deep security analysis of prompts
 - **spafw37**: Code review checklists and accuracy instructions
 - **Trend**: Increasing sophistication in safety measures
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Recommended Artifacts for Import
 
@@ -471,6 +504,10 @@ Specialized roles:
 - Implementation-specific prompts (3-generate-tests, 4-generate-implementation, etc.) - too prescriptive
 - PDD full modular/composition system - over-engineered for immediate needs (but keep artifacts fine-grained)
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Key Issues to Reference
 
 ### Highest Value Issues to Import/Reference:
@@ -486,6 +523,10 @@ Specialized roles:
 - #75: "Lessons Learned: Focused Task Files vs. Automatic Instruction Loading" - Fundamental architectural decision
 - #71: "Design change identification schemes for multi-file planning" - Planning structure
 - #76 & #80: Security analysis and response - Safety considerations
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## Recommended Unified Approach
 
@@ -557,6 +598,10 @@ ai-devops/
 - **Test early**: Validate workflow on sample project after Phase 3
 - **Learn from field**: Document lessons and refine instructions continuously
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## Next Steps
 1. Import Priority 1 artifacts into ai-devops
 2. Create issues for each priority area
@@ -564,3 +609,5 @@ ai-devops/
 4. Test workflow on a sample project
 5. Document field lessons as they emerge
 6. Iterate and refine based on actual usage
+
+[↑ Back to top](#table-of-contents)
