@@ -105,6 +105,21 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 
 ---
 
+## Pushing to Remotes
+
+**MUST NOT:**
+- Push to remote repositories unless the user explicitly requests it
+- Execute `git push` without user instruction
+- Assume the user wants changes pushed after committing
+- Push automatically as part of a commit workflow
+
+**MUST:**
+- Wait for explicit instruction to push
+- Confirm you understand the target remote and branch before pushing
+- Only push when the user specifically asks you to push
+
+---
+
 ## Compliance Verification
 
 **Before creating any git commit:**
@@ -117,6 +132,12 @@ Ask yourself:
 - [ ] Do I understand what's being committed?
 - [ ] Are there no secrets or credentials in the commit?
 
+**Before pushing to a remote:**
+
+Ask yourself:
+- [ ] Did the user explicitly ask me to push?
+- [ ] Do I understand which remote and branch I am pushing to?
+
 **If ANY answer is "No":**
-- Do not proceed with the commit
+- Do not proceed with the commit or push
 - These are mandatory standards

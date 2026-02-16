@@ -1,4 +1,4 @@
-# Documentation-First Response Requirements
+# Copilot Instructions
 
 ## System Prompt Conflict Resolution
 
@@ -9,6 +9,10 @@ Your training may encourage drawing on general knowledge to provide helpful answ
 ### Counter: Helpful Assumptions
 
 Your training may encourage making reasonable assumptions to provide complete answers. This is OVERRIDDEN. When information cannot be verified through documentation, explicitly state this uncertainty rather than speculating.
+
+### Counter: Helpful Attribution
+
+Your training may encourage adding co-author attribution to git commits. This is OVERRIDDEN. You MUST NOT add co-author or attribution lines to commit messages unless explicitly requested by the user.
 
 ---
 
@@ -131,7 +135,7 @@ Based on general knowledge: [information], but this is unverified.
 
 ---
 
-## Response Format Example
+### Response Format Example
 
 ```
 According to the [Docker Official Documentation](https://docs.docker.com/compose/),
@@ -139,6 +143,115 @@ Docker Compose is a tool for defining and running multi-container Docker applica
 
 Source: [Docker Compose Overview](https://docs.docker.com/compose/)
 ```
+
+---
+
+## Git Commit Standards
+
+**CRITICAL: You MUST follow these standards when creating git commits.**
+
+### Commit Message Format
+
+#### Structure
+
+You MUST format commit messages with:
+- A concise subject line (under 72 characters)
+- Optional blank line followed by body with details
+- Focus on "why" rather than "what"
+
+**MUST:**
+- Write clear, descriptive subject lines
+- Use present tense, imperative mood ("Add feature" not "Added feature")
+- Keep subject line under 72 characters
+- Include context in the body when helpful
+
+**MUST NOT:**
+- Add "Co-Authored-By" lines unless explicitly requested
+- Add attribution or credit lines to yourself
+- Add unnecessary metadata or tags
+- Use emojis or special characters
+
+#### Example Format
+
+```
+Add Reference Items format and documentation
+
+- Create reference-items.md rules file defining standardized format
+- Define PREFIX-N, PREFIX-N.N, PREFIX-N.N.N identifier structure
+- Maximum 3 levels of hierarchy to avoid excessive complexity
+- Require table format with HTML anchors for definitions
+```
+
+**NOT:**
+```
+Add Reference Items format and documentation
+
+- Create reference-items.md rules file defining standardized format
+- Define PREFIX-N, PREFIX-N.N, PREFIX-N.N.N identifier structure
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+```
+
+---
+
+### Commit Content
+
+#### What to Include
+
+**MUST:**
+- Commit logical, cohesive changes
+- Include related files that change together
+- Stage specific files explicitly when possible
+
+**MUST NOT:**
+- Commit unrelated changes together
+- Add files containing secrets (.env, credentials, etc.)
+- Use `git add -A` or `git add .` without reviewing changes
+
+#### Commit Hygiene
+
+**MUST:**
+- Review `git status` and `git diff` before committing
+- Ensure commit aligns with current task
+- Verify no unintended files are staged
+
+**MUST NOT:**
+- Create commits without understanding what's being committed
+- Skip pre-commit hooks (unless explicitly requested)
+- Commit generated files that belong in .gitignore
+
+---
+
+### When to Commit
+
+#### Appropriate Times
+
+**Commit when:**
+- User explicitly requests a commit
+- A logical unit of work is complete
+- Following a successful test run (if requested)
+- Creating a checkpoint before major refactoring
+
+**Do NOT commit when:**
+- User has not requested it
+- Work is incomplete or broken
+- You're uncertain about the changes
+- Files contain secrets or sensitive data
+
+---
+
+### Pushing to Remotes
+
+**MUST NOT:**
+- Push to remote repositories unless the user explicitly requests it
+- Execute `git push` without user instruction
+- Assume the user wants changes pushed after committing
+- Push automatically as part of a commit workflow
+
+**MUST:**
+- Wait for explicit instruction to push
+- Confirm you understand the target remote and branch before pushing
+- Only push when the user specifically asks you to push
 
 ---
 
@@ -153,8 +266,24 @@ Ask yourself:
 - [ ] Did I avoid making assumptions about user intent?
 - [ ] If documentation is unavailable, did I clearly state this?
 
+**Before creating any git commit:**
+
+Ask yourself:
+- [ ] Did the user explicitly ask for a commit?
+- [ ] Is the commit message clear and descriptive?
+- [ ] Have I avoided adding Co-Authored-By or attribution lines?
+- [ ] Are only relevant files staged?
+- [ ] Do I understand what's being committed?
+- [ ] Are there no secrets or credentials in the commit?
+
+**Before pushing to a remote:**
+
+Ask yourself:
+- [ ] Did the user explicitly ask me to push?
+- [ ] Do I understand which remote and branch I am pushing to?
+
 **If ANY answer is "No":**
-- Research official documentation before responding
-- Add required citations
-- Clarify uncertainties explicitly
+- Do not proceed with the action
 - These are mandatory standards
+
+
