@@ -12,9 +12,9 @@ This project consolidates instruction files, prompts, and workflows for AI-assis
 
 ## Quick Start
 
-1. **Read the Analysis**: [ANALYSIS.md](ANALYSIS.md) contains a comprehensive analysis of all source projects with timeline, maturity assessment, and key findings.
+1. **Read the Analysis**: [analysis.md](analysis.md) contains a comprehensive analysis of all source projects with timeline, maturity assessment, and key findings.
 
-2. **Review Recommendations**: [RECOMMENDATIONS.md](RECOMMENDATIONS.md) provides the concrete import plan with 6 phases and specific files to copy.
+2. **Review Recommendations**: [recommendations.md](recommendations.md) provides the concrete import plan with 6 phases and specific files to copy.
 
 3. **Follow the Import Plan**: Start with Phase 1 (core meta-instructions) and work through successive phases.
 
@@ -25,8 +25,8 @@ This project consolidates instruction files, prompts, and workflows for AI-assis
 
 ## Documentation
 
-- [ANALYSIS.md](ANALYSIS.md) - Full project analysis, timeline, and maturity assessment
-- [RECOMMENDATIONS.md](RECOMMENDATIONS.md) - Concrete import plan and implementation guide
+- [analysis.md](analysis.md) - Full project analysis, timeline, and maturity assessment
+- [recommendations.md](recommendations.md) - Concrete import plan and implementation guide
 
 ## Structure (Planned)
 
