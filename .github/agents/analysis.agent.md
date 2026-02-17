@@ -10,52 +10,6 @@ Perform systematic investigation, capturing raw research findings and creating c
 
 ---
 
-# Research Workflows
-
-## Workflow 1: Procedural Research
-
-**Purpose:** Find, test, and verify procedures/processes to create working documentation.
-
-**Example:** "How do we install Pterodactyl in TrueNAS?"
-
-**Process:**
-1. Search web/docs for procedures
-2. Capture procedures in fact file: `.memory/[PROJECT]-[topic]-facts.md`
-3. Document test results (worked/failed, why)
-4. Refine procedures based on testing feedback
-5. Once verified through successful testing → Create final guide in root
-6. Final output: **Verified procedure documentation** (e.g., `pterodactyl-installation-guide.md`)
-
-**Characteristics:**
-- Iterative testing and refinement
-- Fact file captures procedures attempted and test results
-- Final output is workspace documentation with working procedure
-- Wait for user approval before publishing final guide
-
-## Workflow 2: Analytical Research
-
-**Purpose:** Examine artifacts systematically to capture raw research findings and synthesize filtered analysis.
-
-**Example:** "Find all AI coding problems from past projects"
-
-**Process:**
-1. Create index of all relevant artifacts (commits, issues, code, documentation)
-2. Systematically examine each artifact
-3. Capture ALL findings in fact file: `.memory/[PROJECT]-[domain]-facts.md` (facts, observations, theories, dead ends)
-4. Track all domain fact files in index: `.memory/[PROJECT]-analysis-index.md`
-5. When user disproves findings, archive them to `-disproven.md` files
-6. Create curated analysis from filtered findings when user requests it
-7. Final output: **Analysis document with citations** (e.g., `ai-programming-problems-analysis.md`)
-
-**Characteristics:**
-- Systematic examination of artifacts
-- Fact files capture raw, unfiltered research (everything goes in)
-- Handle user disproof by archiving findings immediately
-- Final output is synthesized from filtered findings with citations back to fact files
-- Wait for user approval before publishing final analysis
-
----
-
 # Embedded Rules
 
 ## Documentation-First Response Requirements (from copilot-instructions.md)
@@ -218,6 +172,52 @@ Some content here.
 
 More content.
 ```
+
+---
+
+# Research Workflows
+
+## Workflow 1: Procedural Research
+
+**Purpose:** Find, test, and verify procedures/processes to create working documentation.
+
+**Example:** "How do we install Pterodactyl in TrueNAS?"
+
+**Process:**
+1. Search web/docs for procedures
+2. Capture procedures in fact file: `.memory/[PROJECT]-[topic]-facts.md`
+3. Document test results (worked/failed, why)
+4. Refine procedures based on testing feedback
+5. Once verified through successful testing → Create final guide in root
+6. Final output: **Verified procedure documentation** (e.g., `pterodactyl-installation-guide.md`)
+
+**Characteristics:**
+- Iterative testing and refinement
+- Fact file captures procedures attempted and test results
+- Final output is workspace documentation with working procedure
+- Wait for user approval before publishing final guide
+
+## Workflow 2: Analytical Research
+
+**Purpose:** Examine artifacts systematically to capture raw research findings and synthesize filtered analysis.
+
+**Example:** "Find all AI coding problems from past projects"
+
+**Process:**
+1. Create index of all relevant artifacts (commits, issues, code, documentation)
+2. Systematically examine each artifact
+3. Capture ALL findings in fact file: `.memory/[PROJECT]-[domain]-facts.md` (facts, observations, theories, dead ends)
+4. Track all domain fact files in index: `.memory/[PROJECT]-analysis-index.md`
+5. When user disproves findings, archive them to `-disproven.md` files
+6. Create curated analysis from filtered findings when user requests it
+7. Final output: **Analysis document with citations** (e.g., `ai-programming-problems-analysis.md`)
+
+**Characteristics:**
+- Systematic examination of artifacts
+- Fact files capture raw, unfiltered research (everything goes in)
+- Handle user disproof by archiving findings immediately
+- Final output is synthesized from filtered findings with citations back to fact files
+- Wait for user approval before publishing final analysis
 
 ---
 
