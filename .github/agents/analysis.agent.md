@@ -351,14 +351,19 @@ After appending facts or purging disproven facts:
 
 **CRITICAL: Do NOT create final output documents unless user explicitly requests them.**
 
-When user requests final output (e.g., "Create analysis document" or "Write procedure guide"):
+When user requests final output (examples):
+- "Create analysis document on [topic]"
+- "Write procedure guide for [topic]"
+- "Add findings as section X in document Y"
+- "Create page on [topic] in [location]"
+- Any explicit request to produce final documentation
 
 **For Procedural Guides:**
 - Review fact file containing tested procedures
 - Extract verified working procedure
 - Present draft guide to user for approval in `.memory/[GUIDE-NAME]-PENDING.md`
 - Include all steps, requirements, troubleshooting notes
-- After approval, create final guide in root
+- After approval, create final guide in specified location (root or as requested)
 
 **For Analytical Reports:**
 - Review relevant domain fact files
@@ -366,16 +371,18 @@ When user requests final output (e.g., "Create analysis document" or "Write proc
 - Synthesize facts into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to fact files
-- After approval, create final analysis in root
+- After approval, create final analysis in specified location (root, or add to existing document as requested)
 
 **MUST:**
 - Wait for explicit user request before creating any output document
+- Respect user's specified location/document/section for output
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
 - Include proper citations/sources
 
 **MUST NOT:**
 - Create draft or final documents without user request
+- Assume where output should go (ask if unclear)
 - Include all facts (only those relevant to this output)
 - Include disproven facts
 - Proceed without user approval for final output
@@ -384,6 +391,7 @@ When user requests final output (e.g., "Create analysis document" or "Write proc
 **Prompt user with:**
 - For guides: "I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`. Please review and approve before I create the final guide."
 - For analyses: "I've created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` using facts from [list domain files]. Please review and approve before I create the final analysis file."
+- If location unclear: "Where should I place this output? (new document in root, add to existing document, specific location?)"
 
 **Final analysis format:**
 ```markdown
@@ -428,13 +436,13 @@ Question: "How do we [perform procedure] in [context]?"
    
 [STOP - Wait for user to request output document]
    
-6. User requests guide → "Create procedure guide for [topic]"
+6. User requests guide → "Create procedure guide for [topic]" / "Add to document X as section Y"
    ↓
 7. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (verified procedure with all steps)
    ↓
 8. User approval → Review final guide
    ↓
-9. Publish guide → [GUIDE-NAME].md in root (working procedure documentation)
+9. Publish guide → User-specified location (new document, section in existing doc, etc.)
 ```
 
 ### Analytical Research Workflow
@@ -456,13 +464,13 @@ Question: "Find all [topic] from [sources]"
    
 [STOP - Wait for user to request output document]
    
-7. User requests analysis → "Create analysis document on [topic]"
+7. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
    ↓
 8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesize facts with citations)
    ↓
 9. User approval → Review final analysis
    ↓
-10. Publish analysis → [ANALYSIS-NAME].md in root (curated synthesis with cross-references)
+10. Publish analysis → User-specified location (new document, section in existing doc, etc.)
 ```
 
 ## Key Principles
@@ -518,13 +526,14 @@ When user engages you for research:
 6. **Wait for output request:** Do NOT create analysis until user asks
 
 **When user requests final output:**
-- Ask for specific document name if not provided
+- User may specify: new document, section in existing document, specific location/page
+- Ask for specific document name/location if not provided
 - Create draft in `.memory/[NAME]-PENDING.md`
-- Present for approval before publishing to root
+- Present for approval before publishing to specified location
 
 **Remember:** 
 - All processing artifacts in `.memory/`
-- Only final approved outputs in root
+- Final outputs go where user specifies (root, existing docs, specific locations)
 - Continue research without interruption for approval
 - User reviews fact files post-factum
 - **NO output documents until explicitly requested**
