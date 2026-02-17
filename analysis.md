@@ -411,15 +411,15 @@ doc/
 
 ## Recommended Artifacts for Import
 
-### Priority 1: Core Instruction Files (from claude-code-container & nightingale-truenas)
-These have the most up-to-date refinements and define the structural approach:
-1. `instruction-files.instructions.md` - How to write instruction files
-2. `prompt-files.instructions.md` - How to write prompt files
-3. `plan-files.instructions.md` - How to structure plans
-4. `step-files.instructions.md` - **How to structure execution steps as self-contained prompts with policy**
+### Priority 1: Meta-Instructions for Guard Rails and Final Artifacts (from claude-code-container & nightingale-truenas)
+These define structural approaches:
+1. `instruction-files.instructions.md` - How to write instruction files (guard rail - use not guaranteed)
+2. `prompt-files.instructions.md` - How to write prompt files (guard rail - use not guaranteed)
+3. `plan-files.instructions.md` - How to structure plans (final implementation artifact)
+4. `step-files.instructions.md` - How to structure execution steps as self-contained prompts with policy (final implementation artifact)
 5. `markdown-formatting.instructions.md` - Consistent formatting standards
 
-**Rationale**: These are meta-instructions that enable everything else. Present in newest projects with latest refinements. Step-files approach is critical discovery from nightingale-truenas.
+**Note**: Instruction/prompt files are guard rails whose use by AI is not guaranteed. Plan/step files are created at final implementation stage, not throughout design process. Present in newest projects with latest refinements.
 
 ### Priority 2: Planning Workflow Prompts (from spafw37 & nightingale-truenas, adapted)
 Adapt spafw37's workflow but fix the feature-focus and context issues:
@@ -434,16 +434,16 @@ Adapt spafw37's workflow but fix the feature-focus and context issues:
 - `8-implement-from-plan.md` - Use step-based execution instead
 - Steps 3-6 (generate-tests, generate-implementation, etc.) - Too prescriptive
 
-**Rationale**: Use spafw37's structure but replace with nightingale-truenas's step-based execution model. Avoid the context overflow and feature-focus problems.
+**Note**: Use spafw37's structure but replace with nightingale-truenas's step-based execution model to address context overflow. These are final implementation artifacts, not design process tools.
 
 ### Priority 3: Domain Standards (from spafw37)
-These are well-proven and actively maintained:
-1. `accuracy.instructions.md` - Quality standards
-2. `communication.instructions.md` - How to interact with users
-3. `git-operations.instructions.md` - Version control best practices
-4. `code-review-checklist.instructions.md` - Review standards
+These define standards that apply throughout all work phases:
+1. `accuracy.instructions.md` - Quality standards (apply to all work)
+2. `communication.instructions.md` - How to interact with users (apply throughout all interactions)
+3. `git-operations.instructions.md` - Version control best practices (apply to all code work)
+4. `code-review-checklist.instructions.md` - Review standards (apply to all implementation)
 
-**Rationale**: Domain-agnostic and applicable to any project. Well-tested in spafw37.
+**Note**: These standards apply continuously throughout all phases of work - design, planning, and implementation. Well-tested in spafw37.
 
 ### Priority 4: Business Analysis Documentation (from simbox)
 Reference format for requirements and business analysis:
@@ -459,7 +459,7 @@ Reference format for requirements and business analysis:
    - 01_07_qa.md
 3. Origin of markdown/mermaid instructions (though refined in later projects)
 
-**Rationale**: Shows target format for business analysis phase of SDLC framework. Page layouts need refinement but structure is sound.
+**Note**: Shows target format for business analysis phase of SDLC framework. Page layouts need refinement but structure is sound. This is output format, not process guidance.
 
 ### Priority 5: Composition Patterns (from PDD)
 For future extensibility and cross-platform portability:
@@ -472,7 +472,7 @@ For future extensibility and cross-platform portability:
 
 **Research Value**: Review PDD issues for research on AI development pitfalls (context windows, system prompts, prompt size effects).
 
-**Rationale**: Enable modular, extensible system. Keep fine-grained for future portability without over-engineering now.
+**Note**: Enable modular, extensible system for cross-platform portability. Keep fine-grained for future adaptation without over-engineering now.
 
 ### Priority 6: Design and Documentation (from claude-code-container)
 Supporting SDLC framework:
@@ -481,18 +481,18 @@ Supporting SDLC framework:
 3. `sdlc-framework-design.md` - Overall SDLC framework structure vision
 4. `claude_code_custom_modes.md` - Tool-specific optimizations
 
-**Rationale**: Support comprehensive SDLC: Requirements → Business Analysis → Architecture → Design → Features → Plans → Steps.
+**Note**: Support comprehensive SDLC framework: Requirements → Business Analysis → Architecture → Design → Features → Plans → Steps.
 
 ### Priority 7: Agents (from spafw37)
 Specialized roles:
 1. `Architecture.agent.md` - System design agent
 2. `Design.agent.md` - Feature design agent
 
-**Rationale**: Enable specialized AI personas for architecture and design phases of SDLC.
+**Note**: Enable specialized AI personas for architecture and design phases of SDLC.
 
 ### Items to Consider but Adapt
 - **Issue #100 Change Registry System**: Workshopping changes before creating issues - valuable concept
-- Memory distillation approach from nightingale-truenas - promising for avoiding "vibe coding"
+- **Memory distillation approach from nightingale-truenas**: Supports design process BEFORE final implementation, prevents "vibe coding" by making decisions explicit
 - PDD research on AI pitfalls - review issues for lessons learned
 - `python.instructions.md`, `python37.instructions.md`, `python-tests.instructions.md` - Python-specific, but concept applies to any language
 
