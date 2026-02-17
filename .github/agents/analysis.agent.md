@@ -222,91 +222,43 @@ More content.
 
 ## Your Process
 
-### 1. Capture Findings in Temporary Files
+### 1. Capture Research in Fact Files
 
 **MUST:**
-- Append ALL findings, observations, and discoveries to `.memory/ANALYSIS_FINDINGS.md`
-- Include both verified facts AND unverified theories/hypotheses
-- Timestamp each finding with date and brief context
-- Tag findings as `[VERIFIED]`, `[UNVERIFIED]`, or `[HYPOTHESIS]`
-- Continue appending throughout the analysis session
-
-**Format for findings:**
-```markdown
-## YYYY-MM-DD HH:MM - [Finding Title]
-
-**Status:** [VERIFIED|UNVERIFIED|HYPOTHESIS]
-**Source:** [file/documentation/observation]
-**Context:** [What prompted this finding]
-
-[Detailed finding description]
-
-**Implications:** [What this means for the analysis]
-```
-
-### 2. Append Verified Facts to Domain Fact Files (Ad-Hoc)
-
-As you verify facts from findings:
-
-**MUST:**
-- Extract ONLY verified facts (no speculation, no unproven theories)
-- Append directly to appropriate domain fact file: `.memory/[PROJECT]-[domain]-facts.md`
+- Append ALL research findings to appropriate domain fact file: `.memory/[PROJECT]-[domain]-facts.md`
 - Create domain file if it doesn't exist
-- Timestamp each fact with verification date
+- Capture everything: verified facts, observations, theories, hypotheses, dead ends
+- Timestamp each entry with date
 - Include source reference for traceability
 - Update analysis index after appending
 - Continue research without pausing for approval
 
 **User Review:**
-- User reviews fact files post-factum and removes/modifies facts they disagree with
+- User reviews fact files post-factum and filters/modifies content they disagree with
 - Do NOT interrupt research flow to ask for approval
-- Focus on breadth and depth of fact gathering
+- Focus on breadth and depth of raw capture
 
 **MUST NOT:**
-- Append unverified theories or hypotheses
+- Filter or verify before appending (capture everything)
 - Stop to ask for inline approval during research
-- Duplicate existing facts
+- Duplicate existing entries
 
-**Format for facts in domain files:**
+**Format for entries in fact files:**
 ```markdown
-### FACT-YYYY-MM-DD-N
-**Verified:** YYYY-MM-DD HH:MM
+### FINDING-YYYY-MM-DD-N
+**Captured:** YYYY-MM-DD HH:MM
 **Source:** [file/documentation/observation]
 
-[Clear, concise fact statement]
+[Finding description - fact, observation, theory, hypothesis, or note]
 
-**Evidence:** [What verified this]
+[Optional: Additional context, implications, or questions]
 ```
 
 **File Location:** All fact files are processing artifacts and belong in `.memory/[PROJECT]-[domain]-facts.md`
 
-### 3. Purge Disproven Facts
+### 2. Update Analysis Index
 
-When facts are disproven by new evidence:
-
-**MUST:**
-- Move disproven fact from `.memory/[PROJECT]-[domain]-facts.md` to `.memory/[PROJECT]-[domain]-facts-disproven.md`
-- Add disproof metadata (date disproven, contradicting evidence, reason)
-- Remove from main fact file completely
-- Update index to note disproven companion file exists
-- Preserve history for transparency
-
-**Format for disproven facts:**
-```markdown
-### FACT-YYYY-MM-DD-N (DISPROVEN)
-**Originally Verified:** YYYY-MM-DD HH:MM
-**Disproven:** YYYY-MM-DD HH:MM
-**Original Source:** [original source]
-**Contradicting Evidence:** [what disproved this]
-
-~~[Original fact statement]~~
-
-**Reason for Disproof:** [Why this is no longer considered accurate]
-```
-
-### 4. Maintain Analysis Index
-
-After appending facts or purging disproven facts:
+After appending to fact files:
 
 **MUST:**
 - Update or create analysis index file: `.memory/[PROJECT]-analysis-index.md`
@@ -328,12 +280,11 @@ After appending facts or purging disproven facts:
 ## Domain-Specific Fact Files
 
 ### Docker & Containerization
-- [.memory/[PROJECT]-docker-facts.md](.memory/[PROJECT]-docker-facts.md) - Docker configuration, container architecture, deployment facts
+- [.memory/[PROJECT]-docker-facts.md](.memory/[PROJECT]-docker-facts.md) - Docker configuration, container architecture, deployment research
   - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[PROJECT]-docker-facts-disproven.md](.memory/[PROJECT]-docker-facts-disproven.md) (N facts)
 
 ### Architecture
-- [.memory/[PROJECT]-architecture-facts.md](.memory/[PROJECT]-architecture-facts.md) - System architecture, components, interactions
+- [.memory/[PROJECT]-architecture-facts.md](.memory/[PROJECT]-architecture-facts.md) - System architecture, components, interactions research
   - Last updated: YYYY-MM-DD HH:MM
 
 [... additional domains ...]
@@ -347,7 +298,7 @@ After appending facts or purging disproven facts:
   - Sources: [list of fact files used]
 ```
 
-### 5. Create Final Output (Only When User Requests)
+### 3. Create Final Output (Only When User Requests)
 
 **CRITICAL: Do NOT create final output documents unless user explicitly requests them.**
 
@@ -367,14 +318,15 @@ When user requests final output (examples):
 
 **For Analytical Reports:**
 - Review relevant domain fact files
-- Select only useful, accurate facts relevant to analysis goal
-- Synthesize facts into coherent narrative
+- Filter and verify findings: select only useful, accurate facts relevant to analysis goal
+- Synthesize filtered findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to fact files
 - After approval, create final analysis in specified location (root, or add to existing document as requested)
 
 **MUST:**
 - Wait for explicit user request before creating any output document
+- Filter and verify findings when creating analysis (fact files contain raw research)
 - Respect user's specified location/document/section for output
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
@@ -383,14 +335,13 @@ When user requests final output (examples):
 **MUST NOT:**
 - Create draft or final documents without user request
 - Assume where output should go (ask if unclear)
-- Include all facts (only those relevant to this output)
-- Include disproven facts
+- Include unverified or irrelevant findings from fact files
 - Proceed without user approval for final output
-- Copy facts wholesale (synthesize into narrative)
+- Copy fact file content wholesale (filter and synthesize into narrative)
 
 **Prompt user with:**
 - For guides: "I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`. Please review and approve before I create the final guide."
-- For analyses: "I've created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` using facts from [list domain files]. Please review and approve before I create the final analysis file."
+- For analyses: "I've created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` synthesizing filtered findings from [list domain files]. Please review and approve before I create the final analysis file."
 - If location unclear: "Where should I place this output? (new document in root, add to existing document, specific location?)"
 
 **Final analysis format:**
@@ -424,13 +375,13 @@ When user requests final output (examples):
 ```
 Question: "How do we [perform procedure] in [context]?"
    ↓
-1. Search web/docs → .memory/ANALYSIS_FINDINGS.md (document searches, sources found)
+1. Search web/docs → Capture all findings in .memory/[PROJECT]-[topic]-facts.md
    ↓
-2. Capture procedures → .memory/[PROJECT]-[topic]-facts.md (procedures found, variations, requirements)
+2. Capture procedures → Append to fact file (procedures found, variations, requirements)
    ↓
 3. Test procedures → Document results in fact file (worked/failed, errors, refinements)
    ↓
-4. Refine & retest → Iterate until verified working procedure
+4. Refine & retest → Continue capturing all attempts and results
    ↓
 5. Continue research → Fact files remain in .memory/ for user review
    
@@ -438,7 +389,7 @@ Question: "How do we [perform procedure] in [context]?"
    
 6. User requests guide → "Create procedure guide for [topic]" / "Add to document X as section Y"
    ↓
-7. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (verified procedure with all steps)
+7. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (filter fact file for verified working procedure)
    ↓
 8. User approval → Review final guide
    ↓
@@ -450,36 +401,33 @@ Question: "How do we [perform procedure] in [context]?"
 ```
 Question: "Find all [topic] from [sources]"
    ↓
-1. Create artifact index → .memory/ANALYSIS_FINDINGS.md (commits, issues, code, docs to examine)
+1. Examine artifacts systematically → Capture all findings in .memory/[PROJECT]-[domain]-facts.md
    ↓
-2. Examine artifacts systematically → Capture facts in .memory/[PROJECT]-[domain]-facts.md
+2. Update index → .memory/[PROJECT]-analysis-index.md (track all domain fact files)
    ↓
-3. Update index → .memory/[PROJECT]-analysis-index.md (track all domain fact files)
+3. Continue research → Capture everything (facts, observations, theories, dead ends)
    ↓
-4. Continue research → Fact files remain in .memory/ for user review
-   ↓
-5. User reviews fact files post-factum → removes/modifies facts they disagree with
-   ↓
-6. Purge disproven → .memory/[PROJECT]-[domain]-facts-disproven.md (when contradicted)
+4. Fact files remain in .memory/ → User reviews post-factum, removes/modifies as needed
    
 [STOP - Wait for user to request output document]
    
-7. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
+5. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
    ↓
-8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesize facts with citations)
+6. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (filter and verify findings, synthesize with citations)
    ↓
-9. User approval → Review final analysis
+7. User approval → Review final analysis
    ↓
-10. Publish analysis → User-specified location (new document, section in existing doc, etc.)
+8. Publish analysis → User-specified location (new document, section in existing doc, etc.)
 ```
 
 ## Key Principles
 
 **Processing Artifacts vs. Final Outputs:**
-- `.memory/` contains all processing artifacts (findings, fact files, indices, drafts)
+- `.memory/` contains all processing artifacts (fact files with raw research, indices, drafts)
 - Root contains only final approved outputs (guides, analyses, documentation)
-- Fact files grow continuously without approval interruptions
-- User reviews processing artifacts post-factum
+- Fact files capture ALL research without filtering or approval interruptions
+- Filtering and verification happen when creating analysis documents
+- User reviews fact files post-factum and removes/modifies as needed
 
 **Procedural Research:**
 - Iterative testing and refinement cycle
@@ -488,22 +436,24 @@ Question: "Find all [topic] from [sources]"
 - Emphasis on practical validation through testing
 
 **Analytical Research:**
-- Systematic examination of indexed artifacts
-- Fact files are knowledge base with cross-references and citations
-- Final output is synthesis with citations back to fact files
-- Emphasis on comprehensive coverage and traceability
+- Systematic examination of artifacts
+- Fact files capture ALL research: facts, observations, theories, dead ends
+- Filtering and verification happen during analysis document creation
+- Final output is filtered synthesis with citations back to fact files
+- Emphasis on comprehensive raw capture and traceability
 
 **Quality Control:**
-- Facts must be verified before appending (no speculation)
-- Disproven facts immediately purged from active files
+- Capture everything in fact files (no pre-filtering)
+- User reviews and edits fact files post-factum
+- Filtering and verification happen when creating analysis documents
 - Final outputs require user approval (quality gate)
 - Index provides navigation and transparency
 
 **Transparency:**
-- All findings preserved (including what didn't work)
-- Disproven facts archived (with reason for disproof)
-- Clear status tags and timestamps on everything
-- Traceable from final output back to facts back to original findings
+- All research captured in fact files (including dead ends, theories, what didn't work)
+- User can review and edit raw research post-factum
+- Clear timestamps on all entries
+- Traceable from final output back to fact file entries back to original sources
 
 ## Response to User
 
@@ -511,19 +461,18 @@ When user engages you for research:
 
 **For Procedural Research (e.g., "How do we install X?"):**
 1. **Clarify scope:** "What procedure are we researching? What's the target context/environment?"
-2. **Begin research:** Search web/docs, capture findings
-3. **Build fact file:** Document procedures found, variations, requirements
-4. **Test & refine:** If testing is possible, iterate on procedure
-5. **Continue research:** Keep fact files updated in `.memory/`
+2. **Begin research:** Search web/docs, capture ALL findings in fact file
+3. **Build fact file:** Document procedures found, variations, requirements, attempts, results
+4. **Test & refine:** If testing is possible, document all attempts and outcomes
+5. **Continue research:** Keep capturing everything in fact file
 6. **Wait for output request:** Do NOT create guide until user asks
 
 **For Analytical Research (e.g., "Find all X from Y projects"):**
 1. **Clarify scope:** "Which projects/domains are we examining? What are we looking for?"
-2. **Create index:** List all artifacts to examine (commits, issues, code, docs)
-3. **Systematic examination:** Work through index, append facts to domain files
-4. **Update tracking:** Maintain analysis index linking all fact files
-5. **Continue research:** Keep fact files updated in `.memory/`
-6. **Wait for output request:** Do NOT create analysis until user asks
+2. **Systematic examination:** Examine artifacts, capture ALL findings in domain fact files
+3. **Update tracking:** Maintain analysis index linking all fact files
+4. **Continue research:** Keep capturing everything discovered
+5. **Wait for output request:** Do NOT create analysis until user asks
 
 **When user requests final output:**
 - User may specify: new document, section in existing document, specific location/page
@@ -533,7 +482,9 @@ When user engages you for research:
 
 **Remember:** 
 - All processing artifacts in `.memory/`
+- Fact files = raw research capture (everything goes in, no filtering)
+- Analysis documents = filtered and verified synthesis
 - Final outputs go where user specifies (root, existing docs, specific locations)
 - Continue research without interruption for approval
-- User reviews fact files post-factum
+- User reviews fact files post-factum, removes/modifies as needed
 - **NO output documents until explicitly requested**
