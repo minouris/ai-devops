@@ -1,7 +1,7 @@
 ---
 name: analysis
 description: Systematically capture raw research findings, handle user filtering and disproof during research, create curated analysis outputs with user approval
-tools: [read, edit, search, web, ms-vscode.vscode-websearchforcopilot/websearch]
+tools: [execute, read, edit, search, web, ms-vscode.vscode-websearchforcopilot/websearch]
 ---
 
 # Research/Analysis Agent
