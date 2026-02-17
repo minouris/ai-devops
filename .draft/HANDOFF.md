@@ -1,15 +1,15 @@
 # Project Handoff
 
-**Last Updated:** 2026-02-17  
-**Current State:** Analysis custom agent created and debugged, ready for use
+**Last Updated:** 2026-02-18  
+**Current State:** Custom agent systems research synthesized from claude-code-container. 8 new findings on Claude Code custom modes implementation.
 
 ---
 
 ## Environment
 
 **Project:** ai-devops  
-**Location:** /home/ciara/src/ai-devops  
-**Purpose:** Unified AI-driven DevOps methodology framework
+**Location:** /home/mnorr001/src/github/minouris/ai-devops  
+**Purpose:** Unified AI-driven DevOps methodology framework - currently researching custom agent capability systems (Skills, Custom Agents, Custom Modes)
 
 ---
 
@@ -20,8 +20,10 @@ Five projects examined for rule evolution:
 1. **spafw37** (Oct 2025) - Origin of plan-based approach, 9 instruction files
 2. **prompt-driven-development** (Dec 2025) - Composition patterns, 9+ instruction files  
 3. **nightingale-truenas** (Jan 2026) - Step-files discovery, memory-based approach, 5 instruction files
-4. **claude-code-container** (Feb 16, 2026) - Latest consolidation, 7+ instruction files
+4. **claude-code-container** (Feb 2026) - Latest consolidation, 7+ instruction files; contains custom modes research documentation
 5. **simbox** (Sept 2025) - Documentation format examples
+
+**Research Focus Shift (Feb 18):** Session focused on synthesizing research about custom agent capability systems (Skills, Custom Agents, Custom Modes) from claude-code-container repository documentation.
 
 ### Current ai-devops State
 - **13 instruction files** in `.github/instructions/`
@@ -148,22 +150,35 @@ ai-devops stopped solving several critical problems:
 
 ---
 
-## Current Work
+## Current Work (Session: 2026-02-18)
 
-**Focus:** Analysis custom agent complete and ready for use  
-**Completed:**
-- Created analysis.agent.md custom agent
-- Debugged YAML syntax error (missing `tools:` property name)
-- Added web tool for WebSearch/WebFetch capabilities
-- Implements memory-based approach with approval gate
-- Prevents analysis bloat from unverified findings
+**Focus:** Research synthesis on custom agent capability systems  
+**Completed This Session:**
+- Cloned claude-code-container repository successfully
+- Reviewed `.devcontainer/doc/claude_code_custom_modes.md` research
+- Added 8 comprehensive research findings (FINDING-2026-02-18-1 through FINDING-2026-02-18-8)
+- Clarified terminology: "custom chatmodes" is legacy GitHub Copilot naming; current platforms use "agents" (Copilot) vs "custom modes" (Claude Code SDK)
+- Documented permission modes: default, acceptEdits, plan, bypassPermissions, delegate, dont_ask
+- Documented tool restriction patterns (allowlist vs denylist)
+- Documented 3 implementation patterns (constraint-based, persona-based, autonomous execution)
+- Documented multi-phase workflow integration with exit criteria
+- Provided complete working example (problem-definer mode)
+
+**Key Findings:**
+- GitHub Copilot custom agents (.agent.md) ≠ Claude Code custom modes (.agent.md)
+- Both platforms support agentskills.io standard for portable Skills
+- Custom modes designed for phase-based workflows with distinct permissions per phase
+- Permission modes layer control: plan (read-only) → acceptEdits (auto-approve writes) → bypassPermissions (full auto)
+
+**Pending Analysis:**
+1. Review findings for contradictions with prior research
+2. Extract practical implementation patterns applicable to ai-devops
+3. Decide: Adopt custom mode patterns for ai-devops workflows?
+4. Decision on restoring process quality standards vs documentation optimization
 
 **Next Steps:**
-1. Use analysis agent on real analysis work (test in practice)
-2. Potentially import missing rules based on problem-solving gaps
-3. Decision on restoring process quality standards (accuracy, communication, memory-files instruction documentation)
-
-**Question to Answer:** Are we solving the right problems, or did we optimize for documentation while losing process quality?
+1. Practical evaluation: Test custom mode patterns on real ai-devops workflows
+2. Archive session findings in `.memory/` (current: ai-devops-chatmodes-skills-facts.md)
 
 ---
 
@@ -175,3 +190,15 @@ ai-devops stopped solving several critical problems:
 **Analysis approach:** Problem-centric, not file-centric  
 **Custom agent:** `@analysis` for systematic fact-gathering with approval gate  
 **Memory files:** `.memory/` directory (excluded from git)
+
+**Research Files:**
+- `.draft/ai-devops-chatmodes-skills-facts.md` - 18 findings on custom agents, skills, modes
+- `.memory/ai-devops-analysis-index.md` - Index of research findings and sources
+- `.memory/ai-devops-chatmodes-skills-facts.md` - Working copy of research (if archived)
+
+**Claude-code-container Insights:**
+- **Custom modes:** Permission-based subagents (plan mode = read-only analysis)
+- **Permission modes:** 6 types controlling tool access (plan, acceptEdits, default, etc.)
+- **Workflow pattern:** Phase 1 (define) → Phase 2 (analyze) → Phase 3 (plan) → Phase 4 (implement) → Phase 5 (verify)
+- **Tool restrictions:** Allowlist (restrictive) vs denylist (permissive) approaches
+- **Exit criteria:** Each phase has completion conditions and output artefacts
