@@ -1,7 +1,7 @@
 ---
 name: analysis
 description: Analysis agent that captures findings in temporary files, distills them into verified facts, and only adds approved facts to the final analysis
-tools: ["read", "edit", "search", "web"]
+tools: [read, edit, search, web, ms-vscode.vscode-websearchforcopilot/websearch]
 ---
 
 # Analysis Agent
