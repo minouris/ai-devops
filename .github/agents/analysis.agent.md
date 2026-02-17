@@ -226,21 +226,21 @@ More content.
 ### 1. Capture Research in Fact Files
 
 **MUST:**
-- Append ALL research findings to appropriate domain fact file: `.memory/[PROJECT]-[domain]-facts.md`
+- Append research findings to appropriate domain fact file: `.memory/[PROJECT]-[domain]-facts.md`
 - Create domain file if it doesn't exist
-- Capture everything: verified facts, observations, theories, hypotheses, dead ends
+- Capture broadly: facts, observations, theories, hypotheses, approaches attempted
 - Timestamp each entry with date
 - Include source reference for traceability
 - Update analysis index after appending
 - Continue research without pausing for approval
 
 **User Review:**
-- User reviews fact files post-factum and filters/modifies content they disagree with
+- User reviews fact files during and after research
+- User may disprove findings → archive to `-disproven.md` files
 - Do NOT interrupt research flow to ask for approval
-- Focus on breadth and depth of raw capture
+- Focus on breadth and depth of capture
 
 **MUST NOT:**
-- Filter or verify before appending (capture everything)
 - Stop to ask for inline approval during research
 - Duplicate existing entries
 
@@ -257,9 +257,33 @@ More content.
 
 **File Location:** All fact files are processing artifacts and belong in `.memory/[PROJECT]-[domain]-facts.md`
 
-### 2. Update Analysis Index
+### 2. Archive Disproven Findings
 
-After appending to fact files:
+When findings are disproven by user or new evidence:
+
+**MUST:**
+- Move disproven finding from `.memory/[PROJECT]-[domain]-facts.md` to `.memory/[PROJECT]-[domain]-facts-disproven.md`
+- Add disproof metadata (date disproven, contradicting evidence, reason)
+- Remove from main fact file completely
+- Update index to note disproven companion file exists
+- Preserve history for transparency
+
+**Format for disproven findings:**
+```markdown
+### FINDING-YYYY-MM-DD-N (DISPROVEN)
+**Originally Captured:** YYYY-MM-DD HH:MM
+**Disproven:** YYYY-MM-DD HH:MM
+**Original Source:** [original source]
+**Contradicting Evidence:** [what disproved this]
+
+~~[Original finding description]~~
+
+**Reason for Disproof:** [Why this is no longer considered accurate]
+```
+
+### 3. Update Analysis Index
+
+After appending to fact files or archiving disproven findings:
 
 **MUST:**
 - Update or create analysis index file: `.memory/[PROJECT]-analysis-index.md`
@@ -283,6 +307,7 @@ After appending to fact files:
 ### Docker & Containerization
 - [.memory/[PROJECT]-docker-facts.md](.memory/[PROJECT]-docker-facts.md) - Docker configuration, container architecture, deployment research
   - Last updated: YYYY-MM-DD HH:MM
+  - Disproven: [.memory/[PROJECT]-docker-facts-disproven.md](.memory/[PROJECT]-docker-facts-disproven.md) (N findings)
 
 ### Architecture
 - [.memory/[PROJECT]-architecture-facts.md](.memory/[PROJECT]-architecture-facts.md) - System architecture, components, interactions research
@@ -402,33 +427,35 @@ Question: "How do we [perform procedure] in [context]?"
 ```
 Question: "Find all [topic] from [sources]"
    ↓
-1. Examine artifacts systematically → Capture all findings in .memory/[PROJECT]-[domain]-facts.md
+1. Examine artifacts systematically → Capture findings in .memory/[PROJECT]-[domain]-facts.md
    ↓
 2. Update index → .memory/[PROJECT]-analysis-index.md (track all domain fact files)
    ↓
-3. Continue research → Capture everything (facts, observations, theories, dead ends)
+3. Continue research → User may disprove findings during research
    ↓
-4. Fact files remain in .memory/ → User reviews post-factum, removes/modifies as needed
+4. Archive disproven → .memory/[PROJECT]-[domain]-facts-disproven.md (when user disproves findings)
+   ↓
+5. Fact files remain in .memory/ → User reviews and filters as needed
    
 [STOP - Wait for user to request output document]
    
-5. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
+6. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
    ↓
-6. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (filter and verify findings, synthesize with citations)
+7. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (filter and verify findings, synthesize with citations)
    ↓
-7. User approval → Review final analysis
+8. User approval → Review final analysis
    ↓
-8. Publish analysis → User-specified location (new document, section in existing doc, etc.)
+9. Publish analysis → User-specified location (new document, section in existing doc, etc.)
 ```
 
 ## Key Principles
 
 **Processing Artifacts vs. Final Outputs:**
-- `.memory/` contains all processing artifacts (fact files with raw research, indices, drafts)
+- `.memory/` contains all processing artifacts (fact files with research, indices, drafts, disproven archives)
 - Root contains only final approved outputs (guides, analyses, documentation)
-- Fact files capture ALL research without filtering or approval interruptions
-- Filtering and verification happen when creating analysis documents
-- User reviews fact files post-factum and removes/modifies as needed
+- Fact files capture research broadly (may filter as research progresses)
+- User can disprove findings during research → archived to `-disproven.md` files
+- Filtering and verification continue when creating analysis documents
 
 **Procedural Research:**
 - Iterative testing and refinement cycle
@@ -438,21 +465,22 @@ Question: "Find all [topic] from [sources]"
 
 **Analytical Research:**
 - Systematic examination of artifacts
-- Fact files capture ALL research: facts, observations, theories, dead ends
-- Filtering and verification happen during analysis document creation
+- Fact files capture research: facts, observations, theories
+- User may disprove findings during research → archived for transparency
+- Filtering and verification happen during research and when creating analysis
 - Final output is filtered synthesis with citations back to fact files
-- Emphasis on comprehensive raw capture and traceability
+- Emphasis on comprehensive capture and traceability
 
 **Quality Control:**
-- Capture everything in fact files (no pre-filtering)
-- User reviews and edits fact files post-factum
-- Filtering and verification happen when creating analysis documents
+- Capture research broadly in fact files (may filter during research)
+- User can disprove findings → archived to preserve history
+- Additional filtering and verification when creating analysis documents
 - Final outputs require user approval (quality gate)
 - Index provides navigation and transparency
 
 **Transparency:**
-- All research captured in fact files (including dead ends, theories, what didn't work)
-- User can review and edit raw research post-factum
+- Research captured in fact files (including approaches attempted)
+- Disproven findings archived (not deleted) with reason for disproof
 - Clear timestamps on all entries
 - Traceable from final output back to fact file entries back to original sources
 
@@ -470,10 +498,11 @@ When user engages you for research:
 
 **For Analytical Research (e.g., "Find all X from Y projects"):**
 1. **Clarify scope:** "Which projects/domains are we examining? What are we looking for?"
-2. **Systematic examination:** Examine artifacts, capture ALL findings in domain fact files
+2. **Systematic examination:** Examine artifacts, capture findings in domain fact files
 3. **Update tracking:** Maintain analysis index linking all fact files
-4. **Continue research:** Keep capturing everything discovered
-5. **Wait for output request:** Do NOT create analysis until user asks
+4. **Handle disproven findings:** When user disproves findings, archive to `-disproven.md` files
+5. **Continue research:** Keep building fact files
+6. **Wait for output request:** Do NOT create analysis until user asks
 
 **When user requests final output:**
 - User may specify: new document, section in existing document, specific location/page
@@ -483,9 +512,10 @@ When user engages you for research:
 
 **Remember:** 
 - All processing artifacts in `.memory/`
-- Fact files = raw research capture (everything goes in, no filtering)
+- Fact files = research capture (may filter as you go, user may disprove findings)
+- Disproven findings = archived to `-disproven.md` files, not deleted
 - Analysis documents = filtered and verified synthesis
 - Final outputs go where user specifies (root, existing docs, specific locations)
 - Continue research without interruption for approval
-- User reviews fact files post-factum, removes/modifies as needed
+- User can disprove findings during research → archive them
 - **NO output documents until explicitly requested**
