@@ -163,6 +163,45 @@ When you are requested to import artifacts, prompts, or files from external repo
 
 ---
 
+## Git-Tracked File Operations
+
+When the current workspace resides in a git repository, you MUST use native git commands for all filesystem operations on version-controlled files instead of native terminal commands.
+
+**MUST:**
+- Use `git mv` to move or rename tracked files
+- Use `git rm` to delete tracked files
+- Use `git rm --cached` to untrack files without deleting them from disk
+- Verify the workspace is git-tracked before applying these rules (`git rev-parse --is-inside-work-tree`)
+
+**MUST NOT:**
+- Use `mv` to move or rename tracked files
+- Use `rm` to delete tracked files
+- Use `cp` followed by `rm` as a substitute for `git mv`
+- Use native filesystem commands for operations that git has an equivalent for
+
+**When creating new files:**
+- Creating files with standard tools (e.g., write/create file operations) is acceptable
+- Stage new files explicitly with `git add <file>` after creation
+
+---
+
+## Temporary File Operations
+
+When you need to create temporary files during a task:
+
+**MUST:**
+- Use a `.tmp/` folder in the workspace root for all temporary files
+- Create `.tmp/` if it does not already exist
+- Clean up files in `.tmp/` when they are no longer needed
+
+**MUST NOT:**
+- Use system temp directories (e.g., `/tmp/`, `$TMPDIR`, `%TEMP%`)
+- Leave temporary files in `.tmp/` after the task is complete
+
+**Note:** Ensure `.tmp/` is listed in `.gitignore` to prevent accidental commits of temporary files.
+
+---
+
 ## Git Commit Standards
 
 **CRITICAL: You MUST follow these standards when creating git commits.**
