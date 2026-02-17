@@ -347,9 +347,11 @@ After appending facts or purging disproven facts:
   - Sources: [list of fact files used]
 ```
 
-### 5. Create Final Output (Curated)
+### 5. Create Final Output (Only When User Requests)
 
-When ready to produce final output document:
+**CRITICAL: Do NOT create final output documents unless user explicitly requests them.**
+
+When user requests final output (e.g., "Create analysis document" or "Write procedure guide"):
 
 **For Procedural Guides:**
 - Review fact file containing tested procedures
@@ -362,16 +364,18 @@ When ready to produce final output document:
 - Review relevant domain fact files
 - Select only useful, accurate facts relevant to analysis goal
 - Synthesize facts into coherent narrative
-- Present draft analysis to user for approval in `.memory/ANALYSIS_PENDING.md`
+- Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to fact files
 - After approval, create final analysis in root
 
 **MUST:**
+- Wait for explicit user request before creating any output document
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
 - Include proper citations/sources
 
 **MUST NOT:**
+- Create draft or final documents without user request
 - Include all facts (only those relevant to this output)
 - Include disproven facts
 - Proceed without user approval for final output
@@ -379,7 +383,7 @@ When ready to produce final output document:
 
 **Prompt user with:**
 - For guides: "I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`. Please review and approve before I create the final guide."
-- For analyses: "I've created analysis draft in `.memory/ANALYSIS_PENDING.md` using facts from [list domain files]. Please review and approve before I create the final analysis file."
+- For analyses: "I've created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` using facts from [list domain files]. Please review and approve before I create the final analysis file."
 
 **Final analysis format:**
 ```markdown
@@ -420,11 +424,17 @@ Question: "How do we [perform procedure] in [context]?"
    ↓
 4. Refine & retest → Iterate until verified working procedure
    ↓
-5. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (verified procedure with all steps)
+5. Continue research → Fact files remain in .memory/ for user review
+   
+[STOP - Wait for user to request output document]
+   
+6. User requests guide → "Create procedure guide for [topic]"
    ↓
-6. User approval → Review final guide
+7. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (verified procedure with all steps)
    ↓
-7. Publish guide → [GUIDE-NAME].md in root (working procedure documentation)
+8. User approval → Review final guide
+   ↓
+9. Publish guide → [GUIDE-NAME].md in root (working procedure documentation)
 ```
 
 ### Analytical Research Workflow
@@ -438,15 +448,21 @@ Question: "Find all [topic] from [sources]"
    ↓
 3. Update index → .memory/[PROJECT]-analysis-index.md (track all domain fact files)
    ↓
-4. User reviews fact files post-factum → removes/modifies facts they disagree with
+4. Continue research → Fact files remain in .memory/ for user review
    ↓
-5. Purge disproven → .memory/[PROJECT]-[domain]-facts-disproven.md (when contradicted)
+5. User reviews fact files post-factum → removes/modifies facts they disagree with
    ↓
-6. Create analysis draft → .memory/ANALYSIS_PENDING.md (synthesize facts with citations)
+6. Purge disproven → .memory/[PROJECT]-[domain]-facts-disproven.md (when contradicted)
+   
+[STOP - Wait for user to request output document]
+   
+7. User requests analysis → "Create analysis document on [topic]"
    ↓
-7. User approval → Review final analysis
+8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesize facts with citations)
    ↓
-8. Publish analysis → [ANALYSIS-NAME].md in root (curated synthesis with cross-references)
+9. User approval → Review final analysis
+   ↓
+10. Publish analysis → [ANALYSIS-NAME].md in root (curated synthesis with cross-references)
 ```
 
 ## Key Principles
@@ -490,19 +506,25 @@ When user engages you for research:
 2. **Begin research:** Search web/docs, capture findings
 3. **Build fact file:** Document procedures found, variations, requirements
 4. **Test & refine:** If testing is possible, iterate on procedure
-5. **Create draft guide:** Present verified procedure for approval
-6. **Publish guide:** Only after user approves final documentation
+5. **Continue research:** Keep fact files updated in `.memory/`
+6. **Wait for output request:** Do NOT create guide until user asks
 
 **For Analytical Research (e.g., "Find all X from Y projects"):**
 1. **Clarify scope:** "Which projects/domains are we examining? What are we looking for?"
 2. **Create index:** List all artifacts to examine (commits, issues, code, docs)
 3. **Systematic examination:** Work through index, append facts to domain files
 4. **Update tracking:** Maintain analysis index linking all fact files
-5. **Create draft analysis:** Synthesize facts with citations when comprehensive
-6. **Publish analysis:** Only after user approves final output
+5. **Continue research:** Keep fact files updated in `.memory/`
+6. **Wait for output request:** Do NOT create analysis until user asks
+
+**When user requests final output:**
+- Ask for specific document name if not provided
+- Create draft in `.memory/[NAME]-PENDING.md`
+- Present for approval before publishing to root
 
 **Remember:** 
 - All processing artifacts in `.memory/`
 - Only final approved outputs in root
 - Continue research without interruption for approval
 - User reviews fact files post-factum
+- **NO output documents until explicitly requested**
