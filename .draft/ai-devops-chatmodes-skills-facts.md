@@ -1302,3 +1302,627 @@ GitHub Copilot does NOT have equivalent "modes" concept:
 - GitHub discussion: "Configuration and Documentation for Thinking Mode" (#7668)
 
 ---
+## FINDING-2026-02-18-1
+**Captured:** 2026-02-18
+**Source:** claude-code-container research documentation (.devcontainer/doc/claude_code_custom_modes.md), Claude Agent SDK documentation (platform.claude.com/docs/en/agent-sdk)
+
+**REFINEMENT OF FINDING-2026-02-17-15: Custom Modes Implementation via Claude Agent SDK**
+
+The previous finding (2026-02-17-15) correctly identified that Claude Code has "modes" as operational states, but was incomplete about custom modes. This finding refines the distinction:
+
+**Built-in Modes (Operational States):**
+- Platform-level features with deep integration
+- Three modes: Default, Auto, Plan
+- Simple toggles/permission levels that modify behaviour
+- Changed via Shift+Tab in CLI
+- User-facing interface for mode selection
+
+**Custom Modes (Subagents with Constraints):**
+- Created via Claude Agent SDK (not built-in platform features)
+- Fundamentally **subagents with permission modes and tool restrictions**
+- Stored as `.claude/modes/*.agent.md` files (same extension as skills/agents but different purpose)
+- Have own context windows
+- Specific personas and tool restrictions
+- Can be chained for workflow phases
+
+**Key distinction from FINDING-2026-02-17-15:**
+The finding stated "modes are **runtime behaviour controls** that control how Claude behaves" but didn't explain that custom modes are actually **constrained subagents**, not just behaviour toggles. SDK-based custom modes are agents (with constraints), not just mode switches.
+
+**File Structure for Custom Modes:**
+
+```
+.claude/
+├── modes/                          # Custom mode definitions
+│   ├── research-assistant.agent.md
+│   ├── problem-definer.agent.md
+│   └── safe-editor.agent.md
+├── rules/                          # Workspace rules
+└── settings.local.json             # Optional: mode-specific settings
+```
+
+**Filename convention:**
+- Use `.agent.md` extension for mode definitions (same as GitHub Copilot agents, different semantics)
+- Use kebab-case (e.g., `problem-definer.agent.md`)
+- Place in `.claude/modes/` for organisation
+
+**Custom Mode `.agent.md` Structure:**
+
+YAML frontmatter:
+```yaml
+---
+name: mode-name
+description: What this mode does
+version: 1.0.0
+---
+```
+
+Markdown body includes:
+- Purpose section
+- Permission configuration (permission mode + allowed tools)
+- Persona definition
+- Operational rules
+- Entry/exit behaviour
+- Workflow phases (if multi-step)
+
+---
+
+## FINDING-2026-02-18-2
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md), Claude Agent SDK documentation
+
+**Claude Agent SDK Permission Modes**
+
+The Claude Agent SDK supports six permission modes controlling tool access and approval requirements:
+
+### Permission Modes
+
+**1. `default` Mode**
+- All tools require permission callback approval
+- Interactive behaviour: Claude requests permission before executing operations
+- Standard interactive override available for each operation
+
+**2. `acceptEdits` Mode**
+- File operations (Write, Edit) auto-approved without prompts
+- Other tools still require permission callbacks
+- Use case: Autonomous code modification with oversight on other operations
+- Useful for batch editing workflows
+
+**3. `plan` Mode**
+- No tool execution permitted
+- Read-only analysis and planning
+- Agent can use AskUserQuestion but cannot implement
+- Equivalent to Claude Code's built-in plan mode
+- Output: Plan documents as artefacts (not code changes)
+
+**4. `bypassPermissions` Mode**
+- All tools auto-approved without prompts
+- Hooks still execute and can block operations
+- Highest autonomy level
+- **Use with extreme caution** (documentation warning)
+
+**5. `delegate` Mode**
+- Tool execution delegated to SDK or calling context
+- Alternative permission strategy for specific workflows
+
+**6. `dont_ask` Mode**
+- Proceed without callback prompts
+- SDKlets agent proceed without interactive approval
+- Alternative to default approval flow
+
+**Selection recommendation:**
+- Start with `plan` for analysis and planning phases
+- Use `acceptEdits` for safe editing phases
+- Reserve `bypassPermissions` for trusted, well-defined automation
+
+---
+
+## FINDING-2026-02-18-3
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md)
+
+**Tool Restrictions in Custom Modes: Allowlist vs Denylist Approach**
+
+Custom modes control tool access through either allowlists or denylists:
+
+### Allowlist Approach (Restrictive)
+
+Specify exactly which tools are available. All others blocked.
+
+**Syntax:**
+```typescript
+{
+  tools: ["Read", "Grep", "WebFetch", "WebSearch"]
+}
+```
+
+**Use case:** Analysis-only modes, read-only research, planning phases
+**Effect:** Most restrictive, prevents unintended operations
+
+**Example: Research Mode**
+```typescript
+{
+  permissionMode: "plan",
+  tools: ["Read", "Grep", "Glob", "WebFetch", "WebSearch", "AskUserQuestion"]
+}
+```
+
+### Denylist Approach (Permissive)
+
+Specify which tools are forbidden. All others available.
+
+**Syntax:**
+```typescript
+{
+  disallowedTools: ["Write", "Edit", "Bash"]
+}
+```
+
+**Use case:** Safe editing, implementation without dangerous operations
+**Effect:** More permissive, inherit other tools from parent context
+
+**Example: Safe Editing Mode**
+```typescript
+{
+  permissionMode: "acceptEdits",
+  disallowedTools: ["Bash", "BashInteractive"]
+}
+```
+
+### Default Behaviour
+
+Agents inherit all tools from main conversation unless restrictions specified.
+
+**Selection guidance:**
+- Use allowlist for restricted phases (planning, analysis)
+- Use denylist for semi-restricted phases (editing without bash)
+- Combine with permission mode for layered control
+
+---
+
+## FINDING-2026-02-18-4
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md)
+
+**Custom Mode Implementation Patterns**
+
+Three primary patterns for implementing custom modes:
+
+### Pattern 1: Constraint-Based Pattern
+
+Use permission modes to prevent specific operations during sensitive phases.
+
+**Characteristics:**
+- Prevents tool access (e.g., write operations)
+- Maintains persona guidance through system prompt
+- Structured iteration through workflow phases
+- Each phase produces artefact before transition
+
+**Use case:** Planning phase before implementation
+- Permission mode: `plan`
+- Tools: Read-only tools + research
+- Output: Plan document
+- Exit criteria: Plan meets quality standards
+
+**Workflow:**
+```
+Define Phase (AskUserQuestion + Read) → Problem Definition Document
+  ↓
+Analysis Phase (Read + Grep + WebSearch) → Analysis Document
+  ↓
+Planning Phase (plan mode) → Implementation Plan Document
+```
+
+### Pattern 2: Persona-Based Pattern
+
+Use system prompts to change operational perspective whilst permission modes enforce boundaries.
+
+**Characteristics:**
+- Mode defines specific role/perspective
+- Permission restrictions enforce role constraints
+- Role cannot violate constraints even if requested
+- Helps prevent mode slippage (e.g., business analyst suggesting code)
+
+**Use case:** Business analysis without technical suggestions
+- Permission mode: `plan`
+- Tools: Limited to questioning and reading
+- Persona: "You are a Business Analyst. MUST NOT suggest technical implementations"
+- Exit criteria: Problem definition document
+
+**Embedded rules example:**
+```markdown
+## Persona and Constraints
+
+**You are a Business Analyst with the following constraints:**
+
+- **Assume no technical knowledge:** Use business-focused language
+- **Problem definition only:** MUST NOT suggest solutions or implementations
+- **Documentation-first:** All information from verified sources or user input
+- **Focus on "what" not "how":** Understand the problem, not the solution
+```
+
+**Benefit:** Persona + constraints provide redundant enforcement of mode boundaries
+
+### Pattern 3: Autonomous Execution Pattern
+
+Use `acceptEdits` or `bypassPermissions` for supervised automation.
+
+**Characteristics:**
+- Higher autonomy level
+- Auto-approval of file operations
+- Still maintain oversight through other controls
+- Useful for batch operations
+
+**Use case:** Batch file modifications with oversight
+- Permission mode: `acceptEdits`
+- Tools: All tools except dangerous operations (disallowedTools: ["Bash"])
+- Auto-approves: Write and Edit operations
+- Manual approval still required: Web operations, other decisions
+- Exit criteria: All modifications complete and verified
+
+---
+
+## FINDING-2026-02-18-5
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md)
+
+**Custom Mode Invocation and Workflow Integration**
+
+Custom modes are invoked within Claude Code conversations and can be chained for multi-phase workflows:
+
+### Invocation Patterns
+
+**Direct Invocation:**
+```
+Use problem-definer mode to help me articulate the authentication issue
+```
+
+Agent spawns subagent with problem-definer configuration.
+
+**Sequential Workflow:**
+```
+1. Use problem-definer mode to define the issue
+2. After problem is defined, use analysis-mode to investigate
+3. After analysis, use architecture-planner mode to design approach
+4. After plan approved, use safe-editor mode to implement
+```
+
+Modes transition sequentially based on completion of prior phase.
+
+**Conditional Invocation:**
+```
+If task requires research only → use research-assistant mode
+Otherwise → proceed with normal implementation workflow
+```
+
+Mode selection based on task characteristics.
+
+### Multi-Phase Workflow Structure
+
+All-phase workflow with defined artefacts and decision points:
+
+```
+Problem Definition Mode (plan + limited tools)
+  ├─ Permission: plan, Tools: AskUserQuestion + Read + Grep
+  ├─ Output: Problem statement document
+  └─ Exit: User confirms problem is clear
+
+Analysis Mode (plan + research tools)
+  ├─ Permission: plan, Tools: Read + Grep + WebFetch + WebSearch
+  ├─ Output: Technical analysis document
+  └─ Exit: User approves analysis findings
+
+Planning Mode (plan + full read access)
+  ├─ Permission: plan, Tools: All read tools
+  ├─ Output: Implementation plan document
+  └─ Exit: User approves plan
+
+Implementation Mode (acceptEdits + safe tools)
+  ├─ Permission: acceptEdits, DisallowedTools: Bash
+  ├─ Output: Code changes
+  └─ Exit: All changes complete
+
+Verification Mode (plan + test tools)
+  ├─ Permission: plan, Tools: Read + test execution
+  ├─ Output: Test results document
+  └─ Exit: All tests pass or issues documented
+```
+
+**Key characteristics:**
+- Each phase has distinct permission level
+- Each phase produces specific artefact type
+- Phase outputs inform subsequent phases
+- Clear exit criteria before transitioning
+- Artefacts become inputs to next phase
+
+### Subagent Context Management
+
+**Subagent characteristics** (from subagents documentation):
+- Own context windows (independent from main conversation)
+- Specific personas defined in mode
+- Tool restrictions maintained throughout execution
+- Maintain access to conversation history with parent session
+- Can make dynamic mode changes within execution
+
+**Context efficiency benefits:**
+- Each subagent starts clean (doesn't inherit full conversation context)
+- Only relevant tools available (reduces distraction)
+- Focused persona maintains consistency
+- Previous artefacts passed as input (not full context)
+
+---
+
+## FINDING-2026-02-18-6
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md)
+
+**Custom Modes vs GitHub Copilot Custom Agents: Semantic Similarity with Different Implementation**
+
+**Critical Discovery:** GitHub Copilot and Claude Code both use `.agent.md` files, but semantic similarity masks different underlying systems:
+
+### File Format Similarity
+
+| Aspect | GitHub Copilot `.agent.md` | Claude Code `.agent.md` (custom modes) |
+|--------|---------------------------|----------------------------------------|
+| **Extension** | `.agent.md` | `.agent.md` |
+| **Location** | `.github/agents/` | `.claude/modes/` |
+| **Frontmatter** | YAML with name, description, tools, mcp-servers | YAML with name, description, version |
+| **Body** | Persona, instructions, standards, examples | Persona, constraints, workflow, exit criteria |
+
+### Semantic Differences (Same Filename, Different Purpose)
+
+**GitHub Copilot `.agent.md`:**
+- Agent orchestration & tool selection
+- Specifies which tools available via `tools:` field
+- Can hand off to other agents via `handoffs:` field
+- Can integrate MCP servers
+- Purpose: Coordinate multiple skills and tools for complex workflows
+- Loaded once when user selects agent
+- Persistent persona throughout session
+
+**Claude Code `.agent.md` (custom modes):**
+- Permissioned subagent with specific constraints
+- Permission modes + tool restrictions define boundaries
+- Created via Claude Agent SDK
+- Purpose: Enforce behavioural constraints during specific workflow phases
+- Instantiated when invoked within conversation
+- Can transition between custom modes dynamically
+- Input/output specification (exit criteria, artefact requirements)
+
+**Why .agent.md naming is confusing:**
+- Both platforms converged on `.agent.md` for agent-like features
+- GitHub Copilot's agents are broader (orchestration + personas)
+- Claude Code's agents (via modes) are more specific (constrained subagents for phases)
+- Naming doesn't reflect the conceptual difference
+
+### Comparison Matrix
+
+| Feature | Copilot Agent | Claude Code Mode |
+|---------|---------------|------------------|
+| **Orchestration** | ✅ Primary purpose | ⚠️ Limited (phase sequencing) |
+| **Tool selection** | ✅ Specifies available tools | ✅ Via permission/allowlist |
+| **Permission control** | ❌ No (VS Code controls) | ✅ Permission modes + allowlist |
+| **Persona definition** | ✅ Instructions + standards | ✅ Persona + constraints |
+| **Phase enforcement** | ❌ No | ✅ Exit criteria, artefacts |
+| **Workflow sequencing** | ⚠️ Via handoffs | ✅ Built-in pattern |
+| **Context management** | Single context | Own context per subagent |
+| **MCP integration** | ✅ Via mcp-servers field | ⚠️ Via documentation (not enforced) |
+| **Subagent spawning** | Handoffs only | Conversation invocation |
+| **Skill invocation** | ✅ Can invoke skills | ✅ Can use skills |
+
+### When Both Have Same Capability
+
+Both can define personas and invoke skills. But:
+- **Copilot agents** frame this as "orchestration with persona"
+- **Claude Code modes** frame this as "constrained subagents for phases"
+
+---
+
+## FINDING-2026-02-18-7
+**Captured:** 2026-02-18
+**Source:** claude-code-container (.devcontainer/doc/claude_code_custom_modes.md)
+
+**Practical Example: Problem Definition Mode (Complete Implementation)**
+
+Complete working example from claude-code-container documentation:
+
+### File: `.claude/modes/problem-definer.agent.md`
+
+```markdown
+---
+name: problem-definer
+description: Guide users through systematic problem identification using structured questioning
+version: 1.0.0
+---
+
+# Problem Definition Mode
+
+## Permission Configuration
+
+**Permission Mode:** `plan`
+
+**Allowed Tools:**
+- AskUserQuestion (primary tool for gathering information)
+- Read (for understanding existing documentation)
+- Grep (for searching context)
+
+## Persona and Constraints
+
+**You are a Business Analyst with the following constraints:**
+
+- **Assume no technical knowledge:** Use business-focused language
+- **Problem definition only:** MUST NOT suggest solutions or implementations
+- **Documentation-first:** All information from verified sources or user input
+- **Focus on "what" not "how":** Understand the problem, not the solution
+
+## Workflow
+
+### Phase 1: Initial Problem Statement
+
+Request initial problem description from the user.
+
+### Phase 2: Iterative Refinement
+
+Generate targeted questions to clarify the problem:
+
+**Context Questions:**
+- What business area or department does this occur in?
+- Who are the key stakeholders affected?
+- What organisational or resource constraints exist?
+
+**Symptom Questions:**
+- What observable outcomes or behaviours are concerning?
+- What are users or staff experiencing?
+- When did this first become noticeable?
+
+**Impact Questions:**
+- How many people or business units are affected?
+- What are the business consequences?
+- How often does this occur?
+
+**Goal Questions:**
+- What business outcome would you like to achieve?
+- How will you know when the problem no longer exists?
+- What does success look like from your perspective?
+
+### Phase 3: Problem Summary
+
+Present structured summary for user confirmation:
+- Problem statement (1-2 sentences)
+- Context and environment
+- Symptoms and observable issues
+- Impact and affected parties
+- Desired outcome
+- Known constraints
+
+## Exit Conditions
+
+**Successful Completion:**
+- Core elements present (statement, symptoms, goals)
+- Context provides adequate understanding
+- Impact quantified from business perspective
+- User confirms summary accuracy
+
+**Alternative Exits:**
+- Maximum 10 questioning iterations reached
+- User explicitly requests exit
+```
+
+### Usage
+
+**Invocation:**
+```
+Use problem-definer mode to help me articulate the authentication issue we're experiencing
+```
+
+**Expected Behaviour:**
+1. Acknowledges request in Business Analyst persona
+2. Requests initial problem statement
+3. Analyses statement for gaps
+4. Generates 1-3 targeted questions
+5. Iterates until problem sufficiently defined
+6. Presents summary for confirmation
+7. Outputs problem definition document
+8. Exits mode
+
+**Output Artefact:**
+Structured problem definition document with:
+- Problem Statement
+- Business Context
+- Symptoms and Observable Issues
+- Impact Assessment
+- Desired Outcomes
+- Constraints and Limitations
+- Date and Participants
+
+### Key Insights from Implementation
+
+1. **Permission mode prevents implementation:** `plan` mode prevents agent from suggesting technical solutions even if asked
+2. **Persona provides additional guidance:** Business Analyst role reinforces focus on understanding, not solving
+3. **Tool allowlist keeps agent focused:** Only AskUserQuestion, Read, Grep available (no access to Write, Edit, Bash)
+4. **Structured workflow drives conversation:** Phase 1/2/3 structure guides interaction
+5. **Clear exit criteria prevent infinite loops:** Time limit (10 iterations) or user confirmation ends mode
+6. **Artefact output formats next phase:** Problem definition document becomes input to analysis mode
+
+---
+
+## FINDING-2026-02-18-8
+**Captured:** 2026-02-18
+**Source:** claude-code-container research, prior findings synthesis
+
+**Comprehensive Update: Terminology Summary (Corrected Feb 18, 2026)**
+
+**CRITICAL CORRECTION TO TERMINOLOGY RESEARCH:**
+
+Original research question: "Comparing Custom Chatmodes and Skills in Claude Code"
+
+**Updated Accurate Terminology:**
+
+### Claude Code (Anthropic Products)
+1. **Built-in Modes** (Operational States)
+   - Platform-level behaviours: Default, Auto, Plan
+   - User toggles via Shift+Tab or config
+   - Not "custom" but always available
+
+2. **Custom Modes** (via Claude Agent SDK)
+   - `.claude/modes/*.agent.md` files
+   - Subagents with permission modes + tool restrictions
+   - Invoked within conversations
+   - Phase-based workflows with exit criteria
+
+3. **Skills** (agentskills.io standard)
+   - `.claude/skills/*/SKILL.md` files
+   - Reusable capabilities, cross-platform
+   - Auto-loaded when relevant
+   - Progressive context loading (metadata → instructions → resources)
+
+4. **CLAUDE.md / AGENTS.md**
+   - Always-on project context
+   - Entry point documentation
+   - Can reference other files
+
+5. **Slash Commands / Plugins**
+   - User-invoked workflows
+   - May merge with skills in future
+
+### GitHub Copilot (VS Code)
+1. **Custom Agents** (formerly "Custom Chatmodes")
+   - `.github/agents/*.agent.md` files
+   - Orchestrate skills and tools
+   - VS Code-specific (not portable)
+
+2. **Skills** (agentskills.io standard)
+   - `.github/skills/*/SKILL.md` files
+   - Same as Claude Code skills
+   - Portable format
+
+3. **Prompt Files**
+   - `.github/prompts/*.prompt.md` files
+   - User-invoked, single-task instructions
+   - Reference-based composition
+
+4. **Custom Instructions**
+   - `.github/copilot-instructions.md`
+   - Always-applied repo guidance
+
+### Naming Evolution
+
+| Term | Historical | Current Accurate | Platform |
+|------|-----------|------------------|----------|
+| "Custom Chatmodes" | VS Code GitHub Copilot | "Custom Agents" | GitHub Copilot only |
+| "Modes" | VS Code setting | "Built-in Modes" (Default/Auto/Plan) | Claude Code built-in |
+| "Custom Modes" | Not previously distinguished | SDK-based constrained subagents | Claude Code via SDK |
+| "Agent" | Ambiguous | Depends on context (Copilot Agent vs Claude Mode) | Both platforms |
+
+**Key Clarification:**
+- "Custom chatmodes" was legacy GitHub Copilot terminology
+- "Modes" in Claude Code refers to both built-in operational states AND SDK-based custom subagents (source of confusion)
+- Both platforms now support agentskills.io standard for skills
+- Neither Claude Code nor GitHub Copilot have "custom chatmodes" as current feature
+
+**Why the confusion existed:**
+1. GitHub Copilot renamed "chatmodes" → "agents" but documentation still mentions legacy term
+2. Claude Code has "modes" (built-in) distinct from "custom modes" (SDK-based)
+3. Both use `.agent.md` extension with different semantics
+4. Anthropic and GitHub converged on similar models but with different terminology
+
+---
