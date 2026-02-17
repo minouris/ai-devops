@@ -89,19 +89,23 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 
 ## When to Commit
 
-### Appropriate Times
+### Automatic Commits (MANDATORY)
 
-**Commit when:**
-- User explicitly requests a commit
-- A logical unit of work is complete
-- Following a successful test run (if requested)
-- Creating a checkpoint before major refactoring
+**MUST commit after EVERY edit:**
+- After creating any new file
+- After modifying any existing file
+- After deleting any file
+- After any file operation that changes the working tree
+
+**Each commit should:**
+- Contain only the files changed in that specific operation
+- Have a clear, descriptive commit message explaining what changed and why
+- Be a logical, cohesive unit of work
 
 **Do NOT commit when:**
-- User has not requested it
-- Work is incomplete or broken
-- You're uncertain about the changes
 - Files contain secrets or sensitive data
+- Generated files that belong in .gitignore are staged
+- You have not verified what's being committed
 
 ---
 
@@ -125,10 +129,10 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 **Before creating any git commit:**
 
 Ask yourself:
-- [ ] Did the user explicitly ask for a commit?
+- [ ] Have I made an edit that requires a commit?
 - [ ] Is the commit message clear and descriptive?
 - [ ] Have I avoided adding Co-Authored-By or attribution lines?
-- [ ] Are only relevant files staged?
+- [ ] Are only relevant files from this edit staged?
 - [ ] Do I understand what's being committed?
 - [ ] Are there no secrets or credentials in the commit?
 
