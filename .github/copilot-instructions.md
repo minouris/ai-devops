@@ -146,6 +146,23 @@ Source: [Docker Compose Overview](https://docs.docker.com/compose/)
 
 ---
 
+## Importing Artifacts from External Repositories
+
+When you are requested to import artifacts, prompts, or files from external repositories:
+
+**MUST:**
+- Use GitHub CLI to read directly from the repository if it is owned by the current user (`minouris`)
+- Check out a temporary copy (e.g., `/tmp/`) if the repository is not owned by the current user
+- Import only the specific files explicitly requested by the user
+- Do not clone entire repositories unless the user explicitly requests it
+
+**MUST NOT:**
+- Modify files in external repositories
+- Create persistent clones in the workspace directory
+- Assume full repository clones are needed for specific file requests
+
+---
+
 ## Git Commit Standards
 
 **CRITICAL: You MUST follow these standards when creating git commits.**
