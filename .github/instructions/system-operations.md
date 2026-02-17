@@ -27,6 +27,23 @@ When the current workspace resides in a git repository, you MUST use native git 
 
 ---
 
+## Temporary File Operations
+
+When you need to create temporary files during a task:
+
+**MUST:**
+- Use a `.tmp/` folder in the workspace root for all temporary files
+- Create `.tmp/` if it does not already exist
+- Clean up files in `.tmp/` when they are no longer needed
+
+**MUST NOT:**
+- Use system temp directories (e.g., `/tmp/`, `$TMPDIR`, `%TEMP%`)
+- Leave temporary files in `.tmp/` after the task is complete
+
+**Note:** Ensure `.tmp/` is listed in `.gitignore` to prevent accidental commits of temporary files.
+
+---
+
 ## Compliance Verification
 
 **Before performing any filesystem operation on a versioned file:**

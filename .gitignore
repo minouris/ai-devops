@@ -1,2 +1,5 @@
 # Session memory files (not committed)
 .memory/
+
+# Temporary workspace files (not committed)
+.tmp/
