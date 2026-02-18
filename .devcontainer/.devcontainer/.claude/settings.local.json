@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(apt list:*)",
-      "WebFetch(domain:cli.github.com)",
-      "Bash(git checkout:*)"
-    ]
-  }
-}

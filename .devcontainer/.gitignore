@@ -1,8 +1,0 @@
-# Environment variables with secrets
-.devcontainer/.env
-
-# Claude Code workspace-local data (conversation history, todos, plans)
-.devcontainer/.claude-data/
-
-# Mounted directories (appear in workspace root inside container)
-/.claude/
