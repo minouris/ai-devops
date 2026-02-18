@@ -1,7 +1,7 @@
 ---
 description: "Verify, distill, and archive facts in a .memory file by checking sources and dates"
 name: "verify-memory-facts"
-argument-hint: "memoryFilePath=.memory/ANALYSIS_FACTS_PENDING.md"
+argument-hint: "memoryFilePath=.memory/analysis_facts_pending.md"
 tools: ["fetch_webpage", "web_search", "read_file", "replace_string_in_file", "create_file"]
 ---
 
@@ -64,11 +64,11 @@ You will process a `.memory` file containing technical facts and research findin
 
 **Expected input:**
 ```
-memoryFilePath=.memory/{FILENAME}.md
+memoryFilePath=.memory/{filename}.md
 ```
 
 **Variables:**
-- `${input:memoryFilePath}` - Path to the memory file to verify (e.g., `.memory/ANALYSIS_FACTS_PENDING.md`)
+- `${input:memoryFilePath}` - Path to the memory file to verify (e.g., `.memory/analysis_facts_pending.md`)
 
 ---
 
@@ -186,8 +186,8 @@ memoryFilePath=.memory/{FILENAME}.md
 **Execute:**
 ```
 1. Determine archive filename from input path:
-   ${input:memoryFilePath} → {BASENAME}_ARCHIVE_{YYYY-MM-DD}.md
-   Example: .memory/ANALYSIS_FACTS_PENDING.md → .memory/ANALYSIS_FACTS_PENDING_ARCHIVE_2026-02-19.md
+   ${input:memoryFilePath} → {basename}_archive_{yyyy-mm-dd}.md
+   Example: .memory/analysis_facts_pending.md → .memory/analysis_facts_pending_archive_2026-02-19.md
 
 2. Create archive file with the structure below
 ```
@@ -286,7 +286,7 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 
 **Execute:**
 ```
-Create or update .memory/VERIFICATION_LOG.md with an entry for this run
+Create or update .memory/verification_log.md with an entry for this run
 ```
 
 ```markdown
@@ -349,7 +349,7 @@ Create or update .memory/VERIFICATION_LOG.md with an entry for this run
 
 - ✅ Updated: {original memory file}
 - ✅ Created: {archive file}
-- ✅ Logged: .memory/VERIFICATION_LOG.md
+- ✅ Logged: .memory/verification_log.md
 
 ## Next Steps
 
@@ -415,11 +415,11 @@ Check the archive file to see what was removed and why.
 
 **Input:**
 ```
-memoryFilePath=.memory/ANALYSIS_FACTS_PENDING.md
+memoryFilePath=.memory/analysis_facts_pending.md
 ```
 
 **Process:**
-1. Read `.memory/ANALYSIS_FACTS_PENDING.md`
+1. Read `.memory/analysis_facts_pending.md`
 2. Extract facts:
    - "GitHub Copilot custom agents use `.agent.md` files"
    - "Copilot supports `tools:` property in agent frontmatter"
@@ -428,18 +428,18 @@ memoryFilePath=.memory/ANALYSIS_FACTS_PENDING.md
    - Fact 1: ✅ ACCEPTED - Verified in official GitHub Copilot docs (2026)
    - Fact 2: ❌ REJECTED - Property is `tools` but syntax changed in recent release
    - Fact 3: ❌ REJECTED - Site unavailable, cannot verify standard is current
-4. Create `.memory/ANALYSIS_FACTS_PENDING_ARCHIVE_2026-02-19.md`
-5. Update `.memory/ANALYSIS_FACTS_PENDING.md` with only Fact 1
-6. Log to `.memory/VERIFICATION_LOG.md`
+4. Create `.memory/analysis_facts_pending_archive_2026-02-19.md`
+5. Update `.memory/analysis_facts_pending.md` with only Fact 1
+6. Log to `.memory/verification_log.md`
 
 **Output:**
 ```
 Memory File Verification Complete
 
-Original File: .memory/ANALYSIS_FACTS_PENDING.md
+Original File: .memory/analysis_facts_pending.md
 Verified: 1 fact accepted
 Archived: 2 facts rejected
-Archive Location: .memory/ANALYSIS_FACTS_PENDING_ARCHIVE_2026-02-19.md
+Archive Location: .memory/analysis_facts_pending_archive_2026-02-19.md
 ```
 
 ---
@@ -447,12 +447,12 @@ Archive Location: .memory/ANALYSIS_FACTS_PENDING_ARCHIVE_2026-02-19.md
 ## Memory Directory Convention
 
 **During prompt execution, use `.memory/` for:**
-- Progress logging → `.memory/VERIFICATION_LOG.md`
-- Archived facts → `.memory/{BASENAME}_ARCHIVE_{DATE}.md`
+- Progress logging → `.memory/verification_log.md`
+- Archived facts → `.memory/{basename}_archive_{date}.md`
 
 **MUST create memory files when:**
-- Archiving rejected facts (`.memory/{BASENAME}_ARCHIVE_{DATE}.md`)
-- Logging the verification process (`.memory/VERIFICATION_LOG.md`)
+- Archiving rejected facts (`.memory/{basename}_archive_{date}.md`)
+- Logging the verification process (`.memory/verification_log.md`)
 
 **MUST NOT:**
 - Put archived facts in user-facing documentation
@@ -472,7 +472,7 @@ Archive Location: .memory/ANALYSIS_FACTS_PENDING_ARCHIVE_2026-02-19.md
 - [ ] Rejected facts are archived with specific rejection reasons?
 - [ ] Archive file created with complete information?
 - [ ] Original file updated with only verified facts?
-- [ ] Verification logged to `.memory/VERIFICATION_LOG.md`?
+- [ ] Verification logged to `.memory/verification_log.md`?
 - [ ] User provided with summary of changes?
 
 **If ANY answer is "No":**
