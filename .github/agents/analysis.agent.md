@@ -330,7 +330,7 @@ When user requests final output (examples):
 
 **For Analytical Reports:**
 - Review relevant domain fact files
-- Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, refreshes citations, and tags verified facts with `[VERIFIED on {date} by verify-memory-facts]`
+- Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, refreshes citations, and tags verified facts with `[VERIFIED on {date} by {source-url}]`
 - Facts already tagged `[VERIFIED on ...]` within the last 30 days are skipped automatically — request re-verification explicitly if needed (e.g., "force re-verify all facts")
 - Synthesize verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`

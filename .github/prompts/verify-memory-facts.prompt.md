@@ -55,7 +55,7 @@ You will process a `.memory` file containing technical facts and research findin
 4. **Verify each remaining fact** by checking sources using `fetch_webpage` or `web_search`
 5. **Evaluate source currency** by checking dates
 6. **Separate facts** into accepted (current/verified) and rejected (outdated/inaccurate)
-7. **Tag each accepted fact** with `[VERIFIED on YYYY-MM-DD by verify-memory-facts]` in its header block
+7. **Tag each accepted fact** with `[VERIFIED on YYYY-MM-DD by {source-url}]` in its header block, where `{source-url}` is the primary authoritative URL (or short descriptor such as `research synthesis`) used to verify that specific fact
 8. **Create an archive file** for rejected facts with rejection reasons
 9. **Update the original file** with only verified facts, refreshed citations, and verification tags
 10. **Document the distillation process** in the progress log
@@ -93,8 +93,7 @@ memoryFilePath=.memory/{filename}.md
 - Extract EVERY factual claim, no matter how minor
 - Note facts that lack citations
 - Preserve context around each fact
-- Record skipped facts (recently verified) separately in the log
-
+- Record skipped facts (recently verified) separately in the log- When evaluating a `[VERIFIED on {date} by {source}]` tag, parse the source field to determine which URL or process performed the verification
 **MUST NOT:**
 - Skip facts that seem obviously correct (unless they carry a recent verification tag)
 - Ignore facts without citations
@@ -165,7 +164,7 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 ## Accepted Fact {N}: {Brief Description}
 
 **Fact:** {Exact factual statement}
-**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]
+**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]
 
 **Verification:**
 - Source: [{Source Name}]({URL})
@@ -175,6 +174,8 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 
 **Citation:** According to the [{Source Name}]({URL}), {fact statement}.
 ```
+
+When multiple sources were consulted, use the primary or most authoritative URL in the tag. Use a short descriptor such as `research synthesis` when the fact derives from synthesising multiple sources rather than a single verifiable URL.
 
 **Recently Verified Facts (skipped):**
 ```markdown
@@ -300,9 +301,11 @@ For fact files using the `FINDING-YYYY-MM-DD-N` block structure, add the `**Veri
 ```markdown
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD
-**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]
+**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]
 **Source:** {source reference}
 ```
+
+Use the primary authoritative URL as `{source-url}`. For synthesis findings with no single URL, use `research synthesis`.
 
 **MUST:**
 - Include ALL accepted facts
