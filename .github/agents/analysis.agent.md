@@ -344,7 +344,7 @@ When user requests final output (examples):
 
 **For Analytical Reports:**
 - Review relevant domain fact files
-- Run the `verify-memory-facts` workflow on each relevant fact file (defined in `#file:.github/prompts/verify-memory-facts.prompt.md`): checks every fact against authoritative sources, archives rejected facts with reasons, and refreshes citations
+- Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, and refreshes citations
 - Synthesize verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to verified fact files
@@ -352,7 +352,7 @@ When user requests final output (examples):
 
 **MUST:**
 - Wait for explicit user request before creating any output document
-- Run `verify-memory-facts` on each relevant fact file before synthesizing an analysis (see `#file:.github/prompts/verify-memory-facts.prompt.md`)
+- Run `verify-memory-facts` on each relevant fact file before synthesizing an analysis (see [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md))
 - Respect user's specified location/document/section for output
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
@@ -441,7 +441,7 @@ Question: "Find all [topic] from [sources]"
    
 6. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
    ↓
-7. Verify fact files → Run verify-memory-facts on each relevant .memory fact file (.github/prompts/verify-memory-facts.prompt.md)
+7. Verify fact files → Run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on each relevant .memory fact file
    ↓
 8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesise verified findings with citations)
    ↓
@@ -509,7 +509,7 @@ When user engages you for research:
 **When user requests final output:**
 - If user specifies location (new document, section in existing document, specific page), use it
 - If user does not specify location, ask for specific document name/location
-- For analyses: run `verify-memory-facts` on each relevant fact file first (see `#file:.github/prompts/verify-memory-facts.prompt.md`)
+- For analyses: run `verify-memory-facts` on each relevant fact file first (see [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md))
 - Create draft in `.memory/[NAME]-PENDING.md`
 - Present draft for approval before publishing to specified location
 
