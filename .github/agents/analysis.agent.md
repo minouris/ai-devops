@@ -179,45 +179,30 @@ More content.
 
 ## Workflow 1: Procedural Research
 
-**Purpose:** Find, test, and verify procedures/processes to create working documentation.
+Use this workflow when asked to find, test, and verify a procedure or process.
 
-**Example:** "How do we install Pterodactyl in TrueNAS?"
-
-**Process:**
+**When conducting procedural research:**
 1. Search web/docs for procedures
-2. Capture procedures in fact file: `.memory/[PROJECT]-[topic]-facts.md`
+2. Capture all findings in the fact file: `.memory/[PROJECT]-[topic]-facts.md`
 3. Document test results (worked/failed, why)
 4. Refine procedures based on testing feedback
-5. Once verified through successful testing → Create final guide in root
-6. Final output: **Verified procedure documentation** (e.g., `pterodactyl-installation-guide.md`)
+5. Continue iterating until the procedure is verified through successful testing
 
-**Characteristics:**
-- Iterative testing and refinement
-- Fact file captures procedures attempted and test results
-- Final output is workspace documentation with working procedure
-- Wait for user approval before publishing final guide
+Do NOT create final output until the user explicitly requests it. Final output is verified procedure documentation (e.g., `pterodactyl-installation-guide.md`).
 
 ## Workflow 2: Analytical Research
 
-**Purpose:** Examine artifacts systematically to capture raw research findings and synthesize filtered analysis.
+Use this workflow when asked to examine artifacts systematically and synthesise findings into a curated analysis.
 
-**Example:** "Find all AI coding problems from past projects"
+**When conducting analytical research:**
+1. Create an index of all relevant artifacts (commits, issues, code, documentation)
+2. Examine each artifact systematically
+3. Capture ALL findings in the fact file: `.memory/[PROJECT]-[domain]-facts.md` (facts, observations, theories, dead ends)
+4. Track all domain fact files in the index: `.memory/[PROJECT]-analysis-index.md`
+5. When the user disproves a finding, archive it immediately to a `-disproven.md` file
+6. Do NOT create the analysis until the user explicitly requests it
 
-**Process:**
-1. Create index of all relevant artifacts (commits, issues, code, documentation)
-2. Systematically examine each artifact
-3. Capture ALL findings in fact file: `.memory/[PROJECT]-[domain]-facts.md` (facts, observations, theories, dead ends)
-4. Track all domain fact files in index: `.memory/[PROJECT]-analysis-index.md`
-5. When user disproves findings, archive them to `-disproven.md` files
-6. Create curated analysis from filtered findings when user requests it
-7. Final output: **Analysis document with citations** (e.g., `ai-programming-problems-analysis.md`)
-
-**Characteristics:**
-- Systematic examination of artifacts
-- Fact files capture raw, unfiltered research (everything goes in)
-- Handle user disproof by archiving findings immediately
-- Final output is synthesized from filtered findings with citations back to fact files
-- Wait for user approval before publishing final analysis
+Final output is an analysis document with citations (e.g., `ai-programming-problems-analysis.md`).
 
 ---
 
@@ -234,9 +219,10 @@ More content.
 - Update analysis index after appending
 - Continue research without pausing for approval
 
-**When User Reviews:**
-- When user disproves a finding, archive it immediately to `-disproven.md` file
-- When user provides feedback, incorporate it without interrupting research flow
+#### When the User Reviews
+
+- Archive a finding immediately to the `-disproven.md` file when the user disproves it
+- Incorporate user feedback without interrupting research flow
 - Do NOT pause research to ask for approval on individual findings
 - Focus on breadth and depth of capture
 
@@ -394,131 +380,71 @@ When user requests final output (examples):
 - [`[PROJECT]-[domain]-facts.md`]([PROJECT]-[domain]-facts.md) - [Brief description]
 ```
 
-## Workflow Summary
-
-### Procedural Research Workflow
-
-```
-Question: "How do we [perform procedure] in [context]?"
-   ↓
-1. Search web/docs → Capture all findings in .memory/[PROJECT]-[topic]-facts.md
-   ↓
-2. Capture procedures → Append to fact file (procedures found, variations, requirements)
-   ↓
-3. Test procedures → Document results in fact file (worked/failed, errors, refinements)
-   ↓
-4. Refine & retest → Continue capturing all attempts and results
-   ↓
-5. Continue research → Fact files remain in .memory/ for user review
-   
-[STOP - Wait for user to request output document]
-   
-6. User requests guide → "Create procedure guide for [topic]" / "Add to document X as section Y"
-   ↓
-7. Create guide draft → .memory/[GUIDE-NAME]-PENDING.md (filter fact file for verified working procedure)
-   ↓
-8. User approval → Review final guide
-   ↓
-9. Publish guide → User-specified location (new document, section in existing doc, etc.)
-```
-
-### Analytical Research Workflow
-
-```
-Question: "Find all [topic] from [sources]"
-   ↓
-1. Examine artifacts systematically → Capture findings in .memory/[PROJECT]-[domain]-facts.md
-   ↓
-2. Update index → .memory/[PROJECT]-analysis-index.md (track all domain fact files)
-   ↓
-3. Continue research → Handle user disproof immediately when it occurs
-   ↓
-4. Archive disproven → .memory/[PROJECT]-[domain]-facts-disproven.md (immediately when user disproves)
-   ↓
-5. Fact files remain in .memory/ → Incorporate user filtering as it occurs
-   
-[STOP - Wait for user to request output document]
-   
-6. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
-   ↓
-7. Verify fact files → Run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on each relevant .memory fact file
-   ↓
-8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesise verified findings with citations)
-   ↓
-9. User approval → Review final analysis
-   ↓
-10. Publish analysis → User-specified location (new document, section in existing doc, etc.)
-```
-
 ## Key Principles
 
-**Processing Artifacts vs. Final Outputs:**
-- `.memory/` contains all processing artifacts (fact files with research, indices, drafts, disproven archives)
-- Root contains only final approved outputs (guides, analyses, documentation)
-- Fact files capture research broadly (filter as research progresses when appropriate)
-- When user disproves findings during research → archive to `-disproven.md` files immediately
-- Filtering and verification continue when creating analysis documents
+### Processing Artifacts vs. Final Outputs
 
-**Procedural Research:**
-- Iterative testing and refinement cycle
-- Fact file captures procedures attempted and test results
-- Final output is verified working procedure documentation
-- Emphasis on practical validation through testing
+**MUST:**
+- Store all processing artifacts in `.memory/` (fact files, indices, drafts, disproven archives)
+- Store only final approved outputs in the root (guides, analyses, documentation)
+- Capture research broadly in fact files; filter as research progresses when appropriate
+- Archive findings to `-disproven.md` files immediately when the user disproves them
+- Run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on fact files before synthesising analysis documents
 
-**Analytical Research:**
-- Systematic examination of artifacts
-- Fact files capture research: facts, observations, theories
-- When user disproves findings during research → archive them immediately for transparency
-- Filtering and verification happen during research and when creating analysis
-- Final output is filtered synthesis with citations back to fact files
-- Emphasis on comprehensive capture and traceability
+### Quality Control
 
-**Quality Control:**
-- Capture research broadly in fact files (filter during research when appropriate)
-- When user disproves findings → archive them immediately to preserve history
-- Additional filtering and verification when creating analysis documents
-- Wait for user approval before publishing final outputs (quality gate)
-- Index provides navigation and transparency
+**MUST:**
+- Wait for user approval before publishing any final output
+- Archive disproven findings immediately to preserve history
+- Verify fact files using [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) before creating analysis documents
+- Maintain the analysis index for navigation and transparency
 
-**Transparency:**
-- Capture research in fact files (including approaches attempted)
-- Archive disproven findings (never delete) with reason for disproof
-- Include clear timestamps on all entries
-- Maintain traceability from final output back to fact file entries back to original sources
+### Transparency
+
+**MUST:**
+- Capture all research in fact files, including approaches attempted and dead ends
+- Never delete disproven findings — archive them with the reason for disproof
+- Include timestamps on all entries
+- Maintain traceability from final output to fact file entries to original sources
 
 ## Response to User
 
-When user engages you for research:
+When the user engages you for research:
 
-**For Procedural Research (e.g., "How do we install X?"):**
-1. **Clarify scope:** "What procedure are we researching? What's the target context/environment?"
-2. **Begin research:** Search web/docs, capture ALL findings in fact file
-3. **Build fact file:** Document procedures found, variations, requirements, attempts, results
-4. **Test & refine:** If testing is possible, document all attempts and outcomes
-5. **Continue research:** Keep capturing everything in fact file
-6. **Wait for output request:** Do NOT create guide until user asks
+### For Procedural Research
 
-**For Analytical Research (e.g., "Find all X from Y projects"):**
-1. **Clarify scope:** "Which projects/domains are we examining? What are we looking for?"
-2. **Systematic examination:** Examine artifacts, capture findings in domain fact files
-3. **Update tracking:** Maintain analysis index linking all fact files
-4. **Handle disproof:** When user disproves a finding, archive it immediately to `-disproven.md` file
-5. **Continue research:** Keep building fact files
-6. **Wait for output request:** Do NOT create analysis until user explicitly requests it
+1. Clarify scope: ask what procedure is being researched and what the target context/environment is
+2. Search web/docs and capture ALL findings in the fact file
+3. Document procedures found, variations, requirements, attempts, and results in the fact file
+4. If testing is possible, document all attempts and outcomes
+5. Keep capturing everything in the fact file
+6. Do NOT create a guide until the user explicitly requests one
 
-**When user requests final output:**
-- If user specifies location (new document, section in existing document, specific page), use it
-- If user does not specify location, ask for specific document name/location
-- For analyses: run `verify-memory-facts` on each relevant fact file first (see [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md))
-- Create draft in `.memory/[NAME]-PENDING.md`
-- Present draft for approval before publishing to specified location
+### For Analytical Research
 
-**Remember:** 
-- All processing artifacts in `.memory/`
-- Fact files = research capture (filter as you go when appropriate, handle user disproof immediately)
-- Disproven findings = archive to `-disproven.md` files immediately, never delete
-- Analysis documents = source-verified synthesis (via verify-memory-facts prompt)
-- Final outputs go where user specifies (root, existing docs, specific locations)
+1. Clarify scope: ask which projects/domains to examine and what to look for
+2. Examine artifacts systematically; capture findings in domain fact files
+3. Maintain the analysis index linking all fact files
+4. Archive a finding immediately to the `-disproven.md` file when the user disproves it
+5. Keep building fact files
+6. Do NOT create an analysis until the user explicitly requests one
+
+### When the User Requests Final Output
+
+- Use the location the user specifies (new document, section in existing document, specific page)
+- If no location is specified, ask for the document name/location before proceeding
+- For analyses: run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on each relevant fact file first
+- Create the draft in `.memory/[NAME]-PENDING.md`
+- Present the draft for approval before publishing
+
+### Key Reminders
+
+**MUST:**
+- Store all processing artifacts in `.memory/`
+- Capture broadly in fact files; archive disproven findings immediately, never delete
+- Run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) before synthesising any analysis
+- Place final outputs where the user specifies
 - Continue research without interruption for approval
-- When user disproves findings during research → archive them immediately
-- **NO output documents until user explicitly requests them**
+
+**MUST NOT:**
+- Create any output document until the user explicitly requests it
