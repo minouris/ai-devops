@@ -330,7 +330,8 @@ When user requests final output (examples):
 
 **For Analytical Reports:**
 - Review relevant domain fact files
-- Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, and refreshes citations
+- Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, refreshes citations, and tags verified facts with `[VERIFIED on {date} by verify-memory-facts]`
+- Facts already tagged `[VERIFIED on ...]` within the last 30 days are skipped automatically — request re-verification explicitly if needed (e.g., "force re-verify all facts")
 - Synthesize verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to verified fact files
@@ -396,7 +397,7 @@ When user requests final output (examples):
 **MUST:**
 - Wait for user approval before publishing any final output
 - Archive disproven findings immediately to preserve history
-- Verify fact files using [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) before creating analysis documents
+- Verify fact files using [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) before creating analysis documents; facts tagged within the last 30 days are skipped automatically
 - Maintain the analysis index for navigation and transparency
 
 ### Transparency
@@ -433,7 +434,7 @@ When the user engages you for research:
 
 - Use the location the user specifies (new document, section in existing document, specific page)
 - If no location is specified, ask for the document name/location before proceeding
-- For analyses: run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on each relevant fact file first
+- For analyses: run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) on each relevant fact file first; facts tagged within the last 30 days are skipped unless you request re-verification
 - Create the draft in `.memory/[NAME]-PENDING.md`
 - Present the draft for approval before publishing
 

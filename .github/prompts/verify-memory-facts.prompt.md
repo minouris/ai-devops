@@ -51,12 +51,14 @@ You will process a `.memory` file containing technical facts and research findin
 
 1. **Read the memory file** specified in the input
 2. **Extract all factual claims** from the file
-3. **Verify each fact** by checking sources using `fetch_webpage` or `web_search`
-4. **Evaluate source currency** by checking dates
-5. **Separate facts** into accepted (current/verified) and rejected (outdated/inaccurate)
-6. **Create an archive file** for rejected facts with rejection reasons
-7. **Update the original file** with only verified facts and refreshed citations
-8. **Document the distillation process** in the progress log
+3. **Identify recently verified facts** tagged `[VERIFIED on ...]` within the last 30 days — skip these unless re-verification is explicitly requested
+4. **Verify each remaining fact** by checking sources using `fetch_webpage` or `web_search`
+5. **Evaluate source currency** by checking dates
+6. **Separate facts** into accepted (current/verified) and rejected (outdated/inaccurate)
+7. **Tag each accepted fact** with `[VERIFIED on YYYY-MM-DD by verify-memory-facts]` in its header block
+8. **Create an archive file** for rejected facts with rejection reasons
+9. **Update the original file** with only verified facts, refreshed citations, and verification tags
+10. **Document the distillation process** in the progress log
 
 ---
 
@@ -81,24 +83,38 @@ memoryFilePath=.memory/{filename}.md
 1. Read file at ${input:memoryFilePath}
 2. Extract all factual claims (technical specifications, API details, behaviors, configurations)
 3. Identify existing citations for each fact
-4. Create list of facts with their current citations
+4. For each fact, check whether it carries a [VERIFIED on {date} by ...] tag
+5. Calculate days elapsed since each verification tag date
+6. Mark facts verified within the last 30 days as SKIP (retain as accepted without re-verification)
+7. Create list of remaining facts with their current citations for verification
 ```
 
 **MUST:**
 - Extract EVERY factual claim, no matter how minor
 - Note facts that lack citations
 - Preserve context around each fact
+- Record skipped facts (recently verified) separately in the log
 
 **MUST NOT:**
-- Skip facts that seem obviously correct
+- Skip facts that seem obviously correct (unless they carry a recent verification tag)
 - Ignore facts without citations
 - Make assumptions about what constitutes a "fact"
+- Re-verify facts tagged within the last 30 days unless the user explicitly requests it
 
 ---
 
 ### Step 2: Verify Each Fact
 
-**For each fact extracted:**
+**Before processing each fact:**
+
+If a fact is tagged `[VERIFIED on {date} by ...]` and the tag date is within the last 30 days:
+- Retain as ACCEPTED without fetching sources
+- Preserve the existing tag unchanged
+- Record as "retained — verified within 30 days" in the log
+
+Re-verify regardless of tag age only when the user explicitly requests it (e.g., "force re-verify" or "verify all facts").
+
+**For each fact not covered by a recent verification tag:**
 
 **Execute:**
 ```
@@ -149,6 +165,7 @@ memoryFilePath=.memory/{filename}.md
 ## Accepted Fact {N}: {Brief Description}
 
 **Fact:** {Exact factual statement}
+**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]
 
 **Verification:**
 - Source: [{Source Name}]({URL})
@@ -157,6 +174,16 @@ memoryFilePath=.memory/{filename}.md
 - Status: Current and verified
 
 **Citation:** According to the [{Source Name}]({URL}), {fact statement}.
+```
+
+**Recently Verified Facts (skipped):**
+```markdown
+## Retained Fact {N}: {Brief Description}
+
+**Fact:** {Exact factual statement}
+**Verified:** [VERIFIED on YYYY-MM-DD by {original verifier}]  ← retained, within 30-day window
+
+**Status:** Skipped — verified within the last 30 days. Re-verify after {expiry date}.
 ```
 
 **Rejected Facts:**
@@ -262,13 +289,25 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 
 {Verified fact content}
 
+**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]
 **Source:** [{Source Name}]({URL}) (accessed YYYY-MM-DD, published/updated YYYY-MM-DD)
 
 ---
 ```
 
+For fact files using the `FINDING-YYYY-MM-DD-N` block structure, add the `**Verified:**` line to the fact's header block, immediately after the `**Captured:**` line:
+
+```markdown
+### FINDING-YYYY-MM-DD-N
+**Captured:** YYYY-MM-DD
+**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]
+**Source:** {source reference}
+```
+
 **MUST:**
 - Include ALL accepted facts
+- Add `**Verified:** [VERIFIED on YYYY-MM-DD by verify-memory-facts]` to every newly verified fact
+- Preserve existing `**Verified:**` tags on recently verified facts (within 30 days) unchanged
 - Use refreshed citations with dates
 - Maintain logical organisation
 - Note existence of archive file
@@ -279,6 +318,7 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 - Use old citations without verification
 - Remove structural elements (headers, sections)
 - Change fact statements beyond verification updates
+- Remove or overwrite existing `**Verified:**` tags on retained (skipped) facts
 
 ---
 
@@ -299,12 +339,16 @@ Create or update .memory/verification_log.md with an entry for this run
 
 **Summary:**
 - Total facts processed: {N}
-- Facts accepted (verified): {N}
+- Facts newly verified (tagged): {N}
+- Facts retained (within 30-day window, skipped): {N}
 - Facts rejected (archived): {N}
 - Sources checked: {N}
 
-**Accepted Facts:**
+**Newly Verified Facts:**
 - {Brief list of accepted fact topics}
+
+**Retained Facts (skipped — recent tag):**
+- {Brief list with tag dates and expiry dates}
 
 **Rejected Facts:**
 - {Brief list of rejected fact topics with reasons}
@@ -329,15 +373,20 @@ Create or update .memory/verification_log.md with an entry for this run
 # Memory File Verification Complete
 
 **Original File:** {path}
-**Verified:** {N} facts accepted
+**Newly Verified:** {N} facts (tagged `[VERIFIED on {date} by verify-memory-facts]`)
+**Retained:** {N} facts (within 30-day window — skipped, tags preserved)
 **Archived:** {N} facts rejected
 **Archive Location:** {archive file path}
 
 ## Summary
 
-**Accepted Facts (Verified):**
+**Newly Verified Facts:**
 1. {Fact topic} - verified from {source}
 2. {Fact topic} - verified from {source}
+...
+
+**Retained Facts (skipped — verified within 30 days):**
+1. {Fact topic} - tag expires {date}
 ...
 
 **Rejected Facts (Archived):**
@@ -375,6 +424,17 @@ Check the archive file to see what was removed and why.
 5. [Reject] Community forums, Stack Overflow, unofficial blogs
 
 **Edge Cases:**
+
+**If fact has a recent verification tag (within 30 days):**
+- Retain as accepted without fetching sources
+- Preserve tag unchanged
+- Log as "retained — verified within 30-day window"
+- Re-verify only if the user explicitly requests it
+
+**If fact has an expired verification tag (older than 30 days):**
+- Treat as unverified
+- Verify fully and replace the tag with a new `[VERIFIED on {date} by verify-memory-facts]`
+- If verification fails, move to archive
 
 **If source is unavailable (404, connection error):**
 - Use `web_search` to find current location
@@ -465,13 +525,15 @@ Archive Location: .memory/analysis_facts_pending_archive_2026-02-19.md
 **Before completing verification:**
 
 - [ ] Every fact in original file was evaluated?
-- [ ] Every fact was verified against authoritative source?
+- [ ] Facts with `[VERIFIED on ...]` tags within the last 30 days skipped (unless re-verification requested)?
+- [ ] Every remaining fact was verified against an authoritative source?
 - [ ] Source content was fetched using `fetch_webpage` or `web_search`?
 - [ ] Source dates were checked?
-- [ ] Accepted facts have refreshed citations with dates?
+- [ ] Newly accepted facts tagged with `[VERIFIED on {date} by verify-memory-facts]`?
+- [ ] Retained facts have their original tags preserved unchanged?
 - [ ] Rejected facts are archived with specific rejection reasons?
 - [ ] Archive file created with complete information?
-- [ ] Original file updated with only verified facts?
+- [ ] Original file updated with only verified facts and correct tags?
 - [ ] Verification logged to `.memory/verification_log.md`?
 - [ ] User provided with summary of changes?
 
