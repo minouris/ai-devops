@@ -28,7 +28,7 @@ This analysis traces how rules evolved across projects (spafw37 → prompt-drive
 **Problems We've Stopped Solving:**
 - Quality verification (lost accuracy.instructions.md)
 - User communication standards (lost communication.instructions.md)
-- Full git workflow (only git-commits.md remains)
+- Full git workflow (only git-policy.md remains)
 - Code review quality (lost code-review-checklist.instructions.md)
 - "Vibe coding" prevention (lost memory-files.instructions.md)
 - Context overflow via self-contained steps (lost step-files.instructions.md)
@@ -70,7 +70,7 @@ Focus: **What problems do rules solve, and how have those solutions evolved?**
 4. **document-structure.md** - Document structure requirements
 5. **documentation-first.md** - Documentation-first response requirements
 6. **documentation-standards.md** - Language and tone standards (UK English, etc.)
-7. **git-commits.md** - Git commit standards
+7. **git-policy.md** - Git commit standards
 8. **markdown-formatting.md** - Markdown formatting standards
 9. **mermaid-diagrams.md** - Mermaid diagram standards
 10. **reference-items.md** - Reference items format (FACT-N, PROB-N, etc.)
@@ -207,7 +207,7 @@ According to [analysis.md](analysis.md#213-227):
 
 **Solution Evolution:**
 - **spafw37**: `git-operations.instructions.md` - Branch naming, commit workflow, PR procedures, merge strategies, conflict resolution
-- **ai-devops**: `git-commits.md` - **Narrowed to only commit messages**, added Co-Authored-By prohibition, added anti-push directive
+- **ai-devops**: `git-policy.md` - **Narrowed to only commit messages**, added Co-Authored-By prohibition, added anti-push directive
 
 **Current State**: **Scope significantly reduced** - full git workflow lost, only commit message standards remain
 
@@ -335,7 +335,7 @@ According to [analysis.md](analysis.md#213-227):
 
 **Lost**: Branch naming, PR procedures, merge strategies, conflict resolution from `git-operations.instructions.md`
 
-**Retained**: Only git commit message standards in `git-commits.md`
+**Retained**: Only git commit message standards in `git-policy.md`
 
 **Implication**: Inconsistent git practices beyond commit messages
 
@@ -553,7 +553,7 @@ According to [analysis.md](analysis.md#213-227):
 
 **Gap 5: Full Git Workflow**
 - Lost: Most of git-operations.instructions.md
-- Retained: git-commits.md only
+- Retained: git-policy.md only
 - Impact: No branching, PR, merge, conflict resolution guidance
 
 **Gap 6: Planning Guidance**
