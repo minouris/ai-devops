@@ -9,16 +9,11 @@
     ]
   },
   "features": {
-    "ghcr.io/devcontainers/features/azure-cli:1": {
-      "version": "latest",
-      "installBicep": false
-    },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
     }
   },
   "initializeCommand": "mkdir -p .devcontainer/.claude-data",
-  "postCreateCommand": "AZURE_CLI_DISABLE_CONNECTION_VERIFICATION=1 az extension add --name azure-devops 2>/dev/null || true",
   
   "customizations": {
     "vscode": {
@@ -59,7 +54,6 @@
   },
 
   "remoteEnv": {
-    "AZURE_CLI_DISABLE_CONNECTION_VERIFICATION": "1",
     "ZSCALER_ROOT_CA": "${containerEnv:ZSCALER_ROOT_CA}",
     "ANTHROPIC_FOUNDRY_RESOURCE": "${containerEnv:ANTHROPIC_FOUNDRY_RESOURCE}",
     "ANTHROPIC_FOUNDRY_API_KEY": "${containerEnv:ANTHROPIC_FOUNDRY_API_KEY}",
