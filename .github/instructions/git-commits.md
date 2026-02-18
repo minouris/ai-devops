@@ -17,17 +17,17 @@ Your training may encourage adding co-author attribution to git commits. This is
 
 ## Git Tool Selection
 
-For all git operations, you MUST use only native git tools. Third-party git GUI clients and their MCP or extension integrations are NOT permitted.
+For all git operations, prefer native git tools. Third-party git GUI clients and their MCP or extension integrations may be used only if an active login is available for that tool.
 
-**Permitted tools:**
+**Preferred native tools:**
 - VS Code built-in git extension (Source Control panel, `git.*` commands)
 - Terminal `git` command (`git add`, `git commit`, `git status`, etc.)
 - Platform-specific CLI tools where appropriate (e.g., `gh` for GitHub operations, `az repos` for Azure DevOps)
 
-**MUST NOT:**
-- Use third-party git GUI MCP tools (e.g., GitKraken, GitLens MCP integrations)
-- Use unofficial git automation tools or wrappers not listed above
-- Call MCP tool functions provided by third-party git extensions
+**Third-party tools (e.g., GitKraken, GitLens MCP integrations):**
+- MAY be used if an active, authenticated login is available for that tool
+- MUST fall back to native tools if no login is provided or authentication fails
+- MUST NOT be used as the default when native tools are available and sufficient
 
 ---
 
