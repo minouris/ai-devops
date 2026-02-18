@@ -344,15 +344,15 @@ When user requests final output (examples):
 
 **For Analytical Reports:**
 - Review relevant domain fact files
-- Filter and verify findings: select only useful, accurate facts relevant to analysis goal
-- Synthesize filtered findings into coherent narrative
+- Run the `verify-memory-facts` workflow on each relevant fact file (defined in `#file:.github/prompts/verify-memory-facts.prompt.md`): checks every fact against authoritative sources, archives rejected facts with reasons, and refreshes citations
+- Synthesize verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
-- Include citations back to fact files
+- Include citations back to verified fact files
 - After approval, create final analysis in specified location (root, or add to existing document as requested)
 
 **MUST:**
 - Wait for explicit user request before creating any output document
-- Filter and verify findings when creating analysis (fact files contain raw research)
+- Run `verify-memory-facts` on each relevant fact file before synthesizing an analysis (see `#file:.github/prompts/verify-memory-facts.prompt.md`)
 - Respect user's specified location/document/section for output
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
@@ -367,7 +367,7 @@ When user requests final output (examples):
 
 **Prompt user with:**
 - For guides: "I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`. Please review and approve before I create the final guide."
-- For analyses: "I've created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` synthesizing filtered findings from [list domain files]. Please review and approve before I create the final analysis file."
+- For analyses: "I've run `verify-memory-facts` on [list domain files] and created analysis draft in `.memory/[ANALYSIS-NAME]-PENDING.md` from the verified findings. Please review and approve before I create the final analysis file."
 - If location unclear: "Where should I place this output? (new document in root, add to existing document, specific location?)"
 
 **Final analysis format:**
@@ -441,11 +441,13 @@ Question: "Find all [topic] from [sources]"
    
 6. User requests analysis → "Create analysis on [topic]" / "Add findings as page X in doc Y"
    ↓
-7. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (filter and verify findings, synthesize with citations)
+7. Verify fact files → Run verify-memory-facts on each relevant .memory fact file (.github/prompts/verify-memory-facts.prompt.md)
    ↓
-8. User approval → Review final analysis
+8. Create analysis draft → .memory/[ANALYSIS-NAME]-PENDING.md (synthesise verified findings with citations)
    ↓
-9. Publish analysis → User-specified location (new document, section in existing doc, etc.)
+9. User approval → Review final analysis
+   ↓
+10. Publish analysis → User-specified location (new document, section in existing doc, etc.)
 ```
 
 ## Key Principles
@@ -507,6 +509,7 @@ When user engages you for research:
 **When user requests final output:**
 - If user specifies location (new document, section in existing document, specific page), use it
 - If user does not specify location, ask for specific document name/location
+- For analyses: run `verify-memory-facts` on each relevant fact file first (see `#file:.github/prompts/verify-memory-facts.prompt.md`)
 - Create draft in `.memory/[NAME]-PENDING.md`
 - Present draft for approval before publishing to specified location
 
@@ -514,7 +517,7 @@ When user engages you for research:
 - All processing artifacts in `.memory/`
 - Fact files = research capture (filter as you go when appropriate, handle user disproof immediately)
 - Disproven findings = archive to `-disproven.md` files immediately, never delete
-- Analysis documents = filtered and verified synthesis
+- Analysis documents = source-verified synthesis (via verify-memory-facts prompt)
 - Final outputs go where user specifies (root, existing docs, specific locations)
 - Continue research without interruption for approval
 - When user disproves findings during research → archive them immediately
