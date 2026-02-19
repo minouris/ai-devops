@@ -30,29 +30,29 @@ Your training may encourage adapting to different platform conventions flexibly.
 
 ### 1. Frontmatter Requirements
 
+According to [GitHub Copilot documentation](https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot), Copilot instruction files **do not use YAML frontmatter**.
+
 **MUST:**
-- Typically omit frontmatter or use minimal frontmatter
-- Keep instruction files simple without extensive metadata
+- Omit frontmatter entirely
+- Start instruction files directly with markdown content
+- Keep instruction files simple without metadata headers
 
 **MUST NOT:**
+- Include YAML frontmatter (not supported in Copilot instructions)
 - Include `paths` property (this is Claude Code specific)
 - Include `tools` property (belongs to agents/prompts, not instructions)
 - Include `argument-hint` property (belongs to prompts, not instructions)
 
-**Example (no frontmatter):**
+**Example (correct format):**
 ```markdown
 # Documentation Standards
 
-Your requirements here...
-```
+**MUST:**
+- Use official documentation sources
+- Verify information before responding
 
-**Example (minimal frontmatter if needed):**
-```markdown
----
-# Optional minimal metadata
----
-
-# Documentation Standards
+**MUST NOT:**
+- Rely solely on general knowledge
 ```
 
 ---
@@ -162,7 +162,7 @@ See also: [ai-targeted-language.md](.claude/rules/ai-targeted-language.md)
 **When creating or editing files in `src/github/instructions/`:**
 
 **MUST:**
-- Verify frontmatter is minimal or omitted (no `paths` property)
+- Verify NO frontmatter present (Copilot instructions don't use frontmatter)
 - Verify all tool names are Copilot tools (`execute`, `read_file`, `create_file`, `replace_string_in_file`, `search`, `web`, `fetch_webpage`)
 - Verify all path references use `.github/` paths
 - Verify tool usage uses simplified Copilot syntax
@@ -170,7 +170,7 @@ See also: [ai-targeted-language.md](.claude/rules/ai-targeted-language.md)
 - Verify UK English spelling
 
 **MUST NOT:**
-- Save files with `paths` property in frontmatter
+- Save files with ANY YAML frontmatter
 - Save files with Claude Code tool names
 - Save files with `.claude/` path references (unless referencing actual Claude Code files for comparison)
 - Save files with verbose Claude Code tool syntax
@@ -231,7 +231,7 @@ See also:
 **Before saving ANY file in `src/github/instructions/`:**
 
 Ask yourself:
-- [ ] File has minimal or no frontmatter (no `paths` property)?
+- [ ] File has NO frontmatter (Copilot instructions don't use YAML frontmatter)?
 - [ ] All tool references use Copilot tool names?
 - [ ] All path references use `.github/` paths for Copilot files?
 - [ ] Tool usage uses simplified Copilot syntax (no verbose parameter names)?
@@ -242,3 +242,14 @@ Ask yourself:
 **If ANY answer is "No":**
 - Fix the issue before saving
 - These are mandatory standards for `src/github/instructions/` files
+
+---
+
+## Sources
+
+This enforcement file is based on verified information from official documentation:
+
+- [GitHub Copilot Custom Instructions](https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot)
+- [GitHub Copilot Custom agents configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration)
+
+**Verified:** 2026-02-19
