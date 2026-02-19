@@ -315,3 +315,20 @@ Ask yourself:
 **If ANY answer is "No":**
 - Fix the issue before saving
 - These are mandatory standards for `src/claude/agents/` files
+
+---
+
+## Sources
+
+This enforcement file is based on verified information from official documentation:
+
+- [Claude Code Create custom subagents](https://code.claude.com/docs/en/sub-agents)
+- [Claude Code Settings - Tools](https://code.claude.com/docs/en/settings)
+
+**Verified:** 2026-02-19
+
+**Key Requirements from Official Documentation:**
+- `name` and `description` fields are REQUIRED in frontmatter
+- Optional fields: `tools`, `disallowedTools`, `model`, `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory`
+- Subagents inherit all tools by default unless restricted via `tools` or `disallowedTools`
+- Tool names: Bash, Read, Edit, Write, Grep, Glob, WebSearch, WebFetch, Task

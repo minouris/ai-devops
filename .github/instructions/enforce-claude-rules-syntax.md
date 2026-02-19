@@ -226,3 +226,20 @@ Ask yourself:
 **If ANY answer is "No":**
 - Fix the issue before saving
 - These are mandatory standards for `src/claude/rules/` files
+
+---
+
+## Sources
+
+This enforcement file is based on verified information from official documentation:
+
+- [Claude Code Memory documentation](https://code.claude.com/docs/en/memory)
+- [Claude Code Settings - Tools](https://code.claude.com/docs/en/settings)
+
+**Verified:** 2026-02-19
+
+**Key Requirements from Official Documentation:**
+- Rules in `.claude/rules/` are automatically loaded as project memory
+- Optional frontmatter with `paths` field for file-specific rules using glob patterns
+- Rules without `paths` apply to all files
+- Tool names: Bash, Read, Edit, Write, Grep, Glob, WebSearch, WebFetch
