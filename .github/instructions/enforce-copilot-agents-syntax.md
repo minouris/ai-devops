@@ -30,33 +30,41 @@ Your training may encourage adapting to different platform conventions flexibly.
 
 ### 1. Frontmatter Requirements
 
+According to [GitHub Copilot Custom agents configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration), agent frontmatter has specific requirements:
+
 **MUST:**
 - Include frontmatter at the top of every agent file
-- Include `name` field with agent name
-- Include `description` field with agent purpose
-- Include `tools` property with array of tool names used in the agent
+- Include `description` field (string, **REQUIRED**)
+
+**OPTIONAL fields:**
+- `name` (string) - Display identifier for the agent
+- `target` (string) - Environment: `vscode` or `github-copilot`
+- `tools` (list or string) - Comma-separated or array of tool names
+- `infer` (boolean) - Controls automatic agent selection
+- `mcp-servers` (object) - MCP server configurations
+- `metadata` (object) - Key-value pairs for agent annotation
 
 **Example:**
 ```yaml
 ---
+description: Brief description of agent purpose and when to use it
 name: agent-name
-description: Brief description of agent purpose
 tools: [execute, read, edit, search, web, fetch_webpage]
 ---
 ```
 
 **MUST NOT:**
-- Omit frontmatter from agent files
-- Omit `tools` property (Copilot requires this)
+- Omit `description` field (this is REQUIRED in Copilot agents)
 - Include `paths` property (belongs to Claude Code rules, not Copilot agents)
-- Include incorrect tools in the tools array
 
 ---
 
-### 2. Tools Property
+### 2. Tools Property (OPTIONAL)
 
-**MUST:**
-- List ALL tools used in the agent content
+According to [GitHub Copilot documentation](https://docs.github.com/en/copilot/reference/custom-agents-configuration), the `tools` property is optional. When omitted or set to `["*"]`, all available tools are enabled.
+
+**WHEN INCLUDING tools property:**
+- List specific tools the agent should have access to
 - Use Copilot tool names in the array
 - Common tools: `execute`, `read`, `edit`, `search`, `web`, `web_search`, `fetch_webpage`, `create_file`, `replace_string_in_file`
 
@@ -67,8 +75,12 @@ tools: [execute, read, edit, search, web, fetch_webpage]
 
 **MUST NOT:**
 - Use Claude Code tool names in tools array (`Bash`, `Read`, `Edit`, `Write`, `Grep`, `Glob`)
-- Omit tools that are used in the agent content
-- Include tools that are not used in the agent content
+
+**Tool Configuration Options:**
+- Omit property or use `["*"]` to enable all tools
+- Specify individual tools: `["read", "edit", "search"]`
+- Reference MCP server tools: `server-name/tool-name`
+- Disable all tools: `[]`
 
 ---
 
@@ -318,9 +330,8 @@ See also:
 **Before saving ANY file in `src/github/agents/`:**
 
 Ask yourself:
-- [ ] File includes frontmatter with `name`, `description`, and `tools`?
-- [ ] `tools` array lists all tools used in the content?
-- [ ] `tools` array uses Copilot tool names (not Claude Code)?
+- [ ] File includes frontmatter with `description` field (REQUIRED)?
+- [ ] If `tools` array present, does it use Copilot tool names (not Claude Code)?
 - [ ] All tool references in content use Copilot tool names?
 - [ ] All path references use `.github/` paths for Copilot files?
 - [ ] Tool usage uses simplified Copilot syntax (no verbose parameters)?
@@ -332,3 +343,19 @@ Ask yourself:
 **If ANY answer is "No":**
 - Fix the issue before saving
 - These are mandatory standards for `src/github/agents/` files
+
+---
+
+## Sources
+
+This enforcement file is based on verified information from official documentation:
+
+- [GitHub Copilot Custom agents configuration](https://docs.github.com/en/copilot/reference/custom-agents-configuration)
+- [VS Code Custom agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
+
+**Verified:** 2026-02-19
+
+**Key Requirements from Official Documentation:**
+- `description` field is **REQUIRED**
+- `name`, `target`, `tools`, `infer`, `mcp-servers`, `metadata` are all **optional**
+- `tools` defaults to all available tools when omitted
