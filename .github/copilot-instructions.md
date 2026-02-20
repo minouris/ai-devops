@@ -152,7 +152,7 @@ When you are requested to import artifacts, prompts, or files from external repo
 
 **MUST:**
 - Use GitHub CLI to read directly from the repository if it is owned by the current user (`minouris`)
-- Check out a temporary copy (e.g., `/tmp/`) if the repository is not owned by the current user
+- Check out a temporary copy in `.tmp/` (workspace root) if the repository is not owned by the current user
 - Import only the specific files explicitly requested by the user
 - Do not clone entire repositories unless the user explicitly requests it
 
