@@ -157,6 +157,25 @@ When you are requested to import artifacts, prompts, or files from external repo
 
 ---
 
+## GitHub Data Access
+
+When accessing GitHub-hosted data (issues, pull requests, commits, releases, discussions, or repository contents):
+
+**MUST:**
+- Use `gh` CLI for all GitHub-specific data access
+- Use `gh issue view <number> --repo <owner>/<repo>` to read issues
+- Use `gh pr view <number> --repo <owner>/<repo>` to read pull requests
+- Use `gh api` for data not covered by a `gh` subcommand
+- Use `git log`, `git show`, or `git diff` for commit history and diffs within a cloned repository
+
+**MUST NOT:**
+- Use `fetch_webpage` to access github.com URLs — GitHub web pages require authentication and return HTTP 404 for private repositories
+- Assume web-fetched GitHub content is complete or accurate
+
+**Why:** `fetch_webpage` against github.com fails for private repositories (authentication required; returns HTTP 404 or redirect). The `gh` CLI is authenticated and provides reliable, structured output for all GitHub-specific data operations.
+
+---
+
 ## Compliance Verification
 
 **Before creating any git commit:**
