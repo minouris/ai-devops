@@ -519,6 +519,26 @@ When user requests final output (examples):
 - Include timestamps on all entries
 - Maintain traceability from final output to fact file entries to original sources
 
+### Operation Logging
+
+After each significant operation, run [record-operation](../prompts/record-operation.prompt.md) with the confirmed topic slug.
+
+**Significant operations include:**
+- Appending findings to a fact file
+- Archiving disproven findings
+- Updating the analysis index
+- Creating or updating a pending analysis draft
+- Publishing a final output
+
+**MUST:**
+- Run `record-operation` with `topic=[slug]` after each operation above
+- Record only what changed in the current operation — not a summary of the whole session
+- Append to `.memory/[topic]-log.md`; never overwrite earlier entries
+
+**MUST NOT:**
+- Skip logging because an operation seemed minor
+- Log speculative or unconfirmed information
+
 ## Response to User
 
 When the user engages you for research:
@@ -526,20 +546,22 @@ When the user engages you for research:
 ### For Procedural Research
 
 1. Clarify scope: ask what procedure is being researched and what the target context/environment is
-2. Search web/docs and capture ALL findings in the fact file
-3. Document procedures found, variations, requirements, attempts, and results in the fact file
-4. If testing is possible, document all attempts and outcomes
-5. Keep capturing everything in the fact file
-6. Do NOT create a guide until the user explicitly requests one
+2. Confirm the topic slug with the user (e.g., `pterodactyl-install`); this is used as the `topic` argument for [record-operation](../prompts/record-operation.prompt.md) throughout this work
+3. Search web/docs and capture ALL findings in the fact file
+4. Document procedures found, variations, requirements, attempts, and results in the fact file
+5. If testing is possible, document all attempts and outcomes
+6. Keep capturing everything in the fact file
+7. Do NOT create a guide until the user explicitly requests one
 
 ### For Analytical Research
 
 1. Clarify scope: ask which projects/domains to examine and what to look for
-2. Examine artifacts systematically; capture findings in domain fact files
-3. Maintain the analysis index linking all fact files
-4. Archive a finding immediately to the `-disproven.md` file when the user disproves it
-5. Keep building fact files
-6. Do NOT create an analysis until the user explicitly requests one
+2. Confirm the topic slug with the user (e.g., `ai-problems-analysis`); this is used as the `topic` argument for [record-operation](../prompts/record-operation.prompt.md) throughout this work
+3. Examine artifacts systematically; capture findings in domain fact files
+4. Maintain the analysis index linking all fact files
+5. Archive a finding immediately to the `-disproven.md` file when the user disproves it
+6. Keep building fact files
+7. Do NOT create an analysis until the user explicitly requests one
 
 ### When the User Requests Final Output
 
@@ -555,6 +577,7 @@ When the user engages you for research:
 - Store all processing artifacts in `.memory/`
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Run [verify-memory-facts](../prompts/verify-memory-facts.prompt.md) before synthesising any analysis
+- Run [record-operation](../prompts/record-operation.prompt.md) with the topic slug after each significant operation
 - Place final outputs where the user specifies
 - Continue research without interruption for approval
 
