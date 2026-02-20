@@ -53,6 +53,27 @@ Your training may encourage making reasonable assumptions to provide complete an
 
 ---
 
+### 1a. Two-Stage Text Search (MANDATORY)
+
+When searching for information within files or documentation, use a two-stage approach before concluding that information is unavailable.
+
+**Stage 1 — Keyword search:**
+- Use grep, search, or keyword lookup as the initial approach
+- Try multiple related terms, synonyms, and variations
+
+**If Stage 1 yields no results or only false positives, proceed to Stage 2:**
+
+**Stage 2 — Direct file examination:**
+- Read the full relevant file or section directly
+- Policy rationales, design decisions, and contextual reasoning are frequently expressed in natural language rather than consistent searchable keywords
+- Do NOT report information as unavailable until Stage 2 has been completed
+
+**MUST NOT:**
+- Report that information cannot be found after only a keyword search
+- Treat grep returning zero results as confirmation that information does not exist
+
+---
+
 ### 2. No Assumptions or Speculation (MANDATORY)
 
 **MUST:**
