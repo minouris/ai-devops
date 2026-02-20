@@ -322,9 +322,11 @@ Clarifications are applied to their base facts during the verification step, in 
 - Edit any pending analysis file during the research phase, even to "update" it with new findings
 
 **File boundary — research phase:**
-- **Fact files** (`.memory/[topic]-facts.md`) — the only files you write to during research
+- **Fact files** (`.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`) — the only files you write to during research
 - **Pending analysis** (`.memory/[NAME]-PENDING.md`) — read-only during research; written only once when user requests final output
 - **Final output** (root or specified location) — written only after user approval of pending analysis
+
+**Subtopic files:** When a topic has distinct areas requiring separate fact files, create `.memory/[topic]-[subtopic]-facts.md`. The main topic prefix is mandatory. The index at `.memory/[topic]-index.md` lists all subtopic files.
 
 **Format for entries in fact files:**
 ```markdown
@@ -337,14 +339,14 @@ Clarifications are applied to their base facts during the verification step, in 
 [Optional: Additional context, implications, or questions]
 ```
 
-**File Location:** All fact files are processing artifacts and belong in `.memory/[topic]-facts.md`
+**File Location:** All fact files are processing artifacts and belong in `.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`
 
 ### 2. Archive Disproven Findings
 
 When user disproves a finding or new evidence contradicts it:
 
 **MUST:**
-- Move disproven finding from `.memory/[topic]-facts.md` to `.memory/[topic]-facts-disproven.md`
+- Move disproven finding from `.memory/[topic]-facts.md` (or the relevant subtopic file) to `.memory/[topic]-facts-disproven.md` (or `.memory/[topic]-[subtopic]-facts-disproven.md`)
 - Add disproof metadata (date disproven, contradicting evidence, reason)
 - Remove from main fact file completely
 - Update index to note disproven companion file exists
