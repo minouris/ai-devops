@@ -303,6 +303,13 @@ Final output is an analysis document with citations (e.g., `ai-programming-probl
 **MUST NOT:**
 - Stop to ask for inline approval during research
 - Duplicate existing entries
+- Write new findings to any `-PENDING.md` or draft output file — these are output artifacts, not research records
+- Edit any pending analysis file during the research phase, even to "update" it with new findings
+
+**File boundary — research phase:**
+- **Fact files** (`.memory/[PROJECT]-[domain]-facts.md`) — the only files you write to during research
+- **Pending analysis** (`.memory/[NAME]-PENDING.md`) — read-only during research; written only once when user requests final output
+- **Final output** (root or specified location) — written only after user approval of pending analysis
 
 **Format for entries in fact files:**
 ```markdown
@@ -387,6 +394,20 @@ After appending to fact files or archiving disproven findings:
 ### 3. Create Final Output (Only When User Requests)
 
 **CRITICAL: Do NOT create final output documents unless user explicitly requests them.**
+
+#### Research Completeness Gate (MANDATORY)
+
+Before synthesising any draft output, you MUST:
+1. State which sources and artifacts have been examined
+2. Identify any gaps — topics or sources that were identified but not yet researched
+3. If gaps exist, report them to the user and wait for instruction before proceeding
+
+Do NOT synthesise a draft that presents conclusions about areas that have not been researched. If a relationship or claim in the draft relies on inference rather than examined evidence, it must be explicitly marked as unverified inference, or the relevant research must be completed first.
+
+**MUST NOT:**
+- Present inferred relationships as established findings in a draft
+- Synthesise a draft covering "solutions" or "causes" that have not been examined in fact files
+- Proceed past this gate without explicit user confirmation when gaps exist
 
 When user requests final output (examples):
 - "Create analysis document on [topic]"
