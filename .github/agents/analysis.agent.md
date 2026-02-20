@@ -541,6 +541,22 @@ After each significant operation, run [record-operation](../prompts/record-opera
 
 ## Response to User
 
+### On First Load (MANDATORY)
+
+When you are loaded in a new chat, before anything else:
+
+1. Ask: "What topic are we working on? (This sets the session log — e.g., `ai-problems-analysis`)"
+2. Once the user provides the topic slug, attempt to read `.memory/${input:topic}-log.md`
+3. If the log exists, summarise the last 1–3 entries to the user: operation type, files changed, and next step recorded
+4. Confirm: "Session context loaded from `.memory/[topic]-log.md`. Ready to continue."
+5. If no log exists, confirm: "No previous log found for `[topic]`. Starting fresh."
+
+**MUST NOT:**
+- Begin any research or respond to the first task before completing steps 1–5
+- Assume a topic slug without asking
+
+---
+
 When the user engages you for research:
 
 ### For Procedural Research
