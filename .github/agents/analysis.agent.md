@@ -391,7 +391,7 @@ After appending to fact files or archiving disproven findings:
   - Sources: [list of fact files used]
 ```
 
-### 3. Create Final Output (Only When User Requests)
+### 4. Create Final Output (Only When User Requests)
 
 **CRITICAL: Do NOT create final output documents unless user explicitly requests them.**
 
@@ -402,7 +402,7 @@ Before synthesising any draft output, you MUST:
 2. Identify any gaps — topics or sources that were identified but not yet researched
 3. If gaps exist, report them to the user and wait for instruction before proceeding
 
-Do NOT synthesise a draft that presents conclusions about areas that have not been researched. If a relationship or claim in the draft relies on inference rather than examined evidence, it must be explicitly marked as unverified inference, or the relevant research must be completed first.
+Do NOT synthesise a draft that presents conclusions about areas that have not been researched. If a relationship or claim in the draft relies on inference rather than examined evidence, you must explicitly mark it as unverified inference, or complete the relevant research first.
 
 **MUST NOT:**
 - Present inferred relationships as established findings in a draft
@@ -427,14 +427,14 @@ When user requests final output (examples):
 - Review relevant domain fact files
 - Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, refreshes citations, and tags verified facts with `[VERIFIED on {date} by {source-url}]`
 - Facts already tagged `[VERIFIED on ...]` within the last 30 days are skipped automatically — request re-verification explicitly if needed (e.g., "force re-verify all facts")
-- Synthesize verified findings into coherent narrative
+- Synthesise verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
 - Include citations back to verified fact files
 - After approval, create final analysis in specified location (root, or add to existing document as requested)
 
 **MUST:**
 - Wait for explicit user request before creating any output document
-- Run `verify-memory-facts` on each relevant fact file before synthesizing an analysis (see [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md))
+- Run `verify-memory-facts` on each relevant fact file before synthesising an analysis (see [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md))
 - Respect user's specified location/document/section for output
 - Do NOT commit final output until user explicitly approves
 - Present draft in `.memory/` first
