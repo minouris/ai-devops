@@ -175,6 +175,40 @@ More content.
 
 ---
 
+## Importing Artifacts from External Repositories (from git-policy.md)
+
+When requested to import artifacts, prompts, or files from external repositories:
+
+**MUST:**
+- Use GitHub CLI to read directly from the repository if it is owned by the current user (`minouris`)
+- Clone to `.tmp/` in the workspace root if the repository is not owned by the current user
+- Import only the specific files explicitly requested by the user
+- Do not clone entire repositories unless the user explicitly requests it
+
+**MUST NOT:**
+- Modify files in external repositories
+- Create persistent clones in the workspace directory
+- Assume full repository clones are needed for specific file requests
+
+---
+
+## Temporary File Operations (from system-operations.md)
+
+When creating temporary files during a task:
+
+**MUST:**
+- Use a `.tmp/` folder in the workspace root for all temporary files
+- Create `.tmp/` if it does not already exist
+- Clean up files in `.tmp/` when they are no longer needed
+
+**MUST NOT:**
+- Use system temp directories (e.g., `/tmp/`, `$TMPDIR`, `%TEMP%`)
+- Leave temporary files in `.tmp/` after the task is complete
+
+**Note:** `.tmp/` is listed in `.gitignore` to prevent accidental commits of temporary files.
+
+---
+
 # Research Workflows
 
 ## Workflow 1: Procedural Research
