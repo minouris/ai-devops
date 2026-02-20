@@ -2,17 +2,17 @@
 description: "Append a compact record of the latest AI operation to a rolling topic log in .memory/"
 name: "record-operation"
 argument-hint: "topic=ai-problems-analysis"
-tools: ["read_file", "create_file", "replace_string_in_file"]
+tools: [read_file, create_file, replace_string_in_file]
 ---
 
 # Record Operation to Topic Log
 
 Append a compact record of the most recent AI operation to `.memory/[topic]-log.md`.
 
-## Input
+## Input Format
 
 **Required:**
-- `topic` — the current research or work topic (e.g., `ai-problems-analysis`, `chatmodes-skills`). Used to name the log file: `.memory/[topic]-log.md`
+- `topic` — the current research or work topic (e.g., `ai-problems-analysis`, `chatmodes-skills`). Used to name the log file: `.memory/${input:topic}-log.md`
 
 ---
 
@@ -40,7 +40,7 @@ Extract only what is directly relevant to the operation just completed. Do NOT r
 
 ## Log File
 
-- **Location:** `.memory/[topic]-log.md`
+- **Location:** `.memory/${input:topic}-log.md`
 - **Behaviour:** Append-only. Create the file if it does not exist. Never overwrite or remove earlier entries.
 - **Order:** Newest entries at the bottom.
 
@@ -74,9 +74,7 @@ Omit any section that has nothing to record for this operation.
 
 ## Execution
 
-When invoked with a `topic`:
-
-1. Read `.memory/[topic]-log.md` if it exists (to avoid duplicating the last entry)
+1. Read `.memory/${input:topic}-log.md` if it exists (to avoid duplicating the last entry)
 2. Extract relevant data from the most recent AI operation in the current context
 3. Format as a single entry using the structure above
 4. Append the entry to `.memory/[topic]-log.md`, creating the file if needed
