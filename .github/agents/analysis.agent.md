@@ -257,7 +257,7 @@ Use this workflow when asked to find, test, and verify a procedure or process.
 
 **When conducting procedural research:**
 1. Search web/docs for procedures
-2. Capture all findings in the fact file: `.memory/[PROJECT]-[topic]-facts.md`
+2. Capture all findings in the fact file: `.memory/[topic]-facts.md`
 3. Document test results (worked/failed, why)
 4. Refine procedures based on testing feedback
 5. Continue iterating until the procedure is verified through successful testing
@@ -271,8 +271,8 @@ Use this workflow when asked to examine artifacts systematically and synthesise 
 **When conducting analytical research:**
 1. Create an index of all relevant artifacts (commits, issues, code, documentation)
 2. Examine each artifact systematically
-3. Capture ALL findings in the fact file: `.memory/[PROJECT]-[domain]-facts.md` (facts, observations, theories, dead ends)
-4. Track all domain fact files in the index: `.memory/[PROJECT]-analysis-index.md`
+3. Capture ALL findings in the fact file: `.memory/[topic]-facts.md` (facts, observations, theories, dead ends)
+4. Track the fact file and its companions in the index: `.memory/[topic]-index.md`
 5. When the user disproves a finding, archive it immediately to a `-disproven.md` file
 6. Do NOT create the analysis until the user explicitly requests it
 
@@ -285,7 +285,7 @@ Final output is an analysis document with citations (e.g., `ai-programming-probl
 ### 1. Capture Research in Fact Files
 
 **MUST:**
-- Append research findings to appropriate domain fact file: `.memory/[PROJECT]-[domain]-facts.md`
+- Append research findings to the topic fact file: `.memory/[topic]-facts.md`
 - Create domain file if it doesn't exist
 - Capture broadly: facts, observations, theories, hypotheses, approaches attempted
 - Timestamp each entry with date
@@ -322,7 +322,7 @@ Clarifications are applied to their base facts during the verification step, in 
 - Edit any pending analysis file during the research phase, even to "update" it with new findings
 
 **File boundary — research phase:**
-- **Fact files** (`.memory/[PROJECT]-[domain]-facts.md`) — the only files you write to during research
+- **Fact files** (`.memory/[topic]-facts.md`) — the only files you write to during research
 - **Pending analysis** (`.memory/[NAME]-PENDING.md`) — read-only during research; written only once when user requests final output
 - **Final output** (root or specified location) — written only after user approval of pending analysis
 
@@ -337,14 +337,14 @@ Clarifications are applied to their base facts during the verification step, in 
 [Optional: Additional context, implications, or questions]
 ```
 
-**File Location:** All fact files are processing artifacts and belong in `.memory/[PROJECT]-[domain]-facts.md`
+**File Location:** All fact files are processing artifacts and belong in `.memory/[topic]-facts.md`
 
 ### 2. Archive Disproven Findings
 
 When user disproves a finding or new evidence contradicts it:
 
 **MUST:**
-- Move disproven finding from `.memory/[PROJECT]-[domain]-facts.md` to `.memory/[PROJECT]-[domain]-facts-disproven.md`
+- Move disproven finding from `.memory/[topic]-facts.md` to `.memory/[topic]-facts-disproven.md`
 - Add disproof metadata (date disproven, contradicting evidence, reason)
 - Remove from main fact file completely
 - Update index to note disproven companion file exists
@@ -368,34 +368,27 @@ When user disproves a finding or new evidence contradicts it:
 After appending to fact files or archiving disproven findings:
 
 **MUST:**
-- Update or create analysis index file: `.memory/[PROJECT]-analysis-index.md`
+- Update or create analysis index file: `.memory/[topic]-index.md`
 - List all domain-specific fact files with brief descriptions
 - Note companion disproven files where they exist
 - Include file paths and last updated timestamps
 - Keep index concise and navigable
 
-**File Location:** Index is a processing artifact and belongs in `.memory/[PROJECT]-analysis-index.md`
+**File Location:** Index is a processing artifact and belongs in `.memory/[topic]-index.md`
 
 **Index format:**
 ```markdown
-# [Project Name] Analysis Index
+# [topic] Index
 
 **Last Updated:** YYYY-MM-DD HH:MM
 
 ---
 
-## Domain-Specific Fact Files
+## Fact File
 
-### Docker & Containerization
-- [.memory/[PROJECT]-docker-facts.md](.memory/[PROJECT]-docker-facts.md) - Docker configuration, container architecture, deployment research
+- [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - [Brief description of research scope]
   - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[PROJECT]-docker-facts-disproven.md](.memory/[PROJECT]-docker-facts-disproven.md) (N findings)
-
-### Architecture
-- [.memory/[PROJECT]-architecture-facts.md](.memory/[PROJECT]-architecture-facts.md) - System architecture, components, interactions research
-  - Last updated: YYYY-MM-DD HH:MM
-
-[... additional domains ...]
+  - Disproven: [.memory/[topic]-facts-disproven.md](.memory/[topic]-facts-disproven.md) (N findings)
 
 ---
 
@@ -489,7 +482,7 @@ When user requests final output (examples):
 ---
 
 ## Sources
-- [`[PROJECT]-[domain]-facts.md`]([PROJECT]-[domain]-facts.md) - [Brief description]
+- [`.memory/[topic]-facts.md`](.memory/[topic]-facts.md) - [Brief description]
 ```
 
 ## Key Principles
