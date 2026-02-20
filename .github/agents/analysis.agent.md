@@ -300,6 +300,21 @@ Final output is an analysis document with citations (e.g., `ai-programming-probl
 - Do NOT pause research to ask for approval on individual findings
 - Focus on breadth and depth of capture
 
+#### Clarifying Existing Facts
+
+When new information (from further research or supplied by the user) affects or refines an existing fact:
+
+**MUST:**
+- Append it as a new finding with a reference to the fact it clarifies (`Clarifies: FINDING-YYYY-MM-DD-N`)
+- Leave the original finding unchanged
+- Continue appending further clarifications as additional new findings
+
+**MUST NOT:**
+- Edit or merge new information into an existing finding during the research phase
+- Treat a clarification as a correction to be applied immediately
+
+Clarifications are applied to their base facts during the verification step, in reverse chronological order, so that later clarifications can supersede earlier ones before any are merged.
+
 **MUST NOT:**
 - Stop to ask for inline approval during research
 - Duplicate existing entries
@@ -426,6 +441,7 @@ When user requests final output (examples):
 **For Analytical Reports:**
 - Review relevant domain fact files
 - Run the `verify-memory-facts` workflow on each relevant fact file (defined in [verify-memory-facts.prompt.md](../prompts/verify-memory-facts.prompt.md)): checks every fact against authoritative sources, archives rejected facts with reasons, refreshes citations, and tags verified facts with `[VERIFIED on {date} by {source-url}]`
+- Before verifying base facts, apply any clarifying findings in reverse chronological order (newest clarification first), so later clarifications supersede earlier ones before the base fact is finalised
 - Facts already tagged `[VERIFIED on ...]` within the last 30 days are skipped automatically — request re-verification explicitly if needed (e.g., "force re-verify all facts")
 - Synthesise verified findings into coherent narrative
 - Present draft analysis to user for approval in `.memory/[ANALYSIS-NAME]-PENDING.md`
