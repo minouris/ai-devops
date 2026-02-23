@@ -572,3 +572,12 @@
 **Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`
 **Summary:** Added FINDING-SH-M-2026-02-23-02. Captures that Context Poisoning (FINDING-2026-02-20-09 in root-causes-facts.md) is not a direct target of first-wave solutions (SH-001–SH-038) but is an indirect beneficiary — first-wave rules reduce the rate of poisoning events by addressing the four root causes that introduce false items into context. Documents the second-wave mitigation pattern: persistent memory files + verification passes (SH-022, SH-023, SH-037) prevent unverified items from propagating into planning artefacts by acting as a quarantine boundary. Notes that the current analysis agent workflow is an implementation of this pattern. Further second-wave analysis deferred to next research tranche.
 **Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
+
+---
+
+### LOG-2026-02-23-05
+**Date:** 2026-02-23
+**Operation:** Update root-causes-facts.md Amnesia section with additional causes from FINDING-10
+**Files changed:** `.memory/ai-problem-resolution-root-causes-facts.md`
+**Summary:** Expanded the Amnesia section to document three causes identified in FINDING-SH-M-2026-02-22-10 (solutions-history-amnesia-facts.md), replacing the original single-cause "purely architectural" characterisation: (1) Context window truncation — architectural, unaddressable by policy; (2) Positional deprioritisation — attention weighting effect, partially addressable by per-task embedding and Counter: declarations; (3) Paraphrase degradation on composition — file authoring failure, fully addressable by Rule Copying mandate (SH-028/SH-035). Updated CRITICAL DISTINCTION, summary table Amnesia row, ANALYSIS-2026-02-20-01 Separate issue block, and ANALYSIS-2026-02-20-03 NOTE to correct the claim that "policies cannot fix Amnesia" — accurate for Cause 1 only; incorrect for Causes 2 and 3.
+**Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.

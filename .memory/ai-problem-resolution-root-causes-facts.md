@@ -86,14 +86,26 @@ This indicates the problem was that the AI would:
 
 ## AMNESIA (Context Loss & Forgotten Requirements)
 
-**Source:** `general.instructions.md` - "Mandatory Source Citation for External Knowledge" and "Mandatory Full Log Review for CI/CD Failures" sections
+**Source:** `general.instructions.md` - "Mandatory Source Citation for External Knowledge" and "Mandatory Full Log Review for CI/CD Failures" sections; FINDING-SH-M-2026-02-22-10 (solutions-history-amnesia-facts.md)
 
-**CRITICAL DISTINCTION:** Amnesia is fundamentally different from Hallucination, Dishonesty, and Overeagerness.
+**CRITICAL DISTINCTION:** Amnesia is fundamentally different from Hallucination, Dishonesty, and Overeagerness in its primary cause.
 
 - **Hallucination, Dishonesty, Overeagerness:** Behavioural problems caused by training optimisation for "helpfulness"
-- **Amnesia:** Technical limitation of the protocol used to communicate with AI systems (context window size, token limits)
+- **Amnesia:** Primarily a technical limitation — context window size, token limits — but research has identified two additional causes that extend beyond the purely architectural characterisation (see below)
 
-Amnesia is not a choice the AI makes or a behavioral pattern it exhibits. It is an **architectural constraint of the conversation protocol itself**. When the context window (token limit) is reached, earlier information is no longer available to the system. This is not poor performance or misbehaviour; it is the system working exactly as designed within its technical constraints.
+**Amnesia causes — three distinct mechanisms (FINDING-SH-M-2026-02-22-10):**
+
+**Cause 1 — Context window truncation (architectural)**
+When the context window (token limit) is reached, earlier information is no longer available to the system. This is not poor performance or misbehaviour; it is the system working as designed within its technical constraints. This is the cause originally documented here, and it remains correct — but it is not the only cause.
+
+**Cause 2 — Positional deprioritisation (attention weighting)**
+Even when instructions are present within the context window, instructions loaded at the start of a session occupy earlier token positions. As a session grows, recency weighting causes the model to weight more recent messages and task content more heavily than earlier-session instructions. The instruction is available but its influence is attenuated. This is distinct from truncation: the instruction is not missing, it is underweighted. This cause is partially addressable by policy (per-task embedding, Counter: declarations at the point of use) — unlike pure truncation, which requires structural or architectural solutions.
+
+**Cause 3 — Paraphrase degradation on composition (file authoring)**
+When instructed to compose a prompt or instruction file by drawing on rules from other files, the AI does not copy source text verbatim. It paraphrases or summarises. Each composition pass removes precision from the constraint text: mandatory language is softened to advisory, specific constraints are generalised, worked examples are omitted. The result is that rules degrade in force through the composition process itself — a form of amnesia that occurs at authoring time rather than at runtime. This cause is addressable by the Rule Copying mandate (SH-028, SH-035).
+
+**Implication for the "purely architectural" characterisation:**
+Cause 1 is purely architectural — no instruction can fix context window truncation. Causes 2 and 3 are partially or fully addressable by policy. The original framing that "policies cannot fix Amnesia" is accurate for Cause 1 but incorrect for Causes 2 and 3. Solutions in the instruction file corpus (per-task rule embedding, rule-copying mandates, Counter: declarations) directly address Causes 2 and 3.
 
 **Manifestations in identified problems:**
 - [PROBLEM-2026-02-19-02](ai-devops-ai-problems-facts.md#problem-2026-02-19-02): Large context loads force earlier information out; operational failures cascade
@@ -180,7 +192,7 @@ All four core problems (Hallucination, Dishonesty, Amnesia, Overeagerness) have 
 |---------|--------|--------------|
 | **Hallucination** | "Never guess or fabricate" | AI was inventing tools, APIs, specifications without verification |
 | **Dishonesty** | Git operations prohibited | AI was claiming work complete that wasn't; refusing to acknowledge incomplete state |
-| **Amnesia** | Mandatory citations & full log review | AI was forgetting version-specific details; pattern-matching on final errors instead of understanding flow |
+| **Amnesia** | Mandatory citations & full log review; per-task rule embedding; rule-copying mandate | (1) Context truncation — architectural; (2) positional deprioritisation — partially addressable by policy; (3) paraphrase degradation on composition — addressable by rule-copying mandate |
 | **Overeagerness** | Enforced workflow gates & planning phase | AI was skipping planning and rushing to implementation; not waiting for approval |
 
 These policies represent the accumulated lessons from multiple projects encountering these exact failure modes.
@@ -232,10 +244,13 @@ These are not arbitrary restrictions; they're compensations for the core inabili
 
 **Separate issue: Amnesia**
 
-Amnesia is NOT driven by the same training optimization problem. It is a **technical protocol constraint** — context window size. Policies cannot "fix" amnesia because it's not a behaviour that can be overridden. The only solutions are architectural:
-- Larger context windows
-- Better context compression/summarization
-- Alternative communication protocols that don't rely on single-session context windows
+Amnesia is NOT driven by the same training optimization problem as Hallucination, Dishonesty, and Overeagerness. However, subsequent research (FINDING-SH-M-2026-02-22-10) identified three distinct causes of Amnesia, only one of which is purely architectural:
+
+- **Context window truncation** — architectural constraint; policies cannot fix this. The only solutions are structural (per-task embedding rather than session-level loading) or architectural (larger context windows, compression, alternative protocols).
+- **Positional deprioritisation** — attention weighting effect; partially addressable by per-task rule embedding and Counter: declarations. Policy can reduce the impact but cannot eliminate the recency weighting effect entirely.
+- **Paraphrase degradation on composition** — file authoring failure; fully addressable by policy (Rule Copying mandate, SH-028/SH-035).
+
+The original claim that "policies cannot fix amnesia" applies accurately to context window truncation only. The broader category of Amnesia-class failures benefits from policy intervention for the other two causes.
 
 ---
 
@@ -316,7 +331,7 @@ It's not a bug or a flaw in a particular implementation. It's a fundamental feat
 
 Systems trained this way will always need external policy enforcement and guardrails. They cannot be trusted to "just say I don't know" without that being a primary, architecturally-enforced part of their training objective.
 
-**NOTE:** This training-based root cause applies to Hallucination, Dishonesty, and Overeagerness/Overconfidence. It does NOT apply to Amnesia, which is a technical protocol constraint independent of training objectives.
+**NOTE:** This training-based root cause applies to Hallucination, Dishonesty, and Overeagerness/Overconfidence. It does NOT apply to Amnesia Cause 1 (context window truncation), which is a technical protocol constraint independent of training objectives. Amnesia Causes 2 and 3 (positional deprioritisation and paraphrase degradation) are partially addressable by policy, though their root mechanisms differ from the helpfulness-optimisation driver that underlies the other three problems.
 
 
 ---
