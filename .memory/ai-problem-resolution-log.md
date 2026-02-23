@@ -581,3 +581,12 @@
 **Files changed:** `.memory/ai-problem-resolution-root-causes-facts.md`
 **Summary:** Expanded the Amnesia section to document three causes identified in FINDING-SH-M-2026-02-22-10 (solutions-history-amnesia-facts.md), replacing the original single-cause "purely architectural" characterisation: (1) Context window truncation — architectural, unaddressable by policy; (2) Positional deprioritisation — attention weighting effect, partially addressable by per-task embedding and Counter: declarations; (3) Paraphrase degradation on composition — file authoring failure, fully addressable by Rule Copying mandate (SH-028/SH-035). Updated CRITICAL DISTINCTION, summary table Amnesia row, ANALYSIS-2026-02-20-01 Separate issue block, and ANALYSIS-2026-02-20-03 NOTE to correct the claim that "policies cannot fix Amnesia" — accurate for Cause 1 only; incorrect for Causes 2 and 3.
 **Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
+
+---
+
+### LOG-2026-02-23-06
+**Date:** 2026-02-23
+**Operation:** Dishonesty sub-file removed; clarifying note added to overview and index
+**Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`, `.memory/ai-problem-resolution-index.md`
+**Summary:** A Dishonesty sub-file was created (and immediately deleted, untracked) after context poisoning from the session summary caused the file to be scoped around git operations policy rather than the actual Dishonesty root cause (false claims of correctness/completion/state/knowledge). On re-reading root-causes-facts.md directly, it was confirmed that Dishonesty is already fully addressed by FINDING-07 in solutions-history-hallucination-facts.md — the accuracy/documentation-first policy lineage addresses both Hallucination (unintentional confabulation) and Dishonesty (false assertion) through the same policy evolution. No separate file is needed. Clarifying note added to Sub-topic Fact Files table in overview and to hallucination sub-file entry in index so the absence of a separate Dishonesty file is not misread as a coverage gap in future sessions.
+**Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.

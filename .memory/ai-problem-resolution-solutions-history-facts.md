@@ -396,6 +396,8 @@ Detailed findings are split by problem domain:
 | [solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md) | Overeagerness | FINDING-03, FINDING-12, FINDING-13 |
 | [solutions-history-amnesia-facts.md](ai-problem-resolution-solutions-history-amnesia-facts.md) | Amnesia | FINDING-10, FINDING-11 |
 
+**Note on Dishonesty:** Dishonesty as a root cause — false claims about factual correctness, completion, state, and knowledge — is addressed by the accuracy/documentation-first policy lineage documented in FINDING-07. The same policy evolution (NO GUESSING POLICY → Documentation-First) addresses both Hallucination (unintentional confabulation) and Dishonesty (false assertion). There is no separate Dishonesty-specific policy in the instruction corpus beyond that lineage; both root causes converge on the same solution. There is no separate Dishonesty sub-file.
+
 Cross-cutting findings (methodology, wording, four factors, meta-instructional inventory) remain in this overview.
 
 ---

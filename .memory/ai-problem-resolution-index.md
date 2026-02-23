@@ -1,6 +1,6 @@
 # AI-DevOps Analysis Index
 
-**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; compliance gates finding added)
+**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; Dishonesty coverage note added; no separate Dishonesty sub-file)
 
 **Note:** Starting 2026-02-20, fact files include bi-directional cross-references:
 - ai-problem-resolution-problems-facts.md → maps each problem to root causes
@@ -52,12 +52,14 @@
   - Amnesia solutions flagged separately: SH-013, SH-014, SH-022, SH-023, SH-028, SH-029, SH-035, SH-036, SH-037
   - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09, FINDING-SH-M-2026-02-23-02
   - FINDING-SH-M-2026-02-23-02: Context Poisoning — first-wave solutions reduce poisoning rate indirectly; second-wave (memory files + verification passes) prevents unverified items propagating into planning artefacts
+  - FINDING-SH-M-2026-02-23-03: redirect stub → solutions-history-dishonesty-facts.md
   - Problem-specific findings split into sub-files (see below)
 
 - [ai-problem-resolution-solutions-history-hallucination-facts.md](ai-problem-resolution-solutions-history-hallucination-facts.md) - Hallucination & Dishonesty problem-specific findings
   - Last updated: 2026-02-23
   - FINDING-06: earliest NO GUESSING POLICY wording deficiencies (6 failure modes)
   - FINDING-07: 8-revision NO GUESSING POLICY → documentation-first policy evolution (R1–R8)
+  - **Note:** Dishonesty (false claims of correctness/completion/state/knowledge) is covered here. The same accuracy/documentation-first policy lineage addresses both Hallucination and Dishonesty. There is no separate Dishonesty sub-file.
 
 - [ai-problem-resolution-solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md) - Overeagerness problem-specific findings
   - Last updated: 2026-02-23
@@ -69,6 +71,7 @@
   - Last updated: 2026-02-23
   - FINDING-10: three amnesia root causes — instruction deprioritisation (truncation + positional), context flooding, paraphrase degradation
   - FINDING-11: 11-factor degradation taxonomy across 4 categories (Availability, Budget, Framing, Scope)
+
 
 ### Chatmodes vs Skills Research
 - [ai-devops-chatmodes-skills-facts.md](ai-devops-chatmodes-skills-facts.md) - Comparison of Custom Chatmodes/Agents, Skills, Prompts, and Claude Code Modes implementation, structure, and usage in Claude Code and GitHub Copilot
