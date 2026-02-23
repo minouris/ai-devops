@@ -1,10 +1,3 @@
----
-description: "Append a compact record of the latest AI operation to a rolling topic log in .memory/"
-name: "record-operation"
-argument-hint: "topic=ai-problems-analysis"
-tools: [read_file, create_file, replace_string_in_file]
----
-
 # Record Operation to Topic Log
 
 Append a compact record of the most recent AI operation to `.memory/[topic]-log.md`.
