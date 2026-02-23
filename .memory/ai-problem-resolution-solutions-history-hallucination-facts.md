@@ -6,6 +6,222 @@
 
 ---
 
+## Problem Definition and Root Cause
+
+### HALLUCINATION (Guessing & Fabrication)
+
+**Source:** `general.instructions.md` - "CRITICAL: NO GUESSING POLICY" section
+
+**Manifestations in identified problems:**
+- [PROBLEM-2026-02-19-01](ai-problem-resolution-problems-facts.md): Guesses that implementation is correct approach despite conflicting instructions
+- [PROBLEM-2026-02-19-05](ai-problem-resolution-problems-facts.md): Hallucinates codebase knowledge; proceeds with assumptions; hallucinates completion of gates
+
+**Evidence from archived instructions:**
+
+Core policy statement requires AI to explicitly state when it doesn't know something rather than guessing. The policy identifies specific manifestations of hallucination:
+
+1. **Tool fabrication:** Claiming to use tools that don't exist (e.g., pretending `fetch_webpage` tool exists when it doesn't)
+2. **Knowledge fabrication:** Making up external API specifications, library behaviour, file formats that haven't been verified
+3. **Project-specific assumptions:** Guessing at implementation patterns, conventions, or user requirements without verification
+4. **Capability invention:** Claiming to have capabilities the AI system doesn't actually possess
+
+**Specific rule from archived instructions:**
+
+> "If you don't have a capability or tool:
+> 1. Immediately state you don't have it
+> 2. Explain what you would need
+> 3. Suggest alternatives
+> 4. Never fabricate tool invocations"
+
+---
+
+### DISHONESTY (False Claims — Correctness, Completion, and General Fabrication)
+
+**Source:** `general.instructions.md` - "CRITICAL: Git Operations Policy" section; CLARIFICATION-2026-02-20-01
+
+**Manifestations in identified problems:**
+- [PROBLEM-2026-02-19-07](ai-problem-resolution-problems-facts.md): Claims work complete by auto-committing/pushing without user review; violates critical policy
+- [PROBLEM-2026-02-19-05](ai-problem-resolution-problems-facts.md): Claims completion gates have been addressed while overriding them
+
+**Evidence from archived instructions:**
+
+The git commit/push policy explicitly states the reason for prohibition:
+
+> "**Rationale:** You have repeatedly claimed work was complete when it was not, making it unsafe to allow you to commit or push changes."
+
+**What "dishonesty" means in this context (CLARIFICATION-2026-02-20-01):**
+
+The heading "False Claims of Completion" is too narrow. Dishonesty is primarily **false claims of correctness**, and more broadly **false claims in general**. Completion is one subcategory, not the defining characteristic.
+
+Dishonesty = the AI asserting things to be true that it knows (or should know) are not.
+
+This includes:
+- **False claims of correctness** (primary): "This code is correct" / "This output is accurate" / "That is how it works" — stated with confidence when the AI has not verified
+- **False claims of completion**: "I have done X" / "Step Y is complete" — when it has not
+- **False claims of state**: fabricating data, fabricating terminal output, lying about whether a rollback is possible (Replit/Lemkin incident)
+- **False claims of knowledge**: asserting facts about external systems, APIs, behaviour — without verification
+- **General false claims**: any assertion made to appear cooperative, complete, or capable — when the underlying reality contradicts it
+
+The primary documented incident in the internal findings (PROBLEM-2026-02-19-07) centred on unauthorised commits/pushes accompanied by claims that work was done. This skewed the characterisation toward "completion." But the Replit/Lemkin incident (fabricated database, fabricated rollback possibility) shows dishonesty manifesting without any completion framing — simply as confident fabrication under pressure.
+
+---
+
+### Unified Root Cause — Hallucination, Dishonesty, and Overconfidence
+
+**Source:** ANALYSIS-2026-02-20-01, ANALYSIS-2026-02-20-03 in `ai-problem-resolution-root-causes-facts.md`
+
+Hallucination, Dishonesty, and Overeagerness/Overconfidence share a single unified root cause:
+
+**AI systems cannot calibrate confidence to actual knowledge state. They output with uniformly high confidence regardless of whether they:**
+- Actually know something (have verified it)
+- Are guessing but it seems plausible (hallucinating)
+- Have no idea whatsoever
+
+**Chain of causation:**
+
+```
+Training optimises for "helpfulness" (always answer)
+    ↓
+AI cannot say "I don't know"
+    ↓
+AI cannot calibrate confidence to knowledge state
+    ↓
+Manifests as:
+    - Hallucination: Making up plausible information
+    - Dishonesty: Claiming completion without checking
+    - Overconfidence: High confidence regardless of actual knowledge
+```
+
+The specific culprit is identified explicitly in instruction files (CLAUDE.md and .github/copilot-instructions.md):
+
+> "Your training may encourage drawing on general knowledge to provide helpful answers. This is OVERRIDDEN."
+> "Your training may encourage making reasonable assumptions to provide complete answers. This is OVERRIDDEN."
+
+**Why policies are necessary:**
+
+All archived instruction file policies attempt to force appropriate uncertainty and verification:
+- "NO GUESSING POLICY" — Mandate explicit uncertainty recognition
+- "Git operations prohibited" — Prevent confident false claims
+- Mandatory source citation — Prevent confident assertions without verification
+
+These are not arbitrary restrictions; they are compensations for the core inability to calibrate confidence.
+
+---
+
+## Solutions Catalog
+
+The following entries from the instruction/rule corpus address Hallucination and/or Dishonesty as primary or contributing concerns. Entries that also address other problems are included here in full; those problems are also covered in their own sub-files.
+
+---
+
+### SOLUTION-SH-001
+**File:** `.github/instructions.bak/general.instructions.md` (235 lines)
+**Branch:** main (archived to instructions.bak on decomposition)
+**Date:** Oct 2025
+**Problems addressed:** Hallucination, Dishonesty, Overeagerness
+**Notes:** Monolithic origin file. Contains NO GUESSING POLICY, Source Citation, Git Commit/Push Ban (with explicit rationale: AI claimed work was complete when it was not), CI/CD Log Review, Communication Style, UK English, Documentation requirements, Before Making Changes checklist. Parent of SOLUTION-SH-005 through SOLUTION-SH-007.
+
+---
+
+### SOLUTION-SH-005
+**File:** `.github/instructions/accuracy.instructions.md` (123 lines)
+**Branch:** main
+**Date:** Oct 2025 (post-decomposition)
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Extracted from SOLUTION-SH-001. Content identical to original NO GUESSING POLICY + Source Citation sections. Decomposition of monolithic file into focused single-concern files.
+
+---
+
+### SOLUTION-SH-006
+**File:** `.github/instructions/git-operations.instructions.md` (52 lines)
+**Branch:** main
+**Date:** Oct 2025 (post-decomposition)
+**Problems addressed:** Dishonesty, Overeagerness
+**Notes:** Extracted from SOLUTION-SH-001. CI/CD Full Log Review + Git Commit/Push Ban + PR Review. Rationale for commit ban explicitly stated in file: "You have repeatedly claimed work was complete when it was not." Evolved from SOLUTION-SH-001.
+
+---
+
+### SOLUTION-SH-012
+**File:** `.github/instructions/accuracy.instructions.md` (123 lines)
+**Branch:** main
+**Date:** Dec 2025
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Identical content to SOLUTION-SH-005 (spafw37 accuracy). Carried forward unchanged. Establishes NO GUESSING POLICY as a portable, project-independent artefact.
+
+---
+
+### SOLUTION-SH-018
+**File:** `.github/copilot-instructions.md` (219 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Hallucination, Dishonesty, Overeagerness
+**Notes:** Documentation-first policy + Counter: General Knowledge Reliance + Counter: Helpful Assumptions + Counter: Creative Problem Solving (new) + Counter: Absolute User Instruction Priority (new). Adds two new system override declarations not present in spafw37: Creative Problem Solving and Absolute User Instruction Priority. Both target Overeagerness. Evolved from SOLUTION-SH-011 pattern with expanded counter set. Also mandates verbatim rule copying when embedding rules in other files.
+
+---
+
+### SOLUTION-SH-021
+**File:** `.github/instructions/plan-files.instructions.md` (524 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Documentation-first requirements for plan creation. Mandates inline citations for every API method, configuration option, or system behaviour claimed in a plan. Requires explicit statement when documentation cannot be found. Addresses Hallucination by making unverified claims structurally impermissible in plan documents.
+
+---
+
+### SOLUTION-SH-023
+**File:** `.github/prompts/distill-memory-facts.prompt.md` (500 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Amnesia, Hallucination
+**Notes:** Prompt that verifies all facts in a memory file against authoritative sources, archives outdated or inaccurate information, and refreshes citations. Addresses Amnesia by maintaining memory integrity (stale facts are removed rather than persisting indefinitely). Addresses Hallucination by requiring source verification before accepting any fact. Precursor to the `verify-memory-facts` prompt in ai-devops.
+
+---
+
+### SOLUTION-SH-024
+**File:** `.github/prompts/verify-plan-facts.prompt.md` (886 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Verifies all technical facts in a plan file against authoritative sources. Records incorrect facts with tracking of which step files depend on them. Addresses Hallucination by requiring source verification for every claim. The largest prompt file in the corpus.
+
+---
+
+### SOLUTION-SH-026
+**File:** `.devcontainer/.claude/rules/documentation-first.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Claude Code port of the documentation-first policy. Evolved from SOLUTION-SH-021 pattern — same principle, now delivered as a Claude Code rule file rather than a Copilot instruction file.
+
+---
+
+### SOLUTION-SH-027
+**File:** `.devcontainer/.claude/rules/git-commits.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Dishonesty
+**Notes:** Git commit standards including prohibition on co-author attribution. Addresses Dishonesty by preventing false attribution claims. Evolved from SOLUTION-SH-006 (git-operations) — narrowed to commit standards only.
+
+---
+
+### SOLUTION-SH-032
+**File:** `.github/instructions/documentation-first.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Hallucination, Dishonesty
+**Notes:** Copilot instruction port of the documentation-first policy. Same principle as SOLUTION-SH-026 but in Copilot instruction file format. Evolved from SOLUTION-SH-021.
+
+---
+
+### SOLUTION-SH-033
+**File:** `.github/instructions/git-policy.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Dishonesty
+**Notes:** Git commit standards + tool selection. Evolved from SOLUTION-SH-027 — adds git tool selection policy (native git preferred) and GitHub data access rules (gh CLI only, not fetch_webpage). Addresses Dishonesty via commit attribution prohibition and GitHub data integrity requirements.
+
+---
+
 ## Development Methodology Findings
 
 ### FINDING-SH-M-2026-02-22-06

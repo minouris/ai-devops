@@ -1,6 +1,6 @@
 # AI-DevOps Analysis Index
 
-**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; Dishonesty coverage note added; no separate Dishonesty sub-file)
+**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; context-poisoning sub-file added; all sub-files expanded with problem definitions, root causes, and catalog entries)
 
 **Note:** Starting 2026-02-20, fact files include bi-directional cross-references:
 - ai-problem-resolution-problems-facts.md → maps each problem to root causes
@@ -50,27 +50,36 @@
   - Solutions: 38 catalog entries (SH-001 through SH-038) spanning Oct 2025 → Feb 2026
   - Projects: spafw37, prompt-driven-development, nightingale-truenas, claude-code-container, ai-devops
   - Amnesia solutions flagged separately: SH-013, SH-014, SH-022, SH-023, SH-028, SH-029, SH-035, SH-036, SH-037
-  - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09, FINDING-SH-M-2026-02-23-02
-  - FINDING-SH-M-2026-02-23-02: Context Poisoning — first-wave solutions reduce poisoning rate indirectly; second-wave (memory files + verification passes) prevents unverified items propagating into planning artefacts
-  - FINDING-SH-M-2026-02-23-03: redirect stub → solutions-history-dishonesty-facts.md
+  - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09
+  - FINDING-SH-M-2026-02-23-02: Context Poisoning — reproduced in context-poisoning sub-file below
   - Problem-specific findings split into sub-files (see below)
 
 - [ai-problem-resolution-solutions-history-hallucination-facts.md](ai-problem-resolution-solutions-history-hallucination-facts.md) - Hallucination & Dishonesty problem-specific findings
   - Last updated: 2026-02-23
+  - Sections: Problem Definition and Root Cause (Hallucination, Dishonesty, unified root cause); Solutions Catalog (SH-001, SH-005, SH-006, SH-012, SH-018, SH-021, SH-023, SH-024, SH-026, SH-027, SH-032, SH-033); Development Methodology Findings
   - FINDING-06: earliest NO GUESSING POLICY wording deficiencies (6 failure modes)
   - FINDING-07: 8-revision NO GUESSING POLICY → documentation-first policy evolution (R1–R8)
   - **Note:** Dishonesty (false claims of correctness/completion/state/knowledge) is covered here. The same accuracy/documentation-first policy lineage addresses both Hallucination and Dishonesty. There is no separate Dishonesty sub-file.
 
 - [ai-problem-resolution-solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md) - Overeagerness problem-specific findings
   - Last updated: 2026-02-23
+  - Sections: Problem Definition and Root Cause (Overeagerness definition, control-transfer clarification, unified root cause); Solutions Catalog (SH-001, SH-002, SH-003, SH-004, SH-006, SH-008, SH-009, SH-010, SH-011, SH-018, SH-019, SH-020, SH-037); Development Methodology Findings
   - FINDING-03: language directives dual purpose (annoyance removal + Overeagerness counter)
   - FINDING-12: ai-targeted-language as structural compliance enabler; taxonomy correction for FINDING-09
   - FINDING-13: compliance gates evolution across instruction/policy files (spafw37 proto-gate → NT formal gate → CCC decomposition → ai-devops multiplication)
 
 - [ai-problem-resolution-solutions-history-amnesia-facts.md](ai-problem-resolution-solutions-history-amnesia-facts.md) - Amnesia problem-specific findings
   - Last updated: 2026-02-23
+  - Sections: Problem Definition and Root Cause (three causes: truncation, positional deprioritisation, paraphrase degradation); Solutions Catalog (SH-013, SH-014, SH-022, SH-023, SH-028, SH-029, SH-035, SH-036, SH-037); Development Methodology Findings
   - FINDING-10: three amnesia root causes — instruction deprioritisation (truncation + positional), context flooding, paraphrase degradation
   - FINDING-11: 11-factor degradation taxonomy across 4 categories (Availability, Budget, Framing, Scope)
+
+- [ai-problem-resolution-solutions-history-context-poisoning-facts.md](ai-problem-resolution-solutions-history-context-poisoning-facts.md) - Context Poisoning problem-specific findings
+  - Last updated: 2026-02-23
+  - Sections: Problem Definition and Root Cause (mechanism, relationship to four root causes, why AI cannot recover unaided); Amnesia chain clarification; Solutions and Mitigations (first-wave indirect vs second-wave direct); Second-wave solution catalog (SH-022, SH-023, SH-037)
+  - FINDING-2026-02-20-09: Context Poisoning definition, mechanism, and external evidence
+  - CLARIFICATION-2026-02-20-04: Amnesia chain correction — mechanism is selective retrieval or correction blindness, not context window loss
+  - FINDING-SH-M-2026-02-23-02: second-wave mitigation (memory files + verification passes)
 
 
 ### Chatmodes vs Skills Research

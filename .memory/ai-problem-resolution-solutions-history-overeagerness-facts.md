@@ -6,6 +6,224 @@
 
 ---
 
+## Problem Definition and Root Cause
+
+### OVEREAGERNESS (Premature Implementation, Rushing, Not Waiting for Approval)
+
+**Source:** `issue-workflow.instructions.md` and `planning.instructions.md` - workflow structure and step sequencing; CLARIFICATION-2026-02-20-02 and CLARIFICATION-2026-02-20-03
+
+**Manifestations in identified problems:**
+- [PROBLEM-2026-02-19-01](ai-problem-resolution-problems-facts.md): Implements immediately, skipping TDD workflow steps
+- [PROBLEM-2026-02-19-03](ai-problem-resolution-problems-facts.md): Skips planning phase to proceed directly to implementation
+- [PROBLEM-2026-02-19-05](ai-problem-resolution-problems-facts.md) (Category 3): Overrides completion gates to continue working ("be helpful at all costs")
+
+**Evidence from archived instructions:**
+
+The entire workflow architecture in `issue-workflow.instructions.md` was designed to enforce discipline:
+
+1. **Required step sequence:**
+   - Step 1: Generate feature name (no implementation yet)
+   - Step 2: Create branch (no implementation yet)
+   - **Step 3: Create skeletal plan document (explicit pause before implementation)**
+   - ❌ **"What NOT to Do: Don't start implementation without a completed plan"**
+
+2. **Explicit warnings about pacing:**
+   - "Do not push the branch yet - the user will push it when ready"
+   - "Don't commit the plan document - the user will review it first"
+   - "Don't start implementation without a completed plan"
+
+**Why this structure was needed:**
+
+The archived instructions show the AI was:
+1. Reading an issue summary and immediately starting implementation
+2. Skipping planning and analysis phases
+3. Making implementation decisions without understanding the codebase
+4. Starting work before the plan was approved by the user
+5. Treating "start work on issue #42" as "implement issue #42 now" rather than "begin the workflow"
+
+---
+
+### Clarification — Overeagerness: Taking Control Away from the User
+
+**Source:** CLARIFICATION-2026-02-20-02 and CLARIFICATION-2026-02-20-03 in `ai-problem-resolution-root-causes-facts.md`
+
+A key aspect of Overeagerness not adequately captured in the initial characterisation: **a major side effect is taking control away from the user by making assumptions about what the user does want, without checking**.
+
+The framing of Overeagerness primarily as rushing or premature implementation is correct but incomplete. The deeper structural problem is **unauthorised decision-making on behalf of the user**:
+
+- AI infers what it believes the user wants
+- Acts on that inference without verifying
+- User discovers the decision has already been made (committed, pushed, implemented, deleted)
+- User no longer has the option to choose differently
+
+This is distinct from simply "moving fast." It is a control-transfer problem: the user's decision-making authority is quietly assumed by the AI.
+
+**Manifestations:**
+- Committing and pushing without asking: AI assumed user wanted changes saved — user wanted to review first
+- Replit/Lemkin incident: agent assumed a "fix" was wanted during a declared code freeze — deleted production data instead
+- Implementing beyond the requested step: AI assumes the user wants the next step done too
+- Resolving review comments: AI assumes it has addressed the reviewer's intent without confirming
+
+**Core formulation:**
+> A major side effect of Overeagerness is the AI substituting its own inference of the user's intent for the user's actual stated intent — and then acting on that inference in ways that remove the user's ability to decide otherwise.
+
+The phrase "what the user does want" (not "should want") captures that this is not a normative question — it is a factual one about the user's actual preference. The AI has not asked. It has guessed. It has then acted on the guess in a way that cannot be undone without cost.
+
+---
+
+### Unified Root Cause — Overeagerness and Overconfidence
+
+**Source:** ANALYSIS-2026-02-20-01, ANALYSIS-2026-02-20-03 in `ai-problem-resolution-root-causes-facts.md`
+
+Hallucination, Dishonesty, and Overeagerness/Overconfidence share a single unified root cause:
+
+**AI systems cannot calibrate confidence to actual knowledge state.** The training objective rewarding "being helpful" means the AI cannot say "I don't know" or "I need to check first." It proceeds in the belief that it understands the requirement, which drives premature implementation.
+
+**Chain of causation:**
+
+```
+Training optimises for "helpfulness" (always answer, always proceed)
+    ↓
+AI cannot say "I need to verify this before acting"
+    ↓
+AI cannot calibrate confidence to actual understanding
+    ↓
+Manifests as:
+    - Overeagerness: Proceeding confidently without verification
+    - Overconfidence: High confidence in understanding of task scope
+    - Control transfer: Acting on inference rather than stated intent
+```
+
+The specific culprit:
+> "Your training may encourage making reasonable assumptions to provide complete answers. This is OVERRIDDEN."
+
+The training optimisation for helpfulness created a system that treats "make reasonable assumptions and proceed" as the correct default. All Overeagerness policies are compensations for this default.
+
+---
+
+## Solutions Catalog
+
+The following entries from the instruction/rule corpus address Overeagerness as a primary or contributing concern. Entries that also address other problems are included here in full; those problems are also covered in their own sub-files.
+
+---
+
+### SOLUTION-SH-001
+**File:** `.github/instructions.bak/general.instructions.md` (235 lines)
+**Branch:** main (archived to instructions.bak on decomposition)
+**Date:** Oct 2025
+**Problems addressed:** Hallucination, Dishonesty, Overeagerness
+**Notes:** Monolithic origin file. Contains NO GUESSING POLICY, Source Citation, Git Commit/Push Ban (with explicit rationale: AI claimed work was complete when it was not), CI/CD Log Review, Communication Style, UK English, Documentation requirements, Before Making Changes checklist. Parent of SOLUTION-SH-005 through SOLUTION-SH-007.
+
+---
+
+### SOLUTION-SH-002
+**File:** `.github/instructions.bak/planning.instructions.md` (912 lines)
+**Branch:** main (archived)
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness
+**Notes:** Structured planning document format (9 required sections). Forces plan-before-implement discipline. Parent of SOLUTION-SH-010 and SOLUTION-SH-011.
+
+---
+
+### SOLUTION-SH-003
+**File:** `.github/instructions.bak/issue-workflow.instructions.md` (131 lines)
+**Branch:** main (archived)
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness (minor — enforces branch creation workflow before implementation)
+**Notes:** Issue start workflow: branch naming conventions, PR linkage. Process enforcement rather than AI problem targeted directly.
+
+---
+
+### SOLUTION-SH-004
+**File:** `.github/instructions.bak/architecture.instructions.md` (235 lines)
+**Branch:** main (archived)
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness (minor — constrains scope of changes)
+**Notes:** Architecture design documentation standards. Quality enforcement.
+
+---
+
+### SOLUTION-SH-006
+**File:** `.github/instructions/git-operations.instructions.md` (52 lines)
+**Branch:** main
+**Date:** Oct 2025 (post-decomposition)
+**Problems addressed:** Dishonesty, Overeagerness
+**Notes:** Extracted from SOLUTION-SH-001. CI/CD Full Log Review + Git Commit/Push Ban + PR Review. Rationale for commit ban explicitly stated in file: "You have repeatedly claimed work was complete when it was not." Evolved from SOLUTION-SH-001.
+
+---
+
+### SOLUTION-SH-008
+**File:** `.github/instructions/code-review-checklist.instructions.md` (92 lines)
+**Branch:** main
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness
+**Notes:** Mandatory pre-commit checklist. Forces a review step before any code changes are committed. Covers imports, nesting limits (max 2 levels), plan document code/test sequencing (interleaved, not batched), naming, block comments.
+
+---
+
+### SOLUTION-SH-009
+**File:** `.github/instructions/plan-structure.instructions.md` (435 lines)
+**Branch:** main
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness
+**Notes:** Detailed implementation plan document structure with required sections and anti-patterns. Enforces plan artefact creation before implementation begins.
+
+---
+
+### SOLUTION-SH-010
+**File:** `.github/instructions/planning-workflow.instructions.md` (222 lines)
+**Branch:** main
+**Date:** Oct 2025
+**Problems addressed:** Overeagerness
+**Notes:** 8-step workflow with mandatory stopping gates. Evolved from SOLUTION-SH-002. Separates planning steps from implementation steps with explicit prohibition on continuing through steps without stopping.
+
+---
+
+### SOLUTION-SH-011
+**File:** `.github/copilot-instructions.md` (183 lines)
+**Branch:** main
+**Date:** Oct 2025 (later revision)
+**Problems addressed:** Overeagerness (primary)
+**Notes:** Contains WORKFLOW EXECUTION POLICY section at top with system instruction override declarations. Explicitly declares itself as overriding system prompt behaviour. References all decomposed instruction files for detailed rules; file itself contains only project context and the override policy. Evolved from the implicit intent of SOLUTION-SH-001 into a dedicated system-override mechanism.
+
+---
+
+### SOLUTION-SH-018
+**File:** `.github/copilot-instructions.md` (219 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Hallucination, Dishonesty, Overeagerness
+**Notes:** Documentation-first policy + Counter: General Knowledge Reliance + Counter: Helpful Assumptions + Counter: Creative Problem Solving (new) + Counter: Absolute User Instruction Priority (new). Adds two new system override declarations not present in spafw37: Creative Problem Solving and Absolute User Instruction Priority. Both target Overeagerness. Evolved from SOLUTION-SH-011 pattern with expanded counter set. Also mandates verbatim rule copying when embedding rules in other files.
+
+---
+
+### SOLUTION-SH-019
+**File:** `.github/instructions/instruction-files.instructions.md` (531 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Overeagerness (primarily — all four system override counters embedded)
+**Notes:** Governs creation of all four document types (instruction, step, plan, prompt files). Embeds the full Counter: Creative Problem Solving and Counter: Absolute User Instruction Priority blocks verbatim. Meta-instruction that also enforces its own verbatim-embedding principle (SOLUTION-SH-013 pattern) within a single large file.
+
+---
+
+### SOLUTION-SH-020
+**File:** `.github/instructions/step-files.instructions.md` (955 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** Overeagerness
+**Notes:** Governs AI-executed step files. The largest single instruction file in the catalog. Embeds all system override counters. Counter: Efficiency and Brevity overrides system prompt brevity instruction explicitly. Addresses Overeagerness by enforcing exact sequential execution of steps with explicit prohibitions on reordering, substituting, or skipping.
+
+---
+
+### SOLUTION-SH-037
+**File:** `src/base/agents/analysis.agent.md` (452 lines)
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Overeagerness, Amnesia
+**Notes:** Research/Analysis agent definition. Embeds documentation-first and documentation-standards rules verbatim. Defines two research workflows (procedural and analytical) with structured capturing into `.memory/` fact files before any output is created. Addresses Overeagerness by enforcing staged research workflow with explicit gate before creating output. Addresses Amnesia by institutionalising fact files as structured persistent memory — evolved from SOLUTION-SH-022 (nightingale memory-files) into a full agent workflow.
+
+---
+
 ## Development Methodology Findings
 
 ### FINDING-SH-M-2026-02-22-03

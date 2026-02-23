@@ -6,6 +6,138 @@
 
 ---
 
+## Problem Definition and Root Cause
+
+### AMNESIA (Context Loss & Forgotten Requirements)
+
+**Source:** `general.instructions.md` - "Mandatory Source Citation for External Knowledge" and "Mandatory Full Log Review for CI/CD Failures" sections; FINDING-SH-M-2026-02-22-10
+
+**CRITICAL DISTINCTION:** Amnesia is fundamentally different from Hallucination, Dishonesty, and Overeagerness in its primary cause.
+
+- **Hallucination, Dishonesty, Overeagerness:** Behavioural problems caused by training optimisation for "helpfulness"
+- **Amnesia:** Primarily a technical limitation — context window size, token limits — but research has identified two additional causes that extend beyond the purely architectural characterisation
+
+**Amnesia causes — three distinct mechanisms (FINDING-SH-M-2026-02-22-10):**
+
+**Cause 1 — Context window truncation (architectural)**
+When the context window (token limit) is reached, earlier information is no longer available to the system. This is not poor performance or misbehaviour; it is the system working as designed within its technical constraints. This is the cause originally documented here, and it remains correct — but it is not the only cause.
+
+**Cause 2 — Positional deprioritisation (attention weighting)**
+Even when instructions are present within the context window, instructions loaded at the start of a session occupy earlier token positions. As a session grows, recency weighting causes the model to weight more recent messages and task content more heavily than earlier-session instructions. The instruction is available but its influence is attenuated. This is distinct from truncation: the instruction is not missing, it is underweighted. This cause is partially addressable by policy (per-task embedding, Counter: declarations at the point of use) — unlike pure truncation, which requires structural or architectural solutions.
+
+**Cause 3 — Paraphrase degradation on composition (file authoring)**
+When instructed to compose a prompt or instruction file by drawing on rules from other files, the AI does not copy source text verbatim. It paraphrases or summarises. Each composition pass removes precision from the constraint text: mandatory language is softened to advisory, specific constraints are generalised, worked examples are omitted. The result is that rules degrade in force through the composition process itself — a form of amnesia that occurs at authoring time rather than at runtime. This cause is addressable by the Rule Copying mandate (SH-028, SH-035).
+
+**Implication for the "purely architectural" characterisation:**
+Cause 1 is purely architectural — no instruction can fix context window truncation. Causes 2 and 3 are partially or fully addressable by policy. The original framing that "policies cannot fix Amnesia" is accurate for Cause 1 but incorrect for Causes 2 and 3. Solutions in the instruction file corpus (per-task rule embedding, rule-copying mandates, Counter: declarations) directly address Causes 2 and 3.
+
+**Manifestations in identified problems:**
+- [PROBLEM-2026-02-19-02](ai-problem-resolution-problems-facts.md): Large context loads force earlier information out; operational failures cascade
+- [PROBLEM-2026-02-19-05](ai-problem-resolution-problems-facts.md) (Category 2): Monolithic 4000+ line plans; forgotten test constraints, field requirements across sections
+
+**Evidence from archived instructions:**
+
+Two policies address context loss and forgotten information:
+
+1. **Forgotten specifications:** The "Source Citation" requirement was needed because the AI was:
+   - Answering based on general knowledge of APIs without checking current documentation
+   - Forgetting that specifications change between versions
+   - Making outdated assumptions about how tools work
+
+2. **Forgotten context in error diagnosis:** The "Mandatory Full Log Review" policy addresses amnesia in a different form. The AI was:
+   - Focusing on the final error message without seeing what caused it
+   - Missing context that would have revealed the root cause
+   - Pattern-matching to familiar error types rather than understanding the actual flow
+
+---
+
+## Solutions Catalog
+
+The following entries from the instruction/rule corpus address Amnesia as a primary or contributing concern. Entries that also address other problems are included here in full; those problems are also covered in their own sub-files.
+
+---
+
+### SOLUTION-SH-013
+**File:** `.github/instructions/instruction-composition.instructions.md` (45 lines)
+**Branch:** main
+**Date:** Dec 2025
+**Problems addressed:** **Amnesia**
+**Notes:** Establishes verbatim embedding rule — rule content must be embedded in full, not referenced by link. Rationale: passive context inclusion means link-only won't work (AI won't follow a link to retrieve rules). First explicit attempt to address Amnesia by ensuring rules are present in context window, not merely referenced.
+
+---
+
+### SOLUTION-SH-014
+**File:** `.github/instructions/prompt-composition.instructions.md` (97 lines)
+**Branch:** main
+**Date:** Dec 2025
+**Problems addressed:** **Amnesia**
+**Notes:** Governs prompt structure. Uses explicit load instructions with recursive wording ("Read the file ... and follow all instructions within it"). Prohibits link-only references. Evolved from insight in SOLUTION-SH-013 — extends the verbatim/explicit-load principle to prompt files and recursive loading chains.
+
+---
+
+### SOLUTION-SH-022
+**File:** `.github/instructions/memory-files.instructions.md` (421 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** **Amnesia**
+**Notes:** Defines a structured persistent memory system for AI agents. Specifies file types (SERVICE_INFO, CREDENTIALS, DECISIONS, ISSUES, PLAN_N_PROGRESS, SESSION_NOTES, ASSUMPTION_LOG) with required formats. Mandates `.memory/` directory. Separates facts (static reference) from logs (execution history). All memory files excluded from git. First comprehensive Amnesia solution in this corpus — provides structured external memory to persist context across sessions. Evolved from the informal memory-keeping patterns of earlier projects.
+
+---
+
+### SOLUTION-SH-023
+**File:** `.github/prompts/distill-memory-facts.prompt.md` (500 lines)
+**Branch:** main
+**Date:** Jan 2026
+**Problems addressed:** **Amnesia**, Hallucination
+**Notes:** Prompt that verifies all facts in a memory file against authoritative sources, archives outdated or inaccurate information, and refreshes citations. Addresses Amnesia by maintaining memory integrity (stale facts are removed rather than persisting indefinitely). Addresses Hallucination by requiring source verification before accepting any fact. Precursor to the `verify-memory-facts` prompt in ai-devops.
+
+---
+
+### SOLUTION-SH-028
+**File:** `.devcontainer/.claude/rules/rule-copying.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia**
+**Notes:** Mandates verbatim copying of rules when including them in other files. Prohibits condensing or abbreviating. Evolved from SOLUTION-SH-013 (instruction-composition) — same principle, now a dedicated Claude Code rule.
+
+---
+
+### SOLUTION-SH-029
+**File:** `.devcontainer/.claude/rules/rule-embedding.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia**
+**Notes:** Companion to SOLUTION-SH-028. Governs how rules are embedded into agent/prompt files. Evolved from SOLUTION-SH-013 and SOLUTION-SH-014 (pdd instruction and prompt composition). Establishes the principle that embedded rules must be fully present, not linked.
+
+---
+
+### SOLUTION-SH-035
+**File:** `.github/instructions/rule-copying.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia**
+**Notes:** Copilot instruction port of SOLUTION-SH-028. Verbatim rule copying mandate.
+
+---
+
+### SOLUTION-SH-036
+**File:** `.github/instructions/rule-embedding.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia**
+**Notes:** Copilot instruction port of SOLUTION-SH-029. Verbatim rule embedding mandate.
+
+---
+
+### SOLUTION-SH-037
+**File:** `src/base/agents/analysis.agent.md` (452 lines)
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** Overeagerness, **Amnesia**
+**Notes:** Research/Analysis agent definition. Embeds documentation-first and documentation-standards rules verbatim. Defines two research workflows (procedural and analytical) with structured capturing into `.memory/` fact files before any output is created. Addresses Overeagerness by enforcing staged research workflow with explicit gate before creating output. Addresses Amnesia by institutionalising fact files as structured persistent memory — evolved from SOLUTION-SH-022 (nightingale memory-files) into a full agent workflow.
+
+---
+
 ## Development Methodology Findings
 
 ### FINDING-SH-M-2026-02-22-10
