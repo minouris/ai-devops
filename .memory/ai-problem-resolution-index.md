@@ -1,6 +1,6 @@
 # AI-DevOps Analysis Index
 
-**Last Updated:** 2026-02-20 (session 4 — solutions history catalog created)
+**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; compliance gates finding added)
 
 **Note:** Starting 2026-02-20, fact files include bi-directional cross-references:
 - ai-problem-resolution-problems-facts.md → maps each problem to root causes
@@ -45,12 +45,29 @@
   - Issue 6: Operation logging skipped during session (Overeagerness root cause)
 
 ### Solutions History (subtopic)
-- [ai-problem-resolution-solutions-history-facts.md](ai-problem-resolution-solutions-history-facts.md) - Catalog of all instruction/rule files across all five projects that attempt to solve one or more noted AI problems
-  - Last updated: 2026-02-20
+- [ai-problem-resolution-solutions-history-facts.md](ai-problem-resolution-solutions-history-facts.md) - Overview: catalog of all instruction/rule files + cross-cutting methodology findings
+  - Last updated: 2026-02-23
   - Solutions: 38 catalog entries (SH-001 through SH-038) spanning Oct 2025 → Feb 2026
   - Projects: spafw37, prompt-driven-development, nightingale-truenas, claude-code-container, ai-devops
   - Amnesia solutions flagged separately: SH-013, SH-014, SH-022, SH-023, SH-028, SH-029, SH-035, SH-036, SH-037
-  - Evolution summary table included
+  - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09
+  - Problem-specific findings split into sub-files (see below)
+
+- [ai-problem-resolution-solutions-history-hallucination-facts.md](ai-problem-resolution-solutions-history-hallucination-facts.md) - Hallucination & Dishonesty problem-specific findings
+  - Last updated: 2026-02-23
+  - FINDING-06: earliest NO GUESSING POLICY wording deficiencies (6 failure modes)
+  - FINDING-07: 8-revision NO GUESSING POLICY → documentation-first policy evolution (R1–R8)
+
+- [ai-problem-resolution-solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md) - Overeagerness problem-specific findings
+  - Last updated: 2026-02-23
+  - FINDING-03: language directives dual purpose (annoyance removal + Overeagerness counter)
+  - FINDING-12: ai-targeted-language as structural compliance enabler; taxonomy correction for FINDING-09
+  - FINDING-13: compliance gates evolution across instruction/policy files (spafw37 proto-gate → NT formal gate → CCC decomposition → ai-devops multiplication)
+
+- [ai-problem-resolution-solutions-history-amnesia-facts.md](ai-problem-resolution-solutions-history-amnesia-facts.md) - Amnesia problem-specific findings
+  - Last updated: 2026-02-23
+  - FINDING-10: three amnesia root causes — instruction deprioritisation (truncation + positional), context flooding, paraphrase degradation
+  - FINDING-11: 11-factor degradation taxonomy across 4 categories (Availability, Budget, Framing, Scope)
 
 ### Chatmodes vs Skills Research
 - [ai-devops-chatmodes-skills-facts.md](ai-devops-chatmodes-skills-facts.md) - Comparison of Custom Chatmodes/Agents, Skills, Prompts, and Claude Code Modes implementation, structure, and usage in Claude Code and GitHub Copilot
@@ -80,3 +97,4 @@
 - 2026-02-19: Added FINDING-2026-02-19-1 — Copilot agent bodies can link to `.prompt.md` files via Markdown links (empirical observation)
 - 2026-02-20 (session 2): External evidence subtopic created (7 findings); vibe coding pitfalls draft created, rejected, pending revision; agent Issue 6 logged
 - 2026-02-20 (session 3): Cross-reference analysis (F-01–08); Dishonesty scope clarified; Overeagerness control-transfer clarified; Context Poisoning concept captured; Amnesia chain in Context Poisoning corrected
+- 2026-02-23 (session 8): FINDING-13 compliance gates added; solutions-history fact file split into overview + 3 problem-specific sub-files (hallucination, overeagerness, amnesia); overview trimmed from 1,191 to ~989 lines
