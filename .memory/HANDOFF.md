@@ -1,7 +1,7 @@
 # Project Handoff
 
-**Last Updated:** 2026-02-23 (session 9)
-**Current State:** Solutions-history sub-files split by problem type. Each sub-file now self-contained with problem definition, root cause, solutions catalog, and methodology findings. New context-poisoning sub-file created. Index updated. Original solutions-history-facts.md retained unchanged. Pending: SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
+**Last Updated:** 2026-02-23 (session 10)
+**Current State:** SH-031/038 miscategorisation corrected; ai-targeted-language and documentation-standards documented as compliance reinforcement methods; SH-031a/SH-038a dedicated entries created; Evolution Summary and Sub-topic Fact Files table updated; full coverage audit of overview → sub-files completed (no gaps). Pending: SH-039/040/041 catalog entries; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
 
 ---
 
@@ -195,13 +195,15 @@ Third-party git MCP tools are permitted if an authenticated login exists; must f
 **Key discovery (session 5):** `release/github/instructions/` in ai-devops is a staging area containing 6 meta-instructional files (instruction-files, step-files, plan-files, prompt-files evolved from NT; design-docs and design-diagrams are new with no prior equivalent). Not yet deployed to `.github/instructions/`.
 
 **Completed this session:**
-- Solutions-history sub-files split by problem type — each file self-contained with problem definition, root cause, solutions catalog, and methodology findings
-- New `solutions-history-context-poisoning-facts.md` created covering Context Poisoning (FINDING-2026-02-20-09, CLARIFICATION-2026-02-20-04, FINDING-SH-M-2026-02-23-02)
-- Index updated to reflect four problem-type sub-files
+- Full coverage audit: confirmed all catalog entries and methodology findings from the overview file are present in at least one sub-file; no content gaps found
+- SH-031 and SH-038 corrected: `ai-targeted-language` extracted from both batch entries into dedicated **SH-031a** (CCC) and **SH-038a** (ai-devops) with correct problem categorisation (Amnesia / Overeagerness — compliance framing)
+- SH-030, SH-031, SH-038 notes updated: documentation quality files documented as indirect Hallucination mitigation (citation preservation, AI navigation, structural predictability, scriptability) — no longer categorised as "not AI-problem targeted"
+- FINDING-SH-M-2026-02-22-12 (overeagerness file) updated: source expanded to include `.github/instructions/ai-targeted-language.md`; provenance updated to document all three ai-devops deployment copies and dual-platform architecture pattern
+- Evolution Summary table: two new rows added — compliance framing (AI-targeted language) lineage and documentation quality compliance reinforcement lineage
+- Sub-topic Fact Files table: context-poisoning entry added (was missing)
 
 **Pending:**
 - Add SH-039 / SH-040 / SH-041 catalog entries for the three uncatalogued files
-- Correct SH-038 and SH-031 catalog entries: `ai-targeted-language` miscategorised as style/quality; correct category is compliance framing
 - Evolution analysis of meta-instructional files (FINDING-09 was identification only; lineage across projects not yet done)
 - Create `consolidate-clarifications.prompt.md` — lightweight mid-session clarification merge prompt (identified gap; not yet implemented)
 
