@@ -280,17 +280,26 @@
 **File:** `.devcontainer/.claude/rules/documentation-standards.md`
 **Branch:** main
 **Date:** Feb 2026
-**Problems addressed:** None directly (communication/style standards)
-**Notes:** UK English, tone, heading formatting. Not AI-problem targeted.
+**Problems addressed:** Hallucination (indirect — citation mandates preserve sources for verification passes; structural conventions reduce AI interpretive overhead)
+**Notes:** UK English, tone, heading formatting. Not exclusively style-targeted — enforces structural and citation conventions that serve four concurrent purposes: (1) consistency/predictability reduces AI interpretive overhead when reading documents; (2) citation mandates preserve sources for Hallucination verification passes (the mechanism behind `verify-memory-facts`); (3) mandated heading structure creates predictable paths for AI context-gathering; (4) structural predictability enables automated operations on AI file artefacts. Documented in FINDING-SH-M-2026-02-22-12 taxonomy (documentation quality category). Miscategorised as "not AI-problem targeted" in original entry.
 
 ---
 
 #### SOLUTION-SH-031
-**Files:** `.devcontainer/.claude/rules/` — remaining 8 files (ai-targeted-language, design-documents, document-navigation, document-structure, markdown-formatting, mermaid-diagrams, reference-items, section-numbering)
+**Files:** `.devcontainer/.claude/rules/` — 7 files (design-documents, document-navigation, document-structure, markdown-formatting, mermaid-diagrams, reference-items, section-numbering). Note: `ai-targeted-language` was originally included in this batch entry but has been recategorised — see SOLUTION-SH-031a below.
 **Branch:** main
 **Date:** Feb 2026
-**Problems addressed:** None directly (style, format, and structural standards)
-**Notes:** Quality and consistency rules. Not AI-problem targeted.
+**Problems addressed:** Hallucination (indirect — documentation quality files enforce structural/citation conventions serving verification and AI navigation per FINDING-SH-M-2026-02-22-12)
+**Notes:** Documentation quality and structural standards. Not exclusively style-targeted — see SH-030 notes for the four concurrent purposes these files serve.
+
+---
+
+#### SOLUTION-SH-031a
+**File:** `.devcontainer/.claude/rules/ai-targeted-language.md`
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia** (FINDING-11 Framing factors 3a + 3b), **Overeagerness** (compliance framing failure modes that cause instruction non-compliance)
+**Notes:** Compliance framing rule. Governs the language register used when writing AI files to ensure instructions are processed as mandatory commands rather than advisory guidance. Contains two Counter: declarations targeting named training behaviours: Counter: Human-Targeted Documentation (instructions must address the AI in second person, not describe its behaviour in third person) and Counter: Natural Language Variation (consistent imperatives — MUST, MUST NOT — not varied phrasing). Extracted from NT SH-019 monolithic file into a dedicated Claude Code rule. Directly addresses FINDING-11 Framing degradation factors 3a (human-targeted prose framing) and 3b (conditional framing). Correct categorisation: structural compliance enabler alongside rule-copying (SH-028) and rule-embedding (SH-029). Originally miscategorised in SH-031 as style/quality, not AI-problem targeted. Full analysis in FINDING-SH-M-2026-02-22-12 (solutions-history-overeagerness-facts.md).
 
 ---
 
@@ -351,11 +360,20 @@
 ---
 
 #### SOLUTION-SH-038
-**File:** `.github/instructions/` — remaining files (ai-targeted-language, design-documents, document-navigation, document-structure, documentation-standards, markdown-formatting, mermaid-diagrams, reference-items, section-numbering, copilot-agents-syntax, copilot-instructions-syntax, copilot-prompts-syntax, enforce-claude-agents-syntax, enforce-claude-prompts-syntax, enforce-claude-rules-syntax)
+**File:** `.github/instructions/` — remaining files (design-documents, document-navigation, document-structure, documentation-standards, markdown-formatting, mermaid-diagrams, reference-items, section-numbering, copilot-agents-syntax, copilot-instructions-syntax, copilot-prompts-syntax, enforce-claude-agents-syntax, enforce-claude-prompts-syntax, enforce-claude-rules-syntax). Note: `ai-targeted-language` was originally included in this batch entry but has been recategorised — see SOLUTION-SH-038a below.
 **Branch:** main
 **Date:** Feb 2026
-**Problems addressed:** None directly (style, format, structural, and syntax enforcement standards)
-**Notes:** Style/quality/consistency rules and syntax enforcement for instruction/agent/prompt file formats. Not AI-problem targeted.
+**Problems addressed:** Hallucination (indirect — documentation quality group enforces structural/citation conventions serving verification and AI navigation); syntax enforcement files not AI-problem targeted
+**Notes:** Two distinct groups. (1) Documentation quality rules (documentation-standards, markdown-formatting, mermaid-diagrams, reference-items, section-numbering): enforce structural/citation conventions serving four concurrent purposes per FINDING-SH-M-2026-02-22-12 — consistency/predictability, Hallucination prevention via citation preservation, AI context navigation, and scriptability. Not purely style-targeted. (2) Syntax enforcement files (copilot-agents-syntax, copilot-instructions-syntax, copilot-prompts-syntax, enforce-claude-agents-syntax, enforce-claude-prompts-syntax, enforce-claude-rules-syntax): scaffolding/quality-assurance for AI file authoring; not AI-problem targeted.
+
+---
+
+#### SOLUTION-SH-038a
+**File:** `.github/instructions/ai-targeted-language.md` (and `.claude/rules/ai-targeted-language.md`, `src/base/instructions/ai-targeted-language.md`)
+**Branch:** main
+**Date:** Feb 2026
+**Problems addressed:** **Amnesia** (FINDING-11 Framing factors 3a + 3b), **Overeagerness** (compliance framing failure modes)
+**Notes:** Compliance framing rule — Copilot port of SOLUTION-SH-031a. Identical content. Three copies exist in ai-devops: `src/base/instructions/ai-targeted-language.md` (canonical source), `.github/instructions/ai-targeted-language.md` (Copilot deployment), `.claude/rules/ai-targeted-language.md` (Claude Code deployment). Governs language register for all AI files: second-person imperative, MUST/MUST NOT, no third-person AI descriptions, no conditional instruction language. Both Counter: declarations (Human-Targeted Documentation, Natural Language Variation) directly target named training behaviours. Correct categorisation: structural compliance enabler. Originally miscategorised in SH-038 as style/quality, not AI-problem targeted. Full analysis in FINDING-SH-M-2026-02-22-12 (solutions-history-overeagerness-facts.md).
 
 ---
 
@@ -370,6 +388,8 @@
 | Verbatim rule embedding | SH-013 (pdd instruction-composition, Dec 2025) | SH-035/SH-036 (ai-devops, Feb 2026) |
 | Structured persistent memory | SH-022 (NT memory-files, Jan 2026) | SH-037 (ai-devops analysis agent, Feb 2026) |
 | Memory integrity/verification | SH-023 (NT distill-memory-facts, Jan 2026) | SH-037 (via verify-memory-facts integration) |
+| Compliance framing (AI-targeted language) | SH-019 (NT instruction-files, Jan 2026 — language requirements embedded in umbrella file) | SH-031a/SH-038a (ai-targeted-language dedicated file, Feb 2026) |
+| Documentation quality compliance reinforcement | SH-030 (CCC documentation-standards, Feb 2026) | SH-038 documentation quality group (ai-devops, Feb 2026) |
 
 ---
 
@@ -395,6 +415,7 @@ Detailed findings are split by problem domain:
 | [solutions-history-hallucination-facts.md](ai-problem-resolution-solutions-history-hallucination-facts.md) | Hallucination & Dishonesty | FINDING-06, FINDING-07 |
 | [solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md) | Overeagerness | FINDING-03, FINDING-12, FINDING-13 |
 | [solutions-history-amnesia-facts.md](ai-problem-resolution-solutions-history-amnesia-facts.md) | Amnesia | FINDING-10, FINDING-11 |
+| [solutions-history-context-poisoning-facts.md](ai-problem-resolution-solutions-history-context-poisoning-facts.md) | Context Poisoning | FINDING-SH-M-2026-02-23-02 |
 
 **Note on Dishonesty:** Dishonesty as a root cause — false claims about factual correctness, completion, state, and knowledge — is addressed by the accuracy/documentation-first policy lineage documented in FINDING-07. The same policy evolution (NO GUESSING POLICY → Documentation-First) addresses both Hallucination (unintentional confabulation) and Dishonesty (false assertion). There is no separate Dishonesty-specific policy in the instruction corpus beyond that lineage; both root causes converge on the same solution. There is no separate Dishonesty sub-file.
 

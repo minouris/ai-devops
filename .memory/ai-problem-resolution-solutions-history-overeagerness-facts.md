@@ -245,7 +245,7 @@ The two purposes are present simultaneously in documentation-standards files and
 ### FINDING-SH-M-2026-02-22-12
 **Captured:** 2026-02-22
 **Verified:** [VERIFIED on 2026-02-23 by first-party research synthesis]
-**Source:** `/workspaces/ai-devops/.claude/rules/ai-targeted-language.md`; `/workspaces/ai-devops/src/base/instructions/ai-targeted-language.md`; `.tmp/nightingale-truenas/.github/instructions/instruction-files.instructions.md` (lines 15, 25, 206–230, 513); user (direct observation)
+**Source:** `/workspaces/ai-devops/.github/instructions/ai-targeted-language.md`; `/workspaces/ai-devops/.claude/rules/ai-targeted-language.md`; `/workspaces/ai-devops/src/base/instructions/ai-targeted-language.md`; `.tmp/nightingale-truenas/.github/instructions/instruction-files.instructions.md` (lines 15, 25, 206–230, 513); user (direct observation)
 **Domain:** Compliance framing — AI-targeted language as a structural compliance enabler
 
 ---
@@ -285,7 +285,7 @@ The content did not originate as a standalone file. It was embedded within NT's 
 
 In ai-devops, it was extracted into a dedicated file: `ai-targeted-language.md`. This follows the same decomposition pattern as spafw37's SH-001 → SH-005/SH-006/SH-007: a monolithic file's concerns separated into single-concern files.
 
-Both `.claude/rules/ai-targeted-language.md` and `src/base/instructions/ai-targeted-language.md` are present in ai-devops with identical content — the latter is the canonical source; the former is deployed to the `.claude/rules/` tree.
+Three copies exist in ai-devops with identical content: `src/base/instructions/ai-targeted-language.md` (canonical source), `.github/instructions/ai-targeted-language.md` (Copilot deployment), and `.claude/rules/ai-targeted-language.md` (Claude Code deployment). The deployment pattern reflects the dual-platform architecture of ai-devops: one source file deployed to both the Copilot instructions tree and the Claude Code rules tree.
 
 ---
 
