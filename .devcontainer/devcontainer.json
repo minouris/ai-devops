@@ -19,7 +19,8 @@
     "vscode": {
       "extensions": [
         "anthropic.claude-code",
-        "vstirbu.vscode-mermaid-preview"
+        "vstirbu.vscode-mermaid-preview",
+        "ms-vscode.vscode-websearchforcopilot"
       ],
       "settings": {
         "claudeCode.disableLoginPrompt": true,
