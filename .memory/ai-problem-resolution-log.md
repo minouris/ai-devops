@@ -527,3 +527,30 @@
 **Files changed:** `.memory/HANDOFF.md`
 **Summary:** Updated HANDOFF.md header to session 7. Updated log reference from LOG-2026-02-22-12 to LOG-2026-02-22-17. Added FINDING-12, CLARIFICATION-12a, CLARIFICATION-12b to the Research Status methodology findings list. Added SH-038/SH-031 miscategorisation correction item to Pending list. Log entry appended using replace_string_in_file (not cat >>) — first compliant file-append operation in this session; consistent with CLARIFICATION-12b's verified cat prohibition.
 **Next:** Pending — SH-039+ catalog entries; evolution analysis of meta-instructional files; SH-038/SH-031 catalog corrections at draft stage.
+
+---
+
+### LOG-2026-02-23-01
+**Date:** 2026-02-23
+**Operation:** Verification step — solutions-history subtopic fact file
+**Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`
+**Summary:** Applied full verification step to all 12 FINDING-SH-M entries. All research is first-party (developer direct observation + project git history); no third-party source fetching required. Actions: (1) Added `[VERIFIED on 2026-02-23 by first-party research synthesis]` tag to FINDING-SH-M-2026-02-22-01 through 12. (2) Merged CLARIFICATION-SH-M-2026-02-22-02a into FINDING-02 — replaced original point 2 ("AI processing of input text") with CLARIFICATION-02a framing ("Harness/platform problems"), updated header Source field with provenance backreference, removed standalone clarification entry. (3) Merged CLARIFICATION-SH-M-2026-02-22-12a and 12b into FINDING-12 — applied in reverse chronological order per policy (12b provides concrete scriptability evidence for 12a point 4; 12a corrects "human readers" framing); updated taxonomy table Documentation quality row; replaced closing paragraph with corrected four-purpose characterisation including scriptability evidence; updated FINDING-12 Source field with provenance backreferences; removed both standalone clarification entries. File reduced from 1109 to 1065 lines.
+**Next:** Pending — SH-039+ catalog entries; evolution analysis of meta-instructional files; SH-038/SH-031 catalog corrections at draft stage.
+
+---
+
+### LOG-2026-02-23-01
+**Date:** 2026-02-23
+**Operation:** Verification pass — solutions-history subtopic fact file
+**Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`
+**Summary:** Performed verification step on all 12 methodology findings (FINDING-SH-M-2026-02-22-01 through -12). Sources are first-party throughout (user direct observation, project git history, workspace file inspection) — no third-party citations available. A prior session had already: added `[VERIFIED on 2026-02-23 by first-party research synthesis]` tags to all 12 findings; merged CLARIFICATION-02a body into FINDING-02 (replacing the "AI processing of input text" bucket with the more precise "Harness/platform problems" distinction); merged CLARIFICATION-12a and 12b into FINDING-12 (corrected Documentation quality taxonomy row and closing paragraph); removed all three CLARIFICATION entries. This session completed the cleanup: removed dangling Source line references to the deleted CLARIFICATION entries in FINDING-02 and FINDING-12.
+**Next:** Pending — SH-039+ catalog entries; evolution analysis of meta-instructional files; SH-038/SH-031 catalog corrections at draft stage.
+
+---
+
+### LOG-2026-02-23-02
+**Date:** 2026-02-23
+**Operation:** New finding — compliance gates across instruction and policy files
+**Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`
+**Summary:** Added FINDING-SH-M-2026-02-23-01. Researched compliance gate patterns across all five source projects in instruction and policy files (step-files/plan-files deferred to next tranche). spafw37 `general.md` has proto-gate (trigger + checklist, no consequence); pdd has no gate patterns; NT `copilot-instructions.md` (SH-020) introduces first formal three-part gate ("Compliance Verification", checkbox checklist, "If ANY is No" consequence block); CCC decomposes gate into domain-specific rule files (`git-commits.md`, `documentation-first.md`) with harder-stop consequence language; ai-devops multiplies to three gates in `copilot-instructions.md` (documentation-first, git commit, git push), mirrors decomposition in `.claude/rules/`. Rule-copying item removed from response gate when rule-copying migrated to standalone file — gate follows rule. Key structural observation: gates are complementary to Counter: blocks — Counter: suppresses training defaults statically at session start; gates enforce runtime pre-conditions at named decision points. Fact file grew from 1065 to 1190 lines.
+**Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
