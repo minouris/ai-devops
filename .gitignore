@@ -1,5 +1,11 @@
-# Session memory files (not committed)
-.memory/
-
 # Temporary workspace files (not committed)
 .tmp/
+
+# Environment variable files (not committed)
+**/.env
+
+# Claude data files (not committed)
+.devcontainer/.claude-data
+
+# Exclude root level .claude folder (mounted from devcontainer, not committed)
+.claude
