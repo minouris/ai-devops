@@ -1,7 +1,7 @@
 # Project Handoff
 
-**Last Updated:** 2026-02-23 (session 8)
-**Current State:** Solutions history subtopic verification complete. All 12 methodology findings tagged `[VERIFIED on 2026-02-23 by first-party research synthesis]`. CLARIFICATION-02a, 12a, 12b merged into base findings and removed. Fact file 1,065 lines. Log current through LOG-2026-02-23-01. Pending: SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
+**Last Updated:** 2026-02-23 (session 9)
+**Current State:** Solutions-history sub-files split by problem type. Each sub-file now self-contained with problem definition, root cause, solutions catalog, and methodology findings. New context-poisoning sub-file created. Index updated. Original solutions-history-facts.md retained unchanged. Pending: SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
 
 ---
 
@@ -56,7 +56,11 @@ ai-devops/
     ├── ai-problem-resolution-problems-facts-disproven.md
     ├── ai-problem-resolution-root-causes-facts.md
     ├── ai-problem-resolution-agent-issues-facts.md
-    ├── ai-problem-resolution-solutions-history-facts.md # Catalog SH-001–SH-038 + Findings 01–09
+    ├── ai-problem-resolution-solutions-history-facts.md          # Catalog SH-001–SH-038 + cross-cutting findings (OVERVIEW — retained unchanged)
+    ├── ai-problem-resolution-solutions-history-hallucination-facts.md  # Hallucination + Dishonesty: problem def, root cause, catalog SH-001/005/006/012/018/021/023/024/026/027/032/033, FINDING-06+07
+    ├── ai-problem-resolution-solutions-history-overeagerness-facts.md   # Overeagerness: problem def, control-transfer clarification, root cause, catalog SH-001–004/006/008–011/018–020/037, FINDING-03/12/13
+    ├── ai-problem-resolution-solutions-history-amnesia-facts.md         # Amnesia: three-cause taxonomy, catalog SH-013/014/022/023/028/029/035/036/037, FINDING-10+11
+    ├── ai-problem-resolution-solutions-history-context-poisoning-facts.md # Context Poisoning: problem def, Amnesia chain clarification, 1st/2nd-wave mitigation, SH-022/023/037
     ├── ai-problem-resolution-PENDING.md              # Draft executive summary — PENDING USER APPROVAL
     ├── ai-problem-resolution-external-evidence-facts.md # 7 external findings (Replit incident, Fawzy et al., Pearce et al., SWE-bench, vulnerable developer, reprompt loop)
     ├── vibe-coding-pitfalls-PENDING.md                  # Draft vibe coding pitfalls guide — APPROVED
@@ -189,6 +193,11 @@ Third-party git MCP tools are permitted if an authenticated login exists; must f
 - SH-041: NT `prompt-files.instructions.md` — full Counter:-based prompt file standard
 
 **Key discovery (session 5):** `release/github/instructions/` in ai-devops is a staging area containing 6 meta-instructional files (instruction-files, step-files, plan-files, prompt-files evolved from NT; design-docs and design-diagrams are new with no prior equivalent). Not yet deployed to `.github/instructions/`.
+
+**Completed this session:**
+- Solutions-history sub-files split by problem type — each file self-contained with problem definition, root cause, solutions catalog, and methodology findings
+- New `solutions-history-context-poisoning-facts.md` created covering Context Poisoning (FINDING-2026-02-20-09, CLARIFICATION-2026-02-20-04, FINDING-SH-M-2026-02-23-02)
+- Index updated to reflect four problem-type sub-files
 
 **Pending:**
 - Add SH-039 / SH-040 / SH-041 catalog entries for the three uncatalogued files
