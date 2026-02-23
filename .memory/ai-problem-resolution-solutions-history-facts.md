@@ -987,3 +987,40 @@ A redesign can inadvertently narrow scope beyond the original intent. The shift 
 
 ### FINDING-SH-M-2026-02-23-01
 → Moved to [solutions-history-overeagerness-facts.md](ai-problem-resolution-solutions-history-overeagerness-facts.md)
+
+---
+
+### FINDING-SH-M-2026-02-23-02
+**Captured:** 2026-02-23
+**Verified:** [VERIFIED on 2026-02-23 by first-party research synthesis]
+**Source:** User (direct observation — developer of all five projects)
+**Domain:** Context Poisoning — relationship to solutions history; second-wave mitigation
+
+#### Context Poisoning is not independently addressed in first-wave solutions
+
+The instruction and policy files catalogued in SH-001 through SH-038 do not explicitly target Context Poisoning. There is no rule file named for it and no policy section with Context Poisoning as its stated objective.
+
+However, Context Poisoning is a knock-on effect of the four root causes (FINDING-2026-02-20-09 in root-causes-facts.md): each poisoning event originates from Hallucination, Dishonesty, Overeagerness, or Amnesia introducing a false or uncorrected item into context. The first-wave solutions — which address those four root causes through instruction files — therefore reduce the *rate* of poisoning events as a side effect. They do not address what happens once a poisoning event has occurred, but they reduce how often one is introduced.
+
+This makes Context Poisoning an indirect beneficiary of first-wave solutions rather than a direct target of them.
+
+#### Second-wave mitigation: memory files and verification passes
+
+A second category of solutions addresses Context Poisoning more directly. Rather than preventing the introduction of false items, these solutions prevent false items from propagating into downstream artefacts such as implementation plans and task outputs.
+
+**Mechanism:** Persistent memory files — maintained outside any single conversation session — store only facts that have been explicitly verified. A verification pass (such as `verify-memory-facts`) checks each stored item against its source before it is used. When a planning artefact is produced, it draws on the verified memory store rather than on unverified conversational context. Any item that has not passed verification is excluded.
+
+**Effect on Context Poisoning:** Even if a poisoning event has occurred during research or analysis, the verification gate prevents the corrupted item from surviving into the memory store and thence into planning outputs. The memory file acts as a quarantine boundary: only verified facts cross it.
+
+**Evidence in this project:** The analysis agent workflow (`SH-037`) and the `verify-memory-facts` prompt (`SH-023`, NT) are direct implementations of this pattern. The current research session operates on the same basis: facts are stored in `.memory/` files, verified with first-party source checks, and only then used to produce analysis artefacts. The `distill-memory-facts` / `verify-memory-facts` workflow is explicitly designed to ensure that summarisation and handoff outputs contain only confirmed items.
+
+#### Relationship to first-wave vs second-wave solution architecture
+
+| Wave | Mechanism | Context Poisoning effect |
+|---|---|---|
+| First wave (SH-001–SH-038) | Instruction/policy files targeting root causes | Indirect — reduces rate of poisoning events entering context |
+| Second wave (SH-022, SH-023, SH-037 and successors) | Memory files + verification passes | Direct — prevents unverified items propagating into planning artefacts |
+
+The second-wave approach does not eliminate Context Poisoning from the conversational session; poisoning can still occur within a session. It bounds the damage: only verified items survive into persistent storage and planning outputs, so implementation work starts from a verified baseline regardless of what happened mid-session.
+
+Further second-wave work is deferred to the next research tranche.

@@ -50,7 +50,8 @@
   - Solutions: 38 catalog entries (SH-001 through SH-038) spanning Oct 2025 → Feb 2026
   - Projects: spafw37, prompt-driven-development, nightingale-truenas, claude-code-container, ai-devops
   - Amnesia solutions flagged separately: SH-013, SH-014, SH-022, SH-023, SH-028, SH-029, SH-035, SH-036, SH-037
-  - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09
+  - Cross-cutting methodology findings retained: FINDING-01, 02, 04, 05, 08, 09, FINDING-SH-M-2026-02-23-02
+  - FINDING-SH-M-2026-02-23-02: Context Poisoning — first-wave solutions reduce poisoning rate indirectly; second-wave (memory files + verification passes) prevents unverified items propagating into planning artefacts
   - Problem-specific findings split into sub-files (see below)
 
 - [ai-problem-resolution-solutions-history-hallucination-facts.md](ai-problem-resolution-solutions-history-hallucination-facts.md) - Hallucination & Dishonesty problem-specific findings
