@@ -1,7 +1,7 @@
 # Project Handoff
 
-**Last Updated:** 2026-02-22 (session 7)
-**Current State:** Solutions history subtopic catalog complete (SH-001 to SH-038). Methodology findings FINDING-01 through FINDING-12 + CLARIFICATION-12a + CLARIFICATION-12b captured. Vibe coding pitfalls draft APPROVED. Three catalog gaps identified (not yet added as SH-039+). Log current through LOG-2026-02-22-17. Pending: SH-039+ catalog entries; evolution analysis of meta-instructional files.
+**Last Updated:** 2026-02-23 (session 8)
+**Current State:** Solutions history subtopic verification complete. All 12 methodology findings tagged `[VERIFIED on 2026-02-23 by first-party research synthesis]`. CLARIFICATION-02a, 12a, 12b merged into base findings and removed. Fact file 1,065 lines. Log current through LOG-2026-02-23-01. Pending: SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
 
 ---
 
@@ -163,16 +163,15 @@ Third-party git MCP tools are permitted if an authenticated login exists; must f
 
 ## Research Status: AI Problem Resolution — Solutions History
 
-**Fact file:** `.memory/ai-problem-resolution-solutions-history-facts.md`
-**Log:** `.memory/ai-problem-resolution-log.md` — current through LOG-2026-02-22-17
+**Fact file:** `.memory/ai-problem-resolution-solutions-history-facts.md` — 1,065 lines, verified
+**Log:** `.memory/ai-problem-resolution-log.md` — current through LOG-2026-02-23-01
 **Source clones:** `.tmp/spafw37/`, `.tmp/nightingale-truenas/`, `.tmp/claude-code-container/`, `.tmp/pdd-*.md`
 
 **Catalog:** SH-001 to SH-038 complete. All five projects covered (spafw37, pdd, NT, CCC, ai-devops).
 
-**Methodology findings completed (session 5):**
+**Methodology findings — all verified `[VERIFIED on 2026-02-23 by first-party research synthesis]`:**
 - FINDING-01: Empirical refinement methodology (debugging AI behaviour + querying AI interpretation)
-- FINDING-02: Wording failure modes — AI interpretation vs. harness/platform meta-character handling
-- FINDING-02a: Clarification distinguishing the two wording failure sub-types
+- FINDING-02: Wording failure modes — two sub-types: AI interpretation problems (ambiguous phrasing, conflicting directives) and harness/platform problems (meta-character pre-processing by Copilot/Claude Code extensions before AI receives text). CLARIFICATION-02a merged in.
 - FINDING-03: Language directives — dual purpose (annoyance removal + Overeagerness counter)
 - FINDING-04: UK English replacement plan — ⚠️ NOT FOR FINAL DOCUMENT (internal planning note)
 - FINDING-05: Verbose early drafts (rationale misapprehension, context budget waste)
@@ -182,21 +181,20 @@ Third-party git MCP tools are permitted if an authenticated login exists; must f
 - FINDING-09: Meta-instructional file inventory across all five projects with provenance and catalog gaps
 - FINDING-10: Three Amnesia root causes — instruction deprioritisation (truncation + positional), context flooding from monolithic files, paraphrase degradation on composition
 - FINDING-11: Summary of all in-context instruction degradation factors — 11 factors across 4 categories (Availability, Budget, Framing, Scope); excludes lossy copying
-- FINDING-12: `ai-targeted-language.md` is a structural compliance enabler, not a style rule. Two Counter: declarations — `Counter: Human-Targeted Documentation` (OVERRIDES training to write for human readers → second-person imperative "you") and `Counter: Natural Language Variation` (OVERRIDES varied phrasing → consistent MUST/MUST NOT structure). MUST NOT: third-person AI descriptions ("The AI should"), vague hedges ("try to", "consider", "maybe"), conditional instruction framing ("might", "could", "may"). Addresses FINDING-11 Framing factors 3a and 3b at authoring time. Provenance: extracted from NT `instruction-files.instructions.md` (SH-019). Miscategorised as style/quality in SH-038 and SH-031 — correct category is compliance framing. Revised four-category taxonomy: compliance framing / rule presence/fidelity / file structure standards / documentation quality.
-- CLARIFICATION-12a: Documentation quality files serve four concurrent purposes — not human readability only: (1) consistency/predictability → worn navigation path reduces AI interpretive overhead; (2) verification vector → citation mandates preserve sources for hallucination detection and correction (mechanism behind `verify-memory-facts`); (3) smooth AI context-gathering paths → semantic structure guides AI to relevant sections without scanning unstructured prose; (4) scriptability → predictable structure enables automated script operations. Taxonomy distinction is mechanism not audience: compliance framing acts on instruction phrasing; documentation quality acts on document structure — both serving AI compliance, not just human readers.
-- CLARIFICATION-12b: Concrete scriptability evidence — `cat >>` heredoc appends used to fail regularly before documentation structure rules; became reliable after. Mechanism: structural conventions prevent heredoc terminator collisions, unescaped special characters, inconsistent quoting. Cat prohibition verified: system-level toolUseInstructions block states "NEVER try to edit a file by running terminal commands unless the user specifically asks for it." This session's continued `cat >>` usage is a live instance of FINDING-10 Discovery 2 (positional deprioritisation — system instruction present but underweighted relative to recently-reinforced research agent workflow).
+- FINDING-12: `ai-targeted-language.md` is a structural compliance enabler, not a style rule. Two Counter: declarations — `Counter: Human-Targeted Documentation` and `Counter: Natural Language Variation`. Addresses FINDING-11 Framing factors 3a and 3b. Miscategorised as style/quality in SH-038 and SH-031 — correct category is compliance framing. Revised four-category taxonomy: compliance framing / rule presence and fidelity / file structure standards / documentation quality. Documentation quality serves four concurrent purposes (consistency, verification vector, AI navigation, scriptability — not human readability only). CLARIFICATION-12a and 12b merged in.
 
-**Catalog gaps (not yet added as SH-039+):**
-- pdd `instructions.md` (`applyTo: src/instructions/**/*.md`) — lightweight instruction folder guide
-- pdd `prompts.md` (`applyTo: {src/prompts/**,.github/prompts/**}`) — lightweight prompt folder guide
-- NT `prompt-files.instructions.md` — full Counter:-based prompt file standard
+**Catalog gaps (not yet added):**
+- SH-039: pdd `instructions.md` (`applyTo: src/instructions/**/*.md`) — lightweight instruction folder guide
+- SH-040: pdd `prompts.md` (`applyTo: {src/prompts/**,.github/prompts/**}`) — lightweight prompt folder guide
+- SH-041: NT `prompt-files.instructions.md` — full Counter:-based prompt file standard
 
 **Key discovery (session 5):** `release/github/instructions/` in ai-devops is a staging area containing 6 meta-instructional files (instruction-files, step-files, plan-files, prompt-files evolved from NT; design-docs and design-diagrams are new with no prior equivalent). Not yet deployed to `.github/instructions/`.
 
 **Pending:**
-- Add SH-039+ catalog entries for the three uncatalogued files
-- Evolution analysis of meta-instructional files (FINDING-09 was identification only)
-- Correct SH-038 and SH-031 catalog entries: `ai-targeted-language` miscategorised as style/quality; correct category is compliance framing (flagged for draft stage)
+- Add SH-039 / SH-040 / SH-041 catalog entries for the three uncatalogued files
+- Correct SH-038 and SH-031 catalog entries: `ai-targeted-language` miscategorised as style/quality; correct category is compliance framing
+- Evolution analysis of meta-instructional files (FINDING-09 was identification only; lineage across projects not yet done)
+- Create `consolidate-clarifications.prompt.md` — lightweight mid-session clarification merge prompt (identified gap; not yet implemented)
 
 ---
 
