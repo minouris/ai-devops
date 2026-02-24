@@ -103,6 +103,81 @@ I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`.
 Please review and approve before I create the final guide.
 ```
 
+**Final Procedural Guide Format:**
+
+````markdown
+# [Procedure Guide Title]
+
+**Generated:** YYYY-MM-DD HH:MM
+**Tested:** [Environment/platform details]
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Procedure](#procedure)
+- [Troubleshooting](#troubleshooting)
+- [Sources](#sources)
+
+---
+
+## Overview
+
+[Brief description of what this procedure accomplishes]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Requirements
+
+- [Requirement 1]
+- [Requirement 2]
+- [etc.]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Procedure
+
+### Step 1: [Step Title]
+
+[Step description and commands]
+
+### Step 2: [Step Title]
+
+[Step description and commands]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Troubleshooting
+
+### [Common Issue 1]
+
+**Symptom:** [Description]
+
+**Solution:** [Resolution steps]
+
+### [Common Issue 2]
+
+**Symptom:** [Description]
+
+**Solution:** [Resolution steps]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Sources
+
+- [`.memory/[topic]-facts.md`](.memory/[topic]-facts.md) - [Brief description]
+
+[↑ Back to top](#table-of-contents)
+````
+
 ---
 
 ## For Analytical Reports
@@ -157,32 +232,55 @@ Please review and approve before I create the final analysis file.
 
 ## Final Analysis Format
 
-```markdown
+````markdown
 # [Analysis Title]
 
 **Generated:** YYYY-MM-DD HH:MM
 **Sources:** [List fact files consulted]
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Section 1](#section-1)
+- [Section 2](#section-2)
+- [Sources](#sources)
+
 ---
 
 ## Executive Summary
+
 [High-level synthesis - 2-3 paragraphs maximum]
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## [Section 1]
+
 [Narrative using facts with inline citations to fact files]
 
 Example citation:
-> According to research findings, the API endpoint changed in v2 ([ai-problems-analysis-hallucination-facts.md](. memory/ai-problems-analysis-hallucination-facts.md), FINDING-2026-02-23-5).
+> According to research findings, the API endpoint changed in v2 ([ai-problems-analysis-hallucination-facts.md](.memory/ai-problems-analysis-hallucination-facts.md), FINDING-2026-02-23-5).
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## [Section 2]
+
 [etc.]
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
 ## Sources
+
 - [`.memory/[topic]-facts.md`](.memory/[topic]-facts.md) - [Brief description]
 - [`.memory/[topic]-[subtopic]-facts.md`](.memory/[topic]-[subtopic]-facts.md) - [Brief description]
-```
+
+[↑ Back to top](#table-of-contents)
+````
 
 ---
 
