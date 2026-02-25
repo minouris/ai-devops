@@ -88,7 +88,7 @@ Read(file_path="{rule-file-path}")
 
 **Execute validation checks based on rule content:**
 
-**For ai-targeted-language rule:**
+#### For ai-targeted-language rule
 - Read src/claude/rules/ai-targeted-language.md
 - Extract prohibited patterns from the rule
 - Check artifact for third-person references (The AI, Copilot, The agent, etc.)
@@ -96,7 +96,7 @@ Read(file_path="{rule-file-path}")
 - Check for proper imperative mood (MUST, MUST NOT, Create, Use)
 - Report all violations with line numbers
 
-**For documentation-standards rule:**
+#### For documentation-standards rule
 - Read src/claude/rules/documentation-standards.md
 - Extract UK English spelling patterns
 - Extract prohibited marketing buzzwords
@@ -104,20 +104,20 @@ Read(file_path="{rule-file-path}")
 - Check for bold text used as headings
 - Report all violations with line numbers
 
-**For markdown-formatting rule:**
+#### For markdown-formatting rule
 - Read src/claude/rules/markdown-formatting.md
-- Check filename conventions (lower-snake-case)
+- Check filename conventions (kebab-case, with exceptions for README.md and SKILL.md)
 - Check nested code block fencing (quad-backticks for outer)
 - Report all violations with line numbers
 
-**For skill-structure rule (built-in):**
+#### For skill-structure rule (built-in)
 - Check if artifact is a skill (path contains /skills/)
 - Verify SKILL.md exists at skill root
 - Count lines in SKILL.md
 - If > 500 lines, check for references/ subdirectory
 - Warn if no references/ and file > 500 lines
 
-**For rule-embedding rule:**
+#### For rule-embedding rule
 - Read release/claude/rules/rule-embedding.md
 - Look for "Embedded Rules" or "# Embedded Rules" sections
 - Check for source attribution: "(from filename.md)"
@@ -125,7 +125,7 @@ Read(file_path="{rule-file-path}")
 - Compare embedded content to source
 - Report if abbreviated, paraphrased, or incomplete
 
-**For rule-copying rule:**
+#### For rule-copying rule
 - Read release/claude/rules/rule-copying.md
 - Detect MUST/MUST NOT patterns in artifact
 - Compare to source files in .claude/rules/ or src/*/rules/

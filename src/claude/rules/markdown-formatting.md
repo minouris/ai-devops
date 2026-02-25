@@ -46,31 +46,33 @@ Your training uses triple-backticks for all fenced code blocks. This is PARTIALL
 ## Filename Conventions (MANDATORY)
 
 **MUST:**
-- Use lower-snake-case for all Markdown filenames (e.g., `my_document.md`, `feature_specification.md`)
+- Use kebab-case for all Markdown filenames (e.g., `my-document.md`, `feature-specification.md`)
 - Use `.md` extension for all Markdown files
 
 **MUST NOT:**
-- Use kebab-case (e.g., `my-document.md`)
+- Use snake_case (e.g., `my_document.md`)
 - Use camelCase (e.g., `myDocument.md`)
 - Use PascalCase (e.g., `MyDocument.md`)
 - Use spaces in filenames
 
-**Exception:**
-- `README.md` is exempt from lower-snake-case requirement (use uppercase README)
+**Exceptions:**
+- `README.md` is exempt from kebab-case requirement (use uppercase README)
+- `SKILL.md` is exempt from kebab-case requirement (use uppercase SKILL for skill definitions)
 
 **Examples:**
 
 ✅ **Correct:**
-- `architecture_plan.md`
-- `database_schema.md`
+- `architecture-plan.md`
+- `database-schema.md`
 - `README.md`
-- `01_planning.md`
+- `SKILL.md`
+- `01-planning.md`
 
 ❌ **Incorrect:**
-- `architecture-plan.md` (kebab-case)
+- `architecture_plan.md` (snake_case)
 - `ArchitecturePlan.md` (PascalCase)
 - `architecturePlan.md` (camelCase)
-- `ARCHITECTURE_PLAN.md` (uppercase, not README)
+- `ARCHITECTURE_PLAN.md` (uppercase, not README or SKILL)
 - `architecture plan.md` (spaces)
 
 ---
