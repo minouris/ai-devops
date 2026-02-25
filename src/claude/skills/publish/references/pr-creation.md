@@ -1,10 +1,105 @@
 # PR Creation Phase
 
-You MUST create a pull request with detailed validation report and transformation log.
+You MUST show the user what will be published, allow local review, and only create PR when user explicitly confirms.
 
 ---
 
-## Step 1: Generate PR Description
+## Step 1: Show Local Publication Summary
+
+**Display what was published locally:**
+
+Report to user:
+
+```
+Publication Complete (Local)
+============================
+
+Branch: {branch-name}
+
+Published to release/ directory:
+- {artifact-1} → {platforms}
+- {artifact-2} → {platforms}
+
+All changes committed to local branch.
+
+Next: Review changes locally, then optionally push and create PR.
+```
+
+**Show git diff summary:**
+
+```bash
+git diff main...HEAD --stat
+```
+
+Display file changes to user so they can see what will be in the PR.
+
+---
+
+## Step 2: Ask User to Review or Proceed
+
+**Prompt user:**
+
+```
+Would you like to:
+1. Review changes locally first (inspect release/ files, test artifacts)
+2. Push branch and create PR now
+3. Exit (changes remain in local branch)
+
+Choose option (1/2/3):
+```
+
+**Handle user response:**
+
+- Option 1: Report instructions for local review, then exit
+- Option 2: Proceed to generate PR and push
+- Option 3: Exit with reminder about branch state
+
+**If user chooses option 1 (local review):**
+
+Report:
+```
+Local Review Mode
+=================
+
+Changes are committed to branch: {branch-name}
+
+To review:
+- Inspect files in release/ directory
+- Check git diff: git diff main...HEAD
+- Test artifacts if needed
+
+When ready to publish:
+- Re-run /publish to push and create PR, or
+- Manually push: git push -u origin {branch-name}
+- Manually create PR: gh pr create
+
+To discard changes:
+- Switch to main: git checkout main
+- Delete branch: git branch -D {branch-name}
+```
+
+Exit workflow.
+
+**If user chooses option 3 (exit):**
+
+Report:
+```
+Publication paused. Changes remain in branch: {branch-name}
+
+To resume:
+- Re-run /publish to push and create PR
+- Or manually: git push -u origin {branch-name} && gh pr create
+```
+
+Exit workflow.
+
+---
+
+## Step 3: Generate PR Description
+
+**Only execute if user chose option 2 (push and create PR now).**
+
+**Build PR description in markdown format:**
 
 **Build PR description in markdown format:**
 
@@ -88,7 +183,26 @@ After approval and merge:
 
 ---
 
-## Step 2: Create PR Using gh CLI
+## Step 4: Push Branch to Remote
+
+**Push local branch to remote:**
+
+```bash
+git push -u origin {branch-name}
+```
+
+**MUST:**
+- Only push after user explicitly chose option 2
+- Set upstream tracking with -u flag
+- Confirm push success before creating PR
+
+**Handle errors:**
+- If no remote configured: Report "No git remote configured. Add remote first: git remote add origin <url>"
+- If push fails: Report error and halt PR creation
+
+---
+
+## Step 5: Create PR Using gh CLI
 
 **Execute gh pr create command:**
 
@@ -118,7 +232,7 @@ EOF
 
 ---
 
-## Step 3: Report PR URL and Next Steps
+## Step 6: Report PR URL and Next Steps
 
 **After PR created successfully:**
 
@@ -152,6 +266,8 @@ Note: Changes remain in feature branch until PR is merged to main
 - Note that changes are not in main until PR merged
 
 **MUST NOT:**
+- Push to remote without user confirmation
+- Create PR without user choosing option 2
 - Merge PR automatically
 - Push to main directly
-- Skip PR creation step
+- Skip local review opportunity

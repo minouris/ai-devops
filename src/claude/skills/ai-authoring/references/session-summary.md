@@ -84,10 +84,10 @@ Branch: ai-artifact/{type}/{name}
 All artifacts passed validation and are ready for publication.
 
 Next Steps:
-1. Run `/publish` to publish artifacts to release/ and create PR
+1. Run `/publish` to publish artifacts to release/ (with local review before PR)
 2. Or continue authoring more artifacts in this branch by running `/author-ai` again
 
-Note: Multiple artifacts can be published together in a single PR.
+Note: Multiple artifacts can be published together. /publish allows local review before push.
 ```
 
 **If some artifacts have warnings:**
@@ -103,7 +103,7 @@ Some artifacts have validation warnings. Review warnings before publication.
 Next Steps:
 1. Review warnings listed above
 2. Fix warnings if needed (re-run `/author-ai` or edit manually)
-3. Run `/publish` to publish artifacts to release/ and create PR
+3. Run `/publish` to publish artifacts to release/ (with local review before PR)
 ```
 
 **If any artifacts failed validation:**
@@ -146,7 +146,7 @@ To view changes:
 To continue authoring in this branch:
   /author-ai (will add to current branch)
 
-To publish and create PR:
+To publish to release/ (with local review option before PR):
   /publish
 
 To switch back to main (without merging):
@@ -163,8 +163,8 @@ To switch back to main (without merging):
 ```
 Would you like to:
 1. Author another artifact in this branch
-2. Publish artifacts and create PR
-3. Exit (changes remain in branch)
+2. Publish artifacts to release/ (local review before PR)
+3. Exit (changes remain in branch for later)
 
 Choose option (1/2/3):
 ```
@@ -172,7 +172,7 @@ Choose option (1/2/3):
 **Handle user response:**
 
 1. Return to artifact planning phase (Phase 1)
-2. Invoke `/publish` skill
+2. Invoke `/publish` skill (provides local review step before push/PR)
 3. Report "Session complete. Branch preserved for later." and exit
 
 ---
