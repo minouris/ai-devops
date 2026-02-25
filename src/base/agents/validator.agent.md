@@ -255,9 +255,9 @@ Record in violations array:
     {
       "rule": "markdown-formatting",
       "line": 12,
-      "text": "example-skill.md",
-      "issue": "Filename uses kebab-case instead of lower-snake-case",
-      "suggestion": "Rename to 'example_skill.md'"
+      "text": "example_skill.md",
+      "issue": "Filename uses snake_case instead of required kebab-case",
+      "suggestion": "Rename to 'example-skill.md'"
     }
   ]
 }

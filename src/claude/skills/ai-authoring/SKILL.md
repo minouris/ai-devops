@@ -14,7 +14,7 @@ release:
 
 # AI Authoring Skill
 
-Guide users through creating new AI artifacts with mandatory compliance validation, proper git branch management, and structured placement in `src/` directory.
+Create new AI artifacts with mandatory compliance validation, proper git branch management, and structured placement in `src/` directory.
 
 ---
 
