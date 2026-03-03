@@ -46,34 +46,78 @@ Your training uses triple-backticks for all fenced code blocks. This is PARTIALL
 ## Filename Conventions (MANDATORY)
 
 **MUST:**
-- Use kebab-case for all Markdown filenames (e.g., `my-document.md`, `feature-specification.md`)
+- Use lower-snake-case for all Markdown filenames (e.g., `my_document.md`, `feature_specification.md`)
 - Use `.md` extension for all Markdown files
 
 **MUST NOT:**
-- Use snake_case (e.g., `my_document.md`)
+- Use kebab-case (e.g., `my-document.md`)
 - Use camelCase (e.g., `myDocument.md`)
 - Use PascalCase (e.g., `MyDocument.md`)
 - Use spaces in filenames
 
-**Exceptions:**
-- `README.md` is exempt from kebab-case requirement (use uppercase README)
-- `SKILL.md` is exempt from kebab-case requirement (use uppercase SKILL for skill definitions)
+**Exception:**
+- `README.md` is exempt from lower-snake-case requirement (use uppercase README)
 
 **Examples:**
 
 ✅ **Correct:**
-- `architecture-plan.md`
-- `database-schema.md`
+- `architecture_plan.md`
+- `database_schema.md`
 - `README.md`
-- `SKILL.md`
-- `01-planning.md`
+- `01_planning.md`
 
 ❌ **Incorrect:**
-- `architecture_plan.md` (snake_case)
+- `architecture-plan.md` (kebab-case)
 - `ArchitecturePlan.md` (PascalCase)
 - `architecturePlan.md` (camelCase)
-- `ARCHITECTURE_PLAN.md` (uppercase, not README or SKILL)
+- `ARCHITECTURE_PLAN.md` (uppercase, not README)
 - `architecture plan.md` (spaces)
+
+---
+
+## Heading Formatting (MANDATORY)
+
+Proper heading structure is critical for document parsing and scripted changes.
+
+**MUST:**
+- Use proper markdown heading levels: `##`, `###`, `####`, `#####`, `######`
+- Maintain hierarchical structure reflecting document organisation
+- Use headings for all section breaks and major topics
+
+**MUST NOT:**
+- Use bold text as headings: `**Heading Text**` or `**Heading Text:**`
+- Use bold text to simulate section breaks
+- Use bold text where a heading is semantically appropriate
+- Mix heading styles within the same document
+
+**Rationale:**
+- Proper headings enable automated parsing and scripting
+- Bold text does not provide semantic structure
+- Navigation, linking, and table of contents generation require proper headings
+- Screen readers and document parsers rely on heading tags
+
+**Examples:**
+
+Incorrect:
+```markdown
+**Implementation Details**
+
+Some content here.
+
+**Configuration:**
+More content.
+```
+
+Correct:
+```markdown
+#### Implementation Details
+
+Some content here.
+
+#### Configuration
+
+More content.
+```
 
 ---
 
@@ -84,6 +128,7 @@ Your training uses triple-backticks for all fenced code blocks. This is PARTIALL
 Ask yourself:
 - [ ] Is filename in lower-snake-case (or README.md)?
 - [ ] Does file use `.md` extension?
+- [ ] Are all headings using proper markdown (##, ###, ####), NOT bold text?
 
 **Before completing ANY Markdown file with nested code blocks:**
 
