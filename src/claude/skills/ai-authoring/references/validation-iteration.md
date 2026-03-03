@@ -4,6 +4,22 @@ You MUST validate artifacts against specified rules and guide users to fix viola
 
 ---
 
+## Type-Specific Validation References
+
+Before invoking the validator, consult the per-type validation file for the artifact's type:
+
+| Type | Validation Reference |
+|------|---------------------|
+| skill | [validation/skill-validation.md](validation/skill-validation.md) |
+| agent | [validation/agent-validation.md](validation/agent-validation.md) |
+| rule | [validation/rule-validation.md](validation/rule-validation.md) |
+| command | [validation/command-validation.md](validation/command-validation.md) |
+| hook | [validation/hook-validation.md](validation/hook-validation.md) |
+
+Read the relevant file to determine which rules to apply, which structural checks to perform, and which common violations to look for.
+
+---
+
 ## Step 1: Invoke Validator Agent
 
 **Spawn validator agent:**
