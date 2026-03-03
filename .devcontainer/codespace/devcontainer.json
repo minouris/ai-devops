@@ -1,6 +1,5 @@
 {
   "name": "GitHub Codespaces Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
