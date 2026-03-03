@@ -43,7 +43,7 @@ git branch --show-current
 
 **Prompt for artifact type:**
 
-Ask: "What type of artifact? (skill/agent/prompt/rule)"
+Ask: "What type of artifact? (skill/agent/prompt/rule/command/hook)"
 
 Wait for user response.
 
@@ -68,6 +68,8 @@ Provide examples:
 - For agents: `validator`, `analyst`, `reviewer`
 - For rules: `uk-english`, `markdown-formatting`
 - For prompts: `commit-message`, `pr-description`
+- For commands: `author-ai`, `publish`, `review`
+- For hooks: `pre-bash`, `post-edit`, `on-stop`
 
 Wait for user response.
 
@@ -87,6 +89,8 @@ For skills: `src/{platform}/skills/{name}/`
 For agents: `src/{platform}/agents/{name}.agent.md`
 For rules: `src/{platform}/rules/{name}.md`
 For prompts: `src/{platform}/prompts/{name}.prompt.md`
+For commands: `src/{platform}/commands/{name}.md`
+For hooks: `src/{platform}/hooks/{name}.hook.md`
 
 **Check if path exists:**
 
@@ -117,7 +121,7 @@ ls src/{platform}/{type}/{name}
 ## Output
 
 At end of this phase, you MUST have:
-- Artifact type (skill/agent/prompt/rule)
+- Artifact type (skill/agent/prompt/rule/command/hook)
 - Platform (claude/copilot/github/base)
 - Artifact name (validated format, checked availability)
 
