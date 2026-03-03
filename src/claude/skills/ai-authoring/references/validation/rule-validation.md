@@ -1,59 +1,56 @@
 # Rule Validation
 
-Validation rules and common violations specific to rule artifacts.
+Validate rule artifacts against the rule structure rules.
 
 ---
 
-## Validation Rules Applied
+## Structure Rules Reference
 
-<!-- TODO: Define which validation rule sets apply to rule files -->
-
-Typical rules:
-- `ai-targeted-language`
-- `markdown-formatting`
-- `documentation-standards`
+Read `src/claude/rules/rule-structure.md` before proceeding. That file is the single source of truth for required rule structure. All MUST and MUST NOT requirements in that file are the validation criteria.
 
 ---
 
-## Structural Checks
+## Validation Procedure
 
-<!-- TODO: Define structural requirements that must pass validation for rules -->
-<!-- e.g. Must have a System Prompt Conflict Resolution section if overriding defaults -->
-<!-- e.g. Must have at least one MUST or MUST NOT section -->
-<!-- e.g. Must end with a Compliance Verification checklist -->
-<!-- e.g. Checklist must include "If ANY answer is No" enforcement statement -->
+**Step 1: Read the structure rules**
 
----
+Read `src/claude/rules/rule-structure.md` in full. Its MUST and MUST NOT requirements are the checklist you will validate against.
 
-## Common Violations
+**Step 2: Read the artifact**
 
-<!-- TODO: List the most frequent violations found in rule files with examples -->
+Read the rule file: `src/{platform}/rules/{name}.md`
 
-### AI-Targeted Language
+**Step 3: Check each MUST requirement**
 
-<!-- TODO: List rule-specific third-person language to flag (e.g. "The AI should") -->
+For each MUST requirement in the structure rules:
+1. Check whether the artifact satisfies it
+2. If satisfied: mark as pass
+3. If not satisfied: record a violation with file path, line number (if applicable), the violated rule, and a suggested fix
 
-### MUST/MUST NOT Format
+**Step 4: Check each MUST NOT requirement**
 
-<!-- TODO: List violations of MUST/MUST NOT structure (missing sections, wrong format, etc.) -->
+For each MUST NOT requirement in the structure rules:
+1. Check whether the artifact violates it
+2. If not violated: mark as pass
+3. If violated: record a violation with file path, line number, the violated rule, and a suggested fix
 
-### Compliance Verification
+**Step 5: Run the Compliance Verification checklist**
 
-<!-- TODO: List violations of the compliance checklist pattern -->
+Work through the Compliance Verification section of `src/claude/rules/rule-structure.md` line by line. Each checklist item must be answered.
 
-### Frontmatter
+**Step 6: Report results**
 
-<!-- TODO: List frontmatter violations for rule files -->
-
----
-
-## Violation Reporting Format
-
-<!-- TODO: Define how violations should be reported to the user for rule artifacts -->
-<!-- TODO: Define suggested fix templates for common rule violations -->
+Report all violations. If none found, confirm validation passed.
 
 ---
 
-## Pass Criteria
+## MUST
 
-<!-- TODO: Define what constitutes a full validation pass for a rule artifact -->
+- Read `src/claude/rules/rule-structure.md` before validating
+- Check every MUST and MUST NOT requirement
+- Report violations with file path, line number, rule reference, and suggested fix
+
+## MUST NOT
+
+- Define validation criteria in this file (they belong in the structure rules)
+- Mark validation as passed if any MUST requirement is unmet

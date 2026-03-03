@@ -1,57 +1,58 @@
 # Skill Validation
 
-Validation rules and common violations specific to skill artifacts.
+Validate skill artifacts against the skill structure rules.
 
 ---
 
-## Validation Rules Applied
+## Structure Rules Reference
 
-<!-- TODO: Define which validation rule sets apply to skills -->
-<!-- TODO: Specify which sections of each rule are applicable and which are not -->
-
-Typical rules:
-- `ai-targeted-language`
-- `skill-structure`
-- `markdown-formatting`
-- `documentation-standards`
+Read `src/claude/rules/skill-structure.md` before proceeding. That file is the single source of truth for required skill structure. All MUST and MUST NOT requirements in that file are the validation criteria.
 
 ---
 
-## Structural Checks
+## Validation Procedure
 
-<!-- TODO: Define structural requirements that must pass validation -->
-<!-- e.g. SKILL.md must have a frontmatter block -->
-<!-- e.g. Workflow Overview section must reference at least one references/ file -->
-<!-- e.g. Each referenced file in references/ must exist -->
+**Step 1: Read the structure rules**
+
+Read `src/claude/rules/skill-structure.md` in full. Its MUST and MUST NOT requirements are the checklist you will validate against.
+
+**Step 2: Read the artifact**
+
+Read all files in the skill artifact:
+- `SKILL.md`
+- All files in `references/`
+
+**Step 3: Check each MUST requirement**
+
+For each MUST requirement in the structure rules:
+1. Check whether the artifact satisfies it
+2. If satisfied: mark as pass
+3. If not satisfied: record a violation with file path, line number (if applicable), the violated rule, and a suggested fix
+
+**Step 4: Check each MUST NOT requirement**
+
+For each MUST NOT requirement in the structure rules:
+1. Check whether the artifact violates it
+2. If not violated: mark as pass
+3. If violated: record a violation with file path, line number, the violated rule, and a suggested fix
+
+**Step 5: Run the Compliance Verification checklist**
+
+Work through the Compliance Verification section of `src/claude/rules/skill-structure.md` line by line. Each checklist item must be answered.
+
+**Step 6: Report results**
+
+Report all violations. If none found, confirm validation passed.
 
 ---
 
-## Common Violations
+## MUST
 
-<!-- TODO: List the most frequent violations found in skill files with examples -->
-<!-- Format: violation description, rule violated, example of bad content, suggested fix -->
+- Read `src/claude/rules/skill-structure.md` before validating
+- Check every MUST and MUST NOT requirement
+- Report violations with file path, line number, rule reference, and suggested fix
 
-### AI-Targeted Language
+## MUST NOT
 
-<!-- TODO: List skill-specific third-person or vague language patterns to flag -->
-
-### Structural
-
-<!-- TODO: List structural violations specific to skills (e.g. missing phases, broken references) -->
-
-### Frontmatter
-
-<!-- TODO: List frontmatter violations (missing fields, invalid values, wrong format) -->
-
----
-
-## Violation Reporting Format
-
-<!-- TODO: Define how violations should be reported to the user for skill artifacts -->
-<!-- TODO: Define suggested fix templates for common skill violations -->
-
----
-
-## Pass Criteria
-
-<!-- TODO: Define what constitutes a full validation pass for a skill artifact -->
+- Define validation criteria in this file (they belong in the structure rules)
+- Mark validation as passed if any MUST requirement is unmet

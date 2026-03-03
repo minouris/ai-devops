@@ -1,60 +1,56 @@
 # Agent Validation
 
-Validation rules and common violations specific to agent artifacts.
+Validate agent artifacts against the agent structure rules.
 
 ---
 
-## Validation Rules Applied
+## Structure Rules Reference
 
-<!-- TODO: Define which validation rule sets apply to agents -->
-
-Typical rules:
-- `ai-targeted-language`
-- `markdown-formatting`
-- `documentation-standards`
+Read `src/claude/rules/agent-structure.md` before proceeding. That file is the single source of truth for required agent structure. All MUST and MUST NOT requirements in that file are the validation criteria.
 
 ---
 
-## Structural Checks
+## Validation Procedure
 
-<!-- TODO: Define structural requirements that must pass validation for agents -->
-<!-- e.g. Must have a valid .agent.md filename -->
-<!-- e.g. Must have a frontmatter block with name, description, and tools -->
-<!-- e.g. Tools list must only contain valid tool identifiers -->
-<!-- e.g. Must have a clear purpose/workflow section -->
+**Step 1: Read the structure rules**
 
----
+Read `src/claude/rules/agent-structure.md` in full. Its MUST and MUST NOT requirements are the checklist you will validate against.
 
-## Common Violations
+**Step 2: Read the artifact**
 
-<!-- TODO: List the most frequent violations found in agent files with examples -->
+Read the agent file: `src/{platform}/agents/{name}.agent.md`
 
-### AI-Targeted Language
+**Step 3: Check each MUST requirement**
 
-<!-- TODO: List agent-specific language violations to flag -->
+For each MUST requirement in the structure rules:
+1. Check whether the artifact satisfies it
+2. If satisfied: mark as pass
+3. If not satisfied: record a violation with file path, line number (if applicable), the violated rule, and a suggested fix
 
-### Tool Configuration
+**Step 4: Check each MUST NOT requirement**
 
-<!-- TODO: List violations in tools or mcpServers frontmatter fields -->
+For each MUST NOT requirement in the structure rules:
+1. Check whether the artifact violates it
+2. If not violated: mark as pass
+3. If violated: record a violation with file path, line number, the violated rule, and a suggested fix
 
-### Rule Embedding
+**Step 5: Run the Compliance Verification checklist**
 
-<!-- TODO: List violations specific to embedded rule sections in agents -->
-<!-- e.g. Abbreviated rules, missing sections, paraphrased content -->
+Work through the Compliance Verification section of `src/claude/rules/agent-structure.md` line by line. Each checklist item must be answered.
 
-### Frontmatter
+**Step 6: Report results**
 
-<!-- TODO: List frontmatter violations for agent files -->
-
----
-
-## Violation Reporting Format
-
-<!-- TODO: Define how violations should be reported to the user for agent artifacts -->
-<!-- TODO: Define suggested fix templates for common agent violations -->
+Report all violations. If none found, confirm validation passed.
 
 ---
 
-## Pass Criteria
+## MUST
 
-<!-- TODO: Define what constitutes a full validation pass for an agent artifact -->
+- Read `src/claude/rules/agent-structure.md` before validating
+- Check every MUST and MUST NOT requirement
+- Report violations with file path, line number, rule reference, and suggested fix
+
+## MUST NOT
+
+- Define validation criteria in this file (they belong in the structure rules)
+- Mark validation as passed if any MUST requirement is unmet

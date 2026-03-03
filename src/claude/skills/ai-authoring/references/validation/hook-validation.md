@@ -1,60 +1,56 @@
 # Hook Validation
 
-Validation rules and common violations specific to hook artifacts.
+Validate hook artifacts against the hook structure rules.
 
 ---
 
-## Validation Rules Applied
+## Structure Rules Reference
 
-<!-- TODO: Define which validation rule sets apply to hooks -->
-
-Typical rules:
-- `ai-targeted-language`
-- `markdown-formatting`
-- `documentation-standards`
+Read `src/claude/rules/hook-structure.md` before proceeding. That file is the single source of truth for required hook structure. All MUST and MUST NOT requirements in that file are the validation criteria.
 
 ---
 
-## Structural Checks
+## Validation Procedure
 
-<!-- TODO: Define structural requirements that must pass validation for hooks -->
-<!-- e.g. Must have a valid frontmatter block with name, description, and event -->
-<!-- e.g. Event must be a known/supported event name -->
-<!-- e.g. Shell command must be specified -->
-<!-- e.g. Must document exit code behaviour -->
+**Step 1: Read the structure rules**
 
----
+Read `src/claude/rules/hook-structure.md` in full. Its MUST and MUST NOT requirements are the checklist you will validate against.
 
-## Common Violations
+**Step 2: Read the artifact**
 
-<!-- TODO: List the most frequent violations found in hook files with examples -->
+Read the hook file: `src/{platform}/hooks/{name}.hook.md`
 
-### AI-Targeted Language
+**Step 3: Check each MUST requirement**
 
-<!-- TODO: List hook-specific language violations to flag -->
+For each MUST requirement in the structure rules:
+1. Check whether the artifact satisfies it
+2. If satisfied: mark as pass
+3. If not satisfied: record a violation with file path, line number (if applicable), the violated rule, and a suggested fix
 
-### Event Configuration
+**Step 4: Check each MUST NOT requirement**
 
-<!-- TODO: List violations in hook event frontmatter (invalid events, missing event field) -->
+For each MUST NOT requirement in the structure rules:
+1. Check whether the artifact violates it
+2. If not violated: mark as pass
+3. If violated: record a violation with file path, line number, the violated rule, and a suggested fix
 
-### Security
+**Step 5: Run the Compliance Verification checklist**
 
-<!-- TODO: List security-related violations for hook shell commands -->
-<!-- e.g. Unvalidated inputs, forbidden shell patterns, command injection risks -->
+Work through the Compliance Verification section of `src/claude/rules/hook-structure.md` line by line. Each checklist item must be answered.
 
-### Frontmatter
+**Step 6: Report results**
 
-<!-- TODO: List frontmatter violations for hook files -->
-
----
-
-## Violation Reporting Format
-
-<!-- TODO: Define how violations should be reported to the user for hook artifacts -->
-<!-- TODO: Define suggested fix templates for common hook violations -->
+Report all violations. If none found, confirm validation passed.
 
 ---
 
-## Pass Criteria
+## MUST
 
-<!-- TODO: Define what constitutes a full validation pass for a hook artifact -->
+- Read `src/claude/rules/hook-structure.md` before validating
+- Check every MUST and MUST NOT requirement
+- Report violations with file path, line number, rule reference, and suggested fix
+
+## MUST NOT
+
+- Define validation criteria in this file (they belong in the structure rules)
+- Mark validation as passed if any MUST requirement is unmet

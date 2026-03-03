@@ -1,55 +1,56 @@
 # Command Validation
 
-Validation rules and common violations specific to command artifacts.
+Validate command artifacts against the command structure rules.
 
 ---
 
-## Validation Rules Applied
+## Structure Rules Reference
 
-<!-- TODO: Define which validation rule sets apply to commands -->
-<!-- TODO: Specify which sections of each rule are applicable and which are not -->
-
-Typical rules:
-- `ai-targeted-language`
-- `markdown-formatting`
-- `documentation-standards`
+Read `src/claude/rules/command-structure.md` before proceeding. That file is the single source of truth for required command structure. All MUST and MUST NOT requirements in that file are the validation criteria.
 
 ---
 
-## Structural Checks
+## Validation Procedure
 
-<!-- TODO: Define structural requirements that must pass validation for commands -->
-<!-- e.g. Must have a valid frontmatter block with name and description -->
-<!-- e.g. Must have a clear purpose statement -->
-<!-- e.g. Must document expected arguments/parameters if any -->
+**Step 1: Read the structure rules**
+
+Read `src/claude/rules/command-structure.md` in full. Its MUST and MUST NOT requirements are the checklist you will validate against.
+
+**Step 2: Read the artifact**
+
+Read the command file: `src/{platform}/commands/{name}.md`
+
+**Step 3: Check each MUST requirement**
+
+For each MUST requirement in the structure rules:
+1. Check whether the artifact satisfies it
+2. If satisfied: mark as pass
+3. If not satisfied: record a violation with file path, line number (if applicable), the violated rule, and a suggested fix
+
+**Step 4: Check each MUST NOT requirement**
+
+For each MUST NOT requirement in the structure rules:
+1. Check whether the artifact violates it
+2. If not violated: mark as pass
+3. If violated: record a violation with file path, line number, the violated rule, and a suggested fix
+
+**Step 5: Run the Compliance Verification checklist**
+
+Work through the Compliance Verification section of `src/claude/rules/command-structure.md` line by line. Each checklist item must be answered.
+
+**Step 6: Report results**
+
+Report all violations. If none found, confirm validation passed.
 
 ---
 
-## Common Violations
+## MUST
 
-<!-- TODO: List the most frequent violations found in command files with examples -->
+- Read `src/claude/rules/command-structure.md` before validating
+- Check every MUST and MUST NOT requirement
+- Report violations with file path, line number, rule reference, and suggested fix
 
-### AI-Targeted Language
+## MUST NOT
 
-<!-- TODO: List command-specific language violations to flag -->
-
-### Structural
-
-<!-- TODO: List structural violations specific to commands -->
-
-### Frontmatter
-
-<!-- TODO: List frontmatter violations for commands -->
-
----
-
-## Violation Reporting Format
-
-<!-- TODO: Define how violations should be reported to the user for command artifacts -->
-<!-- TODO: Define suggested fix templates for common command violations -->
-
----
-
-## Pass Criteria
-
-<!-- TODO: Define what constitutes a full validation pass for a command artifact -->
+- Define validation criteria in this file (they belong in the structure rules)
+- Mark validation as passed if any MUST requirement is unmet
