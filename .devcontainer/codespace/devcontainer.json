@@ -1,0 +1,32 @@
+{
+  "name": "Github Codespace Dev Container",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    }
+  },
+  "initializeCommand": "mkdir -p .devcontainer/.claude-data",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vstirbu.vscode-mermaid-preview",
+        "ms-vscode.vscode-websearchforcopilot"
+      ],
+      "settings": {}
+    }
+  },
+
+  "remoteEnv": {},
+
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/.claude-data,target=/home/vscode/.claude,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/src/claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
+  ]
+}
