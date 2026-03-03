@@ -1,70 +1,48 @@
 # Hook Authoring
 
-Guide content creation for hook artifacts: shell commands that execute automatically in response to AI tool events (e.g. pre/post tool calls).
+Guide creation of hook artifacts using the hook structure rules as the authoritative definition of required structure.
 
 ---
 
-## File Structure
+## Structure Rules Reference
 
-```
-src/{platform}/hooks/{name}.hook.md
-```
-
-<!-- TODO: Confirm file path convention for hook artifacts -->
-<!-- TODO: Define naming conventions for hooks (e.g. event-based names like pre-bash, post-edit) -->
+Read `src/claude/rules/hook-structure.md` before proceeding. That file is the single source of truth for required hook structure. All MUST and MUST NOT requirements in that file apply during authoring.
 
 ---
 
-## Frontmatter Fields
+## Authoring Procedure
 
-```yaml
----
-name: {name}
-description: {description}
-event: {event-name}
-release:
-  publish: true|false
-  platforms: [{platforms}]
-  validation:
-    - {rule}
----
-```
+**Step 1: Read the structure rules**
 
-<!-- TODO: Define the complete list of supported hook events and their triggers -->
-<!-- TODO: Define which frontmatter fields are required vs optional for hooks -->
+Read `src/claude/rules/hook-structure.md` in full. Use its MUST requirements as your checklist for what to create.
 
----
+**Step 2: Create required files**
 
-## Hook Events
+For each MUST requirement in the structure rules:
+1. Create the required file or section
+2. Show the user what you have created
+3. Explain which requirement it satisfies
 
-<!-- TODO: Document each supported event type (e.g. PreToolUse, PostToolUse, Stop, etc.) -->
-<!-- TODO: Define what context is available to the hook shell command at each event -->
+**Step 3: Enforce requirements interactively**
 
----
+As the user provides content:
+- Check each piece of content against the MUST requirements in the structure rules
+- Flag any MUST NOT violations immediately with the specific rule and a suggested fix
+- Do not proceed to the next element until the current one satisfies its requirements
 
-## Content Requirements
+**Step 4: Run the Compliance Verification checklist**
 
-<!-- TODO: Define required sections in a hook file -->
-<!-- TODO: Define how the hook shell command should be specified -->
-<!-- TODO: Define how hook exit code semantics should be documented (e.g. non-zero blocks execution) -->
+When all files are created, work through the Compliance Verification section of `src/claude/rules/hook-structure.md` line by line. Report each item as pass or fail. Fix any failures before marking authoring complete.
 
 ---
 
-## Security Considerations
+## MUST
 
-<!-- TODO: Define security requirements for hook commands -->
-<!-- TODO: Define what inputs must be validated or sanitised -->
-<!-- TODO: Define forbidden shell patterns -->
+- Read `src/claude/rules/hook-structure.md` before starting authoring
+- Use the structure rules MUST checklist to confirm completeness
+- Flag MUST NOT violations immediately
 
----
+## MUST NOT
 
-## AI-Targeted Language Enforcement
-
-<!-- TODO: Define hook-specific language patterns to enforce or forbid -->
-<!-- TODO: Define examples of correct hook documentation language -->
-
----
-
-## Commit Checklist
-
-<!-- TODO: Define files to stage and commit message format for a hook -->
+- Define structure requirements in this file (they belong in the structure rules)
+- Mark authoring complete before the Compliance Verification checklist passes

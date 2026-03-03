@@ -1,65 +1,48 @@
 # Skill Authoring
 
-Guide content creation for skill artifacts: multi-phase workflow files composed of `SKILL.md` and a `references/` subdirectory.
+Guide creation of skill artifacts using the skill structure rules as the authoritative definition of required structure.
 
 ---
 
-## File Structure
+## Structure Rules Reference
 
-```
-src/{platform}/skills/{name}/
-  SKILL.md
-  references/
-    {phase-name}.md
-    ...
-```
-
-<!-- TODO: Define complete directory structure requirements, naming conventions, and mandatory files -->
+Read `src/claude/rules/skill-structure.md` before proceeding. That file is the single source of truth for required skill structure. All MUST and MUST NOT requirements in that file apply during authoring.
 
 ---
 
-## Frontmatter Fields
+## Authoring Procedure
 
-```yaml
----
-name: {name}
-description: {description}
-disable-model-invocation: true|false
-release:
-  publish: true|false
-  platforms: [{platforms}]
-  validation:
-    - {rule}
----
-```
+**Step 1: Read the structure rules**
 
-<!-- TODO: Define which fields are required vs optional, allowed values, and validation rules for each field -->
+Read `src/claude/rules/skill-structure.md` in full. Use its MUST requirements as your checklist for what to create.
 
----
+**Step 2: Create required files**
 
-## SKILL.md Content Requirements
+For each MUST requirement in the structure rules:
+1. Create the required file or section
+2. Show the user what you have created
+3. Explain which requirement it satisfies
 
-<!-- TODO: Define required sections in SKILL.md (e.g. Workflow Overview, Important Notes) -->
-<!-- TODO: Define how phases should be listed and linked to references/ files -->
-<!-- TODO: Define MUST/MUST NOT constraints specific to SKILL.md structure -->
+**Step 3: Enforce requirements interactively**
 
----
+As the user provides content:
+- Check each piece of content against the MUST requirements in the structure rules
+- Flag any MUST NOT violations immediately with the specific rule and a suggested fix
+- Do not proceed to the next element until the current one satisfies its requirements
 
-## Reference Files
+**Step 4: Run the Compliance Verification checklist**
 
-<!-- TODO: Define structure requirements for per-phase reference files -->
-<!-- TODO: Define how steps should be numbered and formatted -->
-<!-- TODO: Define output/precondition/postcondition conventions -->
+When all files are created, work through the Compliance Verification section of `src/claude/rules/skill-structure.md` line by line. Report each item as pass or fail. Fix any failures before marking authoring complete.
 
 ---
 
-## AI-Targeted Language Enforcement
+## MUST
 
-<!-- TODO: Define skill-specific language patterns to enforce or forbid -->
-<!-- TODO: Define examples of correct and incorrect language for skill files -->
+- Read `src/claude/rules/skill-structure.md` before starting authoring
+- Use the structure rules MUST checklist to confirm completeness
+- Flag MUST NOT violations immediately
 
----
+## MUST NOT
 
-## Commit Checklist
-
-<!-- TODO: Define files to stage and commit message format for a skill -->
+- Define structure requirements in this file (they belong in the structure rules)
+- Mark authoring complete before the Compliance Verification checklist passes
