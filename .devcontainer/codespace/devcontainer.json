@@ -1,5 +1,5 @@
 {
-  "name": "Github Codespace Dev Container",
+  "name": "GitHub Codespaces Dev Container",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
