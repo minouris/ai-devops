@@ -392,6 +392,24 @@ mkdir -p src/{platform}/prompts
 Create:
 - `{name}.prompt.md`
 
+**For commands:**
+
+```bash
+mkdir -p src/{platform}/commands
+```
+
+Create:
+- `{name}.md`
+
+**For hooks:**
+
+```bash
+mkdir -p src/{platform}/hooks
+```
+
+Create:
+- `{name}.hook.md`
+
 ---
 
 ## Step 2: Gather Additional Metadata
@@ -432,6 +450,12 @@ Parse response and build tools list.
 Ask: "Any MCP servers needed? (enter server names comma-separated, or 'none')"
 
 If not 'none', build MCP servers configuration.
+
+**For hooks, prompt for event:**
+
+Ask: "Which event triggers this hook? (e.g. PreToolUse, PostToolUse, Stop)"
+
+Parse response and set event field in frontmatter.
 
 ---
 
@@ -474,6 +498,8 @@ release:
    - Guide detailed instruction writing
    - Enforce AI-targeted language interactively using embedded rules above
 
+See [authoring/skill-authoring.md](authoring/skill-authoring.md) for full skill-specific guidance.
+
 **For agents:**
 
 1. **Create agent header:**
@@ -489,6 +515,8 @@ release:
    - Ask: "Does this agent need to embed rules from other files?"
    - If yes, guide rule embedding (see Step 4 below)
 
+See [authoring/agent-authoring.md](authoring/agent-authoring.md) for full agent-specific guidance.
+
 **For rules:**
 
 1. **Create rule header:**
@@ -500,12 +528,22 @@ release:
    - For each section, guide MUST/MUST NOT format
    - Include examples where clarity requires them
 
+See [authoring/rule-authoring.md](authoring/rule-authoring.md) for full rule-specific guidance.
+
 **For prompts:**
 
 1. **Create prompt structure:**
    - Task description
    - Instructions to AI (second-person, imperative)
    - Expected output format
+
+**For commands:**
+
+See [authoring/command-authoring.md](authoring/command-authoring.md) for command-specific guidance.
+
+**For hooks:**
+
+See [authoring/hook-authoring.md](authoring/hook-authoring.md) for hook-specific guidance.
 
 ---
 
