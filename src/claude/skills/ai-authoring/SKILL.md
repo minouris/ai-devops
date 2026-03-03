@@ -1,6 +1,6 @@
 ---
 name: ai-authoring
-description: Create AI artifacts (skills, agents, prompts, rules) with mandatory compliance validation, git branch management, and proper placement in src/ directory structure
+description: Create AI artifacts (skills, agents, prompts, rules, commands, hooks) with mandatory compliance validation, git branch management, and proper placement in src/ directory structure
 disable-model-invocation: true
 release:
   publish: true
@@ -14,7 +14,7 @@ release:
 
 # AI Authoring Skill
 
-Create new AI artifacts with mandatory compliance validation, proper git branch management, and structured placement in `src/` directory.
+Create new AI artifacts with mandatory compliance validation, proper git branch management, and structured placement in `src/` directory. Supports skills, agents, prompts, rules, commands, and hooks.
 
 ---
 
