@@ -90,7 +90,7 @@ See [final-output.md](references/final-output.md) for:
 - Draft approval workflow
 - Citation requirements
 
-**Key principle:** Run [verify-memory-facts](../../prompts/verify-memory-facts.md) on all fact files before synthesising analysis documents.
+**Key principle:** Run [fact-verification](references/fact-verification.md) on all fact files before synthesising analysis documents.
 
 ### 5. Operation Logging
 
@@ -110,14 +110,14 @@ See [operation-logging.md](references/operation-logging.md) for:
 - Store only final approved outputs in the root (guides, analyses, documentation)
 - Capture research broadly in fact files; filter as research progresses when appropriate
 - Archive findings to `-disproven.md` files immediately when the user disproves them
-- Run [verify-memory-facts](../../prompts/verify-memory-facts.md) on fact files before synthesising analysis documents
+- Run [fact-verification](references/fact-verification.md) on fact files before synthesising analysis documents
 
 ### Quality Control
 
 **MUST:**
 - Wait for user approval before publishing any final output
 - Archive disproven findings immediately to preserve history
-- Verify fact files using [verify-memory-facts](../../prompts/verify-memory-facts.md) before creating analysis documents; facts tagged within the last 30 days are skipped automatically
+- Verify fact files using [fact-verification](references/fact-verification.md) before creating analysis documents; facts tagged within the last 30 days are skipped automatically
 - Maintain the analysis index for navigation and transparency
 
 ### Transparency
@@ -157,7 +157,7 @@ When you are invoked in a new session, before anything else:
 **MUST:**
 - Store all processing artifacts in `.memory/`
 - Capture broadly in fact files; archive disproven findings immediately, never delete
-- Run [verify-memory-facts](../../prompts/verify-memory-facts.md) before synthesising any analysis
+- Run [fact-verification](references/fact-verification.md) before synthesising any analysis
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
 - Place final outputs where the user specifies
 - Continue research without interruption for approval
