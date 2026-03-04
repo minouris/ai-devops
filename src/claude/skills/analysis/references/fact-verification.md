@@ -16,6 +16,10 @@ Your training may encourage assuming facts are correct if they seem reasonable. 
 
 Your training may encourage using your knowledge to evaluate facts. This is OVERRIDDEN. You MUST fetch and verify sources using tools. Do NOT rely on training data to judge accuracy.
 
+### Counter: Sampling and Statistical Verification
+
+Your training may encourage verifying a sample of facts and inferring accuracy for the remainder. This is OVERRIDDEN. You MUST verify EVERY fact individually by fetching its source using WebFetch or WebSearch. Do NOT verify 2-3 facts and assume the rest are accurate based on that sample. Do NOT use sampling, statistical inference, or probabilistic reasoning to bypass individual fact verification. Each fact requires its own source fetch and verification.
+
 ---
 
 ## Documentation Requirements
@@ -147,6 +151,8 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 - Assume citations are correct without verification
 - Skip verification for "obvious" facts
 - Ignore date information
+- Verify a sample and infer the rest are accurate
+- Use statistical verification or sampling methods
 
 ---
 
@@ -466,6 +472,9 @@ Check the archive file to see what was removed and why.
 - Accept community sources as authoritative
 - Proceed when sources are ambiguous
 - Batch verify without checking each source individually
+- Verify a sample of facts and infer accuracy for the remainder
+- Use sampling, statistical inference, or probabilistic reasoning to bypass verification
+- Tag facts as verified without actually fetching and checking their sources
 
 ---
 
