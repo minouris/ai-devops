@@ -197,10 +197,33 @@ Based on comprehensive research, prompts should be treated as:
 
 ---
 
+## FINDING-2026-03-04-6: Prompts from Core Facts File [DISPROVEN]
+
+**Source:** `.memory/claude-config-facts.md` (archived from core facts)
+
+**Original finding:**
+This was a brief overview finding in the core facts file about "Prompts - Reusable Prompt Workflows" based on local codebase examination of `.claude/prompts/` directory.
+
+**Why it appeared:**
+- Project contains `.prompt.md` files in `.claude/prompts/` directory
+- Files like `verify-memory-facts.prompt.md`, `record-operation.prompt.md` were observed
+- Appeared to be a configuration mechanism like skills or agents
+
+**Disproof:**
+Same as findings 60-67 above - Prompts are a GitHub Copilot convention, not Claude Code. The `.prompt.md` files in this project are Copilot artifacts, not a native Claude Code feature.
+
+**Archived:** 2026-03-04
+
+---
+
 ## Notes
 
 All findings DISPROVEN based on user clarification: Prompts are a GitHub Copilot convention, not related to Claude Code configuration.
 
 **Actual source:** GitHub Copilot
+
+**Findings archived:**
+- FINDING-2026-03-04-6: Brief overview from core facts file
+- FINDING-2026-03-04-60 through 67: Detailed subtopic research
 
 This entire subtopic should be excluded from Claude Code configuration research.

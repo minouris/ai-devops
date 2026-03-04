@@ -209,28 +209,15 @@ Commands are slash commands invoked by users via `/command-name`. Custom command
 
 ---
 
-## FINDING-2026-03-04-6: Prompts - Reusable Prompt Workflows
+## FINDING-2026-03-04-6: [ARCHIVED - See disproven file]
 
-**Source:** Local codebase examination, `.claude/README.md`
+**Status:** DISPROVEN - Prompts are a GitHub Copilot feature, not Claude Code
 
-**What:**
-Prompts are reusable prompt workflows for specific tasks. They are referenced/invoked within skills or manually.
+**Reason:** This finding about ".prompt.md files" was based on examining local codebase artifacts from GitHub Copilot. Prompts are NOT a native Claude Code configuration mechanism.
 
-**File format:**
-- Markdown file: `*.prompt.md`
-- Location: `.claude/prompts/` or equivalent in source directories
-- Frontmatter format not yet examined (need to read actual prompt files)
+**See:** `.memory/claude-config-prompts-facts-disproven.md` for complete findings (60-67) on why prompts were disproven.
 
-**Examples found:**
-- `verify-memory-facts.prompt.md`: Verify facts against authoritative documentation
-- `record-operation.prompt.md`: Operation logging for session continuity
-- `consolidate-session.prompt.md`: Session consolidation
-- `convert-plan-to-steps.prompt.md`: Convert plans to steps
-
-**Usage:**
-- Referenced in skill workflows
-- Can be invoked with parameters like `memoryFilePath=.memory/{filename}.md`
-- Part of larger workflows, not standalone user commands
+**Archived:** 2026-03-04
 
 ---
 
