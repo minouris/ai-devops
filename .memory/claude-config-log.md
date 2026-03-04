@@ -85,3 +85,23 @@ User correctly identified that initial findings mixed native Claude Code require
 - Provide examples using quad-backticks to prevent nesting issues
 
 **Status:** Task list created, ready to begin subtopic research
+
+---
+
+## 2026-03-04: Subtopic Research Progress
+
+**Operation:** Creating detailed fact files for all 8 subtopics
+
+**Progress:**
+- ✅ Skills: Complete (.memory/claude-config-skills-facts.md) - 10 findings
+- 🔄 Subagents: In progress
+- ⏳ Commands: Pending
+- ⏳ Hooks: Pending (documentation fetched, 1800 lines)
+- ⏳ Prompts: Pending
+- ⏳ Rules: Pending
+- ⏳ CLAUDE.md: Pending
+- ⏳ Plugins: Pending
+
+**Approach:** Creating structured FINDING entries rather than complete documentation to maintain fact file format.
+
+**Status:** Continuing through all 8 subtopics
