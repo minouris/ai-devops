@@ -60,3 +60,28 @@ User correctly identified that initial findings mixed native Claude Code require
 - Project conventions: Defined in local `.claude/rules/*-structure.md` files
 
 **Status:** Facts corrected and ready for official documentation synthesis
+
+---
+
+## 2026-03-04: Expanded Research Phase - Subtopic Deep Dives
+
+**Operation:** Create subtopic fact files for comprehensive documentation
+
+**Subtopics to research (8 total):**
+1. Skills - file/folder structure, frontmatter, capabilities, use cases, examples
+2. Subagents - file/folder structure, frontmatter, capabilities, use cases, examples
+3. Commands - file structure, frontmatter, capabilities, use cases, examples
+4. Hooks - configuration formats, event types, capabilities, use cases, examples
+5. Prompts - file structure, frontmatter, capabilities, use cases, examples
+6. Rules - file structure, frontmatter, capabilities, use cases, examples
+7. CLAUDE.md - locations, import syntax, organization, capabilities, use cases, examples
+8. Plugins - structure, plugin.json format, distribution, capabilities, use cases, examples
+
+**Goal for each subtopic:**
+- Create `.memory/claude-config-{subtopic}-facts.md` file
+- Document complete file/folder structure
+- Capture all frontmatter fields with descriptions
+- Include use cases and capabilities
+- Provide examples using quad-backticks to prevent nesting issues
+
+**Status:** Task list created, ready to begin subtopic research
