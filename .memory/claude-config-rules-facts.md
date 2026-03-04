@@ -2,8 +2,6 @@
 
 Detailed research findings on Rules for modular project instructions in Claude Code.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
 **Source:** [https://code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory)
 
 ---
@@ -11,7 +9,6 @@ Detailed research findings on Rules for modular project instructions in Claude C
 ## FINDING-2026-03-04-68: Rules Overview and Introduction
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules are modular project instructions stored in `.claude/rules/` directory. Introduced in v2.0.64, they allow organizing instructions into multiple focused files instead of one large CLAUDE.md.
@@ -35,7 +32,6 @@ Rules are modular project instructions stored in `.claude/rules/` directory. Int
 ## FINDING-2026-03-04-69: Rules File Structure and Locations
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules have simple file structure with optional frontmatter. Location determines scope.
@@ -69,7 +65,6 @@ Rule instructions in Markdown...
 ## FINDING-2026-03-04-70: Path-Specific Rules (Conditional Loading)
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Optional YAML frontmatter with `paths` field allows scoping rules to specific files using glob patterns.
@@ -120,7 +115,6 @@ paths:
 ## FINDING-2026-03-04-71: Rules Without Paths (Always Loaded)
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules without `paths` frontmatter are unconditional - loaded at session launch with same high priority as CLAUDE.md.
@@ -203,7 +197,6 @@ async function handleRequest(req: Request) {
 ## FINDING-2026-03-04-73: Rules Organization Patterns
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Multiple ways to organize rules for different project scales and team structures.
@@ -246,7 +239,6 @@ Multiple ways to organize rules for different project scales and team structures
 ## FINDING-2026-03-04-74: Sharing Rules Across Projects with Symlinks
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 The `.claude/rules/` directory supports symlinks for sharing rules across multiple projects. Symlinks resolved and loaded normally.
@@ -284,7 +276,6 @@ ln -s ~/shared-claude-rules/security.md .claude/rules/security.md
 ## FINDING-2026-03-04-75: User-Level Rules (Personal Preferences)
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Personal rules in `~/.claude/rules/` apply to every project on your machine. Loaded before project rules (lower priority).
@@ -314,7 +305,6 @@ Personal rules in `~/.claude/rules/` apply to every project on your machine. Loa
 ## FINDING-2026-03-04-76: Excluding Specific Rules (Monorepos)
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 In large monorepos, ancestor CLAUDE.md and rules files from other teams can be excluded using `claudeMdExcludes` setting.
@@ -348,7 +338,6 @@ In large monorepos, ancestor CLAUDE.md and rules files from other teams can be e
 ## FINDING-2026-03-04-77: Rules vs CLAUDE.md
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules and CLAUDE.md serve the same purpose but with different organizational approaches.
@@ -382,7 +371,6 @@ Rules and CLAUDE.md serve the same purpose but with different organizational app
 ## FINDING-2026-03-04-78: Rules Loading Behavior
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules load at different times depending on whether they have path scoping.
@@ -418,7 +406,6 @@ Detailed testing conventions that only load when working with test files...
 ## FINDING-2026-03-04-79: Rules Best Practices
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Guidelines for effective rules usage based on official documentation.
@@ -453,7 +440,6 @@ Guidelines for effective rules usage based on official documentation.
 ## FINDING-2026-03-04-80: Rules in Additional Directories
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules from `--add-dir` directories are loaded when `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` environment variable is set.
@@ -478,7 +464,7 @@ CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 
 ## Notes
 
-All findings verified against official Claude Code documentation (code.claude.com) as of 2026-03-04.
+All findings captured from official Claude Code documentation but NOT YET VERIFIED.
 
 Rules were introduced in v2.0.64 as a way to organize project instructions into modular files.
 

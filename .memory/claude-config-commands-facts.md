@@ -2,8 +2,6 @@
 
 Detailed research findings on Commands (custom slash commands) in Claude Code.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
 **Source:** [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills) (commands merged into skills)
 
 ---
@@ -221,7 +219,7 @@ Commands can be migrated to skills to gain additional features. No migration req
 
 ## Notes
 
-All findings verified against official Claude Code documentation (code.claude.com) and 2026 web search results.
+All findings captured from official Claude Code documentation but NOT YET VERIFIED.
 
 **Sources:**
 - [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)

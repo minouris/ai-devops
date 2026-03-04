@@ -2,8 +2,6 @@
 
 Detailed research findings on Hooks for event-driven automation in Claude Code.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
 **Source:** [https://code.claude.com/docs/en/hooks](https://code.claude.com/docs/en/hooks)
 
 ---
@@ -11,7 +9,6 @@ Detailed research findings on Hooks for event-driven automation in Claude Code.
 ## FINDING-2026-03-04-45: Hooks Overview and Purpose
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Hooks are user-defined shell commands, HTTP endpoints, or LLM prompts that execute automatically at specific points in Claude Code's lifecycle.
@@ -38,7 +35,6 @@ Hooks are user-defined shell commands, HTTP endpoints, or LLM prompts that execu
 ## FINDING-2026-03-04-46: Hook Configuration Structure
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Hooks configuration has three levels of nesting: event → matcher group → hook handlers.
@@ -83,7 +79,6 @@ Hooks configuration has three levels of nesting: event → matcher group → hoo
 ## FINDING-2026-03-04-47: Hook Events Complete List
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 16 hook events fire at different points in Claude Code's lifecycle. Some fire once per session, others repeatedly in the agentic loop.
@@ -118,7 +113,6 @@ Session setup → Agentic loop (UserPromptSubmit → PreToolUse → PostToolUse 
 ## FINDING-2026-03-04-48: Hook Matcher Patterns
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 The `matcher` field is a regex string that filters when hooks fire. Different events match on different fields.
@@ -146,7 +140,6 @@ The `matcher` field is a regex string that filters when hooks fire. Different ev
 ## FINDING-2026-03-04-49: Hook Handler Types and Fields
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Four hook handler types with shared and type-specific fields.
@@ -187,7 +180,6 @@ Four hook handler types with shared and type-specific fields.
 ## FINDING-2026-03-04-50: Hook Input and Output (Command Hooks)
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Command hooks receive JSON via stdin and communicate results through exit codes, stdout, and stderr.
@@ -232,7 +224,6 @@ Command hooks receive JSON via stdin and communicate results through exit codes,
 ## FINDING-2026-03-04-51: Hook JSON Output and Decision Control
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Exit code 0 allows JSON output for structured control. JSON provides finer-grained control than exit codes alone.
@@ -281,7 +272,6 @@ Exit code 0 allows JSON output for structured control. JSON provides finer-grain
 ## FINDING-2026-03-04-52: HTTP Hooks Behavior
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 HTTP hooks send hook input as POST request body and use response codes/body for decisions.
@@ -330,7 +320,6 @@ HTTP hooks send hook input as POST request body and use response codes/body for 
 ## FINDING-2026-03-04-53: Prompt-Based Hooks
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Prompt hooks (`type: "prompt"`) use LLM for single-turn evaluation instead of running shell commands.
@@ -381,7 +370,6 @@ Prompt hooks (`type: "prompt"`) use LLM for single-turn evaluation instead of ru
 ## FINDING-2026-03-04-54: Agent-Based Hooks
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Agent hooks (`type: "agent"`) spawn subagent with tool access for multi-turn verification, unlike prompt hooks which are single-turn.
@@ -425,7 +413,6 @@ Agent hooks (`type: "agent"`) spawn subagent with tool access for multi-turn ver
 ## FINDING-2026-03-04-55: PreToolUse Hook - Most Powerful Event
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 PreToolUse is the most capable hook event, supporting rich decision control including permission decisions, tool input modification, and context injection.
@@ -482,7 +469,6 @@ PreToolUse is the most capable hook event, supporting rich decision control incl
 ## FINDING-2026-03-04-56: SessionStart Hook for Environment Setup
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 SessionStart is special event for loading context and setting up environment at session start. Has access to `CLAUDE_ENV_FILE` for persisting environment variables.
@@ -518,7 +504,6 @@ exit 0
 ## FINDING-2026-03-04-57: Hooks in Skills and Agents
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Hooks can be defined in skill/agent frontmatter, scoped to that component's lifecycle.
@@ -569,7 +554,6 @@ hooks:
 ## FINDING-2026-03-04-58: Hook Management and Disabling
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Multiple methods to manage, disable, or remove hooks without editing settings files.
@@ -605,7 +589,6 @@ Multiple methods to manage, disable, or remove hooks without editing settings fi
 ## FINDING-2026-03-04-59: Hook Path References and Environment Variables
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Use environment variables to reference hook scripts relative to project/plugin root, regardless of working directory.
@@ -657,6 +640,6 @@ Use environment variables to reference hook scripts relative to project/plugin r
 
 ## Notes
 
-All findings verified against official Claude Code documentation (code.claude.com) as of 2026-03-04.
+All findings captured from official Claude Code documentation but NOT YET VERIFIED.
 
 Hooks are the primary automation mechanism in Claude Code, supporting four handler types and 16 lifecycle events.

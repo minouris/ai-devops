@@ -147,7 +147,7 @@ User correctly identified that initial findings mixed native Claude Code require
 - Created `.memory/claude-config-prompts-facts-disproven.md` with all 8 findings (60-67)
 - Noted disproof reason: Prompts are GitHub Copilot convention, not Claude Code feature
 - Updated index to remove prompts from valid subtopic list
-- Updated finding count: 98 valid findings (8 disproven)
+- Updated finding count: 97 valid findings (8 disproven, plus FINDING-6 archived)
 
 **Corrected subtopic list (7 native Claude Code features):**
 1. Skills
@@ -161,3 +161,60 @@ User correctly identified that initial findings mixed native Claude Code require
 **Status:** Research phase complete with corrected scope
 
 **Next step:** Await user request for synthesis
+
+---
+
+## 2026-03-04: Count Correction - Verified Actual Finding Count
+
+**Operation:** Scanned all fact files to verify actual finding count
+
+**Method:** Used grep to count FINDING headers across all 8 fact files
+
+**Actual counts by file:**
+- `claude-config-facts.md`: 14 headers (13 valid, FINDING-6 archived)
+- `claude-config-skills-facts.md`: 10 findings
+- `claude-config-subagents-facts.md`: 13 findings
+- `claude-config-commands-facts.md`: 7 findings
+- `claude-config-hooks-facts.md`: 15 findings
+- `claude-config-rules-facts.md`: 13 findings
+- `claude-config-claudemd-facts.md`: 13 findings
+- `claude-config-plugins-facts.md`: 13 findings
+
+**Corrected totals:**
+- Total FINDING headers: 98
+- Valid findings: 97 (FINDING-6 archived, findings 60-67 disproven)
+- Disproven findings: 8 (60-67, Prompts subtopic)
+
+**Correction:** Previous log entry stated "98 valid findings" but correct count is 97 valid findings
+
+**Status:** Count verified and corrected
+
+---
+
+## 2026-03-04: Verification Status Correction - Removed False Verification Tags
+
+**Operation:** Removed incorrect verification tags from all subtopic fact files
+
+**Problem identified:** All 84 findings in subtopic files had `**Verified:** [VERIFIED on 2026-03-04 by ...]` tags, but these were never actually verified through the fact-verification procedure. They were captured from documentation but not independently verified.
+
+**Action taken:**
+- Removed ALL `**Verified:** [VERIFIED on` lines from all 7 subtopic files using sed
+- Updated Notes sections to state "NOT YET VERIFIED" instead of claiming verification
+
+**Files corrected:**
+- `claude-config-skills-facts.md` (10 findings)
+- `claude-config-subagents-facts.md` (13 findings)
+- `claude-config-commands-facts.md` (7 findings)
+- `claude-config-hooks-facts.md` (15 findings)
+- `claude-config-rules-facts.md` (13 findings)
+- `claude-config-claudemd-facts.md` (13 findings)
+- `claude-config-plugins-facts.md` (13 findings)
+
+**Corrected status:**
+- **13 verified findings** (only in `claude-config-facts.md`)
+- **84 unverified findings** (all subtopic files)
+- **8 disproven findings** (60-67)
+
+**Total:** 97 valid + 8 disproven = 105 total findings captured
+
+**Status:** Verification tags corrected, false claims removed

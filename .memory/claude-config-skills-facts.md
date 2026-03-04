@@ -2,8 +2,6 @@
 
 Detailed research findings on Skills as a Claude Code extension mechanism.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
 **Source:** [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
 
 ---
@@ -11,7 +9,6 @@ Detailed research findings on Skills as a Claude Code extension mechanism.
 ## FINDING-2026-03-04-15: Skills Directory Structure and File Organization
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills use a directory-based structure with SKILL.md as the required entry point and optional supporting files.
@@ -45,7 +42,6 @@ Skills use a directory-based structure with SKILL.md as the required entry point
 ## FINDING-2026-03-04-16: Skills Frontmatter Fields Specification
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills support comprehensive frontmatter configuration in YAML format. All fields are optional except `description` is recommended.
@@ -91,7 +87,6 @@ hooks:
 ## FINDING-2026-03-04-17: Skills String Substitutions and Dynamic Content
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills support string substitutions for dynamic values and command preprocessing for dynamic context injection.
@@ -128,7 +123,6 @@ PR comments: !`gh pr view --comments`
 ## FINDING-2026-03-04-18: Skills Invocation Control and Context Loading
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills can be invoked by users or Claude, with frontmatter controlling who can invoke and when skills load into context.
@@ -156,7 +150,6 @@ Skills can be invoked by users or Claude, with frontmatter controlling who can i
 ## FINDING-2026-03-04-19: Skills Permission and Access Control
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Three methods to control which skills Claude can invoke and what tools skills can use.
@@ -197,7 +190,6 @@ Add to skill frontmatter: `disable-model-invocation: true`
 ## FINDING-2026-03-04-20: Skills Bundled with Claude Code
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Claude Code ships with bundled skills available in every session. These are prompt-based (not fixed logic) and can spawn parallel agents.
@@ -229,7 +221,6 @@ Claude Code ships with bundled skills available in every session. These are prom
 ## FINDING-2026-03-04-21: Skills Types and Patterns
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills fall into two main categories based on how they're invoked and what they contain.
@@ -279,7 +270,6 @@ Deploy the application:
 ## FINDING-2026-03-04-22: Skills Advanced Features
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills support advanced patterns including subagent execution, extended thinking, and generating visual output.
@@ -320,7 +310,6 @@ Research $ARGUMENTS thoroughly:
 ## FINDING-2026-03-04-23: Skills Distribution Methods
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills can be distributed at different scopes depending on audience.
@@ -348,7 +337,6 @@ Skills can be distributed at different scopes depending on audience.
 ## FINDING-2026-03-04-24: Skills Troubleshooting
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Common issues when skills don't trigger as expected or trigger too often.
@@ -373,6 +361,6 @@ Common issues when skills don't trigger as expected or trigger too often.
 
 ## Notes
 
-All findings verified against official Claude Code documentation (code.claude.com) as of 2026-03-04.
+All findings captured from official Claude Code documentation but NOT YET VERIFIED.
 
 Skills follow the Agent Skills open standard (agentskills.io) with Claude Code extensions.

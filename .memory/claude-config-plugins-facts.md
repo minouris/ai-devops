@@ -2,8 +2,6 @@
 
 Detailed research findings on Plugins for distributing and sharing Claude Code customizations.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
 **Source:** [https://code.claude.com/docs/en/plugins](https://code.claude.com/docs/en/plugins)
 
 ---
@@ -11,7 +9,6 @@ Detailed research findings on Plugins for distributing and sharing Claude Code c
 ## FINDING-2026-03-04-94: Plugins Overview and Purpose
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins are packages that bundle Claude Code customizations (skills, subagents, hooks, MCP servers, LSP servers) for distribution and sharing. Introduced to enable sharing configurations across teams and the community.
@@ -36,7 +33,6 @@ Plugins are packages that bundle Claude Code customizations (skills, subagents, 
 ## FINDING-2026-03-04-95: Plugin Directory Structure
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins have a standard directory structure with a manifest file and component directories.
@@ -77,7 +73,6 @@ my-plugin/
 ## FINDING-2026-03-04-96: Plugin Manifest Schema (plugin.json)
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 The `plugin.json` manifest defines plugin metadata, dependencies, and configuration.
@@ -123,7 +118,6 @@ The `plugin.json` manifest defines plugin metadata, dependencies, and configurat
 ## FINDING-2026-03-04-97: Plugin Installation and Management
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins managed via CLI commands with multiple installation sources and scopes.
@@ -173,7 +167,6 @@ claude plugin uninstall plugin-name
 ## FINDING-2026-03-04-98: Plugin Namespacing and Resolution
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins use namespacing to prevent conflicts with local configurations and other plugins.
@@ -210,7 +203,6 @@ Use my-plugin:code-reviewer agent to review this file
 ## FINDING-2026-03-04-99: Plugin Environment and Path Resolution
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins have special environment variable and path resolution for accessing plugin files.
@@ -256,7 +248,6 @@ description: Workflow using plugin templates
 ## FINDING-2026-03-04-100: Plugin MCP Server Configuration
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins can bundle MCP (Model Context Protocol) server configurations in `.mcp.json` file.
@@ -298,7 +289,6 @@ Plugins can bundle MCP (Model Context Protocol) server configurations in `.mcp.j
 ## FINDING-2026-03-04-101: Plugin LSP Server Configuration
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp.json` file.
@@ -342,7 +332,6 @@ Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp
 ## FINDING-2026-03-04-102: Plugin Distribution via Marketplaces
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins distributed via official Claude Code plugin marketplace and third-party marketplaces.
@@ -377,7 +366,6 @@ Plugins distributed via official Claude Code plugin marketplace and third-party 
 ## FINDING-2026-03-04-103: Plugin Development Workflow
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Recommended workflow for developing and testing plugins locally before distribution.
@@ -446,7 +434,6 @@ claude plugin publish
 ## FINDING-2026-03-04-104: Plugin Hooks and Lifecycle Events
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins support same hook events as local configurations, scoped to plugin namespace.
@@ -487,7 +474,6 @@ command: "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"
 ## FINDING-2026-03-04-105: Plugin Versioning and Updates
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins use semantic versioning with automatic update detection and management.
@@ -533,7 +519,6 @@ claude plugin update --all
 ## FINDING-2026-03-04-106: Plugin Security and Permissions
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
-**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins run with same permission model as local configurations but with additional security considerations.
@@ -573,7 +558,7 @@ Plugins run with same permission model as local configurations but with addition
 
 ## Notes
 
-All findings verified against official Claude Code documentation (code.claude.com) as of 2026-03-04.
+All findings captured from official Claude Code documentation but NOT YET VERIFIED.
 
 **Sources:**
 - [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)

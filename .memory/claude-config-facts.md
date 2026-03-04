@@ -2,9 +2,11 @@
 
 Research findings on Claude Code and Claude SDK configuration and customization methods.
 
-**Last Verified:** 2026-03-04
-**Verification Method:** Source checking via WebFetch and direct documentation review
-**Disproven Facts:** FINDING-2026-03-04-6 (see `.memory/claude-config-prompts-facts-disproven.md`)
+**Last Verified:** 2026-03-04 (Comprehensive reverification)
+**Verification Method:** Individual source checking via WebFetch for each finding
+**Archived Facts:**
+- FINDING-2026-03-04-6 (Prompts - see `.memory/claude-config-prompts-facts-disproven.md`)
+- 2 findings corrected (see `.memory/claude-config-facts_archive_2026-03-04.md`)
 
 ---
 
@@ -247,7 +249,7 @@ CLAUDE.md is the primary configuration file for customizing Claude's behavior. I
 - Plain Markdown format (no frontmatter required)
 - Contains instructions, rules, preferences, constraints
 - Loaded automatically at session start
-- Should not exceed 150+ lines (not guaranteed to be fully read)
+- Should target under 200 lines per file (longer files consume more context and reduce adherence)
 
 **Best practices (from web search results):**
 - Keep concise
@@ -365,14 +367,15 @@ Plugins are packages that bundle skills, agents, hooks, MCP servers, and other e
 **Plugin structure:**
 ```
 my-plugin/
-├── plugin.json         # Plugin metadata and configuration
+├── .claude-plugin/     # Plugin manifest directory
+│   └── plugin.json     # Plugin metadata and configuration
 ├── skills/             # Skills directory
 │   └── <skill-name>/
 │       └── SKILL.md
 ├── agents/             # Subagents directory
 │   └── <agent>.agent.md
 ├── hooks/              # Hooks (if applicable)
-├── mcp-servers/        # MCP server definitions (if applicable)
+├── .mcp.json           # MCP server definitions (if applicable)
 └── README.md           # Plugin documentation
 ```
 
