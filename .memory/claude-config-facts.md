@@ -2,11 +2,16 @@
 
 Research findings on Claude Code and Claude SDK configuration and customization methods.
 
+**Last Verified:** 2026-03-04
+**Verification Method:** Source checking via WebFetch and direct documentation review
+**Disproven Facts:** FINDING-2026-03-04-6 (see `.memory/claude-config-prompts-facts-disproven.md`)
+
 ---
 
 ## FINDING-2026-03-04-1: Skills - Primary Extension Mechanism
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Skills are the primary way to extend Claude Code's capabilities. A skill is a SKILL.md file containing instructions that Claude uses as part of its toolkit.
@@ -53,6 +58,7 @@ Skills are the primary way to extend Claude Code's capabilities. A skill is a SK
 ## FINDING-2026-03-04-2: Subagents - Specialized Task Handlers
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Subagents are specialized AI assistants with their own context window, custom system prompt, specific tool access, and independent permissions. Each handles a specific type of task.
@@ -99,6 +105,7 @@ Subagents are specialized AI assistants with their own context window, custom sy
 ## FINDING-2026-03-04-3: Hooks - Event-Driven Automation
 
 **Source:** [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks.md), local codebase examination
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/hooks]
 
 **What:**
 Hooks are shell commands that execute automatically in response to AI tool events. They enable automation, validation, formatting, notifications, and rule enforcement.
@@ -140,6 +147,7 @@ Hooks are shell commands that execute automatically in response to AI tool event
 ## FINDING-2026-03-04-4: Rules - Project-Level Instructions (NATIVE)
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Rules are project-level instructions stored in `.claude/rules/` directory. Introduced in v2.0.64, they allow organizing instructions into multiple focused files instead of one large CLAUDE.md.
@@ -180,6 +188,7 @@ This project adds additional structure standards via `rule-structure.md`, `skill
 ## FINDING-2026-03-04-5: Commands - User-Invocable Slash Commands
 
 **Source:** Local codebase structure files, [Extend Claude with skills](https://code.claude.com/docs/en/skills)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Commands are slash commands invoked by users via `/command-name`. Custom commands have been merged into the skills system, but `.claude/commands/*.md` files still work.
@@ -224,6 +233,7 @@ Commands are slash commands invoked by users via `/command-name`. Custom command
 ## FINDING-2026-03-04-7: CLAUDE.md - Project Instructions File
 
 **Source:** [How Claude remembers your project](https://code.claude.com/docs/en/memory.md), local CLAUDE.md examination
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 CLAUDE.md is the primary configuration file for customizing Claude's behavior. It contains project-level instructions that apply to all sessions.
@@ -253,6 +263,7 @@ CLAUDE.md is the primary configuration file for customizing Claude's behavior. I
 ## FINDING-2026-03-04-8: settings.json - Configuration and Permissions
 
 **Source:** Local settings.json examination, [Claude Code settings](https://code.claude.com/docs/en/settings.md)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/settings]
 
 **What:**
 settings.json (or settings.local.json) configures permissions, hooks, MCP servers, and other Claude Code behavior.
@@ -282,6 +293,7 @@ settings.json (or settings.local.json) configures permissions, hooks, MCP server
 ## FINDING-2026-03-04-9: Auto Memory - Persistent Context Directory
 
 **Source:** Local codebase examination, [How Claude remembers your project](https://code.claude.com/docs/en/memory.md)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/memory]
 
 **What:**
 Auto memory is a persistent directory at `~/.claude/projects/<project>/memory/` (or `.memory/` in project) where Claude stores information across conversations.
@@ -313,6 +325,7 @@ Auto memory is a persistent directory at `~/.claude/projects/<project>/memory/` 
 ## FINDING-2026-03-04-10: MCP (Model Context Protocol) - External Tool Integration
 
 **Source:** [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp.md), settings.json examination
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/mcp]
 
 **What:**
 MCP (Model Context Protocol) allows Claude Code to connect to external tools, APIs, and data sources through standardized server integrations.
@@ -344,6 +357,7 @@ MCP (Model Context Protocol) allows Claude Code to connect to external tools, AP
 ## FINDING-2026-03-04-11: Plugins - Packaged Distribution of Artifacts
 
 **Source:** [Create plugins](https://code.claude.com/docs/en/plugins.md), [Plugins reference](https://code.claude.com/docs/en/plugins-reference.md)
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/plugins]
 
 **What:**
 Plugins are packages that bundle skills, agents, hooks, MCP servers, and other extensions for distribution across teams or projects.
@@ -383,6 +397,7 @@ my-plugin/
 ## FINDING-2026-03-04-12: Claude SDK Configuration Options
 
 **Source:** [Agent SDK overview](https://platform.claude.com/docs/en/agent-sdk/overview), web search results
+**Verified:** [VERIFIED on 2026-03-04 by https://platform.claude.com/docs/en/agent-sdk/overview]
 
 **What:**
 Claude Agent SDK (formerly Claude Code SDK) provides programmatic access to Claude Code capabilities with extensive configuration options.
@@ -422,6 +437,7 @@ Claude Agent SDK (formerly Claude Code SDK) provides programmatic access to Clau
 ## FINDING-2026-03-04-13: Additional Configuration Methods
 
 **Source:** [Claude Code settings](https://code.claude.com/docs/en/settings.md), documentation index
+**Verified:** [VERIFIED on 2026-03-04 by https://code.claude.com/docs/en/settings]
 
 **Additional configuration files/methods:**
 - **Keybindings**: `~/.claude/keybindings.json` for keyboard shortcuts
@@ -455,6 +471,7 @@ Claude Agent SDK (formerly Claude Code SDK) provides programmatic access to Clau
 ## FINDING-2026-03-04-14: This Project's Artifact Structure Conventions (PROJECT-SPECIFIC)
 
 **Source:** Local codebase structure rule files (`/workspaces/ai-devops/.claude/rules/*-structure.md`)
+**Verified:** [VERIFIED on 2026-03-04 by local codebase examination]
 
 **IMPORTANT:** These are conventions defined BY THIS PROJECT for organizing and authoring artifacts. They are NOT native Claude Code requirements from Anthropic.
 
