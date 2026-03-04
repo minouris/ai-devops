@@ -137,38 +137,43 @@ Hooks are shell commands that execute automatically in response to AI tool event
 
 ---
 
-## FINDING-2026-03-04-4: Rules - Project-Level Instructions
+## FINDING-2026-03-04-4: Rules - Project-Level Instructions (NATIVE)
 
-**Source:** Local codebase examination (`/workspaces/ai-devops/.claude/rules/`)
+**Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 
 **What:**
-Rules are project-level instructions that apply to all Claude Code sessions. They are Markdown files stored in `.claude/rules/` directory.
+Rules are project-level instructions stored in `.claude/rules/` directory. Introduced in v2.0.64, they allow organizing instructions into multiple focused files instead of one large CLAUDE.md.
 
-**File format:**
-- Markdown with YAML frontmatter
-- Naming: `{name}.md` in `.claude/rules/`
-- Frontmatter fields (from rule-structure.md):
-  - `name`: Matching filename without .md
-  - `description`: One sentence describing what rule enforces
-  - `paths`: Glob if rule applies to specific file patterns
-  - `release`: Release configuration if publishing
+**Native Claude Code functionality:**
+- **File format**: Plain Markdown files (`.md` extension)
+- **Discovery**: All `.md` files in `.claude/rules/` automatically loaded into context
+- **Organization**: Supports subdirectories for better organization
+- **Symlinks**: Supported for sharing rules across projects
+- **Scope**:
+  - Project rules: `.claude/rules/`
+  - User rules: `~/.claude/rules/` (apply to all projects)
+- **Loading**: Rules without `paths` frontmatter load at launch with same priority as CLAUDE.md
 
-**Content structure:**
-- H1 heading: `# {Name} Standards`
-- System Prompt Conflict Resolution section (when overriding AI defaults)
-- MUST/MUST NOT sections with specific requirements
-- Compliance Verification section at end
-- Must end with "If ANY answer is 'No'" enforcement statement
+**Path-specific rules (NATIVE):**
+- Optional YAML frontmatter with `paths` field
+- Uses glob patterns to scope rules to specific files
+- Example:
+  ```yaml
+  ---
+  paths:
+    - "src/api/**/*.ts"
+  ---
+  ```
+- Rules trigger when Claude reads files matching the pattern
 
-**Examples found in codebase:**
-- `documentation-first.md`: Mandatory documentation consultation
-- `documentation-standards.md`: UK English, tone, formatting
-- `git-commits.md`: Git commit message standards
-- `rule-structure.md`: Standards for rule artifacts themselves
-- `skill-structure.md`: Standards for skill artifacts
-- `agent-structure.md`: Standards for agent artifacts
-- `hook-structure.md`: Standards for hook artifacts
-- `command-structure.md`: Standards for command artifacts
+**Key characteristics:**
+- Context priority: High priority, treated as authoritative
+- No required structure: Content is plain markdown instructions
+- Recursive discovery: Subdirectories supported
+- No configuration needed: Just place `.md` files in directory
+
+**THIS PROJECT'S CONVENTIONS (NOT NATIVE):**
+This project adds additional structure standards via `rule-structure.md`, `skill-structure.md`, etc., but these are NOT native Claude Code requirements. Native rules are simply markdown files with optional `paths` frontmatter.
 
 ---
 
@@ -460,12 +465,56 @@ Claude Agent SDK (formerly Claude Code SDK) provides programmatic access to Clau
 
 ---
 
+## FINDING-2026-03-04-14: This Project's Artifact Structure Conventions (PROJECT-SPECIFIC)
+
+**Source:** Local codebase structure rule files (`/workspaces/ai-devops/.claude/rules/*-structure.md`)
+
+**IMPORTANT:** These are conventions defined BY THIS PROJECT for organizing and authoring artifacts. They are NOT native Claude Code requirements from Anthropic.
+
+**Project-specific structure files found:**
+- `rule-structure.md`: Standards for rule artifacts
+- `skill-structure.md`: Standards for skill artifacts
+- `agent-structure.md`: Standards for agent artifacts
+- `hook-structure.md`: Standards for hook artifacts
+- `command-structure.md`: Standards for command artifacts
+
+**This project's conventions include:**
+- Required content sections (H1 heading format, System Prompt Conflict Resolution, MUST/MUST NOT sections, Compliance Verification)
+- `release` block in frontmatter (`publish`, `platforms`, `validation` fields)
+- Source directory organization (`src/{platform}/skills/`, `src/{platform}/agents/`, etc.)
+- Specific file naming patterns (`.agent.md`, `.hook.md`, `.prompt.md`)
+- References subdirectory pattern for skills
+- Validation and publishing workflow standards
+
+**Key distinction:**
+- **Native Claude Code**: Minimal requirements (e.g., skills need SKILL.md, agents need frontmatter)
+- **This project**: Additional conventions for consistency, validation, and publishing within this codebase
+
+These structure standards are meta-rules that this project uses to maintain quality and consistency when authoring Claude Code artifacts, but they are not required by Claude Code itself.
+
+---
+
 ## Notes
 
-Research sources:
+### Research Sources
 - Official Claude Code documentation (code.claude.com)
 - Official Claude API/SDK documentation (platform.claude.com)
 - Local codebase examination (/workspaces/ai-devops)
 - Web search results (2026 documentation)
 
+### Important Distinctions
+**NATIVE vs PROJECT-SPECIFIC:**
+- Findings 1-13 document native Claude Code/SDK functionality from Anthropic
+- Finding 14 documents this specific project's conventions
+- When creating documentation for general use, include only native features (Findings 1-13)
+- Project-specific conventions should be documented separately as "this project's standards"
+
 All findings captured with source citations for verification and traceability.
+
+**Sources:**
+- [Extend Claude with skills](https://code.claude.com/docs/en/skills)
+- [Create custom subagents](https://code.claude.com/docs/en/sub-agents)
+- [How Claude remembers your project](https://code.claude.com/docs/en/memory)
+- [Hooks reference](https://code.claude.com/docs/en/hooks)
+- [Agent SDK overview](https://platform.claude.com/docs/en/agent-sdk/overview)
+- [Claude Code settings](https://code.claude.com/docs/en/settings)

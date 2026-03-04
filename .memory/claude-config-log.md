@@ -39,3 +39,24 @@ Session operations log for tracking research progress and enabling continuity.
 - All major artifact types and configuration methods discovered
 
 **Status:** Initial discovery phase complete
+
+---
+
+## 2026-03-04: Correction - Separated Native from Project-Specific Conventions
+
+**Operation:** Revised fact file to distinguish native Anthropic features from project conventions
+
+**Changes made:**
+- Updated FINDING-2026-03-04-4 (Rules) to clarify native functionality only
+- Added FINDING-2026-03-04-14 documenting this project's structure conventions
+- Added clear notes distinguishing native (Findings 1-13) from project-specific (Finding 14)
+- Added source citation list
+
+**Rationale:**
+User correctly identified that initial findings mixed native Claude Code requirements from Anthropic with conventions defined by this specific project's structure rule files. Official documentation should contain only native features.
+
+**Key distinction established:**
+- Native features: Documented in official Anthropic docs (code.claude.com, platform.claude.com)
+- Project conventions: Defined in local `.claude/rules/*-structure.md` files
+
+**Status:** Facts corrected and ready for official documentation synthesis
