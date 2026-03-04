@@ -134,3 +134,30 @@ User correctly identified that initial findings mixed native Claude Code require
 **Status:** Research phase complete. Ready for user to request final output synthesis if desired.
 
 **Next step:** Await user request for synthesis (per analysis skill guidelines - do not create output unless explicitly requested)
+
+---
+
+## 2026-03-04: Correction - Prompts Disproven (Copilot Feature)
+
+**Operation:** Archive Prompts subtopic as disproven
+
+**User clarification:** "Ah, prompts are a Copilot thing. They've gotten mixed up during the port from CP to CC."
+
+**Action taken:**
+- Created `.memory/claude-config-prompts-facts-disproven.md` with all 8 findings (60-67)
+- Noted disproof reason: Prompts are GitHub Copilot convention, not Claude Code feature
+- Updated index to remove prompts from valid subtopic list
+- Updated finding count: 98 valid findings (8 disproven)
+
+**Corrected subtopic list (7 native Claude Code features):**
+1. Skills
+2. Subagents
+3. Commands (legacy, merged into skills)
+4. Hooks
+5. Rules
+6. CLAUDE.md
+7. Plugins
+
+**Status:** Research phase complete with corrected scope
+
+**Next step:** Await user request for synthesis

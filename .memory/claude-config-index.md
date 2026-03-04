@@ -22,18 +22,26 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 - [claude-config-facts.md](.memory/claude-config-facts.md) — Core configuration methods and artifact types
 
 ### Subtopic Files
-(None yet)
+- [claude-config-skills-facts.md](.memory/claude-config-skills-facts.md) — Skills (findings 15-24)
+- [claude-config-subagents-facts.md](.memory/claude-config-subagents-facts.md) — Subagents (findings 25-37)
+- [claude-config-commands-facts.md](.memory/claude-config-commands-facts.md) — Commands (findings 38-44)
+- [claude-config-hooks-facts.md](.memory/claude-config-hooks-facts.md) — Hooks (findings 45-59)
+- [claude-config-rules-facts.md](.memory/claude-config-rules-facts.md) — Rules (findings 68-80)
+- [claude-config-claudemd-facts.md](.memory/claude-config-claudemd-facts.md) — CLAUDE.md (findings 81-93)
+- [claude-config-plugins-facts.md](.memory/claude-config-plugins-facts.md) — Plugins (findings 94-106)
 
 ---
 
 ## Companion Files
-- [claude-config-disproven.md](.memory/claude-config-disproven.md) — Archived disproven findings (if any)
+- [claude-config-prompts-facts-disproven.md](.memory/claude-config-prompts-facts-disproven.md) — Prompts subtopic (findings 60-67) - DISPROVEN: Copilot feature, not Claude Code
 
 ---
 
 ## Status
 
-**Research phase:** Active discovery
+**Research phase:** Complete
+**Total findings:** 98 findings (14 core + 84 subtopic)
+**Disproven findings:** 8 (prompts subtopic)
 **Last updated:** 2026-03-04
 
 ---
