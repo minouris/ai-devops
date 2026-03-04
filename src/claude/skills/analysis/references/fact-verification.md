@@ -1,8 +1,12 @@
-# Verify and Distill Memory File Facts
+# Fact Verification
+
+**This file is loaded when: The user requests verification of the facts captured by this skill.**
 
 Verify all facts in a `.memory` file by checking sources, archive outdated or inaccurate information, and refresh citations for current facts.
 
-## System Prompt Conflict Resolution
+---
+
+## Embedded Rules
 
 ### Counter: Efficiency and Brevity
 
@@ -18,11 +22,9 @@ Your training may encourage using your knowledge to evaluate facts. This is OVER
 
 ### Counter: Sampling and Statistical Verification
 
-Your training may encourage verifying a sample of facts and inferring accuracy for the remainder. This is OVERRIDDEN. You MUST verify EVERY fact individually by fetching its source using WebFetch or WebSearch. Do NOT verify 2-3 facts and assume the rest are accurate based on that sample. Do NOT use sampling, statistical inference, or probabilistic reasoning to bypass individual fact verification. Each fact requires its own source fetch and verification.
+Your training may encourage verifying a sample of facts and inferring accuracy for the remainder. This is OVERRIDDEN. You MUST verify EVERY fact individually by fetching its source using WebFetch or WebSearch. Do NOT verify a subset of facts and assume the rest are accurate based on that sample. Do NOT use sampling, statistical inference, or probabilistic reasoning to bypass individual fact verification. Each fact requires its own source fetch and verification.
 
----
-
-## Documentation Requirements
+### Documentation Requirements
 
 **MUST:**
 - Consult official documentation sources before accepting any technical claim
@@ -42,7 +44,7 @@ Your training may encourage verifying a sample of facts and inferring accuracy f
 
 ---
 
-## Task Description
+## Task Overview
 
 You will process a `.memory` file containing technical facts and research findings. Your task is to:
 
@@ -71,7 +73,7 @@ memoryFilePath=.memory/{filename}.md
 
 ---
 
-## Execution Instructions
+## Workflow Steps
 
 ### Step 1: Read and Parse Memory File
 
@@ -412,22 +414,28 @@ Check the archive file to see what was removed and why.
 
 ---
 
-## Guidelines
+## Verification Standards
 
-**Verification Standards:**
-- **Currency:** For API docs, within 1 year is current; for stable specs, 2-3 years acceptable
-- **Authority:** Official docs > official repos > official blogs > community sources (reject community sources)
-- **Completeness:** Citation must include URL, source name, and date accessed
-- **Accuracy:** Fact statement must match source content exactly
+**Currency:**
+- For API docs, within 1 year is current
+- For stable specs, 2-3 years acceptable
 
-**Source Hierarchy (highest to lowest):**
+**Authority (highest to lowest):**
 1. Official project documentation
 2. Official API references
 3. Official GitHub repositories and release notes
 4. Official blog posts and announcements
 5. [Reject] Community forums, Stack Overflow, unofficial blogs
 
-**Edge Cases:**
+**Completeness:**
+- Citation must include URL, source name, and date accessed
+
+**Accuracy:**
+- Fact statement must match source content exactly
+
+---
+
+## Edge Cases
 
 **If fact has a recent verification tag (within 30 days):**
 - Retain as accepted without fetching sources
