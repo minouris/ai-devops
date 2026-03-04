@@ -1,6 +1,7 @@
 ---
 name: analysis
 description: Research and analysis workflow with systematic fact capture, verification, and curated output generation
+allowed-tools: Read, Write, Edit, WebFetch, WebSearch
 ---
 
 # Research/Analysis Skill
