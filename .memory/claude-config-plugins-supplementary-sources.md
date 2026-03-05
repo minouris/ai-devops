@@ -1,7 +1,9 @@
 # Plugins Supplementary Sources Investigation
 
 **Investigation date:** 2026-03-05
+**Verification date:** 2026-03-05
 **Purpose:** Corroborate discrepancies identified in plugins verification using external sources
+**Status:** All sections verified against cited sources
 
 ---
 
@@ -12,6 +14,8 @@ External sources confirm that several features documented in the original findin
 ---
 
 ## 1. Plugin Manifest Dependencies
+
+**Verified:** [VERIFIED on 2026-03-05 - External sources confirm feature requests, not implemented features]
 
 ### Finding Claim
 Manifest supports `dependencies`, `peerDependencies`, `claudeVersion`, `platforms` fields.
@@ -38,6 +42,8 @@ This indicates dependency management is a **future enhancement**, not current fu
 ---
 
 ## 2. Plugin Lifecycle Events
+
+**Verified:** [VERIFIED on 2026-03-05 - External sources confirm feature requests, not implemented features]
 
 ### Finding Claim
 Plugins support lifecycle events: `PluginEnabled`, `PluginDisabled`, `PluginUpdated`.
@@ -68,6 +74,8 @@ From issue description:
 ---
 
 ## 3. CLI Commands: `claude plugin publish` and `claude plugin outdated`
+
+**Verified:** [VERIFIED on 2026-03-05 - External sources confirm feature requests, not implemented features]
 
 ### Finding Claim
 Publishing uses `claude plugin publish` command. Checking updates uses `claude plugin outdated` command.
@@ -110,6 +118,8 @@ Official documentation directs to **in-app submission forms**, not CLI commands:
 ---
 
 ## 4. Installation Sources: Git URLs and Tarballs
+
+**Verified:** [VERIFIED on 2026-03-05 - External sources confirm feature requests, not implemented features]
 
 ### Finding Claim
 Plugins can be installed via Git URLs (`claude plugin install https://github.com/user/plugin.git`) and tarballs (`claude plugin install ./plugin.tgz`).
