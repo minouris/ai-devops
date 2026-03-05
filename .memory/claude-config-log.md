@@ -276,3 +276,31 @@ User correctly identified that initial findings mixed native Claude Code require
 **Total:** 99 valid + 8 disproven = 107 total findings captured
 
 **Next step:** Continue research or await user request for synthesis
+
+---
+
+## 2026-03-05: Added Finding on Skills Subfolder Naming Conventions
+
+**Operation:** Added new finding documenting lack of explicit subfolder naming conventions in official Skills documentation
+
+**Context:** User asked whether there are limitations or conventions on subfolders that can be used in a skill.
+
+**Research conducted:**
+- Reviewed previously fetched Skills documentation at [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
+- Examined all example directory structures shown in documentation
+- Identified what is documented vs. not documented regarding subfolder organization
+
+**Finding added:**
+- FINDING-2026-03-05-27 in `claude-config-skills-facts.md`
+- Documents that official documentation shows examples (`examples/`, `scripts/`, `references/`) but does not specify requirements
+- Notes what is NOT documented: required names, reserved names, naming conventions, nesting limits
+- Clarifies that subfolder naming appears to be arbitrary/user-defined based on skill author preferences
+
+**Status:**
+- **13 verified findings** (in `claude-config-facts.md`)
+- **87 unverified findings** (84 previous + 3 new in skills subtopic)
+- **8 disproven findings** (60-67)
+
+**Total:** 100 valid + 8 disproven = 108 total findings captured
+
+**Next step:** Continue research or await user request for synthesis
