@@ -66,6 +66,31 @@ External documentation changes frequently. Content loaded earlier in a conversat
 - You MUST: Use WebFetch to retrieve the documentation again during verification
 - You MUST NOT: Accept the user's description of what the docs say without verifying
 
+### Source Content Verification (MANDATORY)
+
+**MUST:**
+- Verify that facts accurately record the information provided by sources
+- Compare fact statements against actual source content
+- Check that claims match what the source states
+- Confirm technical details, specifications, and behaviours match source documentation
+- Validate that context and meaning are preserved from source to fact
+
+**MUST NOT:**
+- Treat existence of a source link as verification
+- Accept facts as verified simply because a URL is provided
+- Assume source contains claimed information without checking
+- Mark facts as verified without reading and comparing source content
+- Skip content verification when a citation exists
+
+**Rationale:**
+A citation proves only that a source exists, not that the source says what the fact claims. Verification requires comparing the fact statement against the actual information in the source. The fact must accurately represent what the source documents.
+
+**Example of incorrect behaviour:**
+- Fact: "Claude Code supports 25 hook events"
+- Citation: [Hooks Documentation](https://code.claude.com/docs/en/hooks)
+- Incorrect: Mark as VERIFIED because citation exists
+- Correct: Fetch documentation, count actual hook events (18), mark as REJECTED
+
 ---
 
 ## Task Overview
