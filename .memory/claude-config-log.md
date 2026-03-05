@@ -827,3 +827,52 @@ Continue verification with remaining unverified subtopics (claudemd: 13, plugins
 
 **Next step:**
 Continue verification with remaining unverified subtopics (claudemd: 13, compaction: 10).
+
+---
+
+### Operation 15: Supplementary Source Investigation for Plugins Discrepancies
+
+**Date:** 2026-03-05  
+**Operation:** External source verification  
+**Files changed:**
+- `.memory/claude-config-plugins-supplementary-sources.md` — Created supplementary investigation document with external sources
+
+**Summary:**
+- Investigated discrepancies identified in plugins verification using external web sources
+- Searched for: plugin dependencies, lifecycle events, CLI commands, installation methods
+- Found GitHub feature requests and community documentation corroborating findings
+
+**Key Discoveries:**
+
+1. **Plugin Dependencies** (dependencies, peerDependencies, claudeVersion, platforms)
+   - Status: Feature requests (Issues #9444, #27113), NOT implemented
+   - Requested similar to npm package.json dependency management
+   - Future enhancement, not current functionality
+
+2. **Plugin Lifecycle Events** (PluginEnabled, PluginDisabled, PluginUpdated)
+   - Status: Feature request (Issue #11240), NOT available
+   - Current hook system has 12 events but no plugin-specific lifecycle
+   - Released early 2026 but without plugin lifecycle support
+
+3. **CLI Commands** (claude plugin publish, claude plugin outdated)
+   - Status: Commands DO NOT EXIST
+   - Publishing: Use in-app submission forms instead
+   - Update checking: No native "outdated" command; community tools available
+
+4. **Installation Sources** (Git URLs, tarballs)
+   - Status: Direct installation NOT supported
+   - Actual method: Marketplace-based installation only
+   - Development: Use --plugin-dir flag for local testing
+   - Tarballs: Not documented
+
+**Assessment:**
+Original findings documented planned/requested features as if implemented. Discrepancies likely from:
+- Inferring from other package managers (npm, etc.)
+- Documenting feature requests as current functionality
+- Misunderstanding marketplace-based architecture
+- Outdated or speculative information
+
+**Sources Referenced:** 15+ external sources including GitHub issues, community documentation, tutorials
+
+**Next step:**
+Document findings and continue with remaining subtopics (claudemd: 13, compaction: 10).
