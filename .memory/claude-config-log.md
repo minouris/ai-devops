@@ -719,3 +719,39 @@ User correctly identified that initial findings mixed native Claude Code require
 
 **Next step:** Continue verification of remaining subtopics or await user request
 
+
+---
+
+### Operation 12: Verify Subagents Subtopic
+
+**Date:** 2026-03-05  
+**Operation:** Fact verification  
+**Files changed:**
+- `.memory/claude-config-subagents-facts.md` — Added verification tags to all 13 findings
+- `.memory/claude-config-subagents-verification-working.md` — Created detailed verification working document
+- `.memory/claude-config-index.md` — Updated subagents status to verified, updated count from 49 to 62 verified findings
+
+**Summary:**
+- Verified all 13 subagent findings (FINDING-25 through FINDING-37) against official documentation
+- Source: https://code.claude.com/docs/en/sub-agents
+- All 13 findings ACCEPTED ✅ without modifications
+- Added `[VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]` tags to all findings
+- Updated Notes section to reflect verification complete
+
+**Verification details:**
+- FINDING-25: Subagents file structure and locations ✅
+- FINDING-26: Subagent frontmatter fields complete specification ✅
+- FINDING-27: Built-in subagents ✅
+- FINDING-28: Subagent permission modes ✅
+- FINDING-29: Subagent tool access control ✅
+- FINDING-30: Subagent persistent memory ✅
+- FINDING-31: Subagent execution modes ✅
+- FINDING-32: Subagent isolation with git worktrees ✅
+- FINDING-33: Subagent resumption and transcripts ✅
+- FINDING-34: Subagent auto-compaction ✅
+- FINDING-35: Subagent management with /agents command ✅
+- FINDING-36: CLI-defined subagents (JSON format) ✅
+- FINDING-37: Subagent hooks ✅
+
+**Next step:**
+Continue verification with remaining unverified subtopics (commands: 7, claudemd: 13, plugins: 13, compaction: 10).

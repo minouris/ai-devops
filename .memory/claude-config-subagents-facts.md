@@ -10,6 +10,8 @@ Detailed research findings on Subagents as specialized AI assistants in Claude C
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Subagents are defined in Markdown files with YAML frontmatter. File location determines scope and priority.
 
@@ -39,6 +41,8 @@ Subagents are defined in Markdown files with YAML frontmatter. File location det
 ## FINDING-2026-03-04-26: Subagent Frontmatter Fields Complete Specification
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Subagents support comprehensive frontmatter configuration. Only `name` and `description` are required.
@@ -93,6 +97,8 @@ isolation: worktree
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Claude Code includes several built-in subagents for common tasks.
 
@@ -119,6 +125,8 @@ When Claude invokes Explore, it specifies thoroughness level:
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Permission modes control how subagents handle permission prompts. Subagents inherit parent's permission context but can override.
 
@@ -142,6 +150,8 @@ Permission modes control how subagents handle permission prompts. Subagents inhe
 ## FINDING-2026-03-04-29: Subagent Tool Access Control
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Three methods to control which tools subagents can use and which subagents they can spawn.
@@ -186,6 +196,8 @@ In settings.json:
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Enable `memory` field to give subagents persistent directory that survives across conversations.
 
@@ -215,6 +227,8 @@ Enable `memory` field to give subagents persistent directory that survives acros
 ## FINDING-2026-03-04-31: Subagent Execution Modes
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Subagents can run in foreground (blocking) or background (concurrent) with different permission handling.
@@ -246,6 +260,8 @@ Subagents can run in foreground (blocking) or background (concurrent) with diffe
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Set `isolation: worktree` to run subagent in temporary git worktree with isolated repository copy.
 
@@ -276,6 +292,8 @@ isolation: worktree
 ## FINDING-2026-03-04-33: Subagent Resumption and Transcripts
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Each subagent invocation creates new instance. To continue existing work, ask Claude to resume the subagent.
@@ -311,6 +329,8 @@ Continue that review and analyze authorization logic
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 Subagents support auto-compaction using same logic as main conversation.
 
@@ -342,6 +362,8 @@ Subagents support auto-compaction using same logic as main conversation.
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
+
 **What:**
 The `/agents` command provides interactive interface for managing subagents without editing files.
 
@@ -365,6 +387,8 @@ The `/agents` command provides interactive interface for managing subagents with
 ## FINDING-2026-03-04-36: CLI-Defined Subagents (JSON Format)
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents), [CLI reference](https://code.claude.com/docs/en/cli-reference#agents-flag-format)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Pass subagents as JSON via `--agents` flag for session-only use (not saved to disk).
@@ -397,6 +421,8 @@ claude --agents '{
 ## FINDING-2026-03-04-37: Subagent Hooks
 
 **Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
 
 **What:**
 Two ways to configure hooks for subagents: in frontmatter (subagent-scoped) and in settings.json (project-level lifecycle events).
@@ -452,6 +478,6 @@ Configure hooks that respond to subagent lifecycle:
 
 ## Notes
 
-All findings captured from official Claude Code documentation but NOT YET VERIFIED.
+All 13 findings verified on 2026-03-05 against official Claude Code documentation (https://code.claude.com/docs/en/sub-agents). All findings accepted without modifications.
 
 Subagents are specialized AI assistants with independent context windows, custom system prompts, and specific tool access.
