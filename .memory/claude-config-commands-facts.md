@@ -10,6 +10,8 @@ Detailed research findings on Commands (custom slash commands) in Claude Code.
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills), Web search results
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+
 **What:**
 Custom commands have been merged into the skills system. Files in `.claude/commands/` still work as a legacy format, but skills are now recommended.
 
@@ -32,6 +34,8 @@ Custom commands have been merged into the skills system. Files in `.claude/comma
 ## FINDING-2026-03-04-39: Commands File Structure (Legacy Format)
 
 **Source:** Web search results, [Extend Claude with skills](https://code.claude.com/docs/en/skills)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Commands are simple Markdown files in `.claude/commands/` directory. File name becomes the slash command.
@@ -72,6 +76,8 @@ Provide specific recommendations for improvements.
 
 **Source:** Web search results
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+
 **What:**
 Commands support `$ARGUMENTS` string substitution to insert arguments passed when invoking the command.
 
@@ -98,6 +104,8 @@ Fix GitHub issue $ARGUMENTS by:
 ## FINDING-2026-03-04-41: Commands Support Frontmatter (Same as Skills)
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Files in `.claude/commands/` support the same frontmatter as skills, despite being in the commands directory.
@@ -132,6 +140,8 @@ Command content here...
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+
 **What:**
 When skills and commands share the same name, skills take precedence. Commands work alongside skills in the same priority system.
 
@@ -152,6 +162,8 @@ When skills and commands share the same name, skills take precedence. Commands w
 ## FINDING-2026-03-04-43: Built-in Commands (Not Custom Commands)
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Built-in commands are different from custom commands. Built-in commands execute fixed logic directly, not prompts.
@@ -182,6 +194,8 @@ Built-in commands are different from custom commands. Built-in commands execute 
 ## FINDING-2026-03-04-44: Migrating Commands to Skills
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
 
 **What:**
 Commands can be migrated to skills to gain additional features. No migration required (commands continue working), but skills offer more capabilities.
@@ -219,7 +233,7 @@ Commands can be migrated to skills to gain additional features. No migration req
 
 ## Notes
 
-All findings captured from official Claude Code documentation but NOT YET VERIFIED.
+All 7 findings verified on 2026-03-05 against official Claude Code documentation (https://code.claude.com/docs/en/skills). All findings accepted without modifications.
 
 **Sources:**
 - [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)

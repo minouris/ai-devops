@@ -755,3 +755,33 @@ User correctly identified that initial findings mixed native Claude Code require
 
 **Next step:**
 Continue verification with remaining unverified subtopics (commands: 7, claudemd: 13, plugins: 13, compaction: 10).
+
+---
+
+### Operation 13: Verify Commands Subtopic
+
+**Date:** 2026-03-05  
+**Operation:** Fact verification  
+**Files changed:**
+- `.memory/claude-config-commands-facts.md` — Added verification tags to all 7 findings
+- `.memory/claude-config-commands-verification-working.md` — Created detailed verification working document
+- `.memory/claude-config-index.md` — Updated commands status to verified, updated count from 62 to 69 verified findings
+
+**Summary:**
+- Verified all 7 commands findings (FINDING-38 through FINDING-44) against official documentation
+- Source: https://code.claude.com/docs/en/skills
+- All 7 findings ACCEPTED ✅ without modifications
+- Added `[VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]` tags to all findings
+- Updated Notes section to reflect verification complete
+
+**Verification details:**
+- FINDING-38: Commands merged into skills system ✅
+- FINDING-39: Commands file structure (legacy format) ✅
+- FINDING-40: Commands support $ARGUMENTS placeholder ✅
+- FINDING-41: Commands support frontmatter (same as skills) ✅
+- FINDING-42: Commands priority and precedence ✅
+- FINDING-43: Built-in commands (not custom commands) ✅
+- FINDING-44: Migrating commands to skills ✅
+
+**Next step:**
+Continue verification with remaining unverified subtopics (claudemd: 13, plugins: 13, compaction: 10).
