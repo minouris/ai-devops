@@ -75,6 +75,8 @@ my-plugin/
 ## FINDING-2026-03-04-96: Plugin Manifest Schema (plugin.json)
 **Verified:** [PARTIALLY VERIFIED on 2026-03-05 - Core fields confirmed; dependencies, peerDependencies, claudeVersion, platforms not documented]
 
+**Note:** See [supplementary investigation on manifest dependencies](claude-config-plugins-supplementary-sources.md#1-plugin-manifest-dependencies) for evidence that `dependencies`, `peerDependencies`, `claudeVersion`, and `platforms` fields are feature requests (GitHub Issues #9444, #27113), not currently implemented.
+
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
 
 **What:**
@@ -120,6 +122,8 @@ The `plugin.json` manifest defines plugin metadata, dependencies, and configurat
 
 ## FINDING-2026-03-04-97: Plugin Installation and Management
 **Verified:** [MOSTLY VERIFIED on 2026-03-05 - CLI commands and scopes confirmed; some installation sources not documented]
+
+**Note:** See [supplementary investigation on installation sources](claude-config-plugins-supplementary-sources.md#4-installation-sources-git-urls-and-tarballs) for evidence that direct Git URL and tarball installation are not supported. Installation is marketplace-based with `--plugin-dir` flag for development.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 
@@ -340,6 +344,8 @@ Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp
 
 ## FINDING-2026-03-04-102: Plugin Distribution via Marketplaces
 
+**Note:** See [supplementary investigation on CLI commands](claude-config-plugins-supplementary-sources.md#3-cli-commands-claude-plugin-publish-and-claude-plugin-outdated) for evidence that `claude plugin publish` command does not exist. Publishing uses in-app submission forms instead.
+
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 
 **What:**
@@ -374,6 +380,8 @@ Plugins distributed via official Claude Code plugin marketplace and third-party 
 ---
 
 ## FINDING-2026-03-04-103: Plugin Development Workflow
+
+**Note:** See [supplementary investigation on installation sources](claude-config-plugins-supplementary-sources.md#4-installation-sources-git-urls-and-tarballs) for evidence that the recommended local testing approach uses `--plugin-dir` flag, not persistent local installation.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 
@@ -444,6 +452,8 @@ claude plugin publish
 
 ## FINDING-2026-03-04-104: Plugin Hooks and Lifecycle Events
 
+**Note:** See [supplementary investigation on plugin lifecycle events](claude-config-plugins-supplementary-sources.md#2-plugin-lifecycle-events) for evidence that `PluginEnabled`, `PluginDisabled`, and `PluginUpdated` events are a feature request (GitHub Issue #11240), not currently implemented.
+
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
 
 **What:**
@@ -484,6 +494,8 @@ command: "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"
 ---
 
 ## FINDING-2026-03-04-105: Plugin Versioning and Updates
+
+**Note:** See [supplementary investigation on manifest dependencies](claude-config-plugins-supplementary-sources.md#1-plugin-manifest-dependencies) for evidence that dependency version constraints are a feature request (GitHub Issues #9444, #27113), not currently implemented. Also see [CLI commands investigation](claude-config-plugins-supplementary-sources.md#3-cli-commands-claude-plugin-publish-and-claude-plugin-outdated) for evidence that `claude plugin outdated` command does not exist.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 
