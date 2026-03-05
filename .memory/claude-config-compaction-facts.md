@@ -14,7 +14,7 @@ Detailed research findings on context compaction behavior in Claude API and Clau
 ## FINDING-2026-03-05-88: Context Compaction Overview and Purpose
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 Context compaction is server-side automatic summarization that extends effective context length for long conversations by replacing older context with concise summaries when approaching context window limits.
@@ -45,7 +45,7 @@ Beta feature as of 2026. Requires beta header `compact-2026-01-12` in API reques
 ## FINDING-2026-03-05-89: When Context Compaction Triggers
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [Claude Code Context Buffer](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation and 2026 community sources]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 Compaction triggers when input tokens exceed a configured threshold. Both API and Claude Code implementations use automatic triggering.
@@ -79,7 +79,7 @@ Compaction triggers when input tokens exceed a configured threshold. Both API an
 ## FINDING-2026-03-05-90: How Compaction Works (Process Flow)
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 When compaction is enabled, Claude automatically follows a specific process to summarize and compact the conversation.
@@ -115,7 +115,7 @@ The model specified in your request is used for summarization. There is no optio
 ## FINDING-2026-03-05-91: Default Summarization Instructions
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 By default, compaction uses a specific summarization prompt designed to maintain continuity for future context.
@@ -143,7 +143,7 @@ Preserve the last N messages verbatim instead of summarizing them by including t
 ## FINDING-2026-03-05-92: What Gets Preserved During Compaction
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 During compaction, certain content is prioritized for preservation while older content is summarized.
@@ -181,7 +181,7 @@ messages_after_compaction = [
 ## FINDING-2026-03-05-93: What Gets Removed During Compaction
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 During compaction, older content is cleared or summarized to free context space.
@@ -214,7 +214,7 @@ All message blocks prior to the `compaction` block are automatically dropped on 
 ## FINDING-2026-03-05-94: What Is Reloaded After Compaction
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation - PARTIAL: only system components documented]
+**Verified:** [NOT YET VERIFIED - requires verification workflow - PARTIAL documentation]
 
 **What:**
 Information about what is automatically reloaded after compaction is limited in official documentation.
@@ -285,7 +285,7 @@ This uncertainty applies equally to CLAUDE.md, Rules, and Skills.
 ## FINDING-2026-03-05-96: Claude Code Specific Compaction Behavior
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Claude Code Context Buffer](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation and community sources]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 Claude Code implements automatic compaction with specific behaviors and user controls.
@@ -327,7 +327,7 @@ Claude Code implements automatic compaction with specific behaviors and user con
 ## FINDING-2026-03-05-97: Context Management Strategies Beyond Compaction
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
-**Verified:** [VERIFIED on 2026-03-05 by official documentation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 **What:**
 Beyond compaction, Claude Code provides features to control what loads into context.
@@ -406,9 +406,9 @@ While Claude Code (the client application) initiates and configures compaction, 
 
 ## Notes
 
-**Verification Status:** 10 findings require formal verification workflow; 1 finding requires further exploration (CLAUDE.md/Rules reload behavior); 1 finding (FINDING-98) added as clarification and awaiting verification.
+**Verification Status:** All 11 findings (FINDING-88 through FINDING-98) NOT YET VERIFIED - require formal verification workflow. FINDING-95 additionally requires further exploration (CLAUDE.md/Rules reload behavior not documented).
 
-**Sources verified:**
+**Sources consulted:**
 - [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 - [How Claude Code works - Claude Code Docs](https://code.claude.com/docs/en/how-claude-code-works)
 - [Claude Code Context Buffer Management](https://claudefa.st/blog/guide/mechanics/context-buffer-management) (2026)

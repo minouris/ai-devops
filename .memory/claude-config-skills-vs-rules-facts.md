@@ -12,7 +12,7 @@ Detailed research findings comparing the use of Reference Skills vs Rules for su
 ## FINDING-2026-03-05-82: Reference Skills Overview for Standards
 
 **Source:** [claude-config-skills-facts.md](.memory/claude-config-skills-facts.md) FINDING-18
-**Verified:** [DERIVED from VERIFIED finding 2026-03-05]
+**Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
 Reference Skills (also called "Reference content skills") are skills that supply information on conventions and domain knowledge rather than performing procedural tasks.
@@ -42,7 +42,7 @@ Provide standards, conventions, or domain knowledge that Claude can reference wh
 ## FINDING-2026-03-05-83: Rules Overview for Standards
 
 **Source:** [claude-config-rules-facts.md](.memory/claude-config-rules-facts.md) FINDING-68, FINDING-71
-**Verified:** [DERIVED from VERIFIED findings 2026-03-05]
+**Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
 Rules are modular project instructions stored in `.claude/rules/` that can be unconditional (always loaded) or path-scoped (load when matching files opened).
@@ -72,7 +72,7 @@ Enforce standards and conventions consistently across a project or specific file
 ## FINDING-2026-03-05-84: Loading Behavior Comparison
 
 **Source:** User discussion 2026-03-05, derived from FINDING-18 and FINDING-78
-**Verified:** [DERIVED from VERIFIED findings 2026-03-05]
+**Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
 Reference Skills and Rules have fundamentally different loading behaviors that affect when standards are available to Claude.
@@ -98,7 +98,7 @@ Reference Skills and Rules have fundamentally different loading behaviors that a
 ## FINDING-2026-03-05-85: Trade-offs and Risk Analysis
 
 **Source:** User discussion 2026-03-05
-**Verified:** [DERIVED from VERIFIED findings 2026-03-05]
+**Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
 Choosing between Reference Skills and Rules involves trading off between guaranteed enforcement and context efficiency.
@@ -136,7 +136,7 @@ Choosing between Reference Skills and Rules involves trading off between guarant
 ## FINDING-2026-03-05-86: Use Case Decision Framework
 
 **Source:** User discussion 2026-03-05, synthesized from verified findings
-**Verified:** [DERIVED from VERIFIED findings 2026-03-05]
+**Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
 Guidelines for choosing between Reference Skills and Rules based on use case requirements.
@@ -209,7 +209,7 @@ Empirical testing of both Rules and Skills behavior across long conversations wi
 
 ## Notes
 
-**Verification Status:** 6 findings derived from verified sources; context persistence findings require further exploration.
+**Verification Status:** All 6 findings (FINDING-82 through FINDING-87) NOT YET VERIFIED - require formal verification workflow. These findings are synthesized from verified Skills and Rules findings but have not themselves been verified.
 
 **Sources:**
 - Skills findings: [claude-config-skills-facts.md](.memory/claude-config-skills-facts.md)
