@@ -335,3 +335,162 @@ User correctly identified that initial findings mixed native Claude Code require
 **Total:** 101 valid + 8 disproven = 109 total findings captured
 
 **Next step:** Continue research or await user request for synthesis
+
+---
+
+## 2026-03-05: Skills Subtopic Verification Complete
+
+**Operation:** Verified all 14 findings in the skills subtopic against official documentation
+
+**Context:** User requested verification of the "skills" subtopic of the claude-config topic
+
+**Verification methodology:**
+- Fetched official documentation from [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
+- Fetched Agent Skills specification from [https://agentskills.io/specification](https://agentskills.io/specification)
+- Systematically verified every claim in all 14 findings against source documentation
+- Created detailed verification working document (`.memory/claude-config-skills-verification-working.md`)
+
+**Results:**
+- **Total findings processed:** 14 (FINDING-15 through FINDING-28)
+- **Newly verified (accepted):** 14
+- **Retained (within 30-day window):** 0
+- **Rejected (archived):** 0
+
+**Findings verified:**
+- FINDING-15: Skills Directory Structure and File Organization ✅
+- FINDING-16: Skills Frontmatter Fields Specification ✅
+- FINDING-17: Skills String Substitutions and Dynamic Content ✅
+- FINDING-18: Skills Invocation Control and Context Loading ✅
+- FINDING-19: Skills Permission and Access Control ✅
+- FINDING-20: Skills Bundled with Claude Code ✅
+- FINDING-21: Skills Types and Patterns ✅
+- FINDING-22: Skills Advanced Features ✅
+- FINDING-23: Skills Distribution Methods ✅
+- FINDING-24: Skills Troubleshooting ✅
+- FINDING-25: Skills Supporting Files Loading Behavior ✅
+- FINDING-26: Skills Supporting File Types and Organization ✅
+- FINDING-27: Skills Subfolder Naming - No Explicit Conventions ✅
+- FINDING-28: Skills Optional Directories from Agent Skills Specification ✅
+
+**Verification tags added:**
+- All 14 findings tagged with `[VERIFIED on 2026-03-05 by {source-url}]`
+- Findings 15-27 verified against https://code.claude.com/docs/en/skills
+- Finding 28 verified against https://agentskills.io/specification
+
+**Files modified:**
+- Updated `.memory/claude-config-skills-facts.md` with verification tags and updated Notes section
+- Updated `.memory/claude-config-index.md` to reflect verification status
+- Created `.memory/claude-config-skills-verification-working.md` (detailed verification analysis)
+
+**Current status:**
+- **27 verified findings** (13 in core file + 14 in skills subtopic)
+- **73 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, rules 13, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 27 verified + 73 unverified = 100 valid findings + 8 disproven = 108 total findings captured
+
+**Next step:** Continue verification of remaining subtopics or await user request
+
+---
+
+## 2026-03-05: Added and Verified Two Additional Skills Findings
+
+**Operation:** Added FINDING-29 and FINDING-30 addressing user questions, then verified immediately
+
+**Context:** User asked two questions about skills:
+1. Do reference files have any frontmatter requirements?
+2. Do reference files count towards the token budget for the skill?
+
+**Research conducted:**
+- Analyzed previously fetched documentation from https://code.claude.com/docs/en/skills
+- Analyzed previously fetched Agent Skills specification from https://agentskills.io/specification
+- Cross-referenced with existing findings (FINDING-18, FINDING-25)
+- Created detailed verification document
+
+**Findings added:**
+- FINDING-2026-03-05-29: Skills Reference Files Frontmatter Requirements
+  - Documents that supporting files do NOT require frontmatter
+  - Only SKILL.md requires frontmatter with name and description
+  - Supporting files are plain content files (markdown, scripts, etc.)
+
+- FINDING-2026-03-05-30: Skills Reference Files and Character Budget
+  - Documents that supporting files do NOT count toward character budget
+  - Only skill descriptions consume the budget at startup
+  - Supporting files load on-demand via Read tool during execution
+  - Character budget (2% context window, fallback 16K) applies only to description fields
+
+**Verification results:**
+- Both findings ACCEPTED ✅
+- FINDING-29 verified against https://agentskills.io/specification
+- FINDING-30 verified against https://code.claude.com/docs/en/skills
+- Created verification working document: `.memory/claude-config-skills-verification-findings-29-30.md`
+
+**Files modified:**
+- Added findings to `.memory/claude-config-skills-facts.md`
+- Added verification tags to both new findings
+- Updated Notes section with new verification count
+- Updated `.memory/claude-config-index.md` (findings 15-30, 16 verified)
+- Created `.memory/claude-config-skills-verification-findings-29-30.md`
+
+**Current status:**
+- **29 verified findings** (13 in core file + 16 in skills subtopic)
+- **73 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, rules 13, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 29 verified + 73 unverified = 102 valid findings + 8 disproven = 110 total findings captured
+
+**Next step:** Continue verification of remaining subtopics or await user request
+
+---
+
+## 2026-03-05: Rules Subtopic Verification Complete
+
+**Operation:** Verified all 13 findings in the rules subtopic against official documentation
+
+**Context:** User requested verification of the "Rules" subtopic of the claude-config topic
+
+**Verification methodology:**
+- Fetched official documentation from [https://code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory)
+- Systematically verified every claim in all 13 findings against source documentation
+- Created detailed verification working document (`.memory/claude-config-rules-verification-working.md`)
+
+**Results:**
+- **Total findings processed:** 13 (FINDING-68 through FINDING-80)
+- **Newly verified (accepted):** 13
+- **Retained (within 30-day window):** 0
+- **Rejected (archived):** 0
+
+**Findings verified:**
+- FINDING-68: Rules Overview and Introduction ✅ (note: version number v2.0.64 not confirmed in docs)
+- FINDING-69: Rules File Structure and Locations ✅
+- FINDING-70: Path-Specific Rules (Conditional Loading) ✅
+- FINDING-71: Rules Without Paths (Always Loaded) ✅
+- FINDING-72: Rules Content Structure ✅
+- FINDING-73: Rules Organization Patterns ✅
+- FINDING-74: Sharing Rules Across Projects with Symlinks ✅
+- FINDING-75: User-Level Rules (Personal Preferences) ✅
+- FINDING-76: Excluding Specific Rules (Monorepos) ✅
+- FINDING-77: Rules vs CLAUDE.md ✅
+- FINDING-78: Rules Loading Behavior ✅
+- FINDING-79: Rules Best Practices ✅
+- FINDING-80: Rules in Additional Directories ✅
+
+**Verification tags added:**
+- All 13 findings tagged with `[VERIFIED on 2026-03-05 by {source-url}]`
+- All findings verified against https://code.claude.com/docs/en/memory
+
+**Files modified:**
+- Updated `.memory/claude-config-rules-facts.md` with verification tags and updated Notes section
+- Updated `.memory/claude-config-index.md` to reflect verification status
+- Created `.memory/claude-config-rules-verification-working.md` (detailed verification analysis)
+
+**Current status:**
+- **42 verified findings** (13 in core file + 16 in skills subtopic + 13 in rules subtopic)
+- **60 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 42 verified + 60 unverified = 102 valid findings + 8 disproven = 110 total findings captured
+
+**Note:** FINDING-68 claims rules were introduced in "v2.0.64" but this version number could not be verified from official documentation. All other claims in all findings are verified.
+
+**Next step:** Continue verification of remaining subtopics or await user request
