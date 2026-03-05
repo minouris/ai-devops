@@ -628,3 +628,37 @@ User correctly identified that initial findings mixed native Claude Code require
 - Compact Instructions section in CLAUDE.md controls summarization content
 
 **Next step:** Continue verification of remaining subtopics or await user request
+
+---
+
+## 2026-03-05: Removed Inappropriate Verification Tags
+
+**Operation:** Removed all verification tags from findings that were not verified through the formal verification workflow
+
+**Context:** User corrected that findings should not be marked as VERIFIED unless they go through the formal verification workflow. Findings added during fact-finding should remain unverified until verification is performed.
+
+**Action taken:**
+- Removed "VERIFIED" tags from FINDING-88 through FINDING-98 (Compaction subtopic)
+- Changed all to "NOT YET VERIFIED - requires verification workflow"
+- Removed "DERIVED from VERIFIED findings" tags from FINDING-82 through FINDING-87 (Skills vs Rules subtopic)
+- Changed all to "NOT YET VERIFIED - requires verification workflow"
+- Updated Notes sections in both files to reflect unverified status
+- Changed "Sources verified" to "Sources consulted" in compaction file
+
+**Properly verified findings (unchanged):**
+- FINDING-15 through FINDING-30 (Skills subtopic) - went through formal verification with working document
+- FINDING-68 through FINDING-80 (Rules subtopic) - went through formal verification with working document
+
+**Commits created:**
+- Commit f68089f: "Add server-side vs client-side clarification and correct verification status" (FINDING-98)
+- Commit 9f188b0: "Remove all inappropriate verification tags from findings"
+
+**Current status:**
+- **34 verified findings** (13 core + 16 skills + 13 rules) - unchanged
+- **87 unverified findings** (subagents: 13, commands: 7, hooks: 15, claudemd: 13, plugins: 13, compaction: 11, skills-vs-rules: 6)
+- **4 require exploration** (rules reload, skills vs rules context persistence, CLAUDE.md reload, compaction CLAUDE.md behavior)
+- **8 disproven findings** (prompts subtopic)
+
+**Total:** 34 verified + 87 unverified + 4 requires exploration = 125 findings (14 core + 111 subtopic)
+
+**Key lesson:** Only mark findings as VERIFIED after going through the formal verification workflow with working document. During fact-finding, findings should remain unverified.
