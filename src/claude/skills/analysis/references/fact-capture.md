@@ -51,6 +51,7 @@ The main topic prefix is mandatory for subtopic files.
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [file/documentation/observation]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 [Finding description - fact, observation, theory, hypothesis, or note]
 
@@ -61,8 +62,36 @@ The main topic prefix is mandatory for subtopic files.
 - `FINDING-YYYY-MM-DD-N`: Unique identifier (date + sequence number)
 - `Captured`: Timestamp when finding was recorded
 - `Source`: Where this information came from (URL, file path, observation, testing, user input)
+- `Verified`: Verification status (always "NOT YET VERIFIED" during fact-finding)
 - Description: The actual finding content
 - Optional context: Additional details, implications, open questions
+
+---
+
+## Verification Status (MANDATORY)
+
+**During fact-finding phase:**
+
+**MUST:**
+- Include `**Verified:** [NOT YET VERIFIED - requires verification workflow]` in every finding
+- Use this exact tag format for all new findings
+- Leave verification status unchanged when appending findings
+
+**MUST NOT:**
+- Mark findings as VERIFIED during fact-finding
+- Use any variation of "VERIFIED", "CONFIRMED", or "DERIVED" tags
+- Add verification tags until the formal verification workflow is executed
+- Assume findings are verified because they came from official sources
+
+**Rationale:**
+Findings captured during research remain unverified until they go through the formal verification workflow with a working document. This includes findings from official documentation sources. Only the verification workflow, which systematically checks each claim against sources, may add VERIFIED tags.
+
+**When verification happens:**
+- After fact-finding is complete
+- User explicitly requests verification of a subtopic
+- Create verification working document
+- Systematically verify each claim
+- Only then change tag from "NOT YET VERIFIED" to "VERIFIED on YYYY-MM-DD by [source-url]"
 
 ---
 
@@ -86,6 +115,7 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [source of clarifying information]
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-YYYY-MM-DD-M
 
 [Clarifying or refining information]
@@ -98,6 +128,7 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-2026-02-24-8
 **Captured:** 2026-02-24 18:30
 **Source:** https://docs.example.com/api/v2
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-2026-02-24-3
 
 API v2 endpoint uses `/api/v2/users` not `/api/users`.
