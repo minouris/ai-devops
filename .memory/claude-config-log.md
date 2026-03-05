@@ -247,3 +247,32 @@ User correctly identified that initial findings mixed native Claude Code require
 **Total:** 98 valid + 8 disproven = 106 total findings captured
 
 **Next step:** Continue research or await user request for synthesis
+
+---
+
+## 2026-03-05: Added Finding on Skills Supporting File Types
+
+**Operation:** Added new finding documenting what types of files can be included as supporting files in skill directories
+
+**Context:** User requested fact from official documentation about what can be included as reference files in skills.
+
+**Research conducted:**
+- Reviewed official Skills documentation at [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
+- Found section "Add supporting files" with file type specifications
+- Extracted official guidance on templates, examples, scripts, and reference documentation
+
+**Finding added:**
+- FINDING-2026-03-05-26 in `claude-config-skills-facts.md`
+- Documents supported file types: templates, examples, scripts, reference docs
+- Includes example directory structures from official docs
+- Notes different behaviors for different file types (loaded vs executed)
+- Includes size recommendation: keep SKILL.md under 500 lines
+
+**Status:**
+- **13 verified findings** (in `claude-config-facts.md`)
+- **86 unverified findings** (84 previous + 2 new in skills subtopic)
+- **8 disproven findings** (60-67)
+
+**Total:** 99 valid + 8 disproven = 107 total findings captured
+
+**Next step:** Continue research or await user request for synthesis
