@@ -879,6 +879,78 @@ Document findings and continue with remaining subtopics (claudemd: 13, compactio
 
 ---
 
+### Operation 17: Verify Plugins Supplementary Sources Investigation
+
+**Date:** 2026-03-05
+**Operation:** Fact verification of supplementary investigation document
+**Files changed:**
+- `.memory/claude-config-plugins-supplementary-verification-working.md` — Created proper verification working document with actual source checks
+- `.memory/claude-config-log.md` — This operation entry
+
+**Summary:**
+- Verified all 4 sections of supplementary investigation against actual cited sources
+- All sections confirmed accurate and evidence-supported
+- Document successfully corroborates discrepancies identified in plugins verification
+
+**Verification method:**
+1. Fetched official Claude Code documentation (plugins, discover-plugins pages)
+2. Fetched community sources (Medium articles, blog posts)
+3. Fetched GitHub issues #9444, #27113, #11240 from public GitHub site
+4. Compared supplementary document claims against actual source content
+5. Verified conclusions justified by evidence
+
+**Sections verified:**
+
+1. **Plugin Manifest Dependencies** ✅
+   - Official docs: NO mention of `dependencies`, `peerDependencies`, `claudeVersion`, `platforms`
+   - GitHub Issue #9444: OPEN feature request for plugin dependencies
+   - GitHub Issue #27113: OPEN feature request for declarative project-level dependencies
+   - Quote verified: "Projects should be able to declare which skills and plugins they depend on"
+   - **CONFIRMED**: Feature requests, not implemented
+
+2. **Plugin Lifecycle Events** ✅
+   - Official docs: NO mention of `PluginEnabled`, `PluginDisabled`, `PluginUpdated`
+   - GitHub Issue #11240: CLOSED as DUPLICATE feature request for lifecycle hooks
+   - Consistent with hooks verification (FINDING-47: 18 events, none plugin-specific)
+   - **CONFIRMED**: Feature requests, not implemented
+
+3. **CLI Commands** ✅
+   - Official docs: Publishing via web forms at claude.ai/settings/plugins/submit
+   - Official docs: NO `claude plugin publish` command
+   - Official docs: NO `claude plugin outdated` command
+   - Community sources: Medium article confirms neither command exists
+   - **CONFIRMED**: Commands do not exist, web forms used instead
+
+4. **Installation Sources** ✅
+   - Official docs: Marketplace-based architecture clearly explained
+   - Marketplaces added from Git URLs, GitHub repos, local paths, remote URLs
+   - Plugins installed FROM marketplaces via `/plugin install plugin-name@marketplace-name`
+   - Development testing: `--plugin-dir ./my-plugin` flag
+   - NO mention of direct Git URL plugin installation
+   - NO mention of tarball installation
+   - **CONFIRMED**: Installation is marketplace-mediated, not direct
+
+**Evidence quality:** High
+- Official Claude Code documentation directly consulted
+- GitHub issues verified (titles, content, status all match claims)
+- Multiple independent sources corroborate claims
+- Quotes accurate and properly attributed
+- Conclusions justified by evidence
+
+**Consistency:**
+- Fully consistent with plugins verification findings (FINDING-96, 97, 102, 103, 104, 105)
+- Aligns with official documentation verification results
+- Properly identifies gaps between claimed and documented features
+
+**Status:** All 4 sections VERIFIED and ACCEPTED ✅
+
+**Note:** This replaces earlier premature verification that restated claims without checking sources.
+
+**Next step:**
+Continue verification with remaining unverified subtopics (claudemd: 13, compaction: 10).
+
+---
+
 ### Operation 16: Add Cross-Reference Links from Plugins Findings to Supplementary Investigation
 
 **Date:** 2026-03-05
