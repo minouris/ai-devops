@@ -42,6 +42,30 @@ Your training may encourage verifying a sample of facts and inferring accuracy f
 - Accept facts without checking their sources
 - Ignore source dates when evaluating currency
 
+### Fresh Source Loading (MANDATORY)
+
+**MUST:**
+- Use WebFetch tool to load external documentation content fresh from source URLs
+- Use WebSearch tool to find current authoritative sources
+- Fetch documentation directly from official sources for every verification
+- Retrieve source content during the verification workflow, not before
+- Treat every fact verification as requiring a fresh fetch
+
+**MUST NOT:**
+- Use cached documentation content from earlier in the conversation
+- Rely on documentation content read before the verification workflow started
+- Assume documentation loaded previously is still current
+- Trust your training data or general knowledge about documentation content
+- Skip fetching a source because you "remember" reading it earlier
+
+**Rationale:**
+External documentation changes frequently. Content loaded earlier in a conversation may be outdated by the time verification begins. Documentation cached in your training data is outdated by definition. Every fact verification requires a fresh fetch from the authoritative source to ensure accuracy.
+
+**Example of correct behavior:**
+- User says: "I fetched the docs earlier, they say X"
+- You MUST: Use WebFetch to retrieve the documentation again during verification
+- You MUST NOT: Accept the user's description of what the docs say without verifying
+
 ---
 
 ## Task Overview
