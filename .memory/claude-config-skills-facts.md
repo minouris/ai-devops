@@ -359,6 +359,51 @@ Common issues when skills don't trigger as expected or trigger too often.
 
 ---
 
+## FINDING-2026-03-05-25: Skills Supporting Files Loading Behavior
+
+**Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**What:**
+Supporting files in skill directories (templates, examples, reference docs) are loaded selectively on-demand, not all at once when the skill is invoked.
+
+**Loading behavior:**
+
+**On skill invocation:**
+- Only `SKILL.md` (with frontmatter and main content) loads into context
+- Supporting files remain unloaded
+
+**During execution:**
+- Claude reads descriptions/links in `SKILL.md` about what each supporting file contains
+- Claude uses Read tool to load specific files only when needed for current task
+
+**Progressive disclosure pattern:**
+
+From official documentation:
+> "Reference supporting files from `SKILL.md` so Claude knows what each file contains and when to load it"
+
+> "Keep `SKILL.md` under 500 lines. Move detailed reference material to separate files."
+
+**Example pattern:**
+````markdown
+# Workflow Overview
+1. Phase 1: [Initial setup](references/phase-1.md)
+2. Phase 2: [Processing](references/phase-2.md)
+````
+
+Claude sees these links and loads `references/phase-1.md` or `references/phase-2.md` only when executing that specific phase.
+
+**Implications:**
+- Supporting files don't consume context until actually needed
+- Skills can bundle extensive reference material without bloating every invocation
+- Context management responsibility falls to Claude (via Read tool) rather than automatic loading
+
+**Context management considerations:**
+- Loading many supporting files simultaneously can flood context window
+- Instructions in supporting files may be pushed out if too many loaded at once
+- Better to load supporting files sequentially as needed for each phase
+
+---
+
 ## Notes
 
 All findings captured from official Claude Code documentation but NOT YET VERIFIED.
