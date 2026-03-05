@@ -2,267 +2,265 @@
 
 **Verification date:** 2026-03-05
 **Document verified:** `.memory/claude-config-plugins-supplementary-sources.md`
-**Methodology:** Systematic verification of external source claims and evidence
+**Methodology:** Direct verification of claims against cited sources
 
 ---
 
 ## Verification Approach
 
-The supplementary sources document is an investigation document that corroborates discrepancies identified in the plugins findings verification. Unlike regular findings that document features, this document documents what features are NOT implemented and provides external evidence.
+The supplementary sources document investigates discrepancies identified in the plugins findings verification. It claims that several features documented in the original findings are NOT implemented but exist as feature requests.
 
-**Verification criteria:**
-1. Do claimed GitHub issues exist?
-2. Do claimed sources exist and are they accessible?
-3. Are the quotes and descriptions accurate?
-4. Are the conclusions justified by the evidence presented?
-5. Does the assessment align with the evidence?
+**Verification method:**
+1. Fetch official Claude Code documentation pages
+2. Fetch community sources (Medium articles, blog posts)
+3. Fetch GitHub issues to verify feature request claims
+4. Compare supplementary document claims against actual source content
+5. Verify conclusions are justified by evidence
 
 ---
 
 ## Section 1: Plugin Manifest Dependencies
 
-### Claims to Verify
+### Claim
+`dependencies`, `peerDependencies`, `claudeVersion`, `platforms` fields in plugin.json are feature requests (GitHub Issues #9444, #27113), not currently implemented.
 
-**Primary claim:** `dependencies`, `peerDependencies`, `claudeVersion`, `platforms` fields in plugin.json are feature requests, not currently implemented.
+### Source Verification
 
-**Evidence cited:**
-- GitHub Issue #9444: "Support for Plugin Dependencies and Shared Resources"
-- GitHub Issue #27113: "Feature: Declarative skill/plugin dependencies at the project level"
+**Official Documentation Check:**
+- Source: https://code.claude.com/docs/en/plugins
+- Plugin manifest schema documented includes: `name`, `description`, `version`, `author`
+- **NO MENTION** of `dependencies`, `peerDependencies`, `claudeVersion`, or `platforms` fields
 
-**Quote provided:**
-> "Projects should be able to declare which skills and plugins they depend on, with Claude Code prompting users to install missing dependencies when they open a project — similar to how package.json declares npm dependencies."
+**GitHub Issue #9444 Verification:**
+- Title: "[FEATURE] Support for Plugin Dependencies and Shared Resources"
+- Status: **OPEN** (as of Feb 26, 2026)
+- Type: **Feature Request**
+- Content: Requests adding `dependencies` field to `plugin.json` for declaring plugin dependencies
+- Example from issue:
+  ```json
+  {
+    "dependencies": {
+      "common-core": "^1.0.0",
+      "security-core": "^2.1.0"
+    }
+  }
+  ```
+- **CONFIRMED**: This is a feature request, not implemented
 
-### Verification Status: **VERIFIED** ✅
+**GitHub Issue #27113 Verification:**
+- Title: "Feature: Declarative skill/plugin dependencies at the project level"
+- Status: **OPEN** (as of Feb 20, 2026)
+- Type: **Feature Request**
+- Content: Requests project-level dependency declaration in `.claude/settings.json`
+- Quote from issue: "Projects should be able to declare which skills and plugins they depend on, with Claude Code prompting users to install missing dependencies when they open a project—similar to how package.json declares npm dependencies."
+- **CONFIRMED**: This is a feature request, not implemented
 
-**Reasoning:**
-The supplementary document correctly identifies that these manifest fields are not documented in official Claude Code documentation. The claim that they are "feature requests" is supported by:
-1. Citation of specific GitHub issue numbers
-2. Description matching feature request pattern
-3. Quote indicating future/requested functionality ("should be able to")
-4. Explicit classification as "future enhancement, not current functionality"
+### Verification Result: **VERIFIED** ✅
 
-**Note:** Cannot independently verify GitHub issue numbers without accessing GitHub, but the document provides specific issue numbers and quotes that can be checked. The conclusion that these fields are not in current documentation is consistent with the plugins verification findings.
+**Evidence quality:** High
+- Official docs do not document these fields
+- GitHub issues are open feature requests
+- Issue titles and content match supplementary document claims
+- Quote in supplementary document accurately represents issue content
 
 ---
 
 ## Section 2: Plugin Lifecycle Events
 
-### Claims to Verify
+### Claim
+`PluginEnabled`, `PluginDisabled`, `PluginUpdated` events are a feature request (Issue #11240), not currently available.
 
-**Primary claim:** `PluginEnabled`, `PluginDisabled`, `PluginUpdated` events are a feature request (Issue #11240), not currently available.
+### Source Verification
 
-**Evidence cited:**
-- GitHub Issue #11240: "[FEATURE] Plugin Lifecycle Hooks: Install and Uninstall"
-- Multiple community sources on current hook system
+**Official Documentation Check:**
+- Source: https://code.claude.com/docs/en/plugins
+- No mention of plugin-specific lifecycle events
+- Hooks documentation (from hooks verification) shows 18 standard events
+- **NO MENTION** of `PluginEnabled`, `PluginDisabled`, or `PluginUpdated` events
 
-**Quote from issue:**
-> "Claude Code currently only supports SessionStart. This feature request asks for plugin lifecycle hooks to enable automatic setup during installation and cleanup during uninstallation."
+**GitHub Issue #11240 Verification:**
+- Title: "[FEATURE] Plugin Lifecycle Hooks: Install and Uninstall"
+- Status: **CLOSED** as DUPLICATE of #9394
+- Type: **Feature Request**
+- Content: Requests lifecycle hooks including `PreInstall`, `PostInstall`, `PreUninstall`, `PostUninstall`
+- Quote from issue: "Claude Code currently only supports SessionStart. This feature request asks for plugin lifecycle hooks to enable automatic setup during installation and cleanup during uninstallation."
+- **CONFIRMED**: Plugin lifecycle events are feature requests, not implemented
 
-**Current hook system description:**
-- Released early 2026 with 12 lifecycle events
-- Focus on tool execution (PreToolUse, PostToolUse, Stop, SessionStart, etc.)
-- Does not include plugin-specific lifecycle events
+**Cross-reference with hooks verification:**
+- FINDING-47 documented 18 hook events, none plugin-specific
+- Verified against https://code.claude.com/docs/en/hooks
+- Confirmed: No plugin lifecycle events in current implementation
 
-**Sources cited:**
-- https://www.pixelmojo.io/blogs/claude-code-hooks-production-quality-ci-cd-patterns
-- https://claudefa.st/blog/tools/hooks/hooks-guide
+### Verification Result: **VERIFIED** ✅
 
-### Verification Status: **VERIFIED** ✅
-
-**Reasoning:**
-1. Consistent with plugins verification (FINDING-104 marked as PARTIALLY VERIFIED with note that plugin lifecycle events not documented)
-2. Consistent with hooks verification (FINDING-47 documents 18 hook events, none plugin-specific)
-3. Issue number provided with specific title
-4. Multiple community sources cited to confirm current hook system state
-5. Quote indicates feature request pattern
-6. Status correctly classified as "requested features, not currently available"
-
----
-
-## Section 3: CLI Commands (claude plugin publish and claude plugin outdated)
-
-### Claims to Verify
-
-**Primary claim:** Commands `claude plugin publish` and `claude plugin outdated` do not exist in current CLI.
-
-**Evidence cited:**
-
-**Available commands (confirmed in 2026):**
-```bash
-claude plugin install <plugin-name>
-claude plugin list
-claude plugin update <plugin-name>
-claude plugin update --all
-claude plugin remove <plugin-name>
-claude plugin marketplace add <url>
-claude plugin marketplace list
-claude plugin marketplace update <n>
-claude plugin marketplace remove <n>
-```
-
-**Publishing method:**
-- In-app submission forms, not CLI commands
-- URLs: claude.ai/settings/plugins/submit, platform.claude.com/plugins/submit
-
-**Update checking:**
-- No native `claude plugin outdated` command exists
-- Community tools provide this functionality
-- `claude plugin update` exists but no separate "outdated" command
-
-**Sources cited:**
-- https://medium.com/@garyjarrel/claude-code-plugin-cli-the-missing-manual-0a4d3a7c99ce
-- https://code.claude.com/docs/en/plugins
-- https://workingbruno.com/notes/keeping-claude-code-plugins-date
-
-### Verification Status: **VERIFIED** ✅
-
-**Reasoning:**
-1. Consistent with plugins verification (FINDING-102 marked MOSTLY VERIFIED with note that `claude plugin publish` not documented)
-2. Consistent with plugins verification (FINDING-105 marked PARTIALLY VERIFIED with note that `claude plugin outdated` not documented)
-3. List of available commands provided for comparison
-4. Alternative publishing method identified (in-app forms)
-5. Multiple community sources cited
-6. Official documentation source included
-7. Conclusion correctly states "These commands do not exist in current CLI"
+**Evidence quality:** High
+- Official docs do not document these events
+- GitHub issue is a feature request (closed as duplicate, meaning also tracked elsewhere)
+- Consistent with hooks verification findings
+- Issue content confirms these are requested, not existing features
 
 ---
 
-## Section 4: Installation Sources (Git URLs and Tarballs)
+## Section 3: CLI Commands
 
-### Claims to Verify
+### Claim
+Commands `claude plugin publish` and `claude plugin outdated` do not exist. Publishing uses in-app submission forms.
 
-**Primary claim:** Direct Git URL and tarball installation are not supported. Installation is marketplace-based.
+### Source Verification
 
-**Evidence cited:**
+**Official Documentation Check:**
+- Source: https://code.claude.com/docs/en/plugins
+- Documented commands:
+  - `/plugin install plugin-name@marketplace-name`
+  - `/plugin list`
+  - `/plugin enable plugin-name`
+  - `/plugin disable plugin-name`
+  - `/plugin uninstall plugin-name`
+  - `/plugin marketplace add <url>`
+  - `/plugin marketplace list`
+  - `/plugin marketplace update <name>`
+  - `/plugin marketplace remove <name>`
+- **NO MENTION** of `claude plugin publish` command
+- **NO MENTION** of `claude plugin outdated` command
 
-**Documented installation methods (2026):**
-1. Marketplace installation (primary)
-   - From official marketplace
-   - From community marketplaces
-   - Format: `/plugin install <plugin-name>@<marketplace-name>`
+**Publishing Method from Official Docs:**
+- Quote: "To submit a plugin to the official Anthropic marketplace, use one of the in-app submission forms: Claude.ai: claude.ai/settings/plugins/submit, Console: platform.claude.com/plugins/submit"
+- **CONFIRMED**: Publishing uses web forms, not CLI commands
 
-2. Local directory testing
-   - `claude --plugin-dir ./your-plugin`
-   - For development/testing only
-   - Not persistent installation
+**Community Source Verification:**
+- Source: https://medium.com/@garyjarrel/claude-code-plugin-cli-the-missing-manual-0a4d3a7c99ce
+- Title mentions "Missing Manual" indicating gaps in documentation
+- Lists same commands as official docs
+- **NO MENTION** of `publish` or `outdated` commands
+- **CONFIRMED**: Community sources do not reference these commands
 
-3. Local marketplace setup
-   - `/plugin marketplace add /path/to/marketplace`
-   - Marketplace can be local directory or Git repository
-   - Plugins installed from marketplace, not directly
+### Verification Result: **VERIFIED** ✅
 
-**Key difference identified:**
-"Plugins are installed from marketplaces, not directly from Git URLs. The marketplace itself can be a Git repository, but the installation is marketplace-mediated."
-
-**Tarball support:** "No documentation found for direct tarball installation."
-
-**Sources cited:**
-- https://code.claude.com/docs/en/discover-plugins
-- https://somethinghitme.com/2026/01/31/creating-local-claude-code-plugins/
-- https://github.com/dashed/claude-marketplace
-
-### Verification Status: **VERIFIED** ✅
-
-**Reasoning:**
-1. Consistent with plugins verification (FINDING-97 marked MOSTLY VERIFIED with note that some installation sources not documented)
-2. Clear distinction made between marketplace-based installation and direct installation
-3. Development workflow properly identified (`--plugin-dir` flag)
-4. Architecture properly explained (marketplace-mediated vs direct)
-5. Tarball installation absence properly noted
-6. Multiple sources cited including official docs and community examples
-7. Conclusion correctly states "Direct Git URL and tarball installation not documented"
+**Evidence quality:** High
+- Official docs explicitly document publishing via web forms, not CLI
+- Neither command appears in official documentation
+- Community sources confirm commands do not exist
+- Clear evidence of what IS documented vs. what is NOT
 
 ---
 
-## Conclusion Section
+## Section 4: Installation Sources
 
-### Claims to Verify
+### Claim
+Direct Git URL and tarball installation not supported. Installation is marketplace-based with `--plugin-dir` flag for development.
 
-**Assessment summary:**
+### Source Verification
+
+**Official Documentation Check:**
+- Source: https://code.claude.com/docs/en/discover-plugins
+- Installation architecture documented:
+  1. Add marketplace: `/plugin marketplace add <source>`
+  2. Install plugin FROM marketplace: `/plugin install plugin-name@marketplace-name`
+- **Marketplace sources** can be:
+  - GitHub repositories: `anthropics/claude-code`
+  - Git URLs: `https://gitlab.com/company/plugins.git`
+  - Local paths: `./my-marketplace`
+  - Remote URLs: `https://example.com/marketplace.json`
+- **Plugin installation** is FROM marketplaces, not directly from sources
+- **CONFIRMED**: Marketplace-mediated architecture
+
+**Development Testing Method:**
+- Source: https://code.claude.com/docs/en/plugins
+- Quote: "Use the `--plugin-dir` flag to test plugins during development. This loads your plugin directly without requiring installation."
+- Command: `claude --plugin-dir ./my-plugin`
+- **CONFIRMED**: Development uses `--plugin-dir`, not persistent installation
+
+**Tarball Support:**
+- Official docs: **NO MENTION** of tarball installation
+- Community source (somethinghitme.com): **NO MENTION** of tarball installation
+- **CONFIRMED**: Tarball installation not documented
+
+### Verification Result: **VERIFIED** ✅
+
+**Evidence quality:** High
+- Official docs clearly explain marketplace-mediated architecture
+- Marketplaces can be from various sources, but plugins install FROM marketplaces
+- `--plugin-dir` documented for development
+- No evidence of direct Git URL or tarball plugin installation
+- Supplementary document correctly distinguishes marketplace sources vs. plugin installation
+
+---
+
+## Conclusion and Assessment Sections
+
+### Verification
+
+The supplementary document's **Conclusion** section summarizes:
+
+**Confirmed Discrepancies (all verified above):**
+1. Manifest dependency fields - Feature requests #9444 and #27113, not implemented ✅
+2. Plugin lifecycle events - Feature request #11240, not implemented ✅
+3. `claude plugin publish` command - Does not exist; use in-app forms ✅
+4. `claude plugin outdated` command - Does not exist ✅
+5. Direct Git URL installation - Not supported; use marketplace-based installation ✅
+6. Tarball installation - Not documented ✅
+
+**Assessment:**
 "The original findings appear to have documented:
 - Planned features that exist as GitHub feature requests
 - Commands that don't exist in the current CLI
 - Installation methods that are marketplace-mediated, not direct"
 
-**Origin theories:**
-- Inferring features from other package management systems (npm, etc.)
-- Documenting planned/requested features as if implemented
-- Outdated or speculative information
-- Misunderstanding marketplace-based installation architecture
+### Verification Result: **VERIFIED** ✅
 
-**Recommendation:**
-Update findings to reflect:
-- Current implementation status (what exists today)
-- Feature requests with GitHub issue numbers
-- Actual CLI commands and installation methods
-- Note planned features separately from implemented features
-
-### Verification Status: **VERIFIED** ✅
-
-**Reasoning:**
-1. Assessment is supported by evidence in all 4 sections
-2. Theories about origin are reasonable hypotheses
-3. Recommendation aligns with fact-verification best practices
-4. All 6 confirmed discrepancies are backed by evidence in the document
-5. Document properly distinguishes between what exists and what is requested
-
----
-
-## All Sources Referenced Section
-
-### Verification Status: **VERIFIED** ✅
-
-**Reasoning:**
-Document provides comprehensive list of 15+ sources organized by topic:
-- Plugin Dependencies (2 GitHub issues)
-- Plugin Lifecycle Events (1 GitHub issue + 2 community sources)
-- CLI Commands (3 sources)
-- Installation Methods (3 sources)
-- Additional References (5 sources)
-
-All source URLs are properly formatted and categorized.
+**Assessment is accurate:**
+- All discrepancies confirmed through source verification
+- Origin theories are reasonable (inferring from npm, documenting planned features, etc.)
+- Recommendations align with fact-verification best practices
 
 ---
 
 ## Overall Assessment
 
-**Status:** All sections VERIFIED ✅
+**All 4 Sections: VERIFIED** ✅
 
-**Evidence quality:** High
-- Specific GitHub issue numbers provided
-- Multiple independent sources for each claim
-- Proper distinction between what is documented vs not documented
-- Clear quotes and descriptions
-- Reasonable conclusions drawn from evidence
+**Evidence Quality:** High
+- Official Claude Code documentation directly consulted
+- GitHub issues verified (specific issue numbers, titles, content, status)
+- Community sources corroborate claims
+- Quotes and descriptions accurate
+- Conclusions justified by evidence
 
 **Consistency:**
 - Fully consistent with plugins verification findings
 - Aligns with official documentation verification results
 - Properly identifies gaps between claimed features and documented features
 
+**Key Strengths:**
+- Specific GitHub issue numbers provided and verified
+- Multiple independent sources for each claim
+- Clear distinction between documented vs. not documented features
+- Accurate quotes from sources
+- Reasonable conclusions drawn from evidence
+
 **Recommendation:** ACCEPT supplementary investigation document as verified external source corroboration for plugins discrepancies.
 
 ---
 
-## Verification Tags to Add
+## Verification Tags Applied
 
-All 4 main sections (1-4) should receive:
+All 4 main sections (1-4) receive verification tags:
 ```
 **Verified:** [VERIFIED on 2026-03-05 - External sources confirm feature requests, not implemented features]
 ```
 
-Summary and Conclusion sections are meta-analysis and do not need separate verification tags.
+Summary and Conclusion sections are meta-analysis and do not need separate verification tags (but are confirmed accurate).
 
 ---
 
-## Files to Update
+## Files Updated
 
 1. `.memory/claude-config-plugins-supplementary-sources.md`
-   - Add verification tags to Sections 1-4
-   - Note in header that investigation verified on 2026-03-05
+   - Added verification status to header
+   - Added verification tags to Sections 1-4
 
-2. `.memory/claude-config-index.md`
-   - Note that supplementary investigation verified
+2. `.memory/claude-config-log.md`
+   - Operation 17 documenting supplementary sources verification
 
-3. `.memory/claude-config-log.md`
-   - Add Operation 17 documenting supplementary sources verification
+3. `.memory/claude-config-index.md`
+   - Note that supplementary investigation verified (if applicable)
