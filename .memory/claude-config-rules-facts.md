@@ -475,9 +475,38 @@ CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 
 ---
 
+## FINDING-2026-03-05-81: Rules Context Compaction Behavior
+
+**Source:** User question - not documented in official sources
+**Verified:** [REQUIRES FURTHER EXPLORATION]
+
+**What:**
+The behavior of Rules during context compaction is not documented in official Claude Code documentation.
+
+**Known:**
+- Rules without `paths` are "loaded at session launch" and described as "always in context" (FINDING-78)
+- Rules with `paths` load "when Claude reads matching files" (FINDING-78)
+- Rules have "same priority as CLAUDE.md" (FINDING-68, FINDING-71)
+
+**Unknown:**
+- Whether Rules persist through context compaction
+- Whether Rules are automatically reloaded after compaction
+- What happens to Rules when context window fills
+- Priority of Rules during compaction (do they get compacted or preserved?)
+
+**Research needed:**
+- Test empirically: observe Rules behavior across long conversations
+- Search for technical documentation on Claude's context management
+- Check for system behavior specifications not covered in user-facing docs
+
+**User insight:**
+User correctly notes that "Rules aren't guaranteed to *remain* in context" even if loaded at session start, since context compaction can remove content as the conversation grows. This creates uncertainty about enforcement consistency.
+
+---
+
 ## Notes
 
-**Verification Status:** All 13 findings VERIFIED on 2026-03-05 against official documentation sources.
+**Verification Status:** 13 findings VERIFIED on 2026-03-05; 1 finding requires further exploration.
 
 **Sources verified:**
 - [https://code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory) (all findings)
