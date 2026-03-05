@@ -473,6 +473,61 @@ From official documentation:
 
 ---
 
+## FINDING-2026-03-05-27: Skills Subfolder Naming - No Explicit Conventions
+
+**Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**What:**
+The official Skills documentation does not specify explicit limitations or required conventions for subfolder names within skill directories.
+
+**What the documentation shows:**
+
+Example structures using specific subfolder names:
+````text
+my-skill/
+├── SKILL.md
+├── examples/          # Used in documentation examples
+│   └── sample.md
+└── scripts/           # Used in documentation examples
+    └── validate.sh
+````
+
+Another example uses `references/`:
+````text
+# Workflow Overview
+1. Phase 1: [Initial setup](references/phase-1.md)
+2. Phase 2: [Processing](references/phase-2.md)
+````
+
+**What is NOT documented:**
+
+The documentation does not specify:
+- Required subfolder names
+- Reserved subfolder names with special meaning to Claude Code
+- Naming conventions for subdirectories (e.g., lowercase, hyphens)
+- Limitations on nesting depth
+- Whether certain folder names are treated specially by the system
+
+**What IS documented:**
+
+From official documentation:
+> "Other files are optional and let you build more powerful skills"
+
+This indicates all files and folders besides `SKILL.md` are optional, with no requirements on their names or organization.
+
+**Observed examples from documentation:**
+- `examples/` - for example outputs
+- `scripts/` - for executable scripts
+- `references/` - for reference documentation (from progressive disclosure example)
+
+**Implications:**
+- Subfolder naming appears to be arbitrary/user-defined
+- Organization is flexible based on skill author preferences
+- Subfolder names in documentation examples (`examples/`, `scripts/`, `references/`) are likely conventions, not requirements
+- Skills should reference subfolders explicitly in `SKILL.md` so Claude knows what they contain
+
+---
+
 ## Notes
 
 All findings captured from official Claude Code documentation but NOT YET VERIFIED.
