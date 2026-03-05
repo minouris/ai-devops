@@ -494,3 +494,79 @@ User correctly identified that initial findings mixed native Claude Code require
 **Note:** FINDING-68 claims rules were introduced in "v2.0.64" but this version number could not be verified from official documentation. All other claims in all findings are verified.
 
 **Next step:** Continue verification of remaining subtopics or await user request
+
+---
+
+## 2026-03-05: Added Finding on Rules Context Compaction Behavior
+
+**Operation:** Added new finding documenting undocumented Rules behavior during context compaction
+
+**Context:** User asked whether Rules are guaranteed to be reloaded when context is compacted. This behavior is not documented in official sources.
+
+**Research conducted:**
+- Reviewed verified findings FINDING-68, FINDING-71, FINDING-78 on Rules loading behavior
+- Reviewed official documentation previously fetched from https://code.claude.com/docs/en/memory
+- Confirmed that context compaction behavior is not documented
+
+**Finding added:**
+- FINDING-2026-03-05-81 in `.memory/claude-config-rules-facts.md`
+- Documents what IS known: loading behavior at session launch and path-scoped triggers
+- Documents what is NOT known: persistence through compaction, reload after compaction, priority during compaction
+- Tagged as `[REQUIRES FURTHER EXPLORATION]`
+- Includes user insight about enforcement consistency uncertainty
+
+**Current status:**
+- **42 verified findings** (13 in core file + 16 in skills subtopic + 13 in rules subtopic)
+- **1 finding requiring exploration** (rules context compaction)
+- **60 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 42 verified + 1 requires exploration + 60 unverified = 103 valid findings + 8 disproven = 111 total findings captured
+
+**Next step:** Continue research or await user request
+
+---
+
+## 2026-03-05: Added Skills vs Rules Comparison Subtopic
+
+**Operation:** Created new subtopic comparing Reference Skills vs Rules for supplying standards and conventions
+
+**Context:** User asked about the difference between supplying standards in Skills vs Rules, noting the trade-offs between guaranteed loading (Rules) vs context efficiency (Skills).
+
+**Research conducted:**
+- Synthesized from verified findings in Skills subtopic (FINDING-18 on invocation control)
+- Synthesized from verified findings in Rules subtopic (FINDING-68, FINDING-71, FINDING-78 on loading behavior)
+- Analyzed trade-offs based on user discussion
+
+**Findings added:**
+- FINDING-2026-03-05-82: Reference Skills Overview for Standards (derived from FINDING-18)
+- FINDING-2026-03-05-83: Rules Overview for Standards (derived from FINDING-68, FINDING-71)
+- FINDING-2026-03-05-84: Loading Behavior Comparison (derived from FINDING-18, FINDING-78)
+- FINDING-2026-03-05-85: Trade-offs and Risk Analysis (synthesized from verified findings)
+- FINDING-2026-03-05-86: Use Case Decision Framework (synthesized from verified findings)
+- FINDING-2026-03-05-87: Context Persistence Uncertainty (relates to FINDING-81, requires exploration)
+
+**File created:**
+- `.memory/claude-config-skills-vs-rules-facts.md` with 6 findings
+- Tagged 5 findings as `[DERIVED from VERIFIED findings 2026-03-05]`
+- Tagged 1 finding as `[REQUIRES FURTHER EXPLORATION]`
+
+**Files modified:**
+- Created `.memory/claude-config-skills-vs-rules-facts.md`
+- Updated `.memory/claude-config-index.md` with new subtopic and finding counts
+
+**Commits created:**
+- Commit 477ee28: "Add finding on Rules context compaction behavior"
+- Commit 431ceae: "Add Skills vs Rules comparison subtopic"
+
+**Current status:**
+- **34 verified findings** (13 core + 16 skills + 13 rules) plus 5 derived findings in new subtopic
+- **2 findings requiring exploration** (rules context compaction, skills vs rules context persistence)
+- **60 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 39 verified/derived + 2 requires exploration + 60 unverified = 101 valid findings + 8 disproven = 110 total findings captured
+
+**Key insight:** The choice between Reference Skills and Rules is fundamentally a trade-off between guaranteed initial availability (Rules) and context efficiency (Skills), with both facing uncertainty about persistence through context compaction.
+
+**Next step:** Continue verification of remaining subtopics or await user request
