@@ -570,3 +570,61 @@ User correctly identified that initial findings mixed native Claude Code require
 **Key insight:** The choice between Reference Skills and Rules is fundamentally a trade-off between guaranteed initial availability (Rules) and context efficiency (Skills), with both facing uncertainty about persistence through context compaction.
 
 **Next step:** Continue verification of remaining subtopics or await user request
+
+---
+
+## 2026-03-05: Added Context Compaction Subtopic
+
+**Operation:** Created new subtopic documenting context compaction behavior in Claude API and Claude Code
+
+**Context:** User requested a subtopic on context compaction with separate findings for: when it happens, what happens during compaction, what is kept, and what is reloaded afterwards.
+
+**Research conducted:**
+- Fetched official documentation from [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
+- Fetched documentation from [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
+- Web search for 2026 Claude Code compaction behavior
+- Community sources on context buffer management and compaction issues
+
+**Findings added:**
+- FINDING-2026-03-05-88: Compaction overview and purpose
+- FINDING-2026-03-05-89: When compaction triggers (API default 150K, Claude Code 64-75% capacity)
+- FINDING-2026-03-05-90: How compaction works (process flow with compaction blocks)
+- FINDING-2026-03-05-91: Default summarization instructions (customizable via API)
+- FINDING-2026-03-05-92: What gets preserved (requests, key code snippets, recent context)
+- FINDING-2026-03-05-93: What gets removed (older tool outputs, early conversation history)
+- FINDING-2026-03-05-94: What is reloaded after compaction (partial documentation only)
+- FINDING-2026-03-05-95: CLAUDE.md and Rules behavior during compaction (requires exploration)
+- FINDING-2026-03-05-96: Claude Code specific behavior (automatic, /compact command, known issues)
+- FINDING-2026-03-05-97: Context management strategies beyond compaction (Skills, Subagents)
+
+**File created:**
+- `.memory/claude-config-compaction-facts.md` with 10 findings
+- Tagged 9 findings as `[VERIFIED on 2026-03-05 by official documentation]`
+- Tagged 1 finding as `[REQUIRES FURTHER EXPLORATION]` (CLAUDE.md/Rules reload behavior)
+
+**Files modified:**
+- Created `.memory/claude-config-compaction-facts.md`
+- Updated `.memory/claude-config-index.md` with new subtopic and finding counts
+- Added note about finding number overlaps
+
+**Commit created:**
+- Commit 0935072: "Add Context Compaction subtopic with 10 findings"
+
+**Current status:**
+- **43 verified findings** (13 core + 16 skills + 13 rules + 5 skills-vs-rules derived + 9 compaction) plus 5 derived
+- **3 findings requiring exploration** (rules reload, skills vs rules context persistence, CLAUDE.md reload)
+- **60 unverified findings** (remaining subtopics: subagents 13, commands 7, hooks 15, claudemd 13, plugins 13)
+- **8 disproven findings** (60-67, prompts subtopic)
+
+**Total:** 48 verified/derived + 3 requires exploration + 60 unverified = 111 valid findings + 8 disproven = 120 total findings captured
+
+**Key findings:**
+- Compaction is automatic and server-side (API beta feature, Claude Code automatic)
+- Triggers at 150K tokens (API default) or 64-75% capacity (Claude Code 2026)
+- Older tool outputs cleared first, then conversation summarized
+- Requests and key code snippets preserved
+- **Critical gap:** Whether CLAUDE.md, Rules, or Skills are automatically reloaded after compaction is not explicitly documented
+- Official guidance: "put persistent rules in CLAUDE.md" but reload behavior unconfirmed
+- Compact Instructions section in CLAUDE.md controls summarization content
+
+**Next step:** Continue verification of remaining subtopics or await user request
