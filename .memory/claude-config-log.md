@@ -304,3 +304,34 @@ User correctly identified that initial findings mixed native Claude Code require
 **Total:** 100 valid + 8 disproven = 108 total findings captured
 
 **Next step:** Continue research or await user request for synthesis
+
+---
+
+## 2026-03-05: Added Finding from Agent Skills Specification on Optional Directories
+
+**Operation:** Added finding documenting optional directory specifications from Agent Skills open standard
+
+**Context:** User requested to find supporting documentation including from agentskills.io standard regarding subfolder conventions.
+
+**Research conducted:**
+- Fetched Agent Skills specification from [https://agentskills.io/specification](https://agentskills.io/specification)
+- Found section "Optional directories" with detailed specifications for `scripts/`, `references/`, and `assets/`
+- Extracted file reference guidelines and progressive disclosure guidance
+- Analyzed language used ("such as") to determine whether list is exhaustive or examples
+
+**Finding added:**
+- FINDING-2026-03-05-28 in `claude-config-skills-facts.md`
+- Clarifies FINDING-2026-03-05-27 with specification details
+- Documents three optional directory types: `scripts/`, `references/`, `assets/`
+- Includes purposes and recommended contents for each directory
+- Notes "such as" language suggests these are examples, not exhaustive list
+- Includes file reference guidelines: relative paths, one level deep recommended
+
+**Status:**
+- **13 verified findings** (in `claude-config-facts.md`)
+- **88 unverified findings** (84 previous + 4 new in skills subtopic)
+- **8 disproven findings** (60-67)
+
+**Total:** 101 valid + 8 disproven = 109 total findings captured
+
+**Next step:** Continue research or await user request for synthesis
