@@ -218,3 +218,32 @@ User correctly identified that initial findings mixed native Claude Code require
 **Total:** 97 valid + 8 disproven = 105 total findings captured
 
 **Status:** Verification tags corrected, false claims removed
+
+---
+
+## 2026-03-05: Added Finding on Skills Supporting Files Loading
+
+**Operation:** Added new finding documenting on-demand loading behavior for supporting files in skill directories
+
+**Context:** User asked to verify against official documentation whether supporting files in skill directories (e.g., `references/` folder) are loaded all at once on skill invocation or selectively on-demand.
+
+**Research conducted:**
+- Reviewed official Skills documentation at [https://code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
+- Found progressive disclosure pattern documented
+- Confirmed supporting files loaded via Read tool only when needed
+
+**Finding added:**
+- FINDING-2026-03-05-25 in `claude-config-skills-facts.md`
+- Documents that only `SKILL.md` loads on invocation
+- Supporting files loaded selectively via Read tool during execution
+- Includes official documentation quotes on progressive disclosure
+- Notes context management implications
+
+**Status:**
+- **13 verified findings** (in `claude-config-facts.md`)
+- **85 unverified findings** (84 previous + 1 new in skills subtopic)
+- **8 disproven findings** (60-67)
+
+**Total:** 98 valid + 8 disproven = 106 total findings captured
+
+**Next step:** Continue research or await user request for synthesis
