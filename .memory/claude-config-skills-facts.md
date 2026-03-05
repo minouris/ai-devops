@@ -528,6 +528,81 @@ This indicates all files and folders besides `SKILL.md` are optional, with no re
 
 ---
 
+## FINDING-2026-03-05-28: Skills Optional Directories from Agent Skills Specification
+
+**Source:** [Agent Skills Specification](https://agentskills.io/specification)
+
+**Clarifies:** FINDING-2026-03-05-27 (subfolder naming conventions)
+
+**What:**
+The Agent Skills open standard specification documents three optional directory types with defined purposes, but does not restrict skills to only these directories.
+
+**Optional directories specified:**
+
+From the Agent Skills specification:
+
+> "You can optionally include additional directories such as `scripts/`, `references/`, and `assets/` to support your skill."
+
+**Directory purposes documented:**
+
+| Directory | Purpose | Contents |
+|-----------|---------|----------|
+| `scripts/` | Executable code agents can run | Python, Bash, JavaScript, etc. Should be self-contained with clear error messages |
+| `references/` | Additional documentation loaded on demand | `REFERENCE.md`, `FORMS.md`, domain-specific files. Keep focused for efficient context use |
+| `assets/` | Static resources | Templates, images, diagrams, data files, lookup tables, schemas |
+
+**File reference guidelines:**
+
+From specification:
+> "When referencing other files in your skill, use relative paths from the skill root"
+
+> "Keep file references one level deep from SKILL.md. Avoid deeply nested reference chains."
+
+**Key language:**
+
+The specification uses "such as" when listing `scripts/`, `references/`, and `assets/`, suggesting these are examples rather than an exhaustive list.
+
+**What is NOT specified:**
+
+The specification does not state:
+- These are the only allowed directory names
+- Other directory names are forbidden
+- Specific naming conventions required (e.g., lowercase, hyphens)
+- Maximum nesting depth for directories (only recommendation for reference chains)
+- Whether custom directory names are permitted
+
+**Minimal valid structure:**
+
+From specification:
+````text
+skill-name/
+└── SKILL.md          # Required
+````
+
+All directories are optional.
+
+**Progressive disclosure guidance:**
+
+From specification:
+> "Keep your main `SKILL.md` under 500 lines. Move detailed reference material to separate files."
+
+**Validation:**
+
+The specification references the `skills-ref` validation library:
+````bash
+skills-ref validate ./my-skill
+````
+
+This validates frontmatter and naming conventions, but no mention of validating directory structure.
+
+**Implications:**
+- `scripts/`, `references/`, and `assets/` are documented conventions with defined purposes
+- The "such as" language suggests flexibility to use other directory names
+- No explicit prohibition on custom directory names
+- File reference depth recommendation (one level deep) is guidance, not requirement
+
+---
+
 ## Notes
 
 All findings captured from official Claude Code documentation but NOT YET VERIFIED.
