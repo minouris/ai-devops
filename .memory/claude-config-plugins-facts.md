@@ -9,6 +9,7 @@ Detailed research findings on Plugins for distributing and sharing Claude Code c
 ## FINDING-2026-03-04-94: Plugins Overview and Purpose
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins and https://code.claude.com/docs/en/plugins-reference]
 
 **What:**
 Plugins are packages that bundle Claude Code customizations (skills, subagents, hooks, MCP servers, LSP servers) for distribution and sharing. Introduced to enable sharing configurations across teams and the community.
@@ -33,6 +34,7 @@ Plugins are packages that bundle Claude Code customizations (skills, subagents, 
 ## FINDING-2026-03-04-95: Plugin Directory Structure
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins-reference - Note: Manifest is optional, not mandatory]
 
 **What:**
 Plugins have a standard directory structure with a manifest file and component directories.
@@ -71,6 +73,7 @@ my-plugin/
 ---
 
 ## FINDING-2026-03-04-96: Plugin Manifest Schema (plugin.json)
+**Verified:** [PARTIALLY VERIFIED on 2026-03-05 - Core fields confirmed; dependencies, peerDependencies, claudeVersion, platforms not documented]
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
 
@@ -116,6 +119,7 @@ The `plugin.json` manifest defines plugin metadata, dependencies, and configurat
 ---
 
 ## FINDING-2026-03-04-97: Plugin Installation and Management
+**Verified:** [MOSTLY VERIFIED on 2026-03-05 - CLI commands and scopes confirmed; some installation sources not documented]
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 
@@ -164,6 +168,7 @@ claude plugin uninstall plugin-name
 
 ---
 
+**Verified:** [MOSTLY VERIFIED on 2026-03-05 - Namespacing format confirmed; resolution priority implied but not fully documented]
 ## FINDING-2026-03-04-98: Plugin Namespacing and Resolution
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
@@ -198,6 +203,7 @@ Plugins use namespacing to prevent conflicts with local configurations and other
 Use my-plugin:code-reviewer agent to review this file
 ````
 
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins-reference]
 ---
 
 ## FINDING-2026-03-04-99: Plugin Environment and Path Resolution
@@ -242,6 +248,7 @@ description: Workflow using plugin templates
 - Relative paths in plugin components resolve relative to plugin root
 - `${CLAUDE_PLUGIN_ROOT}` expands to absolute plugin installation path
 - Same variable works across all installation scopes (user, project, local, managed)
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins-reference]
 
 ---
 
@@ -282,6 +289,7 @@ Plugins can bundle MCP (Model Context Protocol) server configurations in `.mcp.j
 **Integration:**
 - MCP servers from plugins merge with user/project MCP configurations
 - Plugin servers available to skills and subagents
+**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins-reference]
 - Namespace: `my-plugin:my-plugin-server`
 
 ---
@@ -324,6 +332,7 @@ Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp
 **Use cases:**
 - Bundle language servers for custom languages
 - Provide enhanced IDE features for frameworks
+**Verified:** [MOSTLY VERIFIED on 2026-03-05 - Marketplace distribution confirmed; some details not documented]
 - Add linting and formatting capabilities
 - Enable code intelligence for DSLs
 
@@ -357,6 +366,7 @@ Plugins distributed via official Claude Code plugin marketplace and third-party 
 - Same installation commands work with custom registries
 
 **Direct distribution:**
+**Verified:** [MOSTLY VERIFIED on 2026-03-05 - Development workflow confirmed; some CLI flags not documented]
 - Share Git repository URL
 - Package as tarball for offline distribution
 - Document installation command in plugin README
@@ -424,6 +434,7 @@ git add .
 git commit -m "Initial plugin version"
 git remote add origin https://github.com/user/my-plugin.git
 git push -u origin main
+**Verified:** [PARTIALLY VERIFIED on 2026-03-05 - Standard hooks confirmed; PluginEnabled/Disabled/Updated events not documented]
 
 # Submit to marketplace
 claude plugin publish
@@ -463,6 +474,7 @@ Initialize plugin environment on session start:
 command: "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"
 ````
 
+**Verified:** [PARTIALLY VERIFIED on 2026-03-05 - Semantic versioning confirmed; dependency management not documented]
 **Use cases:**
 - Initialize plugin environment on session start
 - Validate prerequisites when plugin enabled
@@ -507,6 +519,7 @@ claude plugin update --all
 ````json
 {
   "dependencies": {
+**Verified:** [PARTIALLY VERIFIED on 2026-03-05 - Permission model confirmed; specific security guidelines not documented]
     "base-plugin": "^1.0.0",      // Compatible with 1.x.x
     "utils-plugin": "~2.1.0",     // Compatible with 2.1.x
     "required-plugin": ">=3.0.0"  // At least 3.0.0
@@ -558,7 +571,17 @@ Plugins run with same permission model as local configurations but with addition
 
 ## Notes
 
-All findings captured from official Claude Code documentation but NOT YET VERIFIED.
+All 13 findings verified on 2026-03-05 against official Claude Code documentation. Results:
+- 5 fully verified
+- 4 mostly verified
+- 4 partially verified (some claimed features not in current documentation)
+
+**Key discrepancies identified:**
+- Manifest fields `dependencies`, `peerDependencies`, `claudeVersion`, `platforms` not documented
+- Plugin lifecycle events (`PluginEnabled`, `PluginDisabled`, `PluginUpdated`) not documented
+- Dependency management and version constraints not documented
+- Some CLI commands (`claude plugin publish`, `claude plugin outdated`) not documented
+- Some installation sources (Git URL, tarball) not documented
 
 **Sources:**
 - [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
