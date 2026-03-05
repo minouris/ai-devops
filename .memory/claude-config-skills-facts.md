@@ -404,6 +404,75 @@ Claude sees these links and loads `references/phase-1.md` or `references/phase-2
 
 ---
 
+## FINDING-2026-03-05-26: Skills Supporting File Types and Organization
+
+**Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+
+**What:**
+Skills can bundle various file types as supporting files alongside `SKILL.md`. These files keep the main skill focused while providing detailed reference material, templates, examples, and executable utilities.
+
+**Supported file types:**
+
+From official documentation, supporting files can include:
+- **Templates**: "templates for Claude to fill in"
+- **Example outputs**: "example outputs showing the expected format"
+- **Scripts**: "scripts Claude can execute" (in any language)
+- **Detailed reference documentation**: "detailed reference documentation"
+
+**Example structure from documentation:**
+````text
+my-skill/
+├── SKILL.md           # Main instructions (required)
+├── template.md        # Template for Claude to fill in
+├── examples/          # Optional examples directory
+│   └── sample.md
+└── scripts/           # Optional scripts directory
+    └── validate.sh
+````
+
+**Detailed example with descriptions:**
+````text
+my-skill/
+├── SKILL.md (required - overview and navigation)
+├── reference.md (detailed API docs - loaded when needed)
+├── examples.md (usage examples - loaded when needed)
+└── scripts/
+    └── helper.py (utility script - executed, not loaded)
+````
+
+**File organization guidelines:**
+
+From official documentation:
+> "Reference supporting files from `SKILL.md` so Claude knows what each file contains and when to load it"
+
+**Example reference pattern in SKILL.md:**
+````markdown
+## Additional resources
+
+- For complete API details, see [reference.md](reference.md)
+- For usage examples, see [examples.md](examples.md)
+````
+
+**Size recommendations:**
+
+From official documentation:
+> "Keep `SKILL.md` under 500 lines. Move detailed reference material to separate files."
+
+**File type behaviors:**
+- **Documentation files (.md)**: Loaded on-demand via Read tool when Claude needs them
+- **Scripts** (any language): Executed by Claude via Bash tool, not loaded into context
+- **Templates**: Loaded when Claude needs to fill them in
+- **Examples**: Loaded when Claude needs to understand expected format
+
+**Use cases for supporting files:**
+- Large reference docs (API specifications, conventions)
+- Example collections showing different scenarios
+- Templates Claude should use as starting point
+- Utility scripts for validation, formatting, or generation
+- Configuration files scripts need
+
+---
+
 ## Notes
 
 All findings captured from official Claude Code documentation but NOT YET VERIFIED.
