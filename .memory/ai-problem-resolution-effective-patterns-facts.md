@@ -1,18 +1,20 @@
-# AI Problems Resolution Facts
+# AI Problem Resolution — Effective Patterns Facts
 
-**Topic:** ai-problems-resolution
-**Purpose:** Document findings about AI instruction following problems, patterns, and resolution approaches
+**Topic:** `ai-problem-resolution`
+**Scope:** Documented patterns and approaches that effectively address AI instruction following problems
 **Started:** 2026-03-05
 
 ---
 
-## FINDING-2026-03-05-1: Rationales Improve Rule Understanding and Edge Case Application
+## Findings
+
+### FINDING-2026-03-05-1: Rationales Improve Rule Understanding and Edge Case Application
 
 **Date:** 2026-03-05
 **Category:** Instruction Design Pattern
 **Status:** External sources confirm effectiveness
 
-### Observation
+#### Observation
 
 Including rationales (explanations of why a rule exists) alongside MUST/MUST NOT requirements improves AI instruction following in several ways:
 
@@ -21,7 +23,7 @@ Including rationales (explanations of why a rule exists) alongside MUST/MUST NOT
 3. **Intent Preservation**: Reduce over-literal interpretation that satisfies the letter but misses the spirit of the requirement
 4. **Loophole Prevention**: Help avoid finding technical loopholes by understanding what behaviour is being prevented
 
-### Pattern Example
+#### Pattern Example
 
 **Strong instruction pattern:**
 ```
@@ -35,7 +37,7 @@ Including rationales (explanations of why a rule exists) alongside MUST/MUST NOT
 [Concrete demonstration of correct vs incorrect behaviour]
 ```
 
-### Supporting Evidence
+#### Supporting Evidence
 
 **Official Anthropic Documentation:**
 
@@ -68,7 +70,7 @@ Chain-of-thought faithfulness research notes:
 
 This suggests rationales work through improved instruction clarity and structure rather than directly modelling internal reasoning.
 
-### Implications
+#### Implications
 
 **For Rule Design:**
 - Include rationales with all MUST/MUST NOT requirements
@@ -83,7 +85,7 @@ This suggests rationales work through improved instruction clarity and structure
 - Rationales make rules self-documenting
 - Future rule modifications preserve intent when rationale is explicit
 
-### Sources
+#### Sources
 
 **Official Documentation:**
 - [Prompting best practices - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
@@ -106,7 +108,7 @@ This suggests rationales work through improved instruction clarity and structure
 - [Claude Prompt Engineering Best Practices (2026)](https://promptbuilder.cc/blog/claude-prompt-engineering-best-practices-2026)
 - [Claude Prompt Engineering: We Tested 25 Popular Practices](https://www.dreamhost.com/blog/claude-prompt-engineering/)
 
-### Related Observations
+#### Related Observations
 
 **Example from Current Project:**
 
