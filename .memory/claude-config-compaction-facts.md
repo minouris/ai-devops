@@ -364,9 +364,49 @@ Beyond compaction, Claude Code provides features to control what loads into cont
 
 ---
 
+## FINDING-2026-03-05-98: Server-Side vs Client-Side Implementation
+
+**Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [How Thinking Mode, Token Strategy, and Context Compaction Work](https://towardsdev.com/how-thinking-mode-token-strategy-and-context-compaction-really-work-in-claude-code-e5140d8e0d6f), Web search 2026
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
+
+**What:**
+Context compaction is primarily a **server-side operation** that occurs on Anthropic's infrastructure, not in the Claude Code client application.
+
+**Server-side compaction (primary, recommended):**
+- Compaction happens on Anthropic's servers during API requests
+- Claude Code uses the server-side compaction feature from the Claude API
+- Requires beta header `compact-2026-01-12` in API requests
+- Handles context management automatically with minimal integration work
+- The Claude model itself generates the summary on the server
+- No client-side limitations or complexity
+
+**Client-side SDK option (alternative, not recommended for most use cases):**
+- Python and TypeScript SDKs include client-side compaction in `tool_runner`
+- Client manages conversation context through summarization
+- More integration complexity
+- Less accurate token usage calculation
+- Subject to client-side limitations
+
+**Why server-side is recommended:**
+- Automatic management: API handles everything
+- Better token calculation: Server has accurate token counts
+- No client complexity: No need to implement summarization logic
+- Consistent behavior: Same implementation across all clients
+
+**Claude Code implementation:**
+- Claude Code uses the server-side API compaction feature
+- When you see "Claude Code manages context automatically," this refers to Claude Code configuring the server-side compaction via API
+- The `/compact` command triggers server-side compaction
+- Compaction process executes on Anthropic's servers, not locally
+
+**Clarification:**
+While Claude Code (the client application) initiates and configures compaction, the actual summarization and context management occurs server-side. The model running on Anthropic's infrastructure generates the summary, not the client application.
+
+---
+
 ## Notes
 
-**Verification Status:** 10 findings verified against official documentation sources; 1 finding requires further exploration (CLAUDE.md/Rules reload behavior).
+**Verification Status:** 10 findings require formal verification workflow; 1 finding requires further exploration (CLAUDE.md/Rules reload behavior); 1 finding (FINDING-98) added as clarification and awaiting verification.
 
 **Sources verified:**
 - [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
@@ -375,7 +415,7 @@ Beyond compaction, Claude Code provides features to control what loads into cont
 - [Why Claude Loses Context After Compaction](https://docs.bswen.com/blog/2026-02-09-claude-context-loss-compaction/) (2026)
 
 **Key findings:**
-1. Compaction is automatic and server-side
+1. **Compaction is a server-side operation** - executes on Anthropic's infrastructure, not in Claude Code client
 2. Default trigger: 150K tokens (API), 64-75% capacity (Claude Code 2026)
 3. Older tool outputs cleared first, then conversation summarized
 4. Requests and key code snippets preserved
@@ -383,5 +423,6 @@ Beyond compaction, Claude Code provides features to control what loads into cont
 6. **CLAUDE.md and Rules reload behavior NOT DOCUMENTED** - official guidance says "put persistent rules in CLAUDE.md" but doesn't confirm reload after compaction
 7. Compact Instructions section in CLAUDE.md controls what's preserved in summary
 8. Skills, Subagents provide alternative context management strategies
+9. Server-side recommended over client-side SDK option (better token calculation, automatic management)
 
 **Critical gap:** Whether CLAUDE.md, Rules, or Skills are automatically reloaded after compaction is not explicitly documented. This creates uncertainty about enforcement consistency in long conversations.
