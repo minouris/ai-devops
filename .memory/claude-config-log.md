@@ -876,3 +876,32 @@ Original findings documented planned/requested features as if implemented. Discr
 
 **Next step:**
 Document findings and continue with remaining subtopics (claudemd: 13, compaction: 10).
+
+---
+
+### Operation 16: Add Cross-Reference Links from Plugins Findings to Supplementary Investigation
+
+**Date:** 2026-03-05
+**Operation:** Cross-referencing discrepancy findings with supplementary sources
+**Files changed:**
+- `.memory/claude-config-plugins-facts.md` — Added cross-reference links from 6 findings to supplementary investigation
+
+**Summary:**
+- Added markdown links connecting partially verified findings to detailed supplementary investigation sections
+- Links enable tracing discrepancies from findings → external evidence → GitHub issues
+
+**Cross-references added:**
+- FINDING-96 (manifest schema) → Section 1 (manifest dependencies: GitHub Issues #9444, #27113)
+- FINDING-97 (installation sources) → Section 4 (installation sources: marketplace-based only)
+- FINDING-102 (marketplace distribution) → Section 3 (CLI commands: no `claude plugin publish`)
+- FINDING-103 (development workflow) → Section 4 (installation sources: `--plugin-dir` flag for testing)
+- FINDING-104 (lifecycle events) → Section 2 (lifecycle events: GitHub Issue #11240)
+- FINDING-105 (versioning/updates) → Sections 1 and 3 (dependencies: not implemented; no `outdated` command)
+
+**Purpose:**
+- Establishes evidence chain: finding → supplementary investigation → external sources
+- Enables readers to trace claimed features to proof they're feature requests, not implemented
+- Documents discrepancies inline with findings for transparency
+
+**Next step:**
+Continue verification with remaining unverified subtopics (claudemd: 13, compaction: 10).
