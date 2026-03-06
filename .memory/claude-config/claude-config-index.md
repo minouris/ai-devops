@@ -44,40 +44,71 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 ## Keywords
 
 - **argument** (1 finding)
+- **auto-compaction** (1 finding)
+- **background** (1 finding)
 - **behavior** (1 finding)
-- **built-in** (1 finding)
-- **command** (7 findings)
+- **built-in** (2 findings)
+- **cli** (1 finding)
+- **command** (8 findings)
 - **compaction** (1 finding)
-- **configuration** (1 finding)
-- **context** (2 findings)
+- **configuration** (4 findings)
+- **context** (3 findings)
+- **control** (1 finding)
 - **convention** (2 findings)
 - **custom** (1 finding)
 - **decision** (1 finding)
 - **efficiency** (1 finding)
 - **enforcement** (1 finding)
-- **file** (1 finding)
+- **event** (1 finding)
+- **execution** (1 finding)
+- **exploration** (1 finding)
+- **field** (1 finding)
+- **file** (2 findings)
+- **foreground** (1 finding)
 - **format** (1 finding)
 - **framework** (1 finding)
-- **frontmatter** (1 finding)
+- **frontmatter** (2 findings)
+- **git** (1 finding)
+- **hook** (1 finding)
+- **interface** (1 finding)
+- **isolation** (1 finding)
+- **json** (1 finding)
 - **knowledge** (1 finding)
 - **legacy** (1 finding)
+- **lifecycle** (1 finding)
 - **loading** (1 finding)
+- **management** (1 finding)
+- **memory** (1 finding)
 - **migration** (2 findings)
-- **persistence** (1 finding)
+- **mode** (2 findings)
+- **model** (1 finding)
+- **persistence** (2 findings)
+- **permission** (1 finding)
 - **placeholder** (1 finding)
 - **precedence** (1 finding)
-- **priority** (1 finding)
+- **priority** (2 findings)
 - **reference** (1 finding)
+- **resumption** (1 finding)
 - **risk** (1 finding)
 - **rule** (6 findings)
-- **scope** (1 finding)
+- **scope** (4 findings)
+- **security** (2 findings)
+- **session** (1 finding)
 - **skill** (8 findings)
+- **specification** (1 finding)
 - **standard** (2 findings)
+- **storage** (2 findings)
 - **structure** (1 finding)
+- **subagent** (13 findings)
 - **substitution** (1 finding)
 - **system** (1 finding)
+- **temporary** (1 finding)
+- **testing** (1 finding)
+- **tool** (3 findings)
+- **transcript** (2 findings)
 - **unification** (1 finding)
 - **use-case** (1 finding)
+- **worktree** (1 finding)
 
 ---
 
@@ -86,6 +117,8 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 | Finding | Name | Keywords |
 |---------|------|----------|
 | [FINDING-2026-03-04-43](#finding-2026-03-04-43) | Built-in Commands (Not Custom Commands) | built-in, command, custom |
+| [FINDING-2026-03-04-27](#finding-2026-03-04-27) | Built-in Subagents | built-in, exploration, model, subagent, tool |
+| [FINDING-2026-03-04-36](#finding-2026-03-04-36) | CLI-Defined Subagents (JSON Format) | cli, configuration, json, subagent, temporary |
 | [FINDING-2026-03-04-39](#finding-2026-03-04-39) | Commands File Structure (Legacy Format) | command, file, format, legacy, structure |
 | [FINDING-2026-03-04-38](#finding-2026-03-04-38) | Commands Merged into Skills System | command, migration, skill, system, unification |
 | [FINDING-2026-03-04-42](#finding-2026-03-04-42) | Commands Priority and Precedence | command, precedence, priority, skill |
@@ -96,6 +129,17 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 | [FINDING-2026-03-04-44](#finding-2026-03-04-44) | Migrating Commands to Skills | command, migration, skill |
 | [FINDING-2026-03-05-82](#finding-2026-03-05-82) | Reference Skills Overview for Standards | convention, knowledge, reference, skill, standard |
 | [FINDING-2026-03-05-83](#finding-2026-03-05-83) | Rules Overview for Standards | convention, enforcement, rule, scope, standard |
+| [FINDING-2026-03-04-34](#finding-2026-03-04-34) | Subagent Auto-Compaction | auto-compaction, context, subagent, transcript |
+| [FINDING-2026-03-04-31](#finding-2026-03-04-31) | Subagent Execution Modes | background, execution, foreground, mode, subagent |
+| [FINDING-2026-03-04-26](#finding-2026-03-04-26) | Subagent Frontmatter Fields Complete Specification | configuration, field, frontmatter, specification, subagent |
+| [FINDING-2026-03-04-37](#finding-2026-03-04-37) | Subagent Hooks | event, hook, lifecycle, scope, subagent |
+| [FINDING-2026-03-04-32](#finding-2026-03-04-32) | Subagent Isolation with Git Worktrees | git, isolation, subagent, testing, worktree |
+| [FINDING-2026-03-04-35](#finding-2026-03-04-35) | Subagent Management with /agents Command | command, interface, management, subagent |
+| [FINDING-2026-03-04-28](#finding-2026-03-04-28) | Subagent Permission Modes | mode, permission, security, subagent |
+| [FINDING-2026-03-04-30](#finding-2026-03-04-30) | Subagent Persistent Memory | memory, persistence, scope, storage, subagent |
+| [FINDING-2026-03-04-33](#finding-2026-03-04-33) | Subagent Resumption and Transcripts | resumption, session, storage, subagent, transcript |
+| [FINDING-2026-03-04-29](#finding-2026-03-04-29) | Subagent Tool Access Control | control, security, subagent, tool |
+| [FINDING-2026-03-04-25](#finding-2026-03-04-25) | Subagents File Structure and Locations | configuration, file, priority, scope, subagent |
 | [FINDING-2026-03-05-85](#finding-2026-03-05-85) | Trade-offs and Risk Analysis | context, efficiency, risk, rule, skill |
 | [FINDING-2026-03-05-86](#finding-2026-03-05-86) | Use Case Decision Framework | decision, framework, rule, skill, use-case |
 
