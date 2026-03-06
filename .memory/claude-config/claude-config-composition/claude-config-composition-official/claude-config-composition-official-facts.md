@@ -11,6 +11,7 @@ Official Claude prompt engineering best practices from platform.claude.com docum
 ## FINDING-2026-03-06-1: Long Context Prompting - Put Longform Data at Top
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** document, longform, performance, placement, prompt
 
 **What:**
 When working with large documents or data-rich inputs (20K+ tokens), place long documents and inputs near the top of the prompt, above the query, instructions, and examples. This specific ordering significantly improves performance.
@@ -43,6 +44,7 @@ Performance improvement of up to 30% in response quality when queries are placed
 ## FINDING-2026-03-06-2: XML Structuring for Prompt Components
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** component, parsing, prompt, structure, xml
 
 **What:**
 XML tags help Claude parse complex prompts unambiguously, especially when prompts mix instructions, context, examples, and variable inputs. Wrap each type of content in its own tag.
@@ -85,6 +87,7 @@ From official documentation:
 ## FINDING-2026-03-06-3: Examples Placement and Structure
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** example, few-shot, format, prompt, structure
 
 **What:**
 Examples are one of the most reliable ways to steer Claude's output format, tone, and structure. Examples should be structured using XML tags and include 3-5 examples for best results.
@@ -107,6 +110,7 @@ From official documentation:
 ## FINDING-2026-03-06-4: Role Setting in System Prompt
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** behavior, prompt, role, system, tone
 
 **What:**
 Setting a role in the system prompt focuses Claude's behaviour and tone for the use case. Even a single sentence makes a difference.
@@ -127,6 +131,7 @@ system="You are a helpful coding assistant specializing in Python."
 ## FINDING-2026-03-06-5: Ground Responses in Quotes for Long Documents
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** document, grounding, longform, prompt, quote
 
 **What:**
 For long document tasks, ask Claude to quote relevant parts of the documents first before carrying out its task. This helps Claude cut through the noise of the document's contents.
@@ -147,6 +152,7 @@ Find quotes from the patient records that are relevant to diagnosing the patient
 ## FINDING-2026-03-06-6: Clear and Direct Instructions
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** clarity, explicit, instruction, prompt, specificity
 
 **What:**
 Claude responds well to clear, explicit instructions. Be specific about desired output. If you want "above and beyond" behaviour, explicitly request it rather than relying on the model to infer from vague prompts.
@@ -169,6 +175,7 @@ From official documentation:
 ## FINDING-2026-03-06-7: Context Provision for Better Understanding
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** context, instruction, motivation, prompt, understanding
 
 **What:**
 Providing context or motivation behind instructions, such as explaining to Claude why such behaviour is important, can help Claude better understand goals and deliver more targeted responses.
@@ -188,6 +195,7 @@ From official documentation:
 ## FINDING-2026-03-06-8: Output Format Control - Tell What To Do, Not What Not To Do
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** constraint, format, instruction, output, prompt
 
 **What:**
 When controlling output format, tell Claude what to do instead of what not to do. Use positive framing for instructions.
@@ -205,6 +213,7 @@ From official documentation, effective ways to steer output formatting:
 ## FINDING-2026-03-06-9: Match Prompt Style to Desired Output Style
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** format, match, output, prompt, style
 
 **What:**
 The formatting style used in the prompt may influence Claude's response style. Match prompt style to desired output style for better formatting control.
@@ -220,6 +229,7 @@ From official documentation:
 ## FINDING-2026-03-06-10: Prefilled Responses Deprecated in Claude 4.6+
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** deprecated, feature, prefill, prompt, version
 
 **What:**
 Starting with Claude 4.6 models, prefilled responses on the last assistant turn are no longer supported. Model intelligence and instruction following has advanced such that most use cases of prefill no longer require it.
@@ -239,6 +249,7 @@ From official documentation:
 ## FINDING-2026-03-06-11: Thinking Prompting for Step-by-Step Reasoning
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** chain-of-thought, prompt, reasoning, step-by-step, thinking
 
 **What:**
 When extended thinking is disabled, you can encourage step-by-step reasoning by asking Claude to think through the problem using structured tags like `<thinking>` and `<answer>` to separate reasoning from final output.
@@ -254,6 +265,7 @@ From official documentation:
 ## FINDING-2026-03-06-12: Multishot Examples Work With Thinking
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** example, few-shot, pattern, reasoning, thinking
 
 **What:**
 Use `<thinking>` tags inside few-shot examples to show Claude the reasoning pattern. It will generalise that style to its own extended thinking blocks.
@@ -269,6 +281,7 @@ From official documentation:
 ## FINDING-2026-03-06-13: Self-Check Instructions for Error Catching
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** error, prompt, self-check, validation, verification
 
 **What:**
 Append instructions like "Before you finish, verify your answer against [test criteria]" to catch errors reliably, especially for coding and maths.
@@ -284,6 +297,7 @@ From official documentation:
 ## FINDING-2026-03-06-14: General Instructions Over Prescriptive Steps for Thinking
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** guidance, instruction, prompt, reasoning, thinking
 
 **What:**
 A prompt like "think thoroughly" often produces better reasoning than a hand-written step-by-step plan. Claude's reasoning frequently exceeds what a human would prescribe.
@@ -299,6 +313,7 @@ From official documentation:
 ## FINDING-2026-03-06-15: XML Format Indicators for Output Control
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** format, indicator, output, prompt, xml
 
 **What:**
 Using XML format indicators in prompts provides effective output format control.
@@ -315,6 +330,7 @@ From official documentation, effective ways to steer output formatting:
 ## FINDING-2026-03-06-16: Detailed Prompts for Specific Formatting Preferences
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** detail, format, markdown, preference, prompt
 
 **What:**
 For more control over markdown and formatting usage, provide explicit guidance through detailed prompts.
@@ -341,6 +357,7 @@ Instead of listing items with bullets or numbers, incorporate them naturally int
 ## FINDING-2026-03-06-17: Sequential Instructions for Ordered Tasks
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** instruction, order, prompt, sequential, task
 
 **What:**
 Provide instructions as sequential steps using numbered lists or bullet points when the order or completeness of steps matters.
@@ -356,6 +373,7 @@ From official documentation:
 ## FINDING-2026-03-06-18: LaTeX Output Default in Claude Opus 4.6
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** default, latex, mathematical, output, version
 
 **What:**
 Claude Opus 4.6 defaults to LaTeX for mathematical expressions, equations, and technical explanations. If plain text is preferred, explicit instructions are needed.
@@ -373,6 +391,7 @@ From official documentation:
 ## FINDING-2026-03-06-19: Communication Style and Verbosity in Claude 4.x
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** communication, concise, style, verbosity, version
 
 **What:**
 Claude's latest models have a more concise and natural communication style: more direct and grounded, more conversational, less verbose. May skip detailed summaries for efficiency unless prompted otherwise.
@@ -394,6 +413,7 @@ After completing a task that involves tool use, provide a quick summary of the w
 ## FINDING-2026-03-06-20: Model Self-Knowledge and Identity
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** identity, model, prompt, self-knowledge, system
 
 **What:**
 If you would like Claude to identify itself correctly in your application or use specific API strings, provide this information in the system prompt.
@@ -416,6 +436,7 @@ When an LLM is needed, please default to Claude Opus 4.6 unless the user request
 ## FINDING-2026-03-06-27: Explicit Tool Use Instructions for Action-Taking
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** action, explicit, instruction, prompt, tool
 
 **What:**
 Claude's latest models benefit from explicit direction to use specific tools. If you say "can you suggest some changes," Claude will sometimes provide suggestions rather than implementing them. For Claude to take action, be more explicit.
@@ -447,6 +468,7 @@ Do not jump into implementation or change files unless clearly instructed to mak
 ## FINDING-2026-03-06-28: Parallel Tool Calling Optimization
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** efficiency, optimization, parallel, prompt, tool
 
 **What:**
 Claude's latest models excel at parallel tool execution. You can boost parallel calling to ~100% or adjust aggression level through prompting.
@@ -475,6 +497,7 @@ Execute operations sequentially with brief pauses between each step to ensure st
 ## FINDING-2026-03-06-29: Context Awareness and Multi-Window State Management
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** compaction, context, management, prompt, state
 
 **What:**
 For systems that compact context or allow saving state externally, inform Claude about this capability so it can manage context effectively rather than stopping tasks early due to token budget concerns.
@@ -493,6 +516,7 @@ Your context window will be automatically compacted as it approaches its limit, 
 ## FINDING-2026-03-06-30: State Management Structure for Long-Horizon Tasks
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** git, json, progress, state, structure
 
 **What:**
 Use structured formats (JSON) for state data tracking, unstructured text for progress notes, and Git for state tracking across sessions.
@@ -531,6 +555,7 @@ Session 3 progress:
 ## FINDING-2026-03-06-31: Research Task Structured Approach
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** confidence, hypothesis, prompt, research, structure
 
 **What:**
 For complex research tasks, use a structured approach with hypothesis tracking, confidence levels, and self-critique.
@@ -550,6 +575,7 @@ From official documentation:
 ## FINDING-2026-03-06-32: Subagent Usage Guidance
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** guidance, isolation, prompt, subagent, usage
 
 **What:**
 Claude Opus 4.6 has a strong predilection for subagents and may spawn them excessively. Provide explicit guidance about when subagents are and aren't warranted.
@@ -568,6 +594,7 @@ Use subagents when tasks can run in parallel, require isolated context, or invol
 ## FINDING-2026-03-06-33: Balancing Autonomy and Safety Through Confirmation Prompts
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** autonomy, confirmation, prompt, risk, safety
 
 **What:**
 Without guidance, Claude Opus 4.6 may take actions that are difficult to reverse or affect shared systems. Add guidance to request confirmation before risky actions.
@@ -591,6 +618,7 @@ Examples of actions that warrant confirmation:
 ## FINDING-2026-03-06-34: Minimizing Overengineering in Code Generation
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** code, minimal, overengineering, prompt, simplicity
 
 **What:**
 Claude Opus 4.5 and Claude Opus 4.6 have a tendency to overengineer by creating extra files, adding unnecessary abstractions, or building in flexibility that wasn't requested. Add specific guidance to keep solutions minimal.
@@ -614,6 +642,7 @@ Avoid over-engineering. Only make changes that are directly requested or clearly
 ## FINDING-2026-03-06-35: Frontend Design Aesthetic Guidance
 
 **Source:** [Prompt Engineering Best Practices - Claude API Docs](https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+**Keywords:** aesthetic, design, frontend, guidance, prompt
 
 **What:**
 Without guidance, models can default to generic patterns that create the "AI slop" aesthetic. Provide detailed guidance to create distinctive, creative frontends.
