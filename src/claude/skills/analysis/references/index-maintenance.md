@@ -11,12 +11,14 @@
 **MUST:**
 - Update index after appending to fact files
 - Update index after archiving disproven findings
+- Update keyword counts when findings are added or archived
 - Include file paths and last updated timestamps
 - Keep index concise and navigable
 
 **MUST NOT:**
 - Skip index updates
 - Leave index out of sync with fact files
+- Leave keyword counts out of sync with findings
 
 ---
 
@@ -56,6 +58,16 @@
 
 ---
 
+## Keywords
+
+- **keyword1** (N findings)
+- **keyword2** (N findings)
+- **keyword3** (N findings)
+
+[... all keywords in alphabetical order ...]
+
+---
+
 ## Analysis Outputs
 
 - [`[ANALYSIS-NAME].md`]([ANALYSIS-NAME].md) - [Description]
@@ -73,15 +85,18 @@ Update the index after each of these operations:
 
 1. **Appending to fact file**
    - Update "Last updated" timestamp for that fact file
+   - Update Keywords section with new keywords or increment counts
 
 2. **Creating new subtopic file**
    - Add new entry in "Fact Files" section
    - Include brief description of subtopic scope
+   - Update Keywords section with any new keywords from the file
 
 3. **Archiving disproven finding**
    - Add or update "Disproven:" line with count
    - If it's the first disproven finding, add the line
    - If archive already exists, increment the count
+   - Decrement keyword counts for keywords in the archived finding
 
 4. **Creating final output**
    - Add entry in "Analysis Outputs" section
@@ -104,6 +119,13 @@ If index doesn't exist, create it with this minimal structure:
 
 - [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - [One-sentence description]
   - Last updated: YYYY-MM-DD HH:MM
+
+---
+
+## Keywords
+
+- **keyword1** (N findings)
+- **keyword2** (N findings)
 
 ---
 
@@ -160,6 +182,44 @@ When adding disproven companion file reference:
 
 ---
 
+## Keywords Section (MANDATORY)
+
+List all unique keywords used across the topic and all subtopics, sorted alphabetically, with count of findings using each keyword.
+
+**MUST:**
+- List keywords in alphabetical order
+- Include count of findings using each keyword
+- Update counts when appending findings with keywords
+- Update counts when archiving disproven findings
+- Use bold formatting for keywords
+
+**MUST NOT:**
+- Omit keywords section from index
+- List keywords without counts
+- Include keywords with zero findings
+
+**Format:**
+```markdown
+## Keywords
+
+- **api** (12 findings)
+- **authentication** (8 findings)
+- **configuration** (15 findings)
+- **hook** (6 findings)
+- **prompt** (23 findings)
+- **skill** (10 findings)
+- **validation** (9 findings)
+- **workflow** (14 findings)
+```
+
+**When updating keyword counts:**
+
+1. **New finding added:** Count keywords in the new finding and increment each keyword's count (add keyword if not present)
+2. **Finding archived:** Count keywords in the archived finding and decrement each keyword's count (remove keyword if count reaches zero)
+3. **Finding clarified:** No change to counts (clarifications reference existing findings but don't replace them)
+
+---
+
 ## Analysis Outputs Section
 
 Track generated analysis documents:
@@ -185,11 +245,14 @@ Track generated analysis documents:
 2. **Determine what changed:**
    - New fact file entry added?
    - Fact file timestamp updated?
+   - Keywords added or removed from findings?
+   - Keyword counts changed?
    - Disproven count changed?
    - New analysis output created?
 
 3. **Update index** using Edit tool:
    - Modify only the relevant sections
+   - Update keyword counts in Keywords section
    - Update "Last Updated" timestamp at top
    - Keep existing structure intact
 
@@ -225,6 +288,20 @@ Track generated analysis documents:
 - [.memory/ai-problems-analysis-amnesia-facts.md](.memory/ai-problems-analysis-amnesia-facts.md) - Context window and memory issues
   - Last updated: 2026-02-23 16:10
   - Disproven: [.memory/ai-problems-analysis-amnesia-facts-disproven.md](.memory/ai-problems-analysis-amnesia-facts-disproven.md) (1 finding)
+
+---
+
+## Keywords
+
+- **accuracy** (5 findings)
+- **behavioral** (8 findings)
+- **context** (12 findings)
+- **hallucination** (15 findings)
+- **memory** (9 findings)
+- **pattern** (7 findings)
+- **performance** (6 findings)
+- **training** (11 findings)
+- **verification** (10 findings)
 
 ---
 
