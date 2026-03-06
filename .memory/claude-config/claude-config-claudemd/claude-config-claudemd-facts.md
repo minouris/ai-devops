@@ -10,6 +10,7 @@ Detailed research findings on CLAUDE.md files for persistent project instruction
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, configuration, context, overview, persistent
 
 **What:**
 CLAUDE.md is the primary configuration file for customizing Claude's behavior. It contains persistent instructions that Claude reads at the start of every session.
@@ -34,6 +35,7 @@ CLAUDE.md is the primary configuration file for customizing Claude's behavior. I
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, hierarchy, location, priority, scope
 
 **What:**
 CLAUDE.md can live at different locations, each with different scope and priority.
@@ -59,6 +61,7 @@ CLAUDE.md can live at different locations, each with different scope and priorit
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, content, format, markdown, structure
 
 **What:**
 CLAUDE.md is plain Markdown without required structure. Content is natural language instructions.
@@ -101,6 +104,7 @@ This is a React + TypeScript application:
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** best-practice, claudemd, guideline, size, specificity
 
 **What:**
 Guidelines for effective CLAUDE.md files based on official documentation.
@@ -136,6 +140,7 @@ Guidelines for effective CLAUDE.md files based on official documentation.
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, file, import, path, security
 
 **What:**
 CLAUDE.md files can import additional files using `@path/to/import` syntax. Imported files expanded and loaded into context.
@@ -177,6 +182,7 @@ See @README for project overview and @package.json for available npm commands.
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** auto-memory, claudemd, comparison, memory, system
 
 **What:**
 Claude Code has two complementary memory systems that serve different purposes.
@@ -213,6 +219,7 @@ Claude Code has two complementary memory systems that serve different purposes.
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, discovery, hierarchy, loading, tree
 
 **What:**
 Claude Code walks the directory tree to discover CLAUDE.md files, loading them at different times based on location.
@@ -244,6 +251,7 @@ Loads on demand:
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** additional, claudemd, directory, environment, loading
 
 **What:**
 The `--add-dir` flag gives Claude access to additional directories. By default, CLAUDE.md from these directories is NOT loaded.
@@ -268,6 +276,7 @@ CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** analysis, claudemd, generation, init, initialization
 
 **What:**
 The `/init` command generates a starting CLAUDE.md automatically by analyzing your codebase.
@@ -297,6 +306,7 @@ The `/init` command generates a starting CLAUDE.md automatically by analyzing yo
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, exclusion, monorepo, policy, setting
 
 **What:**
 In large monorepos, ancestor CLAUDE.md files from other teams can be excluded using `claudeMdExcludes` setting.
@@ -326,6 +336,7 @@ In large monorepos, ancestor CLAUDE.md files from other teams can be excluded us
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory), [Skills docs](https://code.claude.com/docs/en/skills)
 **Verified:** [MOSTLY VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory - CLAUDE.md and rules columns confirmed; skills column consistent with cross-reference statements but would need skills docs for full verification]
+**Keywords:** claudemd, comparison, rule, skill, structure
 
 **What:**
 Three ways to provide instructions to Claude, each with different characteristics.
@@ -370,6 +381,7 @@ Three ways to provide instructions to Claude, each with different characteristic
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, compaction, persistence, reload, survival
 
 **What:**
 CLAUDE.md fully survives compaction - it's re-read from disk and re-injected after compaction.
@@ -396,6 +408,7 @@ CLAUDE.md fully survives compaction - it's re-read from disk and re-injected aft
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, debug, issue, solution, troubleshooting
 
 **What:**
 Common issues with CLAUDE.md and how to debug them.
