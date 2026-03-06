@@ -23,24 +23,51 @@
 
 ## File Naming Conventions
 
-**Main topic file:**
+**Folder-based organisation (MANDATORY):**
+
+Topics and their subtopics MUST be organised in folders containing the main file and all supplementary files.
+
+**Structure:**
 ```
-.memory/[topic]-facts.md
+.memory/[topic]/
+├── [topic]-facts.md              (main fact file)
+├── [topic]-[subtopic]-facts.md   (subtopic fact files)
+├── [topic]-index.md              (topic index)
+├── [topic]-log.md                (operation log)
+└── [other supplementary files]   (verification working docs, archives, etc.)
 ```
 
-**Subtopic files (when topic has distinct areas):**
-```
-.memory/[topic]-[subtopic]-facts.md
-```
+**MUST:**
+- Create a folder for each topic: `.memory/[topic]/`
+- Place all topic-related files within the topic folder
+- Use the topic name as the prefix for all files in the folder
+- Keep the main fact file and all subtopic files in the same folder
 
-The main topic prefix is mandatory for subtopic files.
+**MUST NOT:**
+- Create flat file structures in `.memory/` root for topics with multiple files
+- Scatter topic files across multiple folders
+- Place topic files outside their designated folder
 
 **Example:**
 ```
-.memory/ai-problems-analysis-facts.md
-.memory/ai-problems-analysis-hallucination-facts.md
-.memory/ai-problems-analysis-overeagerness-facts.md
+.memory/ai-problems-analysis/
+├── ai-problems-analysis-facts.md
+├── ai-problems-analysis-hallucination-facts.md
+├── ai-problems-analysis-overeagerness-facts.md
+├── ai-problems-analysis-index.md
+├── ai-problems-analysis-log.md
+└── ai-problems-analysis-verification-working.md
 ```
+
+**Single-file topics:**
+
+For topics that consist of only a single file with no subtopics or supplementary files, you MAY place the file directly in `.memory/` root:
+
+```
+.memory/simple-topic-facts.md
+```
+
+Once a topic acquires a second file (subtopic, index, log, etc.), migrate it to a folder structure.
 
 ---
 
