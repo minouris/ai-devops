@@ -63,6 +63,34 @@ Your training encourages varied phrasing. This is OVERRIDDEN for instruction fil
 - Skip verification steps
 - Add examples for clarity if the requirement is already unambiguous (brevity matters)
 
+### Rationale Requirements
+
+**MUST include rationales when:**
+- Rule overrides training defaults (Counter: blocks explain WHY default is suppressed)
+- Rule involves subjective judgment or interpretation
+- Rule addresses specific observed failure modes
+- Rule has edge cases or boundary conditions not explicitly covered
+- Understanding intent matters more than literal compliance
+
+**MUST NOT include rationales when:**
+- Rule is purely mechanical with no ambiguity (e.g., "Use `.md` extension")
+- No edge cases exist
+- Requirement is self-evident and unambiguous
+
+**Rationale:**
+Providing context or motivation behind instructions helps AI models better understand goals and apply rules correctly in edge cases not explicitly covered by literal wording. Rationales reduce over-literal interpretation that satisfies the letter but misses the spirit of requirements. Pattern: requirement → rationale → example creates strongest instruction.
+
+(Source: FINDING-2026-03-05-1, supported by official Anthropic documentation and academic research on instruction following)
+
+**Format:**
+```markdown
+**MUST:**
+- [Requirement]
+
+**Rationale:**
+[Explanation of why this requirement exists and what problem it prevents]
+```
+
 ### Brevity vs. Completeness
 
 **MUST:**
@@ -141,6 +169,8 @@ Ask yourself:
 - [ ] Consistent imperatives used ("MUST", "MUST NOT")?
 - [ ] No third-person about AI ("The AI should", "Copilot will")?
 - [ ] No vague language ("try to", "consider", "maybe")?
+- [ ] Rationales included where rules involve subjective judgment, edge cases, or override training defaults?
+- [ ] Rationales omitted where rules are mechanical and unambiguous?
 - [ ] Brevity balanced with completeness (no redundancy, no ambiguity)?
 
 **If ANY answer is "No":**
@@ -148,4 +178,5 @@ Ask yourself:
 - Use consistent imperatives
 - Remove third-person references
 - Clarify vague language
+- Add rationales where appropriate or remove unnecessary ones
 - These are mandatory standards
