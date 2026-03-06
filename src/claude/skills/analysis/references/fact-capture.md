@@ -185,6 +185,7 @@ New fact would add 5,000 characters → exceeds threshold
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [file/documentation/observation]
+**Keywords:** keyword1, keyword2, keyword3
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 [Finding description - fact, observation, theory, hypothesis, or note]
@@ -196,9 +197,61 @@ New fact would add 5,000 characters → exceeds threshold
 - `FINDING-YYYY-MM-DD-N`: Unique identifier (date + sequence number)
 - `Captured`: Timestamp when finding was recorded
 - `Source`: Where this information came from (URL, file path, observation, testing, user input)
+- `Keywords`: Comma-separated subject area tags for categorisation and search (required)
 - `Verified`: Verification status (always "NOT YET VERIFIED" during fact-finding)
 - Description: The actual finding content
 - Optional context: Additional details, implications, open questions
+
+---
+
+## Keywords (MANDATORY)
+
+Keywords help categorise findings by subject area and enable searching across related facts. You must include keywords in every finding.
+
+**Keyword selection:**
+- Select keywords that describe the technical domains or topics the finding covers
+- Choose keywords that group related findings thematically
+- Include keywords that enable cross-referencing
+
+**Keyword selection guidelines:**
+
+**MUST:**
+- Include keywords in every finding
+- Use lowercase for consistency
+- Use singular form (e.g., "configuration" not "configurations")
+- Limit to 3-5 keywords per finding
+- Choose keywords that describe subject areas, not actions
+- Use comma-separated format with space after comma
+
+**MUST NOT:**
+- Omit keywords from any finding
+- Use full sentences or phrases as keywords
+- Duplicate information already in the finding heading
+- Use more than 5 keywords (indicates lack of focus)
+- Use uppercase or mixed case
+
+**Keyword categories:**
+
+Choose keywords from these categories when applicable:
+- **Technology/tool names:** docker, api, webhook, xml, yaml
+- **Concepts:** authentication, caching, validation, composition, configuration
+- **Domains:** security, performance, testing, deployment
+- **Component types:** agent, skill, hook, rule, command, plugin
+- **Patterns:** workflow, pattern, structure, format
+
+**Examples:**
+
+```markdown
+**Keywords:** prompt, composition, xml, structure
+```
+
+```markdown
+**Keywords:** hook, automation, event, shell
+```
+
+```markdown
+**Keywords:** verification, testing, validation
+```
 
 ---
 
@@ -249,6 +302,7 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [source of clarifying information]
+**Keywords:** keyword1, keyword2
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-YYYY-MM-DD-M
 
@@ -262,6 +316,7 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-2026-02-24-8
 **Captured:** 2026-02-24 18:30
 **Source:** https://docs.example.com/api/v2
+**Keywords:** api, endpoint, deprecation
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-2026-02-24-3
 
