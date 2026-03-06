@@ -217,6 +217,7 @@ Keywords help categorise findings by subject area and enable searching across re
 
 **MUST:**
 - Include keywords in every finding
+- Reuse existing keywords where applicable before creating new ones
 - Use lowercase for consistency
 - Use singular form (e.g., "configuration" not "configurations")
 - Limit to 3-5 keywords per finding
@@ -225,6 +226,7 @@ Keywords help categorise findings by subject area and enable searching across re
 
 **MUST NOT:**
 - Omit keywords from any finding
+- Create new keywords when existing keywords serve the same purpose
 - Use full sentences or phrases as keywords
 - Duplicate information already in the finding heading
 - Use more than 5 keywords (indicates lack of focus)
