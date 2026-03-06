@@ -10,6 +10,7 @@ Detailed research findings on Skills as a Claude Code extension mechanism.
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** directory, file, organization, skill, structure
 
 **What:**
 Skills use a directory-based structure with SKILL.md as the required entry point and optional supporting files.
@@ -44,6 +45,7 @@ Skills use a directory-based structure with SKILL.md as the required entry point
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** field, frontmatter, skill, specification
 
 **What:**
 Skills support comprehensive frontmatter configuration in YAML format. All fields are optional except `description` is recommended.
@@ -90,6 +92,7 @@ hooks:
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** dynamic, injection, skill, substitution, variable
 
 **What:**
 Skills support string substitutions for dynamic values and command preprocessing for dynamic context injection.
@@ -127,6 +130,7 @@ PR comments: !`gh pr view --comments`
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** context, control, invocation, loading, skill
 
 **What:**
 Skills can be invoked by users or Claude, with frontmatter controlling who can invoke and when skills load into context.
@@ -155,6 +159,7 @@ Skills can be invoked by users or Claude, with frontmatter controlling who can i
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** access, control, permission, security, skill
 
 **What:**
 Three methods to control which skills Claude can invoke and what tools skills can use.
@@ -196,6 +201,7 @@ Add to skill frontmatter: `disable-model-invocation: true`
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** built-in, bundled, claudecode, skill
 
 **What:**
 Claude Code ships with bundled skills available in every session. These are prompt-based (not fixed logic) and can spawn parallel agents.
@@ -228,6 +234,7 @@ Claude Code ships with bundled skills available in every session. These are prom
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** pattern, reference, skill, task, type
 
 **What:**
 Skills fall into two main categories based on how they're invoked and what they contain.
@@ -278,6 +285,7 @@ Deploy the application:
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** advanced, feature, skill, subagent, thinking
 
 **What:**
 Skills support advanced patterns including subagent execution, extended thinking, and generating visual output.
@@ -319,6 +327,7 @@ Research $ARGUMENTS thoroughly:
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** distribution, plugin, project, scope, skill
 
 **What:**
 Skills can be distributed at different scopes depending on audience.
@@ -347,6 +356,7 @@ Skills can be distributed at different scopes depending on audience.
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** debug, issue, skill, solution, troubleshooting
 
 **What:**
 Common issues when skills don't trigger as expected or trigger too often.
@@ -373,6 +383,7 @@ Common issues when skills don't trigger as expected or trigger too often.
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** behavior, file, loading, progressive, skill
 
 **What:**
 Supporting files in skill directories (templates, examples, reference docs) are loaded selectively on-demand, not all at once when the skill is invoked.
@@ -419,6 +430,7 @@ Claude sees these links and loads `references/phase-1.md` or `references/phase-2
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** file, organization, skill, supporting, type
 
 **What:**
 Skills can bundle various file types as supporting files alongside `SKILL.md`. These files keep the main skill focused while providing detailed reference material, templates, examples, and executable utilities.
@@ -489,6 +501,7 @@ From official documentation:
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** convention, naming, skill, subfolder
 
 **What:**
 The official Skills documentation does not specify explicit limitations or required conventions for subfolder names within skill directories.
@@ -545,6 +558,7 @@ This indicates all files and folders besides `SKILL.md` are optional, with no re
 
 **Source:** [Agent Skills Specification](https://agentskills.io/specification)
 **Verified:** [VERIFIED on 2026-03-05 by https://agentskills.io/specification]
+**Keywords:** agentskills, directory, optional, skill, standard
 
 **Clarifies:** FINDING-2026-03-05-27 (subfolder naming conventions)
 
@@ -621,6 +635,7 @@ This validates frontmatter and naming conventions, but no mention of validating 
 
 **Source:** [Agent Skills Specification](https://agentskills.io/specification) and [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://agentskills.io/specification]
+**Keywords:** file, frontmatter, reference, requirement, skill
 
 **What:**
 Supporting files (reference files, templates, examples, scripts) in skill directories do not require frontmatter.
@@ -659,6 +674,7 @@ skill-name/
 
 **Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/skills]
+**Keywords:** budget, character, file, reference, skill
 
 **What:**
 Supporting files (reference files, templates, examples) do not count toward the skill character budget. Only skill descriptions consume the budget.
