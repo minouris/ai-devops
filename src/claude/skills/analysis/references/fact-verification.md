@@ -103,10 +103,14 @@ You will process a `.memory` file containing technical facts and research findin
 4. **Verify each remaining fact** by checking sources using WebFetch or WebSearch
 5. **Evaluate source currency** by checking dates
 6. **Separate facts** into accepted (current/verified) and rejected (outdated/inaccurate)
-7. **Tag each accepted fact** with `[VERIFIED on YYYY-MM-DD by {source-url}]` in its header block, where `{source-url}` is the primary authoritative URL (or short descriptor such as `research synthesis`) used to verify that specific fact
-8. **Create an archive file** for rejected facts with rejection reasons
-9. **Update the original file** with only verified facts, refreshed citations, and verification tags
-10. **Document the distillation process** in the progress log
+7. **Create a verification working document** with detailed verification evidence for each fact
+8. **Tag each accepted fact** with `[VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-n))` in its header block, where:
+   - `{source-url}` is the primary authoritative URL (or short descriptor such as `research synthesis`) used to verify that specific fact
+   - `{verification-working-file}` is the path to the verification working document (e.g., `.memory/topic-verification-working.md`)
+   - `#finding-n` is the anchor link to the specific finding's verification section in the working document
+9. **Create an archive file** for rejected facts with rejection reasons
+10. **Update the original file** with only verified facts, refreshed citations, and verification tags
+11. **Document the distillation process** in the progress log
 
 ---
 
@@ -211,12 +215,11 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 
 **Create two lists:**
 
-**Accepted Facts:**
+**Accepted Facts (for verification working document):**
 ```markdown
 ## Accepted Fact {N}: {Brief Description}
 
 **Fact:** {Exact factual statement}
-**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]
 
 **Verification:**
 - Source: [{Source Name}]({URL})
@@ -228,6 +231,8 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 ```
 
 When multiple sources were consulted, use the primary or most authoritative URL in the tag. Use a short descriptor such as `research synthesis` when the fact derives from synthesising multiple sources rather than a single verifiable URL.
+
+The verification working document will serve as a comprehensive reference for how each fact was verified, with the verification tag in the fact file linking to the relevant section.
 
 **Recently Verified Facts (skipped):**
 ```markdown
@@ -261,7 +266,76 @@ When multiple sources were consulted, use the primary or most authoritative URL 
 
 ---
 
-### Step 4: Create Archive File
+### Step 4: Create Verification Working Document
+
+**Execute:**
+```
+1. Determine verification working filename from input path:
+   ${input:memoryFilePath} → {basename}-verification-working.md
+   Example: .memory/claude-config-compaction-facts.md → .memory/claude-config-compaction-verification-working.md
+
+2. Create verification working document using Write tool with the structure below
+```
+
+**Verification Working Document Structure:**
+```markdown
+# {Topic} Verification Working Document
+
+Comprehensive verification of all findings in {source-file} against official documentation sources.
+
+**Primary sources:**
+- [Source Name](URL)
+- [Source Name](URL)
+
+**Verification date:** YYYY-MM-DD
+
+---
+
+## FINDING-YYYY-MM-DD-N: {Finding Title}
+
+**Claim:** {Brief summary of what the finding claims}
+
+**Verification:**
+
+From [Source Name](URL):
+
+> "{Exact quote from source that verifies the claim}"
+
+{Additional quotes or evidence as needed}
+
+**Status:** ✅ VERIFIED - {Summary of verification result}
+{or}
+**Status:** ⚠️ PARTIALLY VERIFIED - {What was verified, what wasn't}
+{or}
+**Status:** ❌ REJECTED - {Why it was rejected}
+
+---
+
+{Repeat for each finding}
+
+---
+
+## Verification Summary
+
+**Findings verified:** {N} fully verified, {N} partially verified
+
+{Summary of verification results}
+```
+
+**MUST:**
+- Include detailed evidence for each finding's verification
+- Provide exact quotes from sources where possible
+- Document verification status clearly
+- Use markdown heading anchors that match the finding identifiers (e.g., `## FINDING-2026-03-05-88` creates anchor `#finding-2026-03-05-88`)
+
+**MUST NOT:**
+- Skip creating this document
+- Use vague verification descriptions
+- Omit source quotes or evidence
+
+---
+
+### Step 5: Create Archive File
 
 **Execute:**
 ```
@@ -315,13 +389,13 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 
 ---
 
-### Step 5: Update Original Memory File
+### Step 6: Update Original Memory File
 
 **Execute:**
 ```
 1. Rewrite memory file using Edit or Write tool with ONLY accepted facts
 2. Update citations with refreshed URLs and dates
-3. Add verification note to file header
+3. Add verification note to file header referencing the verification working document
 4. Maintain original file structure where possible
 ```
 
@@ -331,6 +405,7 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 
 **Last Verified:** YYYY-MM-DD
 **Verification Method:** Source checking via WebFetch/WebSearch
+**Verification Details:** See {verification-working-filename}
 **Archived Facts:** See {archive filename}
 
 ---
@@ -342,30 +417,34 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 
 {Verified fact content}
 
-**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]
+**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-id))
 **Source:** [{Source Name}]({URL}) (accessed YYYY-MM-DD, published/updated YYYY-MM-DD)
 
 ---
 ```
 
-For fact files using the `FINDING-YYYY-MM-DD-N` block structure, add the `**Verified:**` line to the fact's header block, immediately after the `**Captured:**` line:
+For fact files using the `FINDING-YYYY-MM-DD-N` block structure, add the `**Verified:**` line to the fact's header block, immediately after the `**Source:**` line:
 
 ```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD
-**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]
+## FINDING-YYYY-MM-DD-N: {Finding Title}
+
 **Source:** {source reference}
+**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-yyyy-mm-dd-n))
 ```
 
-Use the primary authoritative URL as `{source-url}`. For synthesis findings with no single URL, use `research synthesis`.
+**Tag format explanation:**
+- `{source-url}` — Primary authoritative URL or `research synthesis` for multi-source findings
+- `{verification-working-file}` — Path to verification working document (e.g., `.memory/topic-verification-working.md`)
+- `#finding-yyyy-mm-dd-n` — Anchor link to the finding's verification section (lowercase, with hyphens)
 
 **MUST:**
 - Include ALL accepted facts
-- Add `**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}]` to every newly verified fact
+- Add `**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-id))` to every newly verified fact
+- Include link to verification working document in each verification tag
 - Preserve existing `**Verified:**` tags on recently verified facts (within 30 days) unchanged
 - Use refreshed citations with dates
 - Maintain logical organisation
-- Note existence of archive file
+- Note existence of archive file and verification working document
 - Preserve any non-factual content (structure, notes, TODOs)
 
 **MUST NOT:**
@@ -374,10 +453,11 @@ Use the primary authoritative URL as `{source-url}`. For synthesis findings with
 - Remove structural elements (headers, sections)
 - Change fact statements beyond verification updates
 - Remove or overwrite existing `**Verified:**` tags on retained (skipped) facts
+- Omit the link to the verification working document in new verification tags
 
 ---
 
-### Step 6: Log Progress
+### Step 7: Log Progress
 
 **Execute:**
 ```
@@ -388,6 +468,7 @@ Create or update .memory/verification_log.md with an entry for this run
 ## Verification: {filename} - YYYY-MM-DD HH:MM:SS
 
 **Source File:** {memory file path}
+**Verification Working Document:** {verification working file path}
 **Archive File:** {archive file path}
 **Started:** YYYY-MM-DD HH:MM:SS
 **Completed:** YYYY-MM-DD HH:MM:SS
@@ -428,16 +509,17 @@ Create or update .memory/verification_log.md with an entry for this run
 # Memory File Verification Complete
 
 **Original File:** {path}
-**Newly Verified:** {N} facts (tagged `[VERIFIED on {date} by {source-url}]`)
+**Newly Verified:** {N} facts (tagged with source and verification details link)
 **Retained:** {N} facts (within 30-day window — skipped, tags preserved)
 **Archived:** {N} facts rejected
+**Verification Working Document:** {verification working file path}
 **Archive Location:** {archive file path}
 
 ## Summary
 
 **Newly Verified Facts:**
-1. {Fact topic} - verified from {source}
-2. {Fact topic} - verified from {source}
+1. {Fact topic} - verified from {source} ([details]({verification-working-file}#finding-id))
+2. {Fact topic} - verified from {source} ([details]({verification-working-file}#finding-id))
 ...
 
 **Retained Facts (skipped — verified within 30 days):**
@@ -452,12 +534,14 @@ Create or update .memory/verification_log.md with an entry for this run
 ## Files Modified
 
 - ✅ Updated: {original memory file}
+- ✅ Created: {verification working document}
 - ✅ Created: {archive file}
 - ✅ Logged: .memory/verification_log.md
 
 ## Next Steps
 
 Review the updated memory file to ensure all critical information is retained.
+Check the verification working document for detailed verification evidence.
 Check the archive file to see what was removed and why.
 ```
 
@@ -494,7 +578,7 @@ Check the archive file to see what was removed and why.
 
 **If fact has an expired verification tag (older than 30 days):**
 - Treat as unverified
-- Verify fully and replace the tag with a new `[VERIFIED on {date} by {source-url}]`
+- Verify fully and replace the tag with a new `[VERIFIED on {date} by {source-url}] ([details]({verification-working-file}#finding-id))`
 - If verification fails, move to archive
 
 **If source is unavailable (404, connection error):**
@@ -552,17 +636,19 @@ memoryFilePath=.memory/analysis_facts_pending.md
    - Fact 1: ✅ ACCEPTED - Verified in official GitHub Copilot docs (2026)
    - Fact 2: ❌ REJECTED - Property is `tools` but syntax changed in recent release
    - Fact 3: ❌ REJECTED - Site unavailable, cannot verify standard is current
-4. Create `.memory/analysis_facts_pending_archive_2026-02-19.md`
-5. Update `.memory/analysis_facts_pending.md` with only Fact 1
-6. Log to `.memory/verification_log.md`
+4. Create `.memory/analysis_facts_pending-verification-working.md` with detailed verification evidence
+5. Create `.memory/analysis_facts_pending_archive_2026-02-19.md`
+6. Update `.memory/analysis_facts_pending.md` with only Fact 1 (tagged with link to verification working document)
+7. Log to `.memory/verification_log.md`
 
 **Output:**
 ```
 Memory File Verification Complete
 
 Original File: .memory/analysis_facts_pending.md
-Verified: 1 fact accepted
+Verified: 1 fact accepted (with verification details link)
 Archived: 2 facts rejected
+Verification Working Document: .memory/analysis_facts_pending-verification-working.md
 Archive Location: .memory/analysis_facts_pending_archive_2026-02-19.md
 ```
 
@@ -571,16 +657,19 @@ Archive Location: .memory/analysis_facts_pending_archive_2026-02-19.md
 ## Memory Directory Convention
 
 **During prompt execution, use `.memory/` for:**
+- Verification working documents → `.memory/{basename}-verification-working.md`
 - Progress logging → `.memory/verification_log.md`
 - Archived facts → `.memory/{basename}_archive_{date}.md`
 
 **MUST create memory files when:**
+- Documenting verification evidence (`.memory/{basename}-verification-working.md`)
 - Archiving rejected facts (`.memory/{basename}_archive_{date}.md`)
 - Logging the verification process (`.memory/verification_log.md`)
 
 **MUST NOT:**
 - Put archived facts in user-facing documentation
 - Delete rejected facts without archiving
+- Skip creating the verification working document
 
 ---
 
@@ -593,13 +682,15 @@ Archive Location: .memory/analysis_facts_pending_archive_2026-02-19.md
 - [ ] Every remaining fact was verified against an authoritative source?
 - [ ] Source content was fetched using WebFetch or WebSearch?
 - [ ] Source dates were checked?
-- [ ] Newly accepted facts tagged with `[VERIFIED on {date} by {source-url}]`?
+- [ ] Verification working document created with detailed evidence for each finding?
+- [ ] Newly accepted facts tagged with `[VERIFIED on {date} by {source-url}] ([details]({verification-working-file}#finding-id))`?
+- [ ] Each verification tag includes link to corresponding section in verification working document?
 - [ ] Retained facts have their original tags preserved unchanged?
 - [ ] Rejected facts are archived with specific rejection reasons?
 - [ ] Archive file created with complete information?
-- [ ] Original file updated with only verified facts and correct tags?
+- [ ] Original file updated with only verified facts and correct tags with verification links?
 - [ ] Verification logged to `.memory/verification_log.md`?
-- [ ] User provided with summary of changes?
+- [ ] User provided with summary of changes including verification working document location?
 
 **If ANY answer is "No":**
 - Complete the missing verification
