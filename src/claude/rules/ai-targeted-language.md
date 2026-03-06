@@ -105,6 +105,47 @@ Providing context or motivation behind instructions helps AI models better under
 
 ---
 
+## Heading Formatting (MANDATORY)
+
+**MUST:**
+- Use proper markdown heading levels: `##`, `###`, `####`, `#####`, `######`
+- Use hierarchical structure that reflects document organisation
+
+**MUST NOT:**
+- Use bold text as headings: `**Heading Text**` or `**Heading Text:**`
+- Use bold text to simulate section breaks or emphasis where a heading is appropriate
+- Mix heading styles within the same document
+
+**Rationale:**
+- Proper headings enable navigation, linking, and table of contents generation
+- Bold text does not provide semantic structure
+- Screen readers and document parsers rely on heading tags
+
+**Examples:**
+
+❌ **NEVER Write:**
+```markdown
+**Implementation Details**
+
+Some content here.
+
+**Configuration:**
+More content.
+```
+
+✅ **ALWAYS Write:**
+```markdown
+#### Implementation Details
+
+Some content here.
+
+#### Configuration
+
+More content.
+```
+
+---
+
 ## Examples
 
 ### Correct (AI-Targeted)
@@ -167,6 +208,7 @@ Ask yourself:
 - [ ] Consistent imperatives used ("MUST", "MUST NOT")?
 - [ ] No third-person about AI ("The AI should", "Copilot will")?
 - [ ] No vague language ("try to", "consider", "maybe")?
+- [ ] Proper markdown headings used (not bold text as headings)?
 - [ ] Rationales included where rules involve subjective judgment, edge cases, or override training defaults?
 - [ ] Rationales omitted where rules are mechanical and unambiguous?
 - [ ] Brevity balanced with completeness (no redundancy, no ambiguity)?
