@@ -80,8 +80,6 @@ Your training encourages varied phrasing. This is OVERRIDDEN for instruction fil
 **Rationale:**
 Providing context or motivation behind instructions helps AI models better understand goals and apply rules correctly in edge cases not explicitly covered by literal wording. Rationales reduce over-literal interpretation that satisfies the letter but misses the spirit of requirements. Pattern: requirement → rationale → example creates strongest instruction.
 
-(Source: FINDING-2026-03-05-1, supported by official Anthropic documentation and academic research on instruction following)
-
 **Format:**
 ```markdown
 **MUST:**
