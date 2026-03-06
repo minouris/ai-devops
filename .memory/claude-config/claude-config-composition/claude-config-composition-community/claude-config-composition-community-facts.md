@@ -11,6 +11,7 @@ Community prompt engineering patterns and research from external sources.
 ## FINDING-2026-03-06-21: General Prompt Structure Component Order
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** component, order, prompt, structure
 
 **What:**
 Well-structured prompts should organise elements hierarchically in this order: System Message → Instruction → Context → Examples → Output Constraints.
@@ -36,6 +37,7 @@ From community source:
 ## FINDING-2026-03-06-22: Critical Information at Beginning or End (Lost-in-the-Middle Effect)
 
 **Source:** [Prompt Engineering Best Practices 2026 - Thomas Wiegold](https://thomas-wiegold.com/blog/prompt-engineering-best-practices-2026/) citing Liu et al. (2024) (Community source - marked for user review)
+**Keywords:** accuracy, information, lost-in-middle, placement, prompt
 
 **What:**
 Accuracy is highest when relevant information appears at the beginning or end of the context. There is over 30% accuracy drop for information buried in the middle.
@@ -53,6 +55,7 @@ From community source citing research:
 ## FINDING-2026-03-06-23: Static-to-Variable Sequencing for Prompt Caching
 
 **Source:** [Prompt Engineering Best Practices 2026 - Thomas Wiegold](https://thomas-wiegold.com/blog/prompt-engineering-best-practices-2026/) (Community source - marked for user review)
+**Keywords:** cache, dynamic, prompt, sequencing, static
 
 **What:**
 For production systems using prompt caching, order content from least to most dynamic: System instructions and few-shot examples first, tool definitions next, user messages and query-specific data last.
@@ -75,6 +78,7 @@ From community source:
 ## FINDING-2026-03-06-24: Optimal Prompt Length Range
 
 **Source:** [Prompt Engineering Best Practices 2026 - Thomas Wiegold](https://thomas-wiegold.com/blog/prompt-engineering-best-practices-2026/) (Community source - marked for user review)
+**Keywords:** length, optimal, performance, prompt, token
 
 **What:**
 Optimal prompt length ranges from 150-300 words for most tasks. Performance degradation occurs around 3,000 tokens due to quadratic attention scaling in transformer architecture.
@@ -90,6 +94,7 @@ From community source:
 ## FINDING-2026-03-06-25: Iterative Composition Workflow
 
 **Source:** [Prompt Engineering Best Practices 2026 - Thomas Wiegold](https://thomas-wiegold.com/blog/prompt-engineering-best-practices-2026/) (Community source - marked for user review)
+**Keywords:** composition, iterative, prompt, testing, workflow
 
 **What:**
 Build prompts iteratively: start minimal, identify specific output failures, add only necessary corrections, and repeat.
@@ -107,6 +112,7 @@ From community source:
 ## FINDING-2026-03-06-26: Clarity Through Hierarchy and Visual Separation
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** clarity, hierarchy, prompt, separation, visual
 
 **What:**
 Treat complex prompts like UX design. Group related instructions. Use section headers, examples, and whitespace for visual separation between sections.
@@ -126,6 +132,7 @@ From community source:
 ## FINDING-2026-03-06-36: Chain-of-Thought Pattern for Reasoning Tasks
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** chain-of-thought, pattern, prompt, reasoning
 
 **What:**
 Chain-of-thought prompts are recommended for tasks requiring logic, analysis, or step-by-step reasoning (maths, troubleshooting, decision-making). Encourages models to articulate reasoning process step-by-step before final answer.
@@ -143,6 +150,7 @@ From community source:
 ## FINDING-2026-03-06-37: Self-Consistency Pattern for Arithmetic and Common Sense
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** arithmetic, consistency, pattern, prompt, reasoning
 
 **What:**
 Self-consistency generates multiple reasoning paths and selects the most consistent answer, particularly effective for tasks involving arithmetic or common sense.
@@ -160,6 +168,7 @@ From community source:
 ## FINDING-2026-03-06-38: Blended Pattern Composition for Complex Tasks
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** blend, complex, composition, pattern, prompt
 
 **What:**
 Blend multiple prompt styles (few-shot examples, role-based instructions, formatting constraints, chain-of-thought reasoning) into a single cohesive input for complex tasks where no single pattern is sufficient.
@@ -181,6 +190,7 @@ From community source:
 ## FINDING-2026-03-06-39: Completion-Style Prompts for Creative Tasks
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** completion, creative, generation, prompt, style
 
 **What:**
 Completion-style prompts work well when exploring creative text generation or testing how a model continues a story or description.
@@ -198,6 +208,7 @@ From community source:
 ## FINDING-2026-03-06-40: Role-Based Prompts for Voice and Behaviour Alignment
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** behavior, prompt, role, voice
 
 **What:**
 Role-based prompts align the model's voice and behaviour with a specific context (legal adviser, data analyst, customer support agent).
@@ -215,6 +226,7 @@ From community source:
 ## FINDING-2026-03-06-41: Context-Rich Prompts for Document Analysis
 
 **Source:** [The Ultimate Guide to Prompt Engineering in 2026 - Lakera](https://www.lakera.ai/blog/prompt-engineering-guide) (Community source - marked for user review)
+**Keywords:** analysis, context, document, prompt, rich
 
 **What:**
 Context-rich prompts are effective when input includes long documents, transcripts, or structured information the model needs to analyse or work with.
