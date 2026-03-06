@@ -24,28 +24,22 @@ Detect AI-targeted language violations in markdown files.
 
 4. **Check for violations:**
 
-   **Third-person AI references:**
-   - Search for: "The AI should", "The AI will", "The AI must"
-   - Search for: "The agent should", "The agent will", "The agent must"
-   - Search for: "Copilot should", "Copilot will", "Copilot must"
-   - Search for: "Claude Code should", "Claude Code will", "Claude Code must"
-   - Record line numbers and exact matches
+   Check file content against ALL requirements in [src/claude/rules/ai-targeted-language.md](../../../rules/ai-targeted-language.md):
 
-   **Vague language:**
-   - Search for: "try to", "consider", "maybe"
-   - Search for: "approximately", "around", "roughly"
+   - AI-Targeted Language Requirements (Writing Style section)
+   - Clarity and Precision requirements
+   - Brevity vs. Completeness balance
+   - All MUST and MUST NOT requirements
+
+   **When checking:**
+   - Parse file line-by-line for accurate line numbers
    - Exclude code blocks (lines between triple backticks)
    - Exclude quoted text (lines starting with `>`)
-   - Exclude headings (lines starting with `#`)
-   - Record line numbers and context
-
-   **Missing second-person / imperative mood:**
-   - Check instruction sections (MUST/MUST NOT blocks, numbered lists)
-   - Look for patterns that should use "you" or imperative verbs
-   - Record line numbers where instructions lack proper form
+   - Exclude literal examples in documentation
+   - Record line numbers, violation type, and context for each violation
 
 5. **Categorize violations:**
-   - Group by type (third-person, vague language, missing imperative)
+   - Group by type based on ai-targeted-language.md categories
    - Sort by line number within each category
    - Identify fixable vs non-fixable violations
 
