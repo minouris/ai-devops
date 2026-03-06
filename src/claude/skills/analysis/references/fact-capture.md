@@ -25,7 +25,7 @@
 
 **Folder-based organisation (MANDATORY):**
 
-Topics and their subtopics MUST be organised in folders containing the main file and all supplementary files. This structure is recursive: subtopics are folders within the topic folder.
+Organise topics and subtopics in folders containing the main file and all supplementary files. Use recursive structure: subtopics are folders within the topic folder.
 
 **Structure:**
 ```
@@ -89,7 +89,7 @@ Once a topic acquires a second file (subtopic, index, log, etc.), migrate it to 
 
 ## Link Integrity (MANDATORY)
 
-When using folder-based organisation, maintain correct relative paths between files at different levels.
+When you use folder-based organisation, maintain correct relative paths between files at different levels.
 
 **From topic-level files to subtopic files:**
 ```markdown
@@ -136,11 +136,11 @@ See [claude-config-hooks-facts.md](../claude-config-hooks/claude-config-hooks-fa
 
 ## File Size Management (MANDATORY)
 
-When fact files grow too large, they become difficult to parse and slow down research operations. Manage file growth by creating new subtopics.
+Large fact files are difficult to parse and slow down research operations. Manage file growth by creating new subtopics when thresholds are exceeded.
 
 **Size threshold:**
 - **Maximum recommended:** 40,000 characters (~10,000 tokens)
-- **Action trigger:** When adding a new fact would exceed this threshold
+- **Action trigger:** When you add a new fact that would exceed this threshold
 
 **MUST:**
 - Check current file size before appending new facts
@@ -156,9 +156,9 @@ When fact files grow too large, they become difficult to parse and slow down res
 - Leave orphaned facts in the main file after creating a subtopic
 
 **Rationale:**
-Based on Claude's long context capabilities (FINDING-2026-03-06-1 in claude-config-composition-facts.md), performance remains strong up to 20K+ tokens. However, fact files that are read and parsed frequently during research benefit from smaller sizes for efficiency. The 40,000 character threshold (~10,000 tokens) provides a balance between manageability and avoiding excessive file fragmentation.
+Claude's long context capabilities support performance up to 20K+ tokens with data at the top of prompts. However, fact files that you read and parse frequently during research benefit from smaller sizes for efficiency. The 40,000 character threshold (~10,000 tokens) balances manageability with avoiding excessive file fragmentation.
 
-**Process when threshold exceeded:**
+**When you exceed the threshold, follow this process:**
 
 1. **Identify thematic groups:** Review existing facts and identify natural groupings
 2. **Select subtopic name:** Choose a descriptive name for the new subtopic
