@@ -59,14 +59,6 @@ ai-devops/
 5. **Safety First**: Built-in verification and guardrails
 6. **Tool-Agnostic Core**: But with tool-specific optimizations available
 
-## Related Projects
-
-- [spafw37](https://github.com/minouris/spafw37) - Most mature workflow (102 issues)
-- [prompt-driven-development](https://github.com/minouris/prompt-driven-development) - Metaprompts and composition (80+ issues)
-- [claude-code-container](https://github.com/minouris/claude-code-container) - Most up-to-date instructions
-- [nightingale-truenas](https://github.com/minouris/nightingale-truenas) - Memory-based approach
-- [simbox](https://github.com/minouris/simbox) - Sample outputs
-
 ## Contributing
 
 This is a consolidation project. Improvements should generally be:
