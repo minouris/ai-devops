@@ -47,28 +47,37 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 - **auto-compaction** (1 finding)
 - **background** (1 finding)
 - **behavior** (1 finding)
+- **best-practice** (1 finding)
 - **built-in** (2 findings)
+- **claudemd** (1 finding)
 - **cli** (1 finding)
 - **command** (8 findings)
-- **compaction** (1 finding)
-- **configuration** (4 findings)
-- **context** (3 findings)
+- **compaction** (2 findings)
+- **comparison** (1 finding)
+- **conditional** (1 finding)
+- **configuration** (7 findings)
+- **content** (1 finding)
+- **context** (5 findings)
 - **control** (1 finding)
 - **convention** (2 findings)
 - **custom** (1 finding)
 - **decision** (1 finding)
+- **directory** (2 findings)
 - **efficiency** (1 finding)
 - **enforcement** (1 finding)
+- **environment** (1 finding)
 - **event** (1 finding)
+- **exclusion** (1 finding)
 - **execution** (1 finding)
 - **exploration** (1 finding)
 - **field** (1 finding)
-- **file** (2 findings)
+- **file** (3 findings)
 - **foreground** (1 finding)
-- **format** (1 finding)
+- **format** (2 findings)
 - **framework** (1 finding)
 - **frontmatter** (2 findings)
 - **git** (1 finding)
+- **guideline** (1 finding)
 - **hook** (1 finding)
 - **interface** (1 finding)
 - **isolation** (1 finding)
@@ -76,38 +85,55 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 - **knowledge** (1 finding)
 - **legacy** (1 finding)
 - **lifecycle** (1 finding)
-- **loading** (1 finding)
+- **loading** (5 findings)
 - **management** (1 finding)
+- **markdown** (1 finding)
 - **memory** (1 finding)
 - **migration** (2 findings)
 - **mode** (2 findings)
 - **model** (1 finding)
-- **persistence** (2 findings)
+- **modular** (1 finding)
+- **monorepo** (1 finding)
+- **organization** (2 findings)
+- **pattern** (2 findings)
+- **persistence** (3 findings)
 - **permission** (1 finding)
 - **placeholder** (1 finding)
 - **precedence** (1 finding)
-- **priority** (2 findings)
+- **preference** (1 finding)
+- **priority** (4 findings)
+- **project** (1 finding)
 - **reference** (1 finding)
 - **resumption** (1 finding)
 - **risk** (1 finding)
-- **rule** (6 findings)
-- **scope** (4 findings)
+- **rule** (20 findings)
+- **scope** (9 findings)
 - **security** (2 findings)
-- **session** (1 finding)
+- **session** (2 findings)
+- **setting** (1 finding)
+- **sharing** (1 finding)
+- **size** (1 finding)
 - **skill** (8 findings)
 - **specification** (1 finding)
-- **standard** (2 findings)
+- **standard** (3 findings)
 - **storage** (2 findings)
-- **structure** (1 finding)
+- **structure** (4 findings)
 - **subagent** (13 findings)
 - **substitution** (1 finding)
-- **system** (1 finding)
+- **symlink** (1 finding)
+- **system** (2 findings)
+- **team** (1 finding)
 - **temporary** (1 finding)
 - **testing** (1 finding)
+- **timing** (1 finding)
 - **tool** (3 findings)
 - **transcript** (2 findings)
+- **unconditional** (1 finding)
+- **uncertainty** (1 finding)
 - **unification** (1 finding)
 - **use-case** (1 finding)
+- **user** (1 finding)
+- **variable** (1 finding)
 - **worktree** (1 finding)
 
 ---
@@ -125,10 +151,23 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 | [FINDING-2026-03-04-40](#finding-2026-03-04-40) | Commands Support $ARGUMENTS Placeholder | argument, command, placeholder, substitution |
 | [FINDING-2026-03-04-41](#finding-2026-03-04-41) | Commands Support Frontmatter (Same as Skills) | command, configuration, frontmatter |
 | [FINDING-2026-03-05-87](#finding-2026-03-05-87) | Context Persistence Uncertainty | compaction, context, persistence, rule, skill |
+| [FINDING-2026-03-04-76](#finding-2026-03-04-76) | Excluding Specific Rules (Monorepos) | configuration, exclusion, monorepo, rule, setting |
 | [FINDING-2026-03-05-84](#finding-2026-03-05-84) | Loading Behavior Comparison | behavior, loading, rule, skill |
 | [FINDING-2026-03-04-44](#finding-2026-03-04-44) | Migrating Commands to Skills | command, migration, skill |
+| [FINDING-2026-03-04-70](#finding-2026-03-04-70) | Path-Specific Rules (Conditional Loading) | conditional, loading, pattern, rule, scope |
 | [FINDING-2026-03-05-82](#finding-2026-03-05-82) | Reference Skills Overview for Standards | convention, knowledge, reference, skill, standard |
+| [FINDING-2026-03-04-79](#finding-2026-03-04-79) | Rules Best Practices | best-practice, guideline, rule, size, standard |
+| [FINDING-2026-03-04-72](#finding-2026-03-04-72) | Rules Content Structure | content, format, markdown, rule, structure |
+| [FINDING-2026-03-05-81](#finding-2026-03-05-81) | Rules Context Compaction Behavior | compaction, context, persistence, rule, uncertainty |
+| [FINDING-2026-03-04-69](#finding-2026-03-04-69) | Rules File Structure and Locations | configuration, file, priority, rule, scope |
+| [FINDING-2026-03-04-80](#finding-2026-03-04-80) | Rules in Additional Directories | directory, environment, loading, rule, variable |
+| [FINDING-2026-03-04-78](#finding-2026-03-04-78) | Rules Loading Behavior | context, loading, rule, scope, timing |
+| [FINDING-2026-03-04-73](#finding-2026-03-04-73) | Rules Organization Patterns | directory, organization, pattern, rule, structure |
+| [FINDING-2026-03-04-68](#finding-2026-03-04-68) | Rules Overview and Introduction | configuration, modular, rule, scope, system |
 | [FINDING-2026-03-05-83](#finding-2026-03-05-83) | Rules Overview for Standards | convention, enforcement, rule, scope, standard |
+| [FINDING-2026-03-04-77](#finding-2026-03-04-77) | Rules vs CLAUDE.md | claudemd, comparison, organization, rule, structure |
+| [FINDING-2026-03-04-71](#finding-2026-03-04-71) | Rules Without Paths (Always Loaded) | loading, priority, rule, session, unconditional |
+| [FINDING-2026-03-04-74](#finding-2026-03-04-74) | Sharing Rules Across Projects with Symlinks | project, rule, sharing, symlink, team |
 | [FINDING-2026-03-04-34](#finding-2026-03-04-34) | Subagent Auto-Compaction | auto-compaction, context, subagent, transcript |
 | [FINDING-2026-03-04-31](#finding-2026-03-04-31) | Subagent Execution Modes | background, execution, foreground, mode, subagent |
 | [FINDING-2026-03-04-26](#finding-2026-03-04-26) | Subagent Frontmatter Fields Complete Specification | configuration, field, frontmatter, specification, subagent |
@@ -142,6 +181,7 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 | [FINDING-2026-03-04-25](#finding-2026-03-04-25) | Subagents File Structure and Locations | configuration, file, priority, scope, subagent |
 | [FINDING-2026-03-05-85](#finding-2026-03-05-85) | Trade-offs and Risk Analysis | context, efficiency, risk, rule, skill |
 | [FINDING-2026-03-05-86](#finding-2026-03-05-86) | Use Case Decision Framework | decision, framework, rule, skill, use-case |
+| [FINDING-2026-03-04-75](#finding-2026-03-04-75) | User-Level Rules (Personal Preferences) | preference, priority, rule, scope, user |
 
 ---
 
