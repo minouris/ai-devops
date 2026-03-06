@@ -41,6 +41,66 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 
 ---
 
+## Keywords
+
+- **argument** (1 finding)
+- **behavior** (1 finding)
+- **built-in** (1 finding)
+- **command** (7 findings)
+- **compaction** (1 finding)
+- **configuration** (1 finding)
+- **context** (2 findings)
+- **convention** (2 findings)
+- **custom** (1 finding)
+- **decision** (1 finding)
+- **efficiency** (1 finding)
+- **enforcement** (1 finding)
+- **file** (1 finding)
+- **format** (1 finding)
+- **framework** (1 finding)
+- **frontmatter** (1 finding)
+- **knowledge** (1 finding)
+- **legacy** (1 finding)
+- **loading** (1 finding)
+- **migration** (2 findings)
+- **persistence** (1 finding)
+- **placeholder** (1 finding)
+- **precedence** (1 finding)
+- **priority** (1 finding)
+- **reference** (1 finding)
+- **risk** (1 finding)
+- **rule** (6 findings)
+- **scope** (1 finding)
+- **skill** (8 findings)
+- **standard** (2 findings)
+- **structure** (1 finding)
+- **substitution** (1 finding)
+- **system** (1 finding)
+- **unification** (1 finding)
+- **use-case** (1 finding)
+
+---
+
+## Findings
+
+| Finding | Name | Keywords |
+|---------|------|----------|
+| [FINDING-2026-03-04-43](#finding-2026-03-04-43) | Built-in Commands (Not Custom Commands) | built-in, command, custom |
+| [FINDING-2026-03-04-39](#finding-2026-03-04-39) | Commands File Structure (Legacy Format) | command, file, format, legacy, structure |
+| [FINDING-2026-03-04-38](#finding-2026-03-04-38) | Commands Merged into Skills System | command, migration, skill, system, unification |
+| [FINDING-2026-03-04-42](#finding-2026-03-04-42) | Commands Priority and Precedence | command, precedence, priority, skill |
+| [FINDING-2026-03-04-40](#finding-2026-03-04-40) | Commands Support $ARGUMENTS Placeholder | argument, command, placeholder, substitution |
+| [FINDING-2026-03-04-41](#finding-2026-03-04-41) | Commands Support Frontmatter (Same as Skills) | command, configuration, frontmatter |
+| [FINDING-2026-03-05-87](#finding-2026-03-05-87) | Context Persistence Uncertainty | compaction, context, persistence, rule, skill |
+| [FINDING-2026-03-05-84](#finding-2026-03-05-84) | Loading Behavior Comparison | behavior, loading, rule, skill |
+| [FINDING-2026-03-04-44](#finding-2026-03-04-44) | Migrating Commands to Skills | command, migration, skill |
+| [FINDING-2026-03-05-82](#finding-2026-03-05-82) | Reference Skills Overview for Standards | convention, knowledge, reference, skill, standard |
+| [FINDING-2026-03-05-83](#finding-2026-03-05-83) | Rules Overview for Standards | convention, enforcement, rule, scope, standard |
+| [FINDING-2026-03-05-85](#finding-2026-03-05-85) | Trade-offs and Risk Analysis | context, efficiency, risk, rule, skill |
+| [FINDING-2026-03-05-86](#finding-2026-03-05-86) | Use Case Decision Framework | decision, framework, rule, skill, use-case |
+
+---
+
 ## Status
 
 **Research phase:** Extended (composition split into official/community sub-subtopics)
