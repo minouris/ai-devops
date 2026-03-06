@@ -10,6 +10,7 @@ Detailed research findings on Plugins for distributing and sharing Claude Code c
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins and https://code.claude.com/docs/en/plugins-reference]
+**Keywords:** distribution, overview, package, plugin, sharing
 
 **What:**
 Plugins are packages that bundle Claude Code customizations (skills, subagents, hooks, MCP servers, LSP servers) for distribution and sharing. Introduced to enable sharing configurations across teams and the community.
@@ -35,6 +36,7 @@ Plugins are packages that bundle Claude Code customizations (skills, subagents, 
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/plugins-reference - Note: Manifest is optional, not mandatory]
+**Keywords:** component, directory, manifest, plugin, structure
 
 **What:**
 Plugins have a standard directory structure with a manifest file and component directories.
@@ -78,6 +80,7 @@ my-plugin/
 **Note:** See [supplementary investigation on manifest dependencies](claude-config-plugins-supplementary-sources.md#1-plugin-manifest-dependencies) for evidence that `dependencies`, `peerDependencies`, `claudeVersion`, and `platforms` fields are feature requests (GitHub Issues #9444, #27113), not currently implemented.
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** field, manifest, metadata, plugin, schema
 
 **What:**
 The `plugin.json` manifest defines plugin metadata, dependencies, and configuration.
@@ -126,6 +129,7 @@ The `plugin.json` manifest defines plugin metadata, dependencies, and configurat
 **Note:** See [supplementary investigation on installation sources](claude-config-plugins-supplementary-sources.md#4-installation-sources-git-urls-and-tarballs) for evidence that direct Git URL and tarball installation are not supported. Installation is marketplace-based with `--plugin-dir` flag for development.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Keywords:** cli, installation, management, plugin, scope
 
 **What:**
 Plugins managed via CLI commands with multiple installation sources and scopes.
@@ -176,6 +180,7 @@ claude plugin uninstall plugin-name
 ## FINDING-2026-03-04-98: Plugin Namespacing and Resolution
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** conflict, namespace, plugin, precedence, resolution
 
 **What:**
 Plugins use namespacing to prevent conflicts with local configurations and other plugins.
@@ -213,6 +218,7 @@ Use my-plugin:code-reviewer agent to review this file
 ## FINDING-2026-03-04-99: Plugin Environment and Path Resolution
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** environment, path, plugin, resolution, variable
 
 **What:**
 Plugins have special environment variable and path resolution for accessing plugin files.
@@ -259,6 +265,7 @@ description: Workflow using plugin templates
 ## FINDING-2026-03-04-100: Plugin MCP Server Configuration
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** configuration, integration, mcp, plugin, server
 
 **What:**
 Plugins can bundle MCP (Model Context Protocol) server configurations in `.mcp.json` file.
@@ -301,6 +308,7 @@ Plugins can bundle MCP (Model Context Protocol) server configurations in `.mcp.j
 ## FINDING-2026-03-04-101: Plugin LSP Server Configuration
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** configuration, integration, language, lsp, plugin
 
 **What:**
 Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp.json` file.
@@ -347,6 +355,7 @@ Plugins can bundle LSP (Language Server Protocol) server configurations in `.lsp
 **Note:** See [supplementary investigation on CLI commands](claude-config-plugins-supplementary-sources.md#3-cli-commands-claude-plugin-publish-and-claude-plugin-outdated) for evidence that `claude plugin publish` command does not exist. Publishing uses in-app submission forms instead.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Keywords:** distribution, marketplace, plugin, publishing, registry
 
 **What:**
 Plugins distributed via official Claude Code plugin marketplace and third-party marketplaces.
@@ -384,6 +393,7 @@ Plugins distributed via official Claude Code plugin marketplace and third-party 
 **Note:** See [supplementary investigation on installation sources](claude-config-plugins-supplementary-sources.md#4-installation-sources-git-urls-and-tarballs) for evidence that the recommended local testing approach uses `--plugin-dir` flag, not persistent local installation.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Keywords:** development, plugin, testing, workflow
 
 **What:**
 Recommended workflow for developing and testing plugins locally before distribution.
@@ -455,6 +465,7 @@ claude plugin publish
 **Note:** See [supplementary investigation on plugin lifecycle events](claude-config-plugins-supplementary-sources.md#2-plugin-lifecycle-events) for evidence that `PluginEnabled`, `PluginDisabled`, and `PluginUpdated` events are a feature request (GitHub Issue #11240), not currently implemented.
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** event, hook, lifecycle, plugin
 
 **What:**
 Plugins support same hook events as local configurations, scoped to plugin namespace.
@@ -498,6 +509,7 @@ command: "${CLAUDE_PLUGIN_ROOT}/scripts/setup.sh"
 **Note:** See [supplementary investigation on manifest dependencies](claude-config-plugins-supplementary-sources.md#1-plugin-manifest-dependencies) for evidence that dependency version constraints are a feature request (GitHub Issues #9444, #27113), not currently implemented. Also see [CLI commands investigation](claude-config-plugins-supplementary-sources.md#3-cli-commands-claude-plugin-publish-and-claude-plugin-outdated) for evidence that `claude plugin outdated` command does not exist.
 
 **Source:** [Plugins - Claude Code Docs](https://code.claude.com/docs/en/plugins)
+**Keywords:** dependency, plugin, semantic, update, version
 
 **What:**
 Plugins use semantic versioning with automatic update detection and management.
@@ -544,6 +556,7 @@ claude plugin update --all
 ## FINDING-2026-03-04-106: Plugin Security and Permissions
 
 **Source:** [Plugins Reference - Claude Code Docs](https://code.claude.com/docs/en/plugins-reference)
+**Keywords:** permission, plugin, security, trust, validation
 
 **What:**
 Plugins run with same permission model as local configurations but with additional security considerations.
