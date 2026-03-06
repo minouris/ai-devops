@@ -412,11 +412,11 @@ When adding findings to the index file (`.memory/[topic]-index.md`), you must ma
 ```markdown
 | Finding | Topic | Name | Keywords |
 |---------|-------|------|----------|
-| [FINDING-ID](#finding-anchor) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
+| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
 ```
 
 **Column definitions:**
-- **Finding:** Markdown link to the finding anchor (e.g., `[FINDING-2026-03-06-1](#finding-2026-03-06-1)`)
+- **Finding:** Markdown link to the finding in its fact file, including anchor (e.g., `[FINDING-2026-03-06-1](claude-config-facts.md#finding-2026-03-06-1)` or `[FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-facts.md#finding-2026-03-06-5)`)
 - **Topic:** Categorical grouping for the finding (e.g., "Configuration", "Composition", "Hooks")
 - **Name:** Short descriptive name from the finding heading (e.g., "Skills - Primary Extension Mechanism")
 - **Keywords:** Comma-separated keywords from the finding's Keywords field
@@ -440,10 +440,10 @@ When adding findings to the index file (`.memory/[topic]-index.md`), you must ma
 
 | Finding | Topic | Name | Keywords |
 |---------|-------|------|----------|
-| [FINDING-2026-03-06-5](#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | document, longform, performance, placement, prompt |
-| [FINDING-2026-03-06-8](#finding-2026-03-06-8) | Composition | Prefill Claude's Response | completion, control, format, prefill, prompt |
-| [FINDING-2026-03-04-1](#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
-| [FINDING-2026-03-04-7](#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
+| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | document, longform, performance, placement, prompt |
+| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response | completion, control, format, prefill, prompt |
+| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
+| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
 ```
 
 ---
