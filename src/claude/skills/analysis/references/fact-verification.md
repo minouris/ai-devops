@@ -124,33 +124,25 @@ memoryFilePath=.memory/{filename}.md
 
 ## Workflow Steps
 
-### Step 1: Parse Memory File
+### Step 1: Initialize Verification
 
-[Parse Memory File](fact-verification/parse-memory-file.md) - Read file, extract facts, identify recently verified facts (skip these), create list for verification.
+[Initialize Verification](fact-verification/initialize-verification.md) - Read memory file, extract all facts, identify recently verified facts (skip these), create verification working document header, create archive file header.
 
-### Step 2: Verify Facts
+### Step 2: Process Each Fact (Loop)
 
-[Verify Facts](fact-verification/verify-facts.md) - For each unverified fact: fetch sources, check currency, verify content matches, determine ACCEPTED or REJECTED.
+**For each fact requiring verification, execute in sequence:**
 
-### Step 3: Categorise Facts
+1. **Verify Fact** - [Verify Facts](fact-verification/verify-facts.md) - Fetch sources, check currency, verify content matches, determine ACCEPTED or REJECTED.
 
-[Categorise Facts](fact-verification/categorise-facts.md) - Organise into accepted (with verification details), retained (recently verified, skipped), and rejected (with rejection reasons).
+2. **Document Verification** - [Create Verification Working Document](fact-verification/create-verification-working-document.md) - Append verification details to working document (accepted or rejected status with evidence).
 
-### Step 4: Create Verification Working Document
+3. **Tag or Archive** - [Update Memory File](fact-verification/update-memory-file.md) or [Create Archive](fact-verification/create-archive.md) - If ACCEPTED: add verification tag to fact in memory file. If REJECTED: append fact to archive file.
 
-[Create Verification Working Document](fact-verification/create-verification-working-document.md) - Generate comprehensive verification document with detailed evidence for each finding.
+**Repeat for each fact.**
 
-### Step 5: Create Archive
+### Step 3: Finalize and Log
 
-[Create Archive](fact-verification/create-archive.md) - Archive rejected facts with complete rejection reasons and evidence.
-
-### Step 6: Update Memory File
-
-[Update Memory File](fact-verification/update-memory-file.md) - Rewrite original file with only verified facts, add verification tags with links to working document.
-
-### Step 7: Log Progress
-
-[Log Progress](fact-verification/log-progress.md) - Record verification run details in `.memory/verification_log.md`.
+[Finalize and Log](fact-verification/finalize-and-log.md) - Close verification working document with summary, close archive file with notes, save updated memory file, log progress to `.memory/verification_log.md`.
 
 ---
 

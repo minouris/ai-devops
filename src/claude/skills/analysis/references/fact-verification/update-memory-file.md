@@ -1,51 +1,32 @@
-# Update Memory File
+# Update Memory File with Verification Tag
 
-Rewrite the original memory file with only verified facts and updated verification tags.
+Add verification tag to this accepted fact in the memory file.
 
 ---
 
 ## Execute
 
-1. Rewrite memory file using Edit or Write tool with ONLY accepted facts
-2. Update citations with refreshed URLs and dates
-3. Add verification note to file header referencing the verification working document
-4. Maintain original file structure where possible
+Update the fact in the original memory file by adding the verification tag.
+
+**Do NOT rewrite the entire file yet** - this will be done in Step 3 (Finalize).
+
+For now, track the verification tag that should be added to this fact.
 
 ---
 
-## Updated File Header
+## Verification Tag Format
+
+### For standard fact format:
+
+Add after the fact content:
 
 ```markdown
-# {File Title}
-
-**Last Verified:** YYYY-MM-DD
-**Verification Method:** Source checking via WebFetch/WebSearch
-**Verification Details:** See {verification-working-filename}
-**Archived Facts:** See {archive filename}
-
----
-```
-
----
-
-## Updated Fact Format
-
-### Standard fact format:
-
-```markdown
-## {Topic}
-
-{Verified fact content}
-
 **Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-id))
-**Source:** [{Source Name}]({URL}) (accessed YYYY-MM-DD, published/updated YYYY-MM-DD)
-
----
 ```
 
 ### For FINDING-YYYY-MM-DD-N block structure:
 
-Add the `**Verified:**` line to the fact's header block, immediately after the `**Source:**` line:
+Add to the fact's header block, immediately after the `**Source:**` line:
 
 ```markdown
 ## FINDING-YYYY-MM-DD-N: {Finding Title}
@@ -67,29 +48,21 @@ Add the `**Verified:**` line to the fact's header block, immediately after the `
 ## Important Notes
 
 **MUST:**
-- Include ALL accepted facts
-- Add `**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#finding-id))` to every newly verified fact
-- Include link to verification working document in each verification tag
-- Preserve existing `**Verified:**` tags on recently verified facts (within 30 days) unchanged
-- Use refreshed citations with dates
-- Maintain logical organisation
-- Note existence of archive file and verification working document
-- Preserve any non-factual content (structure, notes, TODOs)
+- Include link to verification working document in the verification tag
+- Use the primary authoritative URL that verified this fact
+- Use lowercase with hyphens for anchor links
+- Track this tag for application during finalization
 
 **MUST NOT:**
-- Include rejected facts in updated file
-- Use old citations without verification
-- Remove structural elements (headers, sections)
-- Change fact statements beyond verification updates
+- Rewrite the entire memory file yet (wait for Step 3)
 - Remove or overwrite existing `**Verified:**` tags on retained (skipped) facts
-- Omit the link to the verification working document in new verification tags
+- Omit the link to the verification working document
 
 ---
 
 ## Output
 
-**Updates:**
-- Original memory file with verified facts only
-- All newly verified facts tagged with verification links
+**Tracks:**
+- Verification tag to be added to this fact during finalization
 
-**Next step:** [Log Progress](log-progress.md)
+**Next step:** Process next fact, or if all facts done: [Finalize and Log](finalize-and-log.md)

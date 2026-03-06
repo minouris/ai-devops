@@ -1,21 +1,21 @@
 # Verify Facts
 
-Check each fact against authoritative sources using WebFetch and WebSearch.
+Check a single fact against authoritative sources using WebFetch and WebSearch.
 
 ---
 
-## Before Processing Each Fact
+## Before Processing This Fact
 
-If a fact is tagged `[VERIFIED on {date} by ...]` and the tag date is within the last 30 days:
-- Retain as ACCEPTED without fetching sources
+If the fact is tagged `[VERIFIED on {date} by ...]` and the tag date is within the last 30 days:
+- Skip to next fact (this fact was retained as ACCEPTED in Step 1)
 - Preserve the existing tag unchanged
-- Record as "retained — verified within 30 days" in the log
+- Was already recorded as "retained — verified within 30 days" in initialization
 
 Re-verify regardless of tag age only when the user explicitly requests it (e.g., "force re-verify" or "verify all facts").
 
 ---
 
-## For Each Fact Not Covered by Recent Verification Tag
+## Verify This Fact
 
 **Execute:**
 
@@ -24,7 +24,7 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 3. Use WebSearch to find current authoritative source (if no URL or URL broken)
 4. Check source publication/update date
 5. Verify fact content matches source
-6. Determine if fact is ACCEPTED or REJECTED
+6. Determine if this fact is ACCEPTED or REJECTED
 
 ---
 
@@ -48,7 +48,6 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 ## Important Notes
 
 **MUST:**
-- Check EVERY fact, even if citation seems valid
 - Fetch source content using WebFetch to verify fact accuracy
 - Check for newer versions of documentation using WebSearch
 - Note specific reason for rejection
@@ -59,16 +58,14 @@ Re-verify regardless of tag age only when the user explicitly requests it (e.g.,
 - Assume citations are correct without verification
 - Skip verification for "obvious" facts
 - Ignore date information
-- Verify a sample and infer the rest are accurate
-- Use statistical verification or sampling methods
 
 ---
 
 ## Output
 
-**Creates:**
-- List of accepted facts with verification details
-- List of rejected facts with rejection reasons
-- List of retained facts (skipped due to recent verification)
+**Returns for this fact:**
+- ACCEPTED or REJECTED status
+- Verification details (source URL, dates, evidence)
+- Rejection reason (if REJECTED)
 
-**Next step:** [Categorise Facts](categorise-facts.md)
+**Next step:** [Document this fact's verification](create-verification-working-document.md)

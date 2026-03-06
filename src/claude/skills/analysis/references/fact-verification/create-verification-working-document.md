@@ -1,34 +1,18 @@
-# Create Verification Working Document
+# Create Verification Working Document Entry
 
-Generate a comprehensive verification document with detailed evidence for each finding.
+Append this fact's verification details to the working document.
 
 ---
 
 ## Execute
 
-1. Determine verification working filename from input path:
-   - `${input:memoryFilePath}` → `{basename}-verification-working.md`
-   - Example: `.memory/claude-config-compaction-facts.md` → `.memory/claude-config-compaction-verification-working.md`
-
-2. Create verification working document using Write tool with the structure below
+Append to the verification working document created in Step 1 (`{basename}-verification-working.md`).
 
 ---
 
-## Verification Working Document Structure
+## Format for ACCEPTED Fact
 
 ```markdown
-# {Topic} Verification Working Document
-
-Comprehensive verification of all findings in {source-file} against official documentation sources.
-
-**Primary sources:**
-- [Source Name](URL)
-- [Source Name](URL)
-
-**Verification date:** YYYY-MM-DD
-
----
-
 ## FINDING-YYYY-MM-DD-N: {Finding Title}
 
 **Claim:** {Brief summary of what the finding claims}
@@ -42,22 +26,52 @@ From [Source Name](URL):
 {Additional quotes or evidence as needed}
 
 **Status:** ✅ VERIFIED - {Summary of verification result}
-{or}
-**Status:** ⚠️ PARTIALLY VERIFIED - {What was verified, what wasn't}
-{or}
+
+---
+```
+
+---
+
+## Format for REJECTED Fact
+
+```markdown
+## FINDING-YYYY-MM-DD-N: {Finding Title}
+
+**Claim:** {Brief summary of what the finding claimed}
+
+**Verification:**
+
+Checked [Source Name](URL):
+
+{What was found or not found}
+
 **Status:** ❌ REJECTED - {Why it was rejected}
 
----
-
-{Repeat for each finding}
+**Rejection Reason:** {Specific reason - outdated/inaccurate/unverifiable/superseded}
 
 ---
+```
 
-## Verification Summary
+---
 
-**Findings verified:** {N} fully verified, {N} partially verified
+## Format for PARTIALLY VERIFIED Fact
 
-{Summary of verification results}
+```markdown
+## FINDING-YYYY-MM-DD-N: {Finding Title}
+
+**Claim:** {Brief summary of what the finding claims}
+
+**Verification:**
+
+From [Source Name](URL):
+
+> "{Exact quote from source}"
+
+{What was verified and what wasn't}
+
+**Status:** ⚠️ PARTIALLY VERIFIED - {What was verified, what wasn't}
+
+---
 ```
 
 ---
@@ -65,13 +79,14 @@ From [Source Name](URL):
 ## Important Notes
 
 **MUST:**
-- Include detailed evidence for each finding's verification
+- Include detailed evidence for this fact's verification
 - Provide exact quotes from sources where possible
 - Document verification status clearly
 - Use markdown heading anchors that match the finding identifiers (e.g., `## FINDING-2026-03-05-88` creates anchor `#finding-2026-03-05-88`)
+- Append to existing working document (do not overwrite)
 
 **MUST NOT:**
-- Skip creating this document
+- Skip documenting verification details
 - Use vague verification descriptions
 - Omit source quotes or evidence
 
@@ -79,7 +94,7 @@ From [Source Name](URL):
 
 ## Output
 
-**Creates:**
-- `.memory/{basename}-verification-working.md` with detailed verification evidence
+**Updates:**
+- Appends this fact's verification details to `.memory/{basename}-verification-working.md`
 
-**Next step:** [Create Archive](create-archive.md)
+**Next step:** If ACCEPTED: [Tag in memory file](update-memory-file.md). If REJECTED: [Append to archive](create-archive.md)

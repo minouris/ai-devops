@@ -1,46 +1,34 @@
-# Create Archive
+# Append Rejected Fact to Archive
 
-Archive rejected facts with complete rejection reasons and evidence.
+Append this rejected fact to the archive file with complete rejection details.
 
 ---
 
 ## Execute
 
-1. Determine archive filename from input path:
-   - `${input:memoryFilePath}` → `{basename}_archive_{yyyy-mm-dd}.md`
-   - Example: `.memory/analysis_facts_pending.md` → `.memory/analysis_facts_pending_archive_2026-02-19.md`
-
-2. Create archive file using Write tool with the structure below
+Append to the archive file created in Step 1 (`{basename}_archive_{yyyy-mm-dd}.md`).
 
 ---
 
-## Archive File Structure
+## Format for Rejected Fact Entry
 
 ```markdown
-# {Basename} Archive - {Date}
+## Rejected Fact {N}: {Brief Description}
 
-**Archive Date:** YYYY-MM-DD
-**Source File:** {original memory file path}
-**Archived By:** verify-memory-facts process
+**Original Fact:** {Exact factual statement from file}
 
-**Purpose:** This file contains facts from {source file} that were found to be
-outdated, inaccurate, or unverifiable during fact verification on {date}.
+**Original Citation:** {Citation that was in file, if any}
 
----
+**Rejection Reason:** {Specific reason - outdated/inaccurate/unverifiable/superseded}
 
-## Rejected Facts
+**Evidence:**
+- Checked: {What sources were checked}
+- Found: {What current information shows}
+- Date: {When checked}
 
-{Insert all rejected facts from Step 3, with full rejection reasons}
+**Current Information:** {If fact is outdated, what is the current correct information}
 
----
-
-## Archive Notes
-
-- Total facts checked: {N}
-- Facts rejected: {N}
-- Facts accepted: {N}
-- Verification method: WebFetch, WebSearch
-- Authoritative sources consulted: {list}
+**Archived:** YYYY-MM-DD
 
 ---
 ```
@@ -50,21 +38,21 @@ outdated, inaccurate, or unverifiable during fact verification on {date}.
 ## Important Notes
 
 **MUST:**
-- Include complete rejection reasons
+- Include complete rejection reason
 - Specify what current information shows (if outdated)
-- Record verification methodology
-- Preserve original fact statements exactly
+- Preserve original fact statement exactly
+- Append to existing archive file (do not overwrite)
 
 **MUST NOT:**
-- Delete rejected facts without archiving
-- Omit rejection reasons
-- Archive accepted facts
+- Omit rejection reason
+- Skip documenting what was checked
+- Delete the rejected fact from archive
 
 ---
 
 ## Output
 
-**Creates:**
-- `.memory/{basename}_archive_{date}.md` with all rejected facts
+**Updates:**
+- Appends this rejected fact to `.memory/{basename}_archive_{date}.md`
 
-**Next step:** [Update Memory File](update-memory-file.md)
+**Next step:** Process next fact, or if all facts done: [Finalize and Log](finalize-and-log.md)
