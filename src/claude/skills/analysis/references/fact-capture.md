@@ -218,9 +218,10 @@ Keywords help categorise findings by subject area and enable searching across re
 **MUST:**
 - Include keywords in every finding
 - Reuse existing keywords where applicable before creating new ones
+- List keywords in alphabetical order
 - Use lowercase for consistency
 - Use singular form (e.g., "configuration" not "configurations")
-- Limit to 3-5 keywords per finding
+- Limit to 3-5 keywords per finding (maximum 5)
 - Choose keywords that describe subject areas, not actions
 - Use comma-separated format with space after comma
 
@@ -244,15 +245,15 @@ Choose keywords from these categories when applicable:
 **Examples:**
 
 ```markdown
-**Keywords:** prompt, composition, xml, structure
+**Keywords:** composition, prompt, structure, xml
 ```
 
 ```markdown
-**Keywords:** hook, automation, event, shell
+**Keywords:** automation, event, hook, shell
 ```
 
 ```markdown
-**Keywords:** verification, testing, validation
+**Keywords:** testing, validation, verification
 ```
 
 ---
@@ -304,7 +305,7 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [source of clarifying information]
-**Keywords:** keyword1, keyword2
+**Keywords:** keyword1, keyword2, keyword3
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-YYYY-MM-DD-M
 
@@ -313,12 +314,14 @@ When new information (from further research or supplied by the user) affects or 
 [Context on how this updates/refines the original finding]
 ```
 
+Note: Keywords must be in alphabetical order.
+
 **Example:**
 ```markdown
 ### FINDING-2026-02-24-8
 **Captured:** 2026-02-24 18:30
 **Source:** https://docs.example.com/api/v2
-**Keywords:** api, endpoint, deprecation
+**Keywords:** api, deprecation, endpoint
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-2026-02-24-3
 

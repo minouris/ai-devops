@@ -12,6 +12,7 @@
 - Update index after appending to fact files
 - Update index after archiving disproven findings
 - Update keyword counts when findings are added or archived
+- Update findings table when findings are added or archived
 - Include file paths and last updated timestamps
 - Keep index concise and navigable
 
@@ -19,6 +20,7 @@
 - Skip index updates
 - Leave index out of sync with fact files
 - Leave keyword counts out of sync with findings
+- Leave findings table out of sync with fact files
 
 ---
 
@@ -68,6 +70,17 @@
 
 ---
 
+## Findings
+
+| Finding | Name | Keywords |
+|---------|------|----------|
+| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Finding Name | keyword1, keyword2, keyword3 |
+| [FINDING-YYYY-MM-DD-M](#finding-yyyy-mm-dd-m) | Another Finding | keyword1, keyword4 |
+
+[... all findings sorted alphabetically by name, then by keywords ...]
+
+---
+
 ## Analysis Outputs
 
 - [`[ANALYSIS-NAME].md`]([ANALYSIS-NAME].md) - [Description]
@@ -86,17 +99,20 @@ Update the index after each of these operations:
 1. **Appending to fact file**
    - Update "Last updated" timestamp for that fact file
    - Update Keywords section with new keywords or increment counts
+   - Add new row to Findings table in alphabetically sorted position
 
 2. **Creating new subtopic file**
    - Add new entry in "Fact Files" section
    - Include brief description of subtopic scope
    - Update Keywords section with any new keywords from the file
+   - Add all findings from new file to Findings table
 
 3. **Archiving disproven finding**
    - Add or update "Disproven:" line with count
    - If it's the first disproven finding, add the line
    - If archive already exists, increment the count
    - Decrement keyword counts for keywords in the archived finding
+   - Remove finding from Findings table
 
 4. **Creating final output**
    - Add entry in "Analysis Outputs" section
@@ -126,6 +142,14 @@ If index doesn't exist, create it with this minimal structure:
 
 - **keyword1** (N findings)
 - **keyword2** (N findings)
+
+---
+
+## Findings
+
+| Finding | Name | Keywords |
+|---------|------|----------|
+| [FINDING-YYYY-MM-DD-1](#finding-yyyy-mm-dd-1) | Finding Name | keyword1, keyword2 |
 
 ---
 
@@ -220,6 +244,49 @@ List all unique keywords used across the topic and all subtopics, sorted alphabe
 
 ---
 
+## Findings Table (MANDATORY)
+
+List all findings from the topic and all subtopics in a table format, sorted alphabetically by finding name, then by keywords.
+
+**MUST:**
+- Include three columns: Finding (ID as link), Name (title), Keywords (alphabetically ordered)
+- Link Finding column to the actual finding heading using anchor syntax
+- Sort findings alphabetically by Name column
+- When names are identical, sort by Keywords column (alphabetically)
+- Update table when appending findings
+- Update table when archiving findings (remove archived findings)
+- List keywords in alphabetical order within each row
+
+**MUST NOT:**
+- Omit findings table from index
+- Include findings without all three columns
+- List findings in unsorted order
+- Include archived findings in the table
+
+**Table Format:**
+```markdown
+## Findings
+
+| Finding | Name | Keywords |
+|---------|------|----------|
+| [FINDING-2026-03-04-12](#finding-2026-03-04-12) | API Authentication Methods | api, authentication, security |
+| [FINDING-2026-03-04-15](#finding-2026-03-04-15) | CLAUDE.md Locations and Scope | configuration, documentation, scope |
+| [FINDING-2026-03-04-8](#finding-2026-03-04-8) | Hook Event Types | automation, event, hook |
+```
+
+**Sorting rules:**
+1. Sort primarily by Name (alphabetical, case-insensitive)
+2. If names match, sort by Keywords (alphabetical comparison of keyword strings)
+3. Finding ID is for reference only, not used for sorting
+
+**When updating findings table:**
+
+1. **New finding added:** Add row in alphabetically correct position by name and keywords
+2. **Finding archived:** Remove row from table
+3. **Keywords changed:** Re-sort if keyword order affects alphabetical position
+
+---
+
 ## Analysis Outputs Section
 
 Track generated analysis documents:
@@ -245,6 +312,8 @@ Track generated analysis documents:
 2. **Determine what changed:**
    - New fact file entry added?
    - Fact file timestamp updated?
+   - New finding added?
+   - Finding archived?
    - Keywords added or removed from findings?
    - Keyword counts changed?
    - Disproven count changed?
@@ -253,6 +322,7 @@ Track generated analysis documents:
 3. **Update index** using Edit tool:
    - Modify only the relevant sections
    - Update keyword counts in Keywords section
+   - Update Findings table (add/remove rows, maintain alphabetical sort)
    - Update "Last Updated" timestamp at top
    - Keep existing structure intact
 
@@ -302,6 +372,18 @@ Track generated analysis documents:
 - **performance** (6 findings)
 - **training** (11 findings)
 - **verification** (10 findings)
+
+---
+
+## Findings
+
+| Finding | Name | Keywords |
+|---------|------|----------|
+| [FINDING-2026-02-24-3](#finding-2026-02-24-3) | Attention Mechanism Limitations | context, performance, training |
+| [FINDING-2026-02-24-7](#finding-2026-02-24-7) | Behavioral Training Artifacts | behavioral, pattern, training |
+| [FINDING-2026-02-24-1](#finding-2026-02-24-1) | Confidence Calibration Issues | accuracy, hallucination, verification |
+| [FINDING-2026-02-23-5](#finding-2026-02-23-5) | Context Window Management | context, memory, performance |
+| [FINDING-2026-02-24-9](#finding-2026-02-24-9) | False Positive Patterns | accuracy, pattern, verification |
 
 ---
 
