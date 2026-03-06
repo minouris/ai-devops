@@ -45,6 +45,7 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 
 - **access** (1 finding)
 - **accuracy** (2 findings)
+- **action** (1 finding)
 - **additional** (1 finding)
 - **advanced** (1 finding)
 - **agent** (2 findings)
