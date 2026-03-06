@@ -15,6 +15,7 @@ Detailed research findings on context compaction behavior in Claude API and Clau
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
 **Verified:** [VERIFIED on 2026-03-06 by https://platform.claude.com/docs/en/build-with-claude/compaction]
+**Keywords:** api, compaction, context, overview, server-side
 
 **What:**
 Context compaction is server-side automatic summarization that extends effective context length for long conversations by replacing older context with concise summaries when approaching context window limits.
@@ -46,6 +47,7 @@ Beta feature as of 2026. Requires beta header `compact-2026-01-12` in API reques
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [Claude Code Context Buffer](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
 **Verified:** [PARTIALLY VERIFIED on 2026-03-06: API trigger values verified by https://platform.claude.com/docs/en/build-with-claude/compaction; Claude Code specific values from external sources]
+**Keywords:** api, compaction, detection, threshold, trigger
 
 **What:**
 Compaction triggers when input tokens exceed a configured threshold. Both API and Claude Code implementations use automatic triggering.
@@ -80,6 +82,7 @@ Compaction triggers when input tokens exceed a configured threshold. Both API an
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 **Verified:** [VERIFIED on 2026-03-06 by https://platform.claude.com/docs/en/build-with-claude/compaction]
+**Keywords:** api, block, compaction, process, summarization
 
 **What:**
 When compaction is enabled, Claude automatically follows a specific process to summarize and compact the conversation.
@@ -116,6 +119,7 @@ The model specified in your request is used for summarization. There is no optio
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 **Verified:** [VERIFIED on 2026-03-06 by https://platform.claude.com/docs/en/build-with-claude/compaction]
+**Keywords:** compaction, default, instruction, pause, summarization
 
 **What:**
 By default, compaction uses a specific summarization prompt designed to maintain continuity for future context.
@@ -144,6 +148,7 @@ Preserve the last N messages verbatim instead of summarizing them by including t
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/how-claude-code-works and https://platform.claude.com/docs/en/build-with-claude/compaction]
+**Keywords:** cache, compaction, message, preservation, recent
 
 **What:**
 During compaction, certain content is prioritized for preservation while older content is summarized.
@@ -182,6 +187,7 @@ messages_after_compaction = [
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/how-claude-code-works and https://platform.claude.com/docs/en/build-with-claude/compaction]
+**Keywords:** compaction, history, loss, removal, tool
 
 **What:**
 During compaction, older content is cleared or summarized to free context space.
@@ -215,6 +221,7 @@ All message blocks prior to the `compaction` block are automatically dropped on 
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/how-claude-code-works: documentation limitation confirmed, streaming behavior verified]
+**Keywords:** compaction, documentation, reload, streaming, uncertainty
 
 **What:**
 Information about what is automatically reloaded after compaction is limited in official documentation.
@@ -249,6 +256,7 @@ Conversation continues from the compaction summary. The summary serves as the ne
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), User discussion 2026-03-05
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/how-claude-code-works: documentation gap confirmed, official guidance verified, reload behavior not documented as claimed]
+**Keywords:** claudemd, compaction, documentation, rule, uncertainty
 
 **What:**
 Official documentation emphasizes using CLAUDE.md for persistent instructions but does not explicitly state whether CLAUDE.md or Rules are reloaded after compaction.
@@ -286,6 +294,7 @@ This uncertainty applies equally to CLAUDE.md, Rules, and Skills.
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works), [Claude Code Context Buffer](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
 **Verified:** [PARTIALLY VERIFIED on 2026-03-06: core behavior verified by https://code.claude.com/docs/en/how-claude-code-works; known issues and specific numbers from external sources]
+**Keywords:** automatic, claudecode, compaction, control, monitoring
 
 **What:**
 Claude Code implements automatic compaction with specific behaviors and user controls.
@@ -328,6 +337,7 @@ Claude Code implements automatic compaction with specific behaviors and user con
 
 **Source:** [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
 **Verified:** [VERIFIED on 2026-03-06 by https://code.claude.com/docs/en/how-claude-code-works]
+**Keywords:** context, management, skill, strategy, subagent
 
 **What:**
 Beyond compaction, Claude Code provides features to control what loads into context.
@@ -368,6 +378,7 @@ Beyond compaction, Claude Code provides features to control what loads into cont
 
 **Source:** [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction), [How Thinking Mode, Token Strategy, and Context Compaction Work](https://towardsdev.com/how-thinking-mode-token-strategy-and-context-compaction-really-work-in-claude-code-e5140d8e0d6f), Web search 2026
 **Verified:** [PARTIALLY VERIFIED on 2026-03-06: server-side approach verified by https://platform.claude.com/docs/en/build-with-claude/compaction; client-side SDK details from external sources]
+**Keywords:** api, client-side, compaction, implementation, server-side
 
 **What:**
 Context compaction is primarily a **server-side operation** that occurs on Anthropic's infrastructure, not in the Claude Code client application.
