@@ -134,6 +134,60 @@ See [claude-config-hooks-facts.md](../claude-config-hooks/claude-config-hooks-fa
 
 ---
 
+## File Size Management (MANDATORY)
+
+When fact files grow too large, they become difficult to parse and slow down research operations. Manage file growth by creating new subtopics.
+
+**Size threshold:**
+- **Maximum recommended:** 40,000 characters (~10,000 tokens)
+- **Action trigger:** When adding a new fact would exceed this threshold
+
+**MUST:**
+- Check current file size before appending new facts
+- Create a new subtopic when threshold would be exceeded
+- Move related facts from the main file to the new subtopic
+- Group facts by natural thematic boundaries (not arbitrary splits)
+- Update the topic index to reference the new subtopic
+
+**MUST NOT:**
+- Allow fact files to grow beyond 40,000 characters
+- Split files arbitrarily in the middle of a thematic group
+- Create subtopics with only 1-2 facts (group related facts together)
+- Leave orphaned facts in the main file after creating a subtopic
+
+**Rationale:**
+Based on Claude's long context capabilities (FINDING-2026-03-06-1 in claude-config-composition-facts.md), performance remains strong up to 20K+ tokens. However, fact files that are read and parsed frequently during research benefit from smaller sizes for efficiency. The 40,000 character threshold (~10,000 tokens) provides a balance between manageability and avoiding excessive file fragmentation.
+
+**Process when threshold exceeded:**
+
+1. **Identify thematic groups:** Review existing facts and identify natural groupings
+2. **Select subtopic name:** Choose a descriptive name for the new subtopic
+3. **Create subtopic folder:** `.memory/[topic]/[topic]-[subtopic]/`
+4. **Move related facts:** Transfer the new fact and related existing facts to the new subtopic file
+5. **Update index:** Add the new subtopic to the topic index file
+6. **Update links:** Ensure all cross-references use correct relative paths
+
+**Example scenario:**
+
+```
+.memory/claude-config/
+├── claude-config-facts.md (38,000 characters)
+└── claude-config-index.md
+
+New fact would add 5,000 characters → exceeds threshold
+```
+
+**Action:**
+```
+.memory/claude-config/
+├── claude-config-facts.md (32,000 characters - related facts moved out)
+├── claude-config-index.md (updated with new subtopic)
+└── claude-config-composition/
+    └── claude-config-composition-facts.md (8,000 characters - new and related facts)
+```
+
+---
+
 ## Entry Format (MANDATORY)
 
 **Standard format:**
