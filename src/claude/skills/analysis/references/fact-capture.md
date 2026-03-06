@@ -87,6 +87,53 @@ Once a topic acquires a second file (subtopic, index, log, etc.), migrate it to 
 
 ---
 
+## Link Integrity (MANDATORY)
+
+When using folder-based organisation, maintain correct relative paths between files at different levels.
+
+**From topic-level files to subtopic files:**
+```markdown
+See [claude-config-skills-facts.md](claude-config-skills/claude-config-skills-facts.md)
+```
+
+**From subtopic files to topic-level files:**
+```markdown
+See [claude-config-index.md](../claude-config-index.md)
+```
+
+**From subtopic files to sibling subtopic files:**
+```markdown
+See [claude-config-hooks-facts.md](../claude-config-hooks/claude-config-hooks-facts.md)
+```
+
+**MUST:**
+- Use relative paths that account for folder nesting
+- Test links work from the file's actual location
+- Update all links when migrating from flat to folder structure
+- Use `../` to navigate up from subtopic folder to topic folder
+- Use `[subtopic-folder]/[filename]` to navigate down from topic folder to subtopic folder
+
+**MUST NOT:**
+- Use absolute paths in markdown links between memory files
+- Assume files are at the same level when they're in different folders
+- Leave broken links after restructuring files into folders
+
+**Example index file with correct links:**
+```markdown
+# Claude Config Research Index
+
+## Fact Files
+
+### Primary Fact File
+- [claude-config-facts.md](claude-config-facts.md) — Core configuration
+
+### Subtopic Files
+- [claude-config-skills-facts.md](claude-config-skills/claude-config-skills-facts.md) — Skills
+- [claude-config-hooks-facts.md](claude-config-hooks/claude-config-hooks-facts.md) — Hooks
+```
+
+---
+
 ## Entry Format (MANDATORY)
 
 **Standard format:**
