@@ -25,38 +25,54 @@
 
 **Folder-based organisation (MANDATORY):**
 
-Topics and their subtopics MUST be organised in folders containing the main file and all supplementary files.
+Topics and their subtopics MUST be organised in folders containing the main file and all supplementary files. This structure is recursive: subtopics are folders within the topic folder.
 
 **Structure:**
 ```
 .memory/[topic]/
-├── [topic]-facts.md              (main fact file)
-├── [topic]-[subtopic]-facts.md   (subtopic fact files)
+├── [topic]-facts.md              (main topic fact file)
 ├── [topic]-index.md              (topic index)
 ├── [topic]-log.md                (operation log)
-└── [other supplementary files]   (verification working docs, archives, etc.)
+├── [topic]-[subtopic1]/          (subtopic folder)
+│   ├── [topic]-[subtopic1]-facts.md
+│   ├── [topic]-[subtopic1]-verification-working.md
+│   └── [topic]-[subtopic1]-archive.md
+└── [topic]-[subtopic2]/          (subtopic folder)
+    ├── [topic]-[subtopic2]-facts.md
+    ├── [topic]-[subtopic2]-verification-working.md
+    └── [other supplementary files]
 ```
 
 **MUST:**
 - Create a folder for each topic: `.memory/[topic]/`
-- Place all topic-related files within the topic folder
-- Use the topic name as the prefix for all files in the folder
-- Keep the main fact file and all subtopic files in the same folder
+- Create a folder for each subtopic: `.memory/[topic]/[topic]-[subtopic]/`
+- Place all topic-level files (main facts, index, log) directly in the topic folder
+- Place all subtopic-level files (subtopic facts, verification docs, archives) in the subtopic folder
+- Use the full `[topic]-[subtopic]` prefix for subtopic folder names and file names
+- Apply this structure recursively for nested subtopics
 
 **MUST NOT:**
 - Create flat file structures in `.memory/` root for topics with multiple files
-- Scatter topic files across multiple folders
-- Place topic files outside their designated folder
+- Place subtopic fact files directly in the topic folder alongside the main fact file
+- Scatter topic or subtopic files across multiple folders
+- Place subtopic files outside their designated subtopic folder
 
 **Example:**
 ```
-.memory/ai-problems-analysis/
-├── ai-problems-analysis-facts.md
-├── ai-problems-analysis-hallucination-facts.md
-├── ai-problems-analysis-overeagerness-facts.md
-├── ai-problems-analysis-index.md
-├── ai-problems-analysis-log.md
-└── ai-problems-analysis-verification-working.md
+.memory/claude-config/
+├── claude-config-facts.md
+├── claude-config-index.md
+├── claude-config-log.md
+├── claude-config-skills/
+│   ├── claude-config-skills-facts.md
+│   ├── claude-config-skills-verification-working.md
+│   └── claude-config-skills-archive.md
+├── claude-config-hooks/
+│   ├── claude-config-hooks-facts.md
+│   └── claude-config-hooks-verification-working.md
+└── claude-config-composition/
+    ├── claude-config-composition-facts.md
+    └── claude-config-composition-verification-working.md
 ```
 
 **Single-file topics:**
