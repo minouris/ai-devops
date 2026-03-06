@@ -10,6 +10,7 @@ Detailed research findings on Rules for modular project instructions in Claude C
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory] (Note: version number v2.0.64 not confirmed in docs)
+**Keywords:** configuration, modular, rule, scope, system
 
 **What:**
 Rules are modular project instructions stored in `.claude/rules/` directory. Introduced in v2.0.64, they allow organizing instructions into multiple focused files instead of one large CLAUDE.md.
@@ -34,6 +35,7 @@ Rules are modular project instructions stored in `.claude/rules/` directory. Int
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** configuration, file, priority, rule, scope
 
 **What:**
 Rules have simple file structure with optional frontmatter. Location determines scope.
@@ -68,6 +70,7 @@ Rule instructions in Markdown...
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** conditional, loading, pattern, rule, scope
 
 **What:**
 Optional YAML frontmatter with `paths` field allows scoping rules to specific files using glob patterns.
@@ -119,6 +122,7 @@ paths:
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** loading, priority, rule, session, unconditional
 
 **What:**
 Rules without `paths` frontmatter are unconditional - loaded at session launch with same high priority as CLAUDE.md.
@@ -152,6 +156,7 @@ Rules without `paths` frontmatter are unconditional - loaded at session launch w
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory), local codebase examination
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** content, format, markdown, rule, structure
 
 **What:**
 Rules files are plain Markdown. No required structure except what makes instructions clear.
@@ -203,6 +208,7 @@ async function handleRequest(req: Request) {
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** directory, organization, pattern, rule, structure
 
 **What:**
 Multiple ways to organize rules for different project scales and team structures.
@@ -246,6 +252,7 @@ Multiple ways to organize rules for different project scales and team structures
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** project, rule, sharing, symlink, team
 
 **What:**
 The `.claude/rules/` directory supports symlinks for sharing rules across multiple projects. Symlinks resolved and loaded normally.
@@ -284,6 +291,7 @@ ln -s ~/shared-claude-rules/security.md .claude/rules/security.md
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** preference, priority, rule, scope, user
 
 **What:**
 Personal rules in `~/.claude/rules/` apply to every project on your machine. Loaded before project rules (lower priority).
@@ -314,6 +322,7 @@ Personal rules in `~/.claude/rules/` apply to every project on your machine. Loa
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** configuration, exclusion, monorepo, rule, setting
 
 **What:**
 In large monorepos, ancestor CLAUDE.md and rules files from other teams can be excluded using `claudeMdExcludes` setting.
@@ -348,6 +357,7 @@ In large monorepos, ancestor CLAUDE.md and rules files from other teams can be e
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** claudemd, comparison, organization, rule, structure
 
 **What:**
 Rules and CLAUDE.md serve the same purpose but with different organizational approaches.
@@ -382,6 +392,7 @@ Rules and CLAUDE.md serve the same purpose but with different organizational app
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** context, loading, rule, scope, timing
 
 **What:**
 Rules load at different times depending on whether they have path scoping.
@@ -418,6 +429,7 @@ Detailed testing conventions that only load when working with test files...
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** best-practice, guideline, rule, size, standard
 
 **What:**
 Guidelines for effective rules usage based on official documentation.
@@ -453,6 +465,7 @@ Guidelines for effective rules usage based on official documentation.
 
 **Source:** [How Claude remembers your project - Claude Code Docs](https://code.claude.com/docs/en/memory)
 **Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/memory]
+**Keywords:** directory, environment, loading, rule, variable
 
 **What:**
 Rules from `--add-dir` directories are loaded when `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` environment variable is set.
@@ -479,6 +492,7 @@ CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 
 **Source:** User question - not documented in official sources
 **Verified:** [REQUIRES FURTHER EXPLORATION]
+**Keywords:** compaction, context, persistence, rule, uncertainty
 
 **What:**
 The behavior of Rules during context compaction is not documented in official Claude Code documentation.
