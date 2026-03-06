@@ -11,7 +11,7 @@
 **MUST:**
 - Run [record-operation](../../../src/claude/prompts/record-operation.prompt.md) with `topic=[slug]` after each significant operation (if the prompt is available in the workspace)
 - Record only what changed in the current operation — not a summary of the whole session
-- Append to `.memory/[topic]-log.md`; never overwrite earlier entries
+- Append to `.memory/[topic]/[topic]-log.md`; never overwrite earlier entries
 
 **MUST NOT:**
 - Skip logging because an operation seemed minor
@@ -52,12 +52,12 @@ Log after each of these operations:
 ## Log File Location
 
 ```
-.memory/[topic]-log.md
+.memory/[topic]/[topic]-log.md
 ```
 
 **Example:**
 ```
-.memory/ai-problems-analysis-log.md
+.memory/ai-problems-analysis/ai-problems-analysis-log.md
 ```
 
 ---
@@ -108,7 +108,7 @@ Ask: "What topic are we working on? (This sets the session context — e.g., `ai
 
 **Step 2: Attempt to read operation log**
 
-Once the user provides the topic slug, attempt to read `.memory/[topic]-log.md`.
+Once the user provides the topic slug, attempt to read `.memory/[topic]/[topic]-log.md`.
 
 **Step 3: Summarise last operations (if log exists)**
 
@@ -131,7 +131,7 @@ Ready to continue.
 
 **Step 4: Confirm readiness**
 
-Confirm: "Session context loaded from `.memory/[topic]-log.md`. Ready to continue."
+Confirm: "Session context loaded from `.memory/[topic]/[topic]-log.md`. Ready to continue."
 
 **Step 5: If no log exists**
 

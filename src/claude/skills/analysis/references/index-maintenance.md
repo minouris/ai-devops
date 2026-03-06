@@ -27,12 +27,12 @@
 ## Index File Location
 
 ```
-.memory/[topic]-index.md
+.memory/[topic]/[topic]-index.md
 ```
 
 **Example:**
 ```
-.memory/ai-problems-analysis-index.md
+.memory/ai-problems-analysis/ai-problems-analysis-index.md
 ```
 
 ---
@@ -48,13 +48,13 @@
 
 ## Fact Files
 
-- [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - [Brief description of research scope]
+- [[topic]-facts.md]([topic]-facts.md) - [Brief description of research scope]
   - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[topic]-facts-disproven.md](.memory/[topic]-facts-disproven.md) (N findings)
+  - Disproven: [[topic]-facts-disproven.md]([topic]-facts-disproven.md) (N findings)
 
-- [.memory/[topic]-[subtopic]-facts.md](.memory/[topic]-[subtopic]-facts.md) - [Brief description]
+- [[topic]-[subtopic]-facts.md]([topic]-[subtopic]/[topic]-[subtopic]-facts.md) - [Brief description]
   - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[topic]-[subtopic]-facts-disproven.md](.memory/[topic]-[subtopic]-facts-disproven.md) (N findings)
+  - Disproven: [[topic]-[subtopic]-facts-disproven.md]([topic]-[subtopic]/[topic]-[subtopic]-facts-disproven.md) (N findings)
 
 [... additional fact files ...]
 

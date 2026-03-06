@@ -335,7 +335,7 @@ The v1 endpoint documented in FINDING-2026-02-24-3 is deprecated as of 2026-01.
 ## File Boundaries (MANDATORY)
 
 **During research phase, you may write ONLY to:**
-- **Fact files:** `.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`
+- **Fact files:** `.memory/[topic]/[topic]-facts.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`
 
 **During research phase, these are READ-ONLY:**
 - **Pending analysis:** `.memory/[NAME]-PENDING.md` — written only once when user requests final output

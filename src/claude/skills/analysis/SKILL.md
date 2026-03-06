@@ -54,7 +54,7 @@ Use when asked to examine artifacts systematically and synthesise findings. See 
 ### 1. Capture Research in Fact Files
 
 See [fact-capture.md](references/fact-capture.md) for:
-- Fact file naming conventions (`.memory/[topic]-facts.md`, `.memory/[topic]-[subtopic]-facts.md`)
+- Fact file naming conventions (`.memory/[topic]/[topic]-facts.md`, `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`)
 - FINDING-YYYY-MM-DD-N format
 - Clarifying existing facts (append with `Clarifies:` reference)
 - File boundaries (fact files vs pending analysis vs final output)
@@ -74,7 +74,7 @@ See [disproven-archive.md](references/disproven-archive.md) for:
 ### 3. Update Analysis Index
 
 See [index-maintenance.md](references/index-maintenance.md) for:
-- Index file structure (`.memory/[topic]-index.md`)
+- Index file structure (`.memory/[topic]/[topic]-index.md`)
 - Tracking fact files and subtopics
 - Noting companion disproven files
 - Timestamp maintenance
@@ -97,7 +97,7 @@ See [final-output.md](references/final-output.md) for:
 See [operation-logging.md](references/operation-logging.md) for:
 - Session initialization protocol (ask for topic slug, restore context)
 - Significant operations requiring logging
-- Log file format (`.memory/[topic]-log.md`)
+- Log file format (`.memory/[topic]/[topic]-log.md`)
 
 **Key principle:** Log after each significant operation to enable session continuity.
 
@@ -135,9 +135,9 @@ See [operation-logging.md](references/operation-logging.md) for:
 When you are invoked in a new session, before anything else:
 
 1. Ask: "What topic are we working on? (This sets the session context — e.g., `ai-problems-analysis`)"
-2. Once the user provides the topic slug, attempt to read `.memory/[topic]-log.md` (if record-operation logging is in use)
+2. Once the user provides the topic slug, attempt to read `.memory/[topic]/[topic]-log.md` (if record-operation logging is in use)
 3. If the log exists, summarise the last 1–3 entries to the user: operation type, files changed, and next step recorded
-4. Confirm: "Session context loaded from `.memory/[topic]-log.md`. Ready to continue."
+4. Confirm: "Session context loaded from `.memory/[topic]/[topic]-log.md`. Ready to continue."
 5. If no log exists, confirm: "No previous log found for `[topic]`. Starting fresh."
 
 **MUST NOT:**
