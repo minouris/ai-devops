@@ -403,9 +403,30 @@ Capture ALL of the following:
 
 ---
 
-## Index Findings Table (MANDATORY)
+## Index Organization (MANDATORY)
 
-When adding findings to the index file (`.memory/[topic]-index.md`), you must maintain a structured Findings table with four columns.
+The index system consists of a main index file and separate keyword index pages for navigating findings.
+
+### Main Index File
+
+The main index file (`.memory/[topic]-index.md`) contains:
+- Status summary (total findings, verification status)
+- List of fact files
+- Link to keyword index pages
+- Findings table (sorted by topic and name)
+
+**MUST:**
+- Update the main index after adding findings to fact files
+- Link to keyword index pages from the main index
+- Include only the findings table in the main index (not keywords section)
+
+**MUST NOT:**
+- Include keyword listings in the main index file
+- Skip updating the findings table when adding new findings
+
+### Findings Table Structure
+
+When adding findings to the main index file, maintain a structured Findings table with four columns.
 
 **Findings table structure:**
 
@@ -445,6 +466,77 @@ When adding findings to the index file (`.memory/[topic]-index.md`), you must ma
 | [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
 | [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
 ```
+
+### Keyword Index Pages
+
+Create separate keyword index pages (`.memory/[topic]-index-keywords-[range].md`) to organize findings by keyword. Divide keywords into multiple pages at sensible intervals based on alphabetical ranges.
+
+**File naming convention:**
+- Single page: `[topic]-index-keywords.md`
+- Multiple pages: `[topic]-index-keywords-a-e.md`, `[topic]-index-keywords-f-j.md`, etc.
+
+**Division guidelines:**
+
+**MUST:**
+- Divide at even intervals (roughly equal numbers of keywords per page)
+- Keep all keywords starting with the same letter together (do not split A keywords across pages)
+- Use alphabetical ranges that reflect the actual keyword distribution
+- Create navigation links between keyword index pages
+
+**MUST NOT:**
+- Split keywords of the same letter across different pages
+- Create pages with significantly uneven keyword counts
+- Use arbitrary page divisions unrelated to alphabetical ordering
+
+**Page structure:**
+
+```markdown
+# Findings by Keyword
+
+**Navigation:**
+- [Main Index]([topic]-index.md)
+- [Keywords A-E]([topic]-index-keywords-a-e.md) ← Current page
+- [Keywords F-J]([topic]-index-keywords-f-j.md)
+- [Keywords K-O]([topic]-index-keywords-k-o.md)
+
+---
+
+## keyword-name
+
+| Topic | Finding | Name |
+|-------|---------|------|
+| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
+| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
+
+## next-keyword
+
+| Topic | Finding | Name |
+|-------|---------|------|
+| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
+```
+
+**Keyword section requirements:**
+
+**MUST:**
+- Sort keywords alphabetically
+- Use H2 heading (`##`) for each keyword
+- Include Topic, Finding (with link), and Name columns
+- Sort findings within each keyword by Topic (primary), then Name (secondary)
+- List all findings that include the keyword
+
+**MUST NOT:**
+- Omit any findings tagged with the keyword
+- Skip navigation links between keyword index pages
+- Mix sorting orders within keyword sections
+
+**Example division for 320 keywords:**
+
+Approximate page ranges (adjust based on actual keyword distribution):
+- `[topic]-index-keywords-a-d.md` (keywords starting with A, B, C, D)
+- `[topic]-index-keywords-e-i.md` (keywords starting with E, F, G, H, I)
+- `[topic]-index-keywords-j-n.md` (keywords starting with J, K, L, M, N)
+- `[topic]-index-keywords-o-s.md` (keywords starting with O, P, Q, R, S)
+- `[topic]-index-keywords-t-z.md` (keywords starting with T, U, V, W, X, Y, Z)
 
 ---
 
