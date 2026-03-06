@@ -403,6 +403,51 @@ Capture ALL of the following:
 
 ---
 
+## Index Findings Table (MANDATORY)
+
+When adding findings to the index file (`.memory/[topic]-index.md`), you must maintain a structured Findings table with four columns.
+
+**Findings table structure:**
+
+```markdown
+| Finding | Topic | Name | Keywords |
+|---------|-------|------|----------|
+| [FINDING-ID](#finding-anchor) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
+```
+
+**Column definitions:**
+- **Finding:** Markdown link to the finding anchor (e.g., `[FINDING-2026-03-06-1](#finding-2026-03-06-1)`)
+- **Topic:** Categorical grouping for the finding (e.g., "Configuration", "Composition", "Hooks")
+- **Name:** Short descriptive name from the finding heading (e.g., "Skills - Primary Extension Mechanism")
+- **Keywords:** Comma-separated keywords from the finding's Keywords field
+
+**Sorting requirements:**
+
+**MUST:**
+- Sort findings alphabetically by Topic (primary sort key)
+- Sort findings alphabetically by Name within each Topic (secondary sort key)
+- Maintain this sorting order when adding new findings to the table
+
+**MUST NOT:**
+- Add findings in chronological order without sorting
+- Group findings by subtopic unless subtopic is explicitly the Topic value
+- Skip the Topic column
+
+**Example:**
+
+```markdown
+## Findings
+
+| Finding | Topic | Name | Keywords |
+|---------|-------|------|----------|
+| [FINDING-2026-03-06-5](#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | document, longform, performance, placement, prompt |
+| [FINDING-2026-03-06-8](#finding-2026-03-06-8) | Composition | Prefill Claude's Response | completion, control, format, prefill, prompt |
+| [FINDING-2026-03-04-1](#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
+| [FINDING-2026-03-04-7](#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
+```
+
+---
+
 ## When User Reviews Findings
 
 **During user review:**
