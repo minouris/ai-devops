@@ -12,6 +12,9 @@ Detailed research findings comparing the use of Reference Skills vs Rules for su
 ## FINDING-2026-03-05-82: Reference Skills Overview for Standards
 
 **Source:** [claude-config-skills-facts.md](.memory/claude-config-skills-facts.md) FINDING-18
+
+**Keywords:** convention, knowledge, reference, skill, standard
+
 **Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
@@ -42,6 +45,9 @@ Provide standards, conventions, or domain knowledge that Claude can reference wh
 ## FINDING-2026-03-05-83: Rules Overview for Standards
 
 **Source:** [claude-config-rules-facts.md](.memory/claude-config-rules-facts.md) FINDING-68, FINDING-71
+
+**Keywords:** convention, enforcement, rule, scope, standard
+
 **Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
@@ -72,6 +78,9 @@ Enforce standards and conventions consistently across a project or specific file
 ## FINDING-2026-03-05-84: Loading Behavior Comparison
 
 **Source:** User discussion 2026-03-05, derived from FINDING-18 and FINDING-78
+
+**Keywords:** behavior, loading, rule, skill
+
 **Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
@@ -98,6 +107,9 @@ Reference Skills and Rules have fundamentally different loading behaviors that a
 ## FINDING-2026-03-05-85: Trade-offs and Risk Analysis
 
 **Source:** User discussion 2026-03-05
+
+**Keywords:** context, efficiency, risk, rule, skill
+
 **Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
@@ -136,6 +148,9 @@ Choosing between Reference Skills and Rules involves trading off between guarant
 ## FINDING-2026-03-05-86: Use Case Decision Framework
 
 **Source:** User discussion 2026-03-05, synthesized from verified findings
+
+**Keywords:** decision, framework, rule, skill, use-case
+
 **Verified:** [NOT YET VERIFIED - derived from other findings, requires verification workflow]
 
 **What:**
@@ -176,6 +191,9 @@ Guidelines for choosing between Reference Skills and Rules based on use case req
 ## FINDING-2026-03-05-87: Context Persistence Uncertainty
 
 **Source:** User discussion 2026-03-05, relates to FINDING-81
+
+**Keywords:** compaction, context, persistence, rule, skill
+
 **Verified:** [REQUIRES FURTHER EXPLORATION]
 
 **What:**
