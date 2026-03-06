@@ -1,6 +1,6 @@
 # Fact Capture Guidelines
 
-**This file is loaded when: The agent needs detailed guidance on capturing research findings in fact files.**
+**This file is loaded when: You need detailed guidance on capturing research findings in fact files.**
 
 ---
 
