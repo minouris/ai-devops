@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/workspaces/ai-devops/.memory/claude-config-hooks-verification-working.md:*)",
+      "Bash(/workspaces/ai-devops/.memory/claude-config-log.md:*)",
+      "WebSearch",
+      "Bash(gh issue view 9444 --repo anthropics/claude-code --json title,body,state)",
+      "Bash(gh issue view 27113 --repo anthropics/claude-code --json title,body,state)",
+      "Bash(gh issue view 11240 --repo anthropics/claude-code --json title,body,state)",
+      "WebFetch(domain:somethinghitme.com)",
+      "Bash(git mv /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/parse-memory-file.md /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/initialize-verification.md)",
+      "Bash(git mv /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/log-progress.md /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/finalize-and-log.md)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "You are validating a markdown file against AI-targeted language standards before it is saved.\n\n**Your task:**\n1. Check if the file path matches `/src/claude/**/*.md` (if not, return {\"ok\": true})\n2. Check if the file is `ai-targeted-language.md` itself (if yes, return {\"ok\": true} - skip validation)\n3. Read the file at the path specified in: $ARGUMENTS\n4. Read src/claude/rules/ai-targeted-language.md for the validation standards\n5. Check the file content for AI-targeted language violations:\n   - Third-person AI references (\"The AI should\", \"The agent must\", \"Copilot will\", \"Claude Code will\")\n   - Vague language in instruction context (\"try to\", \"consider\", \"maybe\", \"approximately\", \"around\", \"roughly\")\n   - Missing second-person address (\"you\") where instructions are given\n   - Missing imperative mood (\"Create\", \"Use\", \"Verify\") where instructions are given\n6. If violations found, return {\"ok\": false, \"reason\": \"AI-targeted language violations: [list specific issues with line numbers]\"}\n7. If no violations found, return {\"ok\": true}\n\n**File being validated:** Check tool_input.file_path in $ARGUMENTS",
+            "timeout": 60,
+            "statusMessage": "Validating AI-targeted language standards..."
+          }
+        ]
+      }
+    ]
+  }
+}
