@@ -140,48 +140,48 @@ Discover all types of AI artifacts and customization methods for Claude Code and
 
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-2026-03-04-43](#finding-2026-03-04-43) | Built-in Commands (Not Custom Commands) | built-in, command, custom |
-| [FINDING-2026-03-04-27](#finding-2026-03-04-27) | Built-in Subagents | built-in, exploration, model, subagent, tool |
-| [FINDING-2026-03-04-36](#finding-2026-03-04-36) | CLI-Defined Subagents (JSON Format) | cli, configuration, json, subagent, temporary |
-| [FINDING-2026-03-04-39](#finding-2026-03-04-39) | Commands File Structure (Legacy Format) | command, file, format, legacy, structure |
-| [FINDING-2026-03-04-38](#finding-2026-03-04-38) | Commands Merged into Skills System | command, migration, skill, system, unification |
-| [FINDING-2026-03-04-42](#finding-2026-03-04-42) | Commands Priority and Precedence | command, precedence, priority, skill |
-| [FINDING-2026-03-04-40](#finding-2026-03-04-40) | Commands Support $ARGUMENTS Placeholder | argument, command, placeholder, substitution |
-| [FINDING-2026-03-04-41](#finding-2026-03-04-41) | Commands Support Frontmatter (Same as Skills) | command, configuration, frontmatter |
-| [FINDING-2026-03-05-87](#finding-2026-03-05-87) | Context Persistence Uncertainty | compaction, context, persistence, rule, skill |
-| [FINDING-2026-03-04-76](#finding-2026-03-04-76) | Excluding Specific Rules (Monorepos) | configuration, exclusion, monorepo, rule, setting |
-| [FINDING-2026-03-05-84](#finding-2026-03-05-84) | Loading Behavior Comparison | behavior, loading, rule, skill |
-| [FINDING-2026-03-04-44](#finding-2026-03-04-44) | Migrating Commands to Skills | command, migration, skill |
-| [FINDING-2026-03-04-70](#finding-2026-03-04-70) | Path-Specific Rules (Conditional Loading) | conditional, loading, pattern, rule, scope |
-| [FINDING-2026-03-05-82](#finding-2026-03-05-82) | Reference Skills Overview for Standards | convention, knowledge, reference, skill, standard |
-| [FINDING-2026-03-04-79](#finding-2026-03-04-79) | Rules Best Practices | best-practice, guideline, rule, size, standard |
-| [FINDING-2026-03-04-72](#finding-2026-03-04-72) | Rules Content Structure | content, format, markdown, rule, structure |
-| [FINDING-2026-03-05-81](#finding-2026-03-05-81) | Rules Context Compaction Behavior | compaction, context, persistence, rule, uncertainty |
-| [FINDING-2026-03-04-69](#finding-2026-03-04-69) | Rules File Structure and Locations | configuration, file, priority, rule, scope |
-| [FINDING-2026-03-04-80](#finding-2026-03-04-80) | Rules in Additional Directories | directory, environment, loading, rule, variable |
-| [FINDING-2026-03-04-78](#finding-2026-03-04-78) | Rules Loading Behavior | context, loading, rule, scope, timing |
-| [FINDING-2026-03-04-73](#finding-2026-03-04-73) | Rules Organization Patterns | directory, organization, pattern, rule, structure |
-| [FINDING-2026-03-04-68](#finding-2026-03-04-68) | Rules Overview and Introduction | configuration, modular, rule, scope, system |
-| [FINDING-2026-03-05-83](#finding-2026-03-05-83) | Rules Overview for Standards | convention, enforcement, rule, scope, standard |
-| [FINDING-2026-03-04-77](#finding-2026-03-04-77) | Rules vs CLAUDE.md | claudemd, comparison, organization, rule, structure |
-| [FINDING-2026-03-04-71](#finding-2026-03-04-71) | Rules Without Paths (Always Loaded) | loading, priority, rule, session, unconditional |
-| [FINDING-2026-03-04-74](#finding-2026-03-04-74) | Sharing Rules Across Projects with Symlinks | project, rule, sharing, symlink, team |
-| [FINDING-2026-03-04-34](#finding-2026-03-04-34) | Subagent Auto-Compaction | auto-compaction, context, subagent, transcript |
-| [FINDING-2026-03-04-31](#finding-2026-03-04-31) | Subagent Execution Modes | background, execution, foreground, mode, subagent |
-| [FINDING-2026-03-04-26](#finding-2026-03-04-26) | Subagent Frontmatter Fields Complete Specification | configuration, field, frontmatter, specification, subagent |
-| [FINDING-2026-03-04-37](#finding-2026-03-04-37) | Subagent Hooks | event, hook, lifecycle, scope, subagent |
-| [FINDING-2026-03-04-32](#finding-2026-03-04-32) | Subagent Isolation with Git Worktrees | git, isolation, subagent, testing, worktree |
-| [FINDING-2026-03-04-35](#finding-2026-03-04-35) | Subagent Management with /agents Command | command, interface, management, subagent |
-| [FINDING-2026-03-04-28](#finding-2026-03-04-28) | Subagent Permission Modes | mode, permission, security, subagent |
-| [FINDING-2026-03-04-30](#finding-2026-03-04-30) | Subagent Persistent Memory | memory, persistence, scope, storage, subagent |
-| [FINDING-2026-03-04-33](#finding-2026-03-04-33) | Subagent Resumption and Transcripts | resumption, session, storage, subagent, transcript |
-| [FINDING-2026-03-04-29](#finding-2026-03-04-29) | Subagent Tool Access Control | control, security, subagent, tool |
-| [FINDING-2026-03-04-25](#finding-2026-03-04-25) | Subagents File Structure and Locations | configuration, file, priority, scope, subagent |
-| [FINDING-2026-03-05-85](#finding-2026-03-05-85) | Trade-offs and Risk Analysis | context, efficiency, risk, rule, skill |
-| [FINDING-2026-03-05-86](#finding-2026-03-05-86) | Use Case Decision Framework | decision, framework, rule, skill, use-case |
-| [FINDING-2026-03-04-75](#finding-2026-03-04-75) | User-Level Rules (Personal Preferences) | preference, priority, rule, scope, user |
+| Finding | Topic | Name | Keywords |
+|---------|-------|------|----------|
+| [FINDING-2026-03-04-43](#finding-2026-03-04-43) | Commands | Built-in Commands (Not Custom Commands) | built-in, command, custom |
+| [FINDING-2026-03-04-39](#finding-2026-03-04-39) | Commands | Commands File Structure (Legacy Format) | command, file, format, legacy, structure |
+| [FINDING-2026-03-04-38](#finding-2026-03-04-38) | Commands | Commands Merged into Skills System | command, migration, skill, system, unification |
+| [FINDING-2026-03-04-42](#finding-2026-03-04-42) | Commands | Commands Priority and Precedence | command, precedence, priority, skill |
+| [FINDING-2026-03-04-40](#finding-2026-03-04-40) | Commands | Commands Support $ARGUMENTS Placeholder | argument, command, placeholder, substitution |
+| [FINDING-2026-03-04-41](#finding-2026-03-04-41) | Commands | Commands Support Frontmatter (Same as Skills) | command, configuration, frontmatter |
+| [FINDING-2026-03-04-44](#finding-2026-03-04-44) | Commands | Migrating Commands to Skills | command, migration, skill |
+| [FINDING-2026-03-04-76](#finding-2026-03-04-76) | Rules | Excluding Specific Rules (Monorepos) | configuration, exclusion, monorepo, rule, setting |
+| [FINDING-2026-03-04-70](#finding-2026-03-04-70) | Rules | Path-Specific Rules (Conditional Loading) | conditional, loading, pattern, rule, scope |
+| [FINDING-2026-03-04-79](#finding-2026-03-04-79) | Rules | Rules Best Practices | best-practice, guideline, rule, size, standard |
+| [FINDING-2026-03-04-72](#finding-2026-03-04-72) | Rules | Rules Content Structure | content, format, markdown, rule, structure |
+| [FINDING-2026-03-05-81](#finding-2026-03-05-81) | Rules | Rules Context Compaction Behavior | compaction, context, persistence, rule, uncertainty |
+| [FINDING-2026-03-04-69](#finding-2026-03-04-69) | Rules | Rules File Structure and Locations | configuration, file, priority, rule, scope |
+| [FINDING-2026-03-04-80](#finding-2026-03-04-80) | Rules | Rules in Additional Directories | directory, environment, loading, rule, variable |
+| [FINDING-2026-03-04-78](#finding-2026-03-04-78) | Rules | Rules Loading Behavior | context, loading, rule, scope, timing |
+| [FINDING-2026-03-04-73](#finding-2026-03-04-73) | Rules | Rules Organization Patterns | directory, organization, pattern, rule, structure |
+| [FINDING-2026-03-04-68](#finding-2026-03-04-68) | Rules | Rules Overview and Introduction | configuration, modular, rule, scope, system |
+| [FINDING-2026-03-04-77](#finding-2026-03-04-77) | Rules | Rules vs CLAUDE.md | claudemd, comparison, organization, rule, structure |
+| [FINDING-2026-03-04-71](#finding-2026-03-04-71) | Rules | Rules Without Paths (Always Loaded) | loading, priority, rule, session, unconditional |
+| [FINDING-2026-03-04-74](#finding-2026-03-04-74) | Rules | Sharing Rules Across Projects with Symlinks | project, rule, sharing, symlink, team |
+| [FINDING-2026-03-04-75](#finding-2026-03-04-75) | Rules | User-Level Rules (Personal Preferences) | preference, priority, rule, scope, user |
+| [FINDING-2026-03-05-87](#finding-2026-03-05-87) | Skills vs Rules | Context Persistence Uncertainty | compaction, context, persistence, rule, skill |
+| [FINDING-2026-03-05-84](#finding-2026-03-05-84) | Skills vs Rules | Loading Behavior Comparison | behavior, loading, rule, skill |
+| [FINDING-2026-03-05-82](#finding-2026-03-05-82) | Skills vs Rules | Reference Skills Overview for Standards | convention, knowledge, reference, skill, standard |
+| [FINDING-2026-03-05-83](#finding-2026-03-05-83) | Skills vs Rules | Rules Overview for Standards | convention, enforcement, rule, scope, standard |
+| [FINDING-2026-03-05-85](#finding-2026-03-05-85) | Skills vs Rules | Trade-offs and Risk Analysis | context, efficiency, risk, rule, skill |
+| [FINDING-2026-03-05-86](#finding-2026-03-05-86) | Skills vs Rules | Use Case Decision Framework | decision, framework, rule, skill, use-case |
+| [FINDING-2026-03-04-27](#finding-2026-03-04-27) | Subagents | Built-in Subagents | built-in, exploration, model, subagent, tool |
+| [FINDING-2026-03-04-36](#finding-2026-03-04-36) | Subagents | CLI-Defined Subagents (JSON Format) | cli, configuration, json, subagent, temporary |
+| [FINDING-2026-03-04-34](#finding-2026-03-04-34) | Subagents | Subagent Auto-Compaction | auto-compaction, context, subagent, transcript |
+| [FINDING-2026-03-04-31](#finding-2026-03-04-31) | Subagents | Subagent Execution Modes | background, execution, foreground, mode, subagent |
+| [FINDING-2026-03-04-26](#finding-2026-03-04-26) | Subagents | Subagent Frontmatter Fields Complete Specification | configuration, field, frontmatter, specification, subagent |
+| [FINDING-2026-03-04-37](#finding-2026-03-04-37) | Subagents | Subagent Hooks | event, hook, lifecycle, scope, subagent |
+| [FINDING-2026-03-04-32](#finding-2026-03-04-32) | Subagents | Subagent Isolation with Git Worktrees | git, isolation, subagent, testing, worktree |
+| [FINDING-2026-03-04-35](#finding-2026-03-04-35) | Subagents | Subagent Management with /agents Command | command, interface, management, subagent |
+| [FINDING-2026-03-04-28](#finding-2026-03-04-28) | Subagents | Subagent Permission Modes | mode, permission, security, subagent |
+| [FINDING-2026-03-04-30](#finding-2026-03-04-30) | Subagents | Subagent Persistent Memory | memory, persistence, scope, storage, subagent |
+| [FINDING-2026-03-04-33](#finding-2026-03-04-33) | Subagents | Subagent Resumption and Transcripts | resumption, session, storage, subagent, transcript |
+| [FINDING-2026-03-04-29](#finding-2026-03-04-29) | Subagents | Subagent Tool Access Control | control, security, subagent, tool |
+| [FINDING-2026-03-04-25](#finding-2026-03-04-25) | Subagents | Subagents File Structure and Locations | configuration, file, priority, scope, subagent |
 
 ---
 
