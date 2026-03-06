@@ -75,16 +75,6 @@ Organise topics and subtopics in folders containing the main file and all supple
     └── claude-config-composition-verification-working.md
 ```
 
-**Single-file topics:**
-
-For topics that consist of only a single file with no subtopics or supplementary files, you MAY place the file directly in `.memory/` root:
-
-```
-.memory/simple-topic-facts.md
-```
-
-Once a topic acquires a second file (subtopic, index, log, etc.), migrate it to a folder structure.
-
 ---
 
 ## Link Integrity (MANDATORY)
