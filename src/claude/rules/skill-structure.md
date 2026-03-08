@@ -6,8 +6,6 @@ paths:
 
 # Skill Structure Standards
 
-**Source:** [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
-
 Enforces required structure for skill artifacts based on Claude Code native skills feature and Agent Skills specification.
 
 ---
