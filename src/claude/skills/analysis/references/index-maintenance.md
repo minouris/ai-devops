@@ -62,22 +62,26 @@
 
 ## Keywords
 
-- **keyword1** (N findings)
-- **keyword2** (N findings)
-- **keyword3** (N findings)
+Browse findings by keyword:
 
-[... all keywords in alphabetical order ...]
+- [Keywords A-D]([topic]-index-keywords-a-d.md) - X keywords
+- [Keywords E-L]([topic]-index-keywords-e-l.md) - X keywords
+- [Keywords M-P]([topic]-index-keywords-m-p.md) - X keywords
+- [Keywords Q-S]([topic]-index-keywords-q-s.md) - X keywords
+- [Keywords T-Z]([topic]-index-keywords-t-z.md) - X keywords
+
+**Total:** N unique keywords across all findings
 
 ---
 
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Finding Name | keyword1, keyword2, keyword3 |
-| [FINDING-YYYY-MM-DD-M](#finding-yyyy-mm-dd-m) | Another Finding | keyword1, keyword4 |
+| Finding | Topic | Name | Keywords |
+|---------|-------|------|----------|
+| [FINDING-YYYY-MM-DD-N]([topic]-facts.md#finding-yyyy-mm-dd-n) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
+| [FINDING-YYYY-MM-DD-M]([topic]-[subtopic]/[topic]-[subtopic]-facts.md#finding-yyyy-mm-dd-m) | Topic Name | Another Finding | keyword1, keyword4 |
 
-[... all findings sorted alphabetically by name, then by keywords ...]
+[... all findings sorted alphabetically by topic (primary), then name (secondary) ...]
 
 ---
 
@@ -98,21 +102,24 @@ Update the index after each of these operations:
 
 1. **Appending to fact file**
    - Update "Last updated" timestamp for that fact file
-   - Update Keywords section with new keywords or increment counts
-   - Add new row to Findings table in alphabetically sorted position
+   - Update keyword index pages with new keywords or add findings to existing keyword sections
+   - Add new row to Findings table in alphabetically sorted position (by Topic, then Name)
+   - Update total keyword count in main index Keywords section
 
 2. **Creating new subtopic file**
    - Add new entry in "Fact Files" section
    - Include brief description of subtopic scope
-   - Update Keywords section with any new keywords from the file
-   - Add all findings from new file to Findings table
+   - Update keyword index pages with any new keywords from the file
+   - Add all findings from new file to Findings table (sorted by Topic, then Name)
+   - Update total keyword count in main index Keywords section
 
 3. **Archiving disproven finding**
    - Add or update "Disproven:" line with count
    - If it's the first disproven finding, add the line
    - If archive already exists, increment the count
-   - Decrement keyword counts for keywords in the archived finding
+   - Remove finding from keyword index pages
    - Remove finding from Findings table
+   - Update total keyword count if keywords are no longer used
 
 4. **Creating final output**
    - Add entry in "Analysis Outputs" section
@@ -133,23 +140,26 @@ If index doesn't exist, create it with this minimal structure:
 
 ## Fact Files
 
-- [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - [One-sentence description]
+- [[topic]-facts.md]([topic]-facts.md) - [One-sentence description]
   - Last updated: YYYY-MM-DD HH:MM
 
 ---
 
 ## Keywords
 
-- **keyword1** (N findings)
-- **keyword2** (N findings)
+Browse findings by keyword:
+
+- [Keywords A-Z]([topic]-index-keywords.md) - N keywords
+
+**Total:** N unique keywords across all findings
 
 ---
 
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-YYYY-MM-DD-1](#finding-yyyy-mm-dd-1) | Finding Name | keyword1, keyword2 |
+| Finding | Topic | Name | Keywords |
+|---------|-------|------|----------|
+| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name | keyword1, keyword2 |
 
 ---
 
@@ -169,16 +179,16 @@ When a topic has multiple subtopic files, list them all:
 
 ### Main Topic
 
-- [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - Overview and cross-cutting findings
+- [[topic]-facts.md]([topic]-facts.md) - Overview and cross-cutting findings
   - Last updated: YYYY-MM-DD HH:MM
 
 ### Subtopics
 
-- [.memory/[topic]-hallucination-facts.md](.memory/[topic]-hallucination-facts.md) - Hallucination and dishonesty problems
+- [[topic]-hallucination-facts.md]([topic]-hallucination/[topic]-hallucination-facts.md) - Hallucination and dishonesty problems
   - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[topic]-hallucination-facts-disproven.md](.memory/[topic]-hallucination-facts-disproven.md) (3 findings)
+  - Disproven: [[topic]-hallucination-facts-disproven.md]([topic]-hallucination/[topic]-hallucination-facts-disproven.md) (3 findings)
 
-- [.memory/[topic]-overeagerness-facts.md](.memory/[topic]-overeagerness-facts.md) - Overeagerness and proactivity issues
+- [[topic]-overeagerness-facts.md]([topic]-overeagerness/[topic]-overeagerness-facts.md) - Overeagerness and proactivity issues
   - Last updated: YYYY-MM-DD HH:MM
 ```
 
