@@ -15,12 +15,15 @@
 - Update findings table when findings are added or archived
 - Include file paths and last updated timestamps
 - Keep index concise and navigable
+- Add ALL subtopic findings to the main topic index and keyword indexes
 
 **MUST NOT:**
 - Skip index updates
 - Leave index out of sync with fact files
 - Leave keyword counts out of sync with findings
 - Leave findings table out of sync with fact files
+- Create separate index files for subtopics
+- Create separate keyword index files for subtopics
 
 ---
 
@@ -107,11 +110,12 @@ Update the index after each of these operations:
    - Update total keyword count in main index Keywords section
 
 2. **Creating new subtopic file**
-   - Add new entry in "Fact Files" section
+   - Add new entry in "Fact Files" section in the main topic index
    - Include brief description of subtopic scope
-   - Update keyword index pages with any new keywords from the file
-   - Add all findings from new file to Findings table (sorted by Topic, then Name)
-   - Update total keyword count in main index Keywords section
+   - Update main topic keyword index pages with any new keywords from the subtopic file
+   - Add all findings from new subtopic file to main topic Findings table (sorted by Topic, then Name)
+   - Update total keyword count in main topic index Keywords section
+   - **DO NOT create a separate index for the subtopic** - all subtopic findings go into the main topic index
 
 3. **Archiving disproven finding**
    - Add or update "Disproven:" line with count
