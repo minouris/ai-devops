@@ -154,8 +154,14 @@ Claude's long context capabilities support performance up to 20K+ tokens with da
 2. **Select subtopic name:** Choose a descriptive name for the new subtopic
 3. **Create subtopic folder:** `.memory/[topic]/[topic]-[subtopic]/`
 4. **Move related facts:** Transfer the new fact and related existing facts to the new subtopic file
-5. **Update index:** Add the new subtopic to the topic index file
-6. **Update links:** Ensure all cross-references use correct relative paths
+5. **Update main topic index:** Add the new subtopic to the main topic index file (`.memory/[topic]/[topic]-index.md`)
+6. **Update main topic keyword indexes:** Add findings from subtopic to main topic keyword index pages (`.memory/[topic]/[topic]-index-keywords-*.md`)
+7. **Update links:** Ensure all cross-references use correct relative paths
+
+**CRITICAL - DO NOT create per-subtopic indexes:**
+- DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index.md`
+- DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index-keywords-*.md`
+- All findings from subtopics MUST be added to the main topic index and keyword indexes at `.memory/[topic]/`
 
 **Example scenario:**
 
