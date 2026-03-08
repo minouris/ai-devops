@@ -475,11 +475,11 @@ When adding findings to the main index file, maintain a structured Findings tabl
 
 ### Keyword Index Pages
 
-Create separate keyword index pages (`.memory/[topic]-index-keywords-[range].md`) to organize findings by keyword. Divide keywords into multiple pages at sensible intervals based on alphabetical ranges.
+Create separate keyword index pages at the main topic level (`.memory/[topic]/[topic]-index-keywords-[range].md`) to organize findings by keyword. These pages include ALL findings from the main topic and all subtopics. Divide keywords into multiple pages at sensible intervals based on alphabetical ranges.
 
 **File naming convention:**
-- Single page: `[topic]-index-keywords.md`
-- Multiple pages: `[topic]-index-keywords-a-e.md`, `[topic]-index-keywords-f-j.md`, etc.
+- Single page: `.memory/[topic]/[topic]-index-keywords.md`
+- Multiple pages: `.memory/[topic]/[topic]-index-keywords-a-e.md`, `.memory/[topic]/[topic]-index-keywords-f-j.md`, etc.
 
 **Division guidelines:**
 

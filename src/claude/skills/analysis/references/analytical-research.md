@@ -129,7 +129,7 @@ Confirmed via testing in production environment.
 
 ## Index Maintenance
 
-After appending to fact files or archiving disproven findings, update `.memory/[topic]-index.md`.
+After appending to fact files or archiving disproven findings, update `.memory/[topic]/[topic]-index.md`.
 
 **Index format:**
 ```markdown
