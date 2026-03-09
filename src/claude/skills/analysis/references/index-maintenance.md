@@ -234,6 +234,21 @@ Keyword index files are separate files linked from the main index. Each file cov
 [topic]-index-keywords-t-z.md
 ```
 
+**Single-file A–Z variant (small topics):**
+- File: `[topic]-index-keywords.md`
+- Title (H1): `# Keywords A–Z`
+- Required header:
+  ```md
+  [Topic]: [Topic Name]
+  [Type]: Keyword Index
+  [Range]: A–Z
+  ```
+- Main index MUST link to this file as a single entry, e.g.:
+  ```md
+  - [Keywords A–Z](.memory/[topic]-index-keywords.md) - N keywords
+  ```
+  where `N` is the total number of distinct keywords in the A–Z file.
+
 **MUST:**
 - List keywords in alphabetical order within the file
 - Include count of findings using each keyword
