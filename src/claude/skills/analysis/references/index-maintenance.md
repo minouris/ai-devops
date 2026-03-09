@@ -245,7 +245,7 @@ Keyword index files are separate files linked from the main index. Each file cov
   ```
 - Main index MUST link to this file as a single entry, e.g.:
   ```md
-  - [Keywords A–Z](.memory/[topic]-index-keywords.md) — total keywords: N
+  - [Keywords A–Z](.memory/[topic]-index-keywords.md) - N keywords
   ```
   where `N` is the total number of distinct keywords in the A–Z file.
 
