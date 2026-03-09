@@ -220,25 +220,56 @@ When adding disproven companion file reference:
 
 ---
 
-## Keywords Section (MANDATORY)
+## Keyword Index Files (MANDATORY)
 
-List all unique keywords used across the topic and all subtopics, sorted alphabetically, with count of findings using each keyword.
+Keyword index files are separate files linked from the main index. Each file covers an alphabetical range of keywords. Small topics may use a single A-Z file; larger topics split across multiple files (A-D, E-L, M-P, Q-S, T-Z).
+
+**File naming:**
+```
+[topic]-index-keywords.md              (single file for small topics)
+[topic]-index-keywords-a-d.md         (split files for large topics)
+[topic]-index-keywords-e-l.md
+[topic]-index-keywords-m-p.md
+[topic]-index-keywords-q-s.md
+[topic]-index-keywords-t-z.md
+```
+
+**Single-file A–Z variant (small topics):**
+- File: `[topic]-index-keywords.md`
+- Title (H1): `# Keywords A–Z`
+- Required header:
+  ```md
+  [Topic]: [Topic Name]
+  [Type]: Keyword Index
+  [Range]: A–Z
+  ```
+- Main index MUST link to this file as a single entry, e.g.:
+  ```md
+  - [Keywords A–Z](.memory/[topic]-index-keywords.md) - N keywords
+  ```
+  where `N` is the total number of distinct keywords in the A–Z file.
 
 **MUST:**
-- List keywords in alphabetical order
+- List keywords in alphabetical order within the file
 - Include count of findings using each keyword
 - Update counts when appending findings with keywords
 - Update counts when archiving disproven findings
 - Use bold formatting for keywords
+- Update the keyword count on each file's link in the main index when counts change
 
 **MUST NOT:**
-- Omit keywords section from index
+- List keywords inline in the main index file — use keyword index files only
 - List keywords without counts
 - Include keywords with zero findings
+- Create keyword index files for subtopics — all keywords go in the main topic's keyword files
 
-**Format:**
+**Format for keyword index files:**
 ```markdown
-## Keywords
+# [Topic] — Keywords [Range]
+
+**N keywords**
+
+---
 
 - **api** (12 findings)
 - **authentication** (8 findings)
@@ -377,15 +408,15 @@ Track generated analysis documents:
 
 ## Keywords
 
-- **accuracy** (5 findings)
-- **behavioral** (8 findings)
-- **context** (12 findings)
-- **hallucination** (15 findings)
-- **memory** (9 findings)
-- **pattern** (7 findings)
-- **performance** (6 findings)
-- **training** (11 findings)
-- **verification** (10 findings)
+Browse findings by keyword:
+
+- [Keywords A-D](ai-problems-analysis-index-keywords-a-d.md) - 14 keywords
+- [Keywords E-L](ai-problems-analysis-index-keywords-e-l.md) - 8 keywords
+- [Keywords M-P](ai-problems-analysis-index-keywords-m-p.md) - 6 keywords
+- [Keywords Q-S](ai-problems-analysis-index-keywords-q-s.md) - 4 keywords
+- [Keywords T-Z](ai-problems-analysis-index-keywords-t-z.md) - 5 keywords
+
+**Total:** 37 unique keywords across all findings
 
 ---
 
