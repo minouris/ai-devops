@@ -18,7 +18,9 @@
     "vscode": {
       "extensions": [
         "vstirbu.vscode-mermaid-preview",
-        "ms-vscode.vscode-websearchforcopilot"
+        "ms-vscode.vscode-websearchforcopilot",
+        "GitHub.vscode-github-actions",
+        "GitHub.vscode-pull-request-github"
       ],
       "settings": {}
     }
