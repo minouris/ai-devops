@@ -19,10 +19,11 @@ escape_json_string() {
   s="${s//$'\t'/\\t}"
   s="${s//$'\b'/\\b}"
   s="${s//$'\f'/\\f}"
-  # Escape remaining ASCII control characters 0x01-0x07, 0x0B, 0x0E-0x1F
+  # Escape remaining ASCII control characters 0x01-0x1F
   # (0x00 cannot appear in bash strings; 0x08/09/0A/0C/0D handled above)
   local i ctrl hex
-  for i in {1..7} 11 {14..31}; do
+  for ((i=1; i<=31; i++)); do
+    case $i in 8|9|10|12|13) continue;; esac
     ctrl=$(printf "\\$(printf '%03o' "$i")")
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
@@ -46,10 +47,11 @@ escape_graphql_string() {
   s="${s//$'\t'/\\t}"
   s="${s//$'\b'/\\b}"
   s="${s//$'\f'/\\f}"
-  # Escape remaining ASCII control characters 0x01-0x07, 0x0B, 0x0E-0x1F
+  # Escape remaining ASCII control characters 0x01-0x1F
   # (0x00 cannot appear in bash strings; 0x08/09/0A/0C/0D handled above)
   local i ctrl hex
-  for i in {1..7} 11 {14..31}; do
+  for ((i=1; i<=31; i++)); do
+    case $i in 8|9|10|12|13) continue;; esac
     ctrl=$(printf "\\$(printf '%03o' "$i")")
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
