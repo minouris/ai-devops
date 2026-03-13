@@ -5,7 +5,8 @@
 
 # Escape JSON string - bash-native, no external dependencies
 # Escapes special characters for safe embedding in JSON strings
-# Covers all characters required by RFC 8259: \, ", and control chars 0x00-0x1F
+# Covers all characters required by RFC 8259: \, ", and control chars 0x01-0x1F
+# (NUL 0x00 cannot appear in bash strings and thus is not handled)
 # Usage: escaped=$(escape_json_string "$input")
 escape_json_string() {
   local s="$1"
