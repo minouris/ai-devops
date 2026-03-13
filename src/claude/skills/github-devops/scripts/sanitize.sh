@@ -28,7 +28,7 @@ escape_json_string() {
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
   done
-  echo "$s"
+  printf '%s\n' "$s"
 }
 
 # Escape GraphQL string - bash-native, no external dependencies
@@ -56,7 +56,7 @@ escape_graphql_string() {
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
   done
-  echo "$s"
+  printf '%s\n' "$s"
 }
 
 # URL encode string - bash-native, no external dependencies
@@ -76,5 +76,5 @@ url_encode() {
   string="${string//\&/%26}"
   # Replace question mark with %3F
   string="${string//?/%3F}"
-  echo "$string"
+  printf '%s\n' "$string"
 }
