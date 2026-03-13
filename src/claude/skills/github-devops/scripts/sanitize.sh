@@ -22,7 +22,7 @@ escape_json_string() {
   # Escape remaining ASCII control characters 0x01-0x07, 0x0B, 0x0E-0x1F
   # (0x00 cannot appear in bash strings; 0x08/09/0A/0C/0D handled above)
   local i ctrl hex
-  for i in 1 2 3 4 5 6 7 11 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31; do
+  for i in {1..7} 11 {14..31}; do
     ctrl=$(printf "\\$(printf '%03o' "$i")")
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
@@ -49,7 +49,7 @@ escape_graphql_string() {
   # Escape remaining ASCII control characters 0x01-0x07, 0x0B, 0x0E-0x1F
   # (0x00 cannot appear in bash strings; 0x08/09/0A/0C/0D handled above)
   local i ctrl hex
-  for i in 1 2 3 4 5 6 7 11 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31; do
+  for i in {1..7} 11 {14..31}; do
     ctrl=$(printf "\\$(printf '%03o' "$i")")
     hex=$(printf '\\u%04x' "$i")
     s="${s//$ctrl/$hex}"
