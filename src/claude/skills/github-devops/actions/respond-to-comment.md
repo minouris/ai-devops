@@ -46,6 +46,7 @@ After executing the script, you must verify the response before accepting the op
 - Verify the response contains an `id` field (new comment ID)
 - Verify the response contains a `body` field matching the reply text
 - If the response contains an `in_reply_to_id` or `in_reply_to` field, verify its value matches the original comment ID
+- If the response does not contain either `in_reply_to_id` or `in_reply_to`, record that threading metadata is unavailable and proceed based on the successful status code and the other checks above
 
 If any verification fails:
 - Report the compliance gate failure
@@ -64,7 +65,8 @@ If all compliance gates pass, report success including:
 **MUST:**
 - Use only the respond-to-comment.sh script
 - Verify response structure before reporting success
-- Confirm the reply is correctly threaded to the original comment
+- When threading metadata (`in_reply_to_id` or `in_reply_to`) is present in the response, confirm the reply is correctly threaded to the original comment
+- When threading metadata is absent, explicitly note that threading could not be programmatically verified
 
 **MUST NOT:**
 - Retry the operation if it fails
