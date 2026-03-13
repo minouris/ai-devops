@@ -1,15 +1,15 @@
 {
   "name": "Claude Code Dev Container",
-  
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",  
   "runArgs": ["--env-file", ".devcontainer/.env"],
-  "build": {
-    "dockerfile": "Dockerfile",
-    "options": [
-      "--secret=id=zscaler_root_ca,src=/etc/ssl/certs/Zscaler_Root_CA.pem"
-    ]
-  },
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
     }
   },
@@ -63,9 +63,7 @@
   },
 
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
     "source=${localWorkspaceFolder}/.devcontainer/.claude-data,target=/home/vscode/.claude,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/.claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder}/src/claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
   ]
 }
