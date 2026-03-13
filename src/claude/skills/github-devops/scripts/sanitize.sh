@@ -65,19 +65,6 @@ escape_graphql_string() {
 # Usage: encoded=$(url_encode "$input")
 url_encode() {
   local string="$1"
-  # Replace spaces with %20
-  string="${string// /%20}"
-  # Replace forward slashes with %2F
-  string="${string//\//%2F}"
-  # Replace quotes with %22
-  string="${string//\"/%22}"
-  # Replace hash with %23
-  string="${string//#/%23}"
-  # Replace ampersand with %26
-  string="${string//\&/%26}"
-  # Replace question mark with %3F
-  string="${string//?/%3F}"
-  printf '%s\n' "$string"
   local length=${#string}
   local i char encoded="" hex
 
