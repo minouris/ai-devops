@@ -45,17 +45,23 @@ escape_graphql_string() {
 # Usage: encoded=$(url_encode "$input")
 url_encode() {
   local string="$1"
-  # Replace spaces with %20
-  string="${string// /%20}"
-  # Replace forward slashes with %2F
-  string="${string//\//%2F}"
-  # Replace quotes with %22
-  string="${string//\"/%22}"
-  # Replace hash with %23
-  string="${string//#/%23}"
-  # Replace ampersand with %26
-  string="${string//\&/%26}"
-  # Replace question mark with %3F
-  string="${string//?/%3F}"
-  echo "$string"
+  local length=${#string}
+  local i char encoded="" hex
+
+  # RFC 3986 unreserved characters: A-Z a-z 0-9 - . _ ~
+  # All other bytes are percent-encoded as %HH
+  for (( i=0; i<length; i++ )); do
+    char="${string:i:1}"
+    case "$char" in
+      [a-zA-Z0-9.~_-])
+        encoded+="$char"
+        ;;
+      *)
+        printf -v hex '%%%02X' "'$char"
+        encoded+="$hex"
+        ;;
+    esac
+  done
+
+  echo "$encoded"
 }
