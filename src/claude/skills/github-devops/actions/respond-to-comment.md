@@ -19,7 +19,7 @@ Before proceeding to execute the script, you must:
 
 ## Execution
 
-Execute the respond-to-comment script (FINDING-2026-03-11-13 verified parameter: use `in_reply_to` not `in_reply_to_id`):
+Execute the respond-to-comment script (parameter: use `in_reply_to` not `in_reply_to_id`):
 
 ```bash
 ${CLAUDE_SKILL_DIR}/scripts/respond-to-comment.sh "$OWNER" "$REPO" "$pr_number" "$comment_id" "$reply_text"
