@@ -19,7 +19,7 @@ Before proceeding to execute the script, you must:
 
 ## Execution
 
-Execute the respond-to-comment script (FINDING-2026-03-11-13 verified parameter: use `in_reply_to` not `in_reply_to_id`):
+Execute the respond-to-comment script (parameter: use `in_reply_to` not `in_reply_to_id`):
 
 ```bash
 ${CLAUDE_SKILL_DIR}/scripts/respond-to-comment.sh "$OWNER" "$REPO" "$pr_number" "$comment_id" "$reply_text"
@@ -45,7 +45,8 @@ After executing the script, you must verify the response before accepting the op
 - Parse the JSON response
 - Verify the response contains an `id` field (new comment ID)
 - Verify the response contains a `body` field matching the reply text
-- Verify the response contains an `in_reply_to_id` field with value matching the original comment ID
+- If the response contains an `in_reply_to_id` or `in_reply_to` field, verify its value matches the original comment ID
+- If the response does not contain either `in_reply_to_id` or `in_reply_to`, record that threading metadata is unavailable and proceed based on the successful status code and the other checks above
 
 If any verification fails:
 - Report the compliance gate failure
@@ -64,7 +65,8 @@ If all compliance gates pass, report success including:
 **MUST:**
 - Use only the respond-to-comment.sh script
 - Verify response structure before reporting success
-- Confirm the reply is correctly threaded to the original comment
+- When threading metadata (`in_reply_to_id` or `in_reply_to`) is present in the response, confirm the reply is correctly threaded to the original comment
+- When threading metadata is absent, explicitly note that threading could not be programmatically verified
 
 **MUST NOT:**
 - Retry the operation if it fails

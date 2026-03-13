@@ -78,4 +78,23 @@ url_encode() {
   # Replace question mark with %3F
   string="${string//?/%3F}"
   printf '%s\n' "$string"
+  local length=${#string}
+  local i char encoded="" hex
+
+  # RFC 3986 unreserved characters: A-Z a-z 0-9 - . _ ~
+  # All other bytes are percent-encoded as %HH
+  for (( i=0; i<length; i++ )); do
+    char="${string:i:1}"
+    case "$char" in
+      [a-zA-Z0-9.~_-])
+        encoded+="$char"
+        ;;
+      *)
+        printf -v hex '%%%02X' "'$char"
+        encoded+="$hex"
+        ;;
+    esac
+  done
+
+  echo "$encoded"
 }
