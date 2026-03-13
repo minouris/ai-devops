@@ -45,7 +45,7 @@ After executing the script, you must verify the response before accepting the op
 - Parse the JSON response
 - Verify the response contains an `id` field (new comment ID)
 - Verify the response contains a `body` field matching the reply text
-- Verify the response contains an `in_reply_to_id` field with value matching the original comment ID
+- If the response contains an `in_reply_to_id` or `in_reply_to` field, verify its value matches the original comment ID
 
 If any verification fails:
 - Report the compliance gate failure
