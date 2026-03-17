@@ -1,15 +1,14 @@
 {
-  "name": "Claude Code Dev Container",
-  
-  "runArgs": ["--env-file", ".devcontainer/.env"],
-  "build": {
-    "dockerfile": "Dockerfile",
-    "options": [
-      "--secret=id=zscaler_root_ca,src=/etc/ssl/certs/Zscaler_Root_CA.pem"
-    ]
-  },
+  "name": "GitHub Codespaces Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
     }
   },
@@ -18,54 +17,19 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "anthropic.claude-code",
         "vstirbu.vscode-mermaid-preview",
-        "ms-vscode.vscode-websearchforcopilot"
+        "ms-vscode.vscode-websearchforcopilot",
+        "GitHub.vscode-github-actions",
+        "GitHub.vscode-pull-request-github"
       ],
-      "settings": {
-        "claudeCode.disableLoginPrompt": true,
-        "claudeCode.environmentVariables": [
-          {
-            "name": "CLAUDE_CODE_USE_FOUNDRY",
-            "value": "1"
-          },
-          {
-            "name": "ANTHROPIC_FOUNDRY_RESOURCE",
-            "value": "${containerEnv:ANTHROPIC_FOUNDRY_RESOURCE}"
-          },
-          {
-            "name": "ANTHROPIC_FOUNDRY_API_KEY",
-            "value": "${containerEnv:ANTHROPIC_FOUNDRY_API_KEY}"
-          },
-          {
-            "name": "ANTHROPIC_DEFAULT_SONNET_MODEL",
-            "value": "${containerEnv:ANTHROPIC_DEFAULT_SONNET_MODEL}"
-          },
-          {
-            "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
-            "value": "${containerEnv:ANTHROPIC_DEFAULT_HAIKU_MODEL}"
-          },
-          {
-            "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
-            "value": "1"
-          }
-        ]
-      }
+      "settings": {}
     }
   },
 
-  "remoteEnv": {
-    "ZSCALER_ROOT_CA": "${containerEnv:ZSCALER_ROOT_CA}",
-    "ANTHROPIC_FOUNDRY_RESOURCE": "${containerEnv:ANTHROPIC_FOUNDRY_RESOURCE}",
-    "ANTHROPIC_FOUNDRY_API_KEY": "${containerEnv:ANTHROPIC_FOUNDRY_API_KEY}",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "${containerEnv:ANTHROPIC_DEFAULT_SONNET_MODEL}",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "${containerEnv:ANTHROPIC_DEFAULT_HAIKU_MODEL}"
-  },
+  "remoteEnv": {},
 
   "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind,consistency=cached",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
     "source=${localWorkspaceFolder}/.devcontainer/.claude-data,target=/home/vscode/.claude,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.devcontainer/.claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder}/src/claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
   ]
 }
