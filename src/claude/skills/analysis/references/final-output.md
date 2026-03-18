@@ -75,6 +75,254 @@ Would you like me to:
 
 ---
 
+# Embedded Rules
+
+## Language Standards (from documentation-standards.md)
+
+### UK English Only
+
+**MUST:**
+- Use UK spelling: "organised" not "organized"
+- Use UK grammar: "ise" endings not "ize"
+- Examples: "colour", "favour", "recognise", "analyse"
+
+**MUST NOT:**
+- Use US English spellings
+- Use cultural-specific idioms or metaphors
+- Reference specific regions, sports, or cultural events
+- Assume cultural context
+
+### Cultural Neutrality
+
+❌ **NEVER Write:**
+- "This is a home run"
+- "Let's take this offline"
+- "Circle back"
+- "Touch base"
+
+✅ **ALWAYS Write:**
+- "This meets requirements"
+- "Let us discuss separately"
+- "Return to this topic"
+- "Communicate"
+
+---
+
+## Tone and Terminology (from documentation-standards.md)
+
+### Hyperbole
+
+**NEVER Use:**
+- Superlatives: "best", "greatest", "revolutionary"
+- Exaggerations: "game-changing", "cutting-edge", "world-class"
+- Dramatic claims: "incredible", "amazing", "stunning"
+
+**ALWAYS Use:**
+- Factual descriptions
+- Measurable outcomes
+- Precise technical terms
+
+### Marketing Language and Buzzwords
+
+**PROHIBITED TERMS - NEVER USE:**
+- "Synergy", "leverage", "paradigm shift"
+- "Game-changing", "thought leader", "deep dive"
+- "Circle back", "move the needle", "low-hanging fruit"
+- "Boil the ocean", "drink the Kool-Aid", "break down silos"
+- "Best-in-class", "industry-leading", "next-generation"
+
+**Replacement Strategy:**
+
+❌ **If you would write:**
+> "Our revolutionary architecture leverages cutting-edge patterns to deliver game-changing synergies."
+
+✅ **Write instead:**
+> "The layered architecture separates concerns, enabling independent development of each domain."
+
+---
+
+## Heading Formatting (from documentation-standards.md)
+
+**MUST Use:**
+- Proper markdown heading levels: `##`, `###`, `####`, `#####`, `######`
+- Hierarchical structure that reflects document organisation
+
+**MUST NOT:**
+- Use bold text as headings: `**Heading Text**` or `**Heading Text:**`
+- Use bold text to simulate section breaks or emphasis where a heading is appropriate
+- Mix heading styles within the same document
+
+**Rationale:**
+- Proper headings enable navigation, linking, and table of contents generation
+- Bold text does not provide semantic structure
+- Screen readers and document parsers rely on heading tags
+
+**Examples:**
+
+❌ **NEVER Write:**
+```markdown
+**Implementation Details**
+
+Some content here.
+
+**Configuration:**
+More content.
+```
+
+✅ **ALWAYS Write:**
+```markdown
+#### Implementation Details
+
+Some content here.
+
+#### Configuration
+
+More content.
+```
+
+---
+
+## Fenced Code Blocks (from markdown-formatting.md)
+
+**MUST:**
+- Use quad-backticks (````) for outer fence when nesting code blocks
+- Use triple-backticks (```) for inner fence
+- Specify language identifiers for both outer and inner fences when applicable
+
+**MUST NOT:**
+- Use triple-backticks for outer fence when nesting
+- Omit language identifiers
+
+**Example Structure:**
+````markdown
+```javascript
+// Inner code block uses triple backticks
+```
+````
+
+**When to Use:**
+- Documenting markdown syntax itself
+- Showing code examples that contain fenced code blocks
+- Tutorial or instruction content that demonstrates code block usage
+
+**Validation:**
+- Inner fence must close before outer fence
+- Ensure consistent indentation within nested blocks
+- Verify rendering previews nested blocks correctly
+
+---
+
+## Filename Conventions (from markdown-formatting.md)
+
+**MUST:**
+- Use lower-snake-case for all Markdown filenames (e.g., `my_document.md`, `feature_specification.md`)
+- Use `.md` extension for all Markdown files
+
+**MUST NOT:**
+- Use kebab-case (e.g., `my-document.md`)
+- Use camelCase (e.g., `myDocument.md`)
+- Use PascalCase (e.g., `MyDocument.md`)
+- Use spaces in filenames
+
+**Exception:**
+- `README.md` is exempt from lower-snake-case requirement (use uppercase README)
+
+**Examples:**
+
+✅ **Correct:**
+- `architecture_plan.md`
+- `database_schema.md`
+- `README.md`
+- `01_planning.md`
+
+❌ **Incorrect:**
+- `architecture-plan.md` (kebab-case)
+- `ArchitecturePlan.md` (PascalCase)
+- `architecturePlan.md` (camelCase)
+- `ARCHITECTURE_PLAN.md` (uppercase, not README)
+- `architecture plan.md` (spaces)
+
+---
+
+## Table of Contents (from document-structure.md)
+
+When creating or editing human-readable Markdown documents:
+
+**MUST Include:**
+- Table of Contents immediately after the main H1 heading
+- Links to all H2 and H3 sections using Markdown anchor format
+- "Back to top" links at the end of EVERY H2 section
+
+**MUST NOT:**
+- Create documents without a Table of Contents
+- Omit "Back to top" links from any H2 section
+- Place ToC anywhere except after H1
+
+**Format:**
+
+````markdown
+# Document Title
+
+## Table of Contents
+
+- [Section One](#section-one)
+  - [Subsection A](#subsection-a)
+- [Section Two](#section-two)
+
+---
+
+## Section One
+
+Content...
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Section Two
+
+Content...
+
+[↑ Back to top](#table-of-contents)
+````
+
+---
+
+## Directory Landing Pages (from document-structure.md)
+
+When a directory contains multiple Markdown documents:
+
+**MUST Create:**
+- Landing page named after the directory (e.g., `architecture/architecture.md`)
+- Alternative: `README.md` if contextually appropriate
+
+**MUST Include in Landing Page:**
+- Summary paragraph describing directory purpose
+- Table or list of all documents with one-sentence descriptions
+- Navigation links to parent directory if applicable
+
+**Landing Page Template:**
+
+````markdown
+# Directory Name
+
+Summary of directory purpose and content type.
+
+## Documents
+
+| Document | Description |
+|----------|-------------|
+| [Document Name](file.md) | One-sentence description |
+
+## Navigation
+
+- **Parent:** [Parent Directory](../parent.md)
+````
+
+---
+
+# Output Creation
+
 ## For Procedural Guides
 
 **When user requests procedure guide:**
@@ -102,6 +350,81 @@ Would you like me to:
 I've created procedure guide draft in `.memory/[GUIDE-NAME]-PENDING.md`.
 Please review and approve before I create the final guide.
 ```
+
+**Final Procedural Guide Format:**
+
+````markdown
+# [Procedure Guide Title]
+
+**Generated:** YYYY-MM-DD HH:MM
+**Tested:** [Environment/platform details]
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Procedure](#procedure)
+- [Troubleshooting](#troubleshooting)
+- [Sources](#sources)
+
+---
+
+## Overview
+
+[Brief description of what this procedure accomplishes]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Requirements
+
+- [Requirement 1]
+- [Requirement 2]
+- [etc.]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Procedure
+
+### Step 1: [Step Title]
+
+[Step description and commands]
+
+### Step 2: [Step Title]
+
+[Step description and commands]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Troubleshooting
+
+### [Common Issue 1]
+
+**Symptom:** [Description]
+
+**Solution:** [Resolution steps]
+
+### [Common Issue 2]
+
+**Symptom:** [Description]
+
+**Solution:** [Resolution steps]
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Sources
+
+- [`.memory/[topic]-facts.md`](.memory/[topic]-facts.md) - [Brief description]
+
+[↑ Back to top](#table-of-contents)
+````
 
 ---
 
@@ -157,32 +480,55 @@ Please review and approve before I create the final analysis file.
 
 ## Final Analysis Format
 
-```markdown
+````markdown
 # [Analysis Title]
 
 **Generated:** YYYY-MM-DD HH:MM
 **Sources:** [List fact files consulted]
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Section 1](#section-1)
+- [Section 2](#section-2)
+- [Sources](#sources)
+
 ---
 
 ## Executive Summary
+
 [High-level synthesis - 2-3 paragraphs maximum]
 
+[↑ Back to top](#table-of-contents)
+
+---
+
 ## [Section 1]
+
 [Narrative using facts with inline citations to fact files]
 
 Example citation:
-> According to research findings, the API endpoint changed in v2 ([ai-problems-analysis-hallucination-facts.md](. memory/ai-problems-analysis-hallucination-facts.md), FINDING-2026-02-23-5).
+> According to research findings, the API endpoint changed in v2 ([ai-problems-analysis-hallucination-facts.md](.memory/ai-problems-analysis-hallucination-facts.md), FINDING-2026-02-23-5).
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ## [Section 2]
+
 [etc.]
+
+[↑ Back to top](#table-of-contents)
 
 ---
 
 ## Sources
+
 - [`.memory/[topic]-facts.md`](.memory/[topic]-facts.md) - [Brief description]
 - [`.memory/[topic]-[subtopic]-facts.md`](.memory/[topic]-[subtopic]-facts.md) - [Brief description]
-```
+
+[↑ Back to top](#table-of-contents)
+````
 
 ---
 
