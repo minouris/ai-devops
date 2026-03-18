@@ -151,8 +151,8 @@ Source: [Docker Compose Overview](https://docs.docker.com/compose/)
 When you are requested to import artifacts, prompts, or files from external repositories:
 
 **MUST:**
-- Use GitHub CLI to read directly from the repository if it is owned by the current user (`minouris`)
-- Check out a temporary copy (e.g., `/tmp/`) if the repository is not owned by the current user
+- Use GitHub CLI to read directly from the repository if it is owned by the current user
+- Check out a temporary copy (e.g., `.tmp/`) if the repository is not owned by the current user
 - Import only the specific files explicitly requested by the user
 - Do not clone entire repositories unless the user explicitly requests it
 
