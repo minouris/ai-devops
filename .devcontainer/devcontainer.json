@@ -29,6 +29,7 @@
   "remoteEnv": {},
 
   "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
     "source=${localWorkspaceFolder}/.devcontainer/.claude-data,target=/home/vscode/.claude,type=bind,consistency=cached",
     "source=${localWorkspaceFolder}/src/claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
   ]

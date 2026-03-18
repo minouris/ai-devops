@@ -46,7 +46,7 @@
    - Subtopics: `.memory/[topic]-[subtopic]-facts.md`
    - Capture facts, observations, theories, hypotheses, dead ends
 
-6. **Maintain index**: Track the fact file and its companions in `.memory/[topic]-index.md`
+6. **Maintain index**: Track all fact files (main topic and subtopics) in the single main topic index file `.memory/[topic]/[topic]-index.md` - never create per-subtopic indexes
 
 7. **Handle disproven findings**: When user disproves a finding, archive it immediately to `-disproven.md` file
 
@@ -129,7 +129,7 @@ Confirmed via testing in production environment.
 
 ## Index Maintenance
 
-After appending to fact files or archiving disproven findings, update `.memory/[topic]-index.md`.
+After appending to fact files or archiving disproven findings, update `.memory/[topic]/[topic]-index.md`.
 
 **Index format:**
 ```markdown

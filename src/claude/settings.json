@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/workspaces/ai-devops/.memory/claude-config-hooks-verification-working.md:*)",
+      "Bash(/workspaces/ai-devops/.memory/claude-config-log.md:*)",
+      "WebSearch",
+      "Bash(gh issue view 9444 --repo anthropics/claude-code --json title,body,state)",
+      "Bash(gh issue view 27113 --repo anthropics/claude-code --json title,body,state)",
+      "Bash(gh issue view 11240 --repo anthropics/claude-code --json title,body,state)",
+      "WebFetch(domain:somethinghitme.com)",
+      "Bash(git mv /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/parse-memory-file.md /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/initialize-verification.md)",
+      "Bash(git mv /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/log-progress.md /workspaces/ai-devops/src/claude/skills/analysis/references/fact-verification/finalize-and-log.md)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "You validate markdown files after they are saved.\n\n**Your task:**\n1. Check tool_input.file_path in: $ARGUMENTS\n2. If file path does NOT match `/src/claude/**/*.md`, return {\"ok\": true}\n3. If file is `ai-targeted-language.md`, return {\"ok\": true}\n4. Invoke validation skill: Use Skill tool with skill_name=\"validate-ai-targeted-language\" and provide file path\n5. Return {\"ok\": true} always (validation skill handles user interaction)\n\n**Note:** The skill will report violations and offer fixes interactively. Always return {\"ok\": true} to allow the workflow to continue.",
+            "timeout": 120,
+            "statusMessage": "Validating AI-targeted language..."
+          }
+        ]
+      }
+    ]
+  }
+}

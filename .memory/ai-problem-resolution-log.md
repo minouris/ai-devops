@@ -590,3 +590,12 @@
 **Files changed:** `.memory/ai-problem-resolution-solutions-history-facts.md`, `.memory/ai-problem-resolution-index.md`
 **Summary:** A Dishonesty sub-file was created (and immediately deleted, untracked) after context poisoning from the session summary caused the file to be scoped around git operations policy rather than the actual Dishonesty root cause (false claims of correctness/completion/state/knowledge). On re-reading root-causes-facts.md directly, it was confirmed that Dishonesty is already fully addressed by FINDING-07 in solutions-history-hallucination-facts.md — the accuracy/documentation-first policy lineage addresses both Hallucination (unintentional confabulation) and Dishonesty (false assertion) through the same policy evolution. No separate file is needed. Clarifying note added to Sub-topic Fact Files table in overview and to hallucination sub-file entry in index so the absence of a separate Dishonesty file is not misread as a coverage gap in future sessions.
 **Next:** Pending — SH-039/040/041 catalog entries; SH-038/031 miscategorisation correction; evolution analysis of meta-instructional files; consolidate-clarifications prompt.
+
+---
+
+### LOG-2026-03-05-01
+**Date:** 2026-03-05
+**Operation:** New main-level fact file — effective patterns for addressing AI problems
+**Files changed:** `.memory/ai-problem-resolution-effective-patterns-facts.md` (new), `.memory/ai-problem-resolution-index.md`
+**Summary:** Created new main-level fact file to document patterns and approaches that effectively address AI instruction following problems. Added FINDING-2026-03-05-1: Rationales improve rule understanding and edge case application. Finding documents observation that including rationales (explanations of why a rule exists) alongside MUST/MUST NOT requirements improves AI instruction following by helping understand underlying principles, apply rules to edge cases, preserve intent, and prevent loopholes. Supported by official Anthropic documentation (Claude API prompting best practices), academic research on instruction following and prompt engineering (arXiv 2025-2026), chain-of-thought research, and industry best practices. Pattern: requirement → rationale → example creates strongest instruction. Index updated with new file entry. Note: File initially created incorrectly as `.memory/ai-problems-resolution-facts.md` (typo in topic name), then removed and recreated with correct name.
+**Next:** Return to claude-config verification work.
