@@ -75,52 +75,6 @@ Your training uses triple-backticks for all fenced code blocks. This is PARTIALL
 
 ---
 
-## Heading Formatting (MANDATORY)
-
-Proper heading structure is critical for document parsing and scripted changes.
-
-**MUST:**
-- Use proper markdown heading levels: `##`, `###`, `####`, `#####`, `######`
-- Maintain hierarchical structure reflecting document organisation
-- Use headings for all section breaks and major topics
-
-**MUST NOT:**
-- Use bold text as headings: `**Heading Text**` or `**Heading Text:**`
-- Use bold text to simulate section breaks
-- Use bold text where a heading is semantically appropriate
-- Mix heading styles within the same document
-
-**Rationale:**
-- Proper headings enable automated parsing and scripting
-- Bold text does not provide semantic structure
-- Navigation, linking, and table of contents generation require proper headings
-- Screen readers and document parsers rely on heading tags
-
-**Examples:**
-
-Incorrect:
-```markdown
-**Implementation Details**
-
-Some content here.
-
-**Configuration:**
-More content.
-```
-
-Correct:
-```markdown
-#### Implementation Details
-
-Some content here.
-
-#### Configuration
-
-More content.
-```
-
----
-
 ## Compliance Verification
 
 **Before completing ANY Markdown file:**
@@ -128,7 +82,6 @@ More content.
 Ask yourself:
 - [ ] Is filename in lower-snake-case (or README.md)?
 - [ ] Does file use `.md` extension?
-- [ ] Are all headings using proper markdown (##, ###, ####), NOT bold text?
 
 **Before completing ANY Markdown file with nested code blocks:**
 

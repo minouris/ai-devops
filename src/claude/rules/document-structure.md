@@ -61,6 +61,39 @@ Content...
 
 ---
 
+## Directory Landing Pages (MANDATORY)
+
+When a directory contains multiple Markdown documents:
+
+**MUST Create:**
+- Landing page named after the directory (e.g., `architecture/architecture.md`)
+- Alternative: `README.md` if contextually appropriate
+
+**MUST Include in Landing Page:**
+- Summary paragraph describing directory purpose
+- Table or list of all documents with one-sentence descriptions
+- Navigation links to parent directory if applicable
+
+**Landing Page Template:**
+
+````markdown
+# Directory Name
+
+Summary of directory purpose and content type.
+
+## Documents
+
+| Document | Description |
+|----------|-------------|
+| [Document Name](file.md) | One-sentence description |
+
+## Navigation
+
+- **Parent:** [Parent Directory](../parent.md)
+````
+
+---
+
 ## Compliance Verification
 
 **Before completing ANY documentation task:**
@@ -68,8 +101,8 @@ Content...
 Ask yourself:
 - [ ] Does document have ToC after H1?
 - [ ] Do all H2 sections have "Back to top" links?
+- [ ] If directory has multiple docs, does landing page exist?
 - [ ] Are all navigation links valid?
-- [ ] If document is in a subfolder, does the landing page exist in the parent directory?
 
 **If ANY answer is "No":**
 - Fix the issue before declaring task complete

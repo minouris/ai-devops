@@ -169,94 +169,6 @@ Use hierarchical colour scheme for diagrams with nested structures:
 
 ---
 
-## Traffic Light Colour Scheme (MANDATORY for Risk/Severity Escalation)
-
-Use traffic light colour progression for diagrams showing risk escalation, problem severity, or degradation processes. Apply green → yellow → red progression to show increasing severity or risk level.
-
-### Green (Low Risk / Success / Stable)
-
-**Light to Dark Progression:**
-- Level 1 (lightest): `fill:#cfc,color:#252` - Initial state, low risk
-- Level 2: `fill:#ada,color:#252` - Slightly elevated
-- Level 3: `fill:#8b8,color:#252` - Moderate low risk
-- Level 4: `fill:#696,color:#cfc` - Transitioning
-- Level 5: `fill:#474,color:#cfc` - Higher within low risk
-- Level 6 (darkest): `fill:#252,color:#cfc` - Peak low risk
-
-**Use for:** Success states, stable conditions, low-severity issues, controlled processes
-
-### Yellow (Medium Risk / Warning / Degrading)
-
-**Dark to Light Progression:**
-- Level 1 (darkest): `fill:#996,color:#ffc` - Initial warning, systemic issue
-- Level 2: `fill:#bb8,color:#552` - Escalating concern
-- Level 3: `fill:#dda,color:#552` - Higher warning level
-- Level 4 (lightest): `fill:#cc9,color:#552` - Peak warning state
-
-**Use for:** Warning states, medium severity, degrading conditions, systemic training issues
-
-### Red (High Risk / Critical / Failed)
-
-**Dark to Light Progression:**
-- Level 1 (medium): `fill:#966,color:#fcc` - Critical threshold crossed
-- Level 2 (darker): `fill:#844,color:#fcc` - Severe state
-- Level 3 (even darker): `fill:#622,color:#fcc` - Very severe
-- Level 4 (darkest): `fill:#522,color:#fcc` - Most critical/severe state
-
-**Use for:** Error states, critical severity, failed conditions, manifestations of systemic problems
-
-### Complementary Color Pairs Table
-
-| Fill Color | Text Color | Context | Risk Level |
-|------------|------------|---------|-----------|
-| `#cfc` | `#252` | Light green bg, dark green text | Low Risk (lightest) |
-| `#ada` | `#252` | Medium-light green bg, dark green text | Low Risk |
-| `#8b8` | `#252` | Medium green bg, dark green text | Low Risk |
-| `#696` | `#cfc` | Medium-dark green bg, light green text | Low Risk |
-| `#474` | `#cfc` | Dark green bg, light green text | Low Risk |
-| `#252` | `#cfc` | Darkest green bg, light green text | Low Risk (darkest) |
-| `#996` | `#ffc` | Dark yellow/brown bg, light yellow text | Medium Risk (darkest) |
-| `#bb8` | `#552` | Medium yellow/brown bg, dark brown text | Medium Risk |
-| `#dda` | `#552` | Light yellow bg, dark brown text | Medium Risk |
-| `#cc9` | `#552` | Lightest yellow bg, dark brown text | Medium Risk (lightest) |
-| `#966` | `#fcc` | Medium red bg, light pink text | High Risk (medium) |
-| `#844` | `#fcc` | Dark red bg, light pink text | High Risk (darker) |
-| `#622` | `#fcc` | Very dark red bg, light pink text | High Risk (very dark) |
-| `#522` | `#fcc` | Darkest red bg, light pink text | High Risk (darkest) |
-
-**Stroke Colors:**
-Use matching text color for stroke: `stroke:#ffc` with `color:#ffc`, `stroke:#552` with `color:#552`, etc.
-
-### Traffic Light Application Pattern
-
-For diagrams showing escalating risk or problem severity:
-
-1. **Start with root cause** - Use darkest yellow (#996)
-2. **Show progression** - Use lighter yellows (#bb8, #dda, #cc9) as issue develops
-3. **Transition to red** - When threshold is crossed (#966)
-4. **Show manifestations** - Use darkest reds (#844, #622, #522) for critical outcomes
-
-**Example:**
-```mermaid
-graph TD
-    A[Systemic Training Issue] --> B[Cannot Calibrate Confidence]
-    B --> C[Creates Behavioral Pressure]
-    C --> D[Manifests as Critical Problems]
-    D --> E[Hallucination]
-    D --> F[Dishonesty]
-    D --> G[Overconfidence]
-
-    style A fill:#996,color:#ffc,stroke:#ffc
-    style B fill:#bb8,color:#552,stroke:#552
-    style C fill:#dda,color:#552,stroke:#552
-    style D fill:#966,color:#fcc,stroke:#fcc
-    style E fill:#522,color:#fcc,stroke:#fcc
-    style F fill:#522,color:#fcc,stroke:#fcc
-    style G fill:#522,color:#fcc,stroke:#fcc
-```
-
----
-
 ## Colour Application Guidelines
 
 **Level Assignment Rules:**
@@ -324,11 +236,9 @@ Ask yourself:
 - [ ] Diagram has fewer than 15-20 nodes or split appropriately?
 - [ ] Complex diagrams split by layer or concern?
 - [ ] Hierarchical colour scheme applied correctly to nested diagrams?
-- [ ] Traffic light colour scheme applied correctly to risk/severity diagrams?
 - [ ] Subgraphs used to group components appropriately?
-- [ ] Colour scheme matches diagram context (architectural layers, priorities, states, risk levels, etc.)?
-- [ ] Level colours assigned correctly (subgraph = N, nodes = N+1 for hierarchical; proper progression for traffic light)?
-- [ ] Complementary color pairs used (fill and text colors match table)?
+- [ ] Colour scheme matches diagram context (architectural layers, priorities, states, etc.)?
+- [ ] Level colours assigned correctly (subgraph = N, nodes = N+1)?
 - [ ] Links between related diagrams provided where appropriate?
 
 **If ANY answer is "No":**
