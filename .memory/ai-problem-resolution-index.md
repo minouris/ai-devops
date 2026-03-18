@@ -31,12 +31,6 @@
   - **FINDING-2026-02-20-09:** Context Poisoning — knock-on effect of all four root causes; AI cannot mark context items as invalidated; errors compound across turns; corroborated by SWE-bench spirals, reprompt loop, Replit fabricated data
   - **CLARIFICATION-2026-02-20-04:** Context Poisoning Amnesia chain corrected — correction is present in context but AI does not consistently apply it; mechanism unverified (hypothesis: selective retrieval / correction blindness, possibly Overconfidence not Amnesia)
 
-### Effective Patterns
-- [ai-problem-resolution-effective-patterns-facts.md](ai-problem-resolution-effective-patterns-facts.md) - Documented patterns and approaches that effectively address AI instruction following problems
-  - Last updated: 2026-03-05
-  - Facts: 1 finding (FINDING-2026-03-05-1)
-  - **FINDING-2026-03-05-1:** Rationales improve rule understanding and edge case application — supported by official Anthropic documentation, academic research, and chain-of-thought studies; pattern: requirement → rationale → example creates strongest instruction
-
 ### External Evidence of Problems (subtopic)
 - [ai-problem-resolution-external-evidence-facts.md](ai-problem-resolution-external-evidence-facts.md) - General/external evidence of vibe coding pitfalls from published sources, academic research, and documented incidents
   - Last updated: 2026-02-20

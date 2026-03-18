@@ -1,6 +1,6 @@
 # Fact Capture Guidelines
 
-**This file is loaded when: You need detailed guidance on capturing research findings in fact files.**
+**This file is loaded when: The agent needs detailed guidance on capturing research findings in fact files.**
 
 ---
 
@@ -23,163 +23,23 @@
 
 ## File Naming Conventions
 
-**Folder-based organisation (MANDATORY):**
-
-Organise topics and subtopics in folders containing the main file and all supplementary files. Use recursive structure: subtopics are folders within the topic folder.
-
-**Structure:**
+**Main topic file:**
 ```
-.memory/[topic]/
-├── [topic]-facts.md              (main topic fact file)
-├── [topic]-index.md              (topic index)
-├── [topic]-log.md                (operation log)
-├── [topic]-[subtopic1]/          (subtopic folder)
-│   ├── [topic]-[subtopic1]-facts.md
-│   ├── [topic]-[subtopic1]-verification-working.md
-│   └── [topic]-[subtopic1]-archive.md
-└── [topic]-[subtopic2]/          (subtopic folder)
-    ├── [topic]-[subtopic2]-facts.md
-    ├── [topic]-[subtopic2]-verification-working.md
-    └── [other supplementary files]
+.memory/[topic]-facts.md
 ```
 
-**MUST:**
-- Create a folder for each topic: `.memory/[topic]/`
-- Create a folder for each subtopic: `.memory/[topic]/[topic]-[subtopic]/`
-- Place all topic-level files (main facts, index, log) directly in the topic folder
-- Place all subtopic-level files (subtopic facts, verification docs, archives) in the subtopic folder
-- Use the full `[topic]-[subtopic]` prefix for subtopic folder names and file names
-- Apply this structure recursively for nested subtopics
+**Subtopic files (when topic has distinct areas):**
+```
+.memory/[topic]-[subtopic]-facts.md
+```
 
-**MUST NOT:**
-- Create flat file structures in `.memory/` root for topics with multiple files
-- Place subtopic fact files directly in the topic folder alongside the main fact file
-- Scatter topic or subtopic files across multiple folders
-- Place subtopic files outside their designated subtopic folder
+The main topic prefix is mandatory for subtopic files.
 
 **Example:**
 ```
-.memory/claude-config/
-├── claude-config-facts.md
-├── claude-config-index.md
-├── claude-config-log.md
-├── claude-config-skills/
-│   ├── claude-config-skills-facts.md
-│   ├── claude-config-skills-verification-working.md
-│   └── claude-config-skills-archive.md
-├── claude-config-hooks/
-│   ├── claude-config-hooks-facts.md
-│   └── claude-config-hooks-verification-working.md
-└── claude-config-composition/
-    ├── claude-config-composition-facts.md
-    └── claude-config-composition-verification-working.md
-```
-
----
-
-## Link Integrity (MANDATORY)
-
-When you use folder-based organisation, maintain correct relative paths between files at different levels.
-
-**From topic-level files to subtopic files:**
-```markdown
-See [claude-config-skills-facts.md](claude-config-skills/claude-config-skills-facts.md)
-```
-
-**From subtopic files to topic-level files:**
-```markdown
-See [claude-config-index.md](../claude-config-index.md)
-```
-
-**From subtopic files to sibling subtopic files:**
-```markdown
-See [claude-config-hooks-facts.md](../claude-config-hooks/claude-config-hooks-facts.md)
-```
-
-**MUST:**
-- Use relative paths that account for folder nesting
-- Test links work from the file's actual location
-- Update all links when migrating from flat to folder structure
-- Use `../` to navigate up from subtopic folder to topic folder
-- Use `[subtopic-folder]/[filename]` to navigate down from topic folder to subtopic folder
-
-**MUST NOT:**
-- Use absolute paths in markdown links between memory files
-- Assume files are at the same level when they're in different folders
-- Leave broken links after restructuring files into folders
-
-**Example index file with correct links:**
-```markdown
-# Claude Config Research Index
-
-## Fact Files
-
-### Primary Fact File
-- [claude-config-facts.md](claude-config-facts.md) — Core configuration
-
-### Subtopic Files
-- [claude-config-skills-facts.md](claude-config-skills/claude-config-skills-facts.md) — Skills
-- [claude-config-hooks-facts.md](claude-config-hooks/claude-config-hooks-facts.md) — Hooks
-```
-
----
-
-## File Size Management (MANDATORY)
-
-Large fact files are difficult to parse and slow down research operations. Manage file growth by creating new subtopics when thresholds are exceeded.
-
-**Size threshold:**
-- **Maximum recommended:** 40,000 characters (~10,000 tokens)
-- **Action trigger:** When you add a new fact that would exceed this threshold
-
-**MUST:**
-- Check current file size before appending new facts
-- Create a new subtopic when threshold would be exceeded
-- Move related facts from the main file to the new subtopic
-- Group facts by natural thematic boundaries (not arbitrary splits)
-- Update the topic index to reference the new subtopic
-
-**MUST NOT:**
-- Allow fact files to grow beyond 40,000 characters
-- Split files arbitrarily in the middle of a thematic group
-- Create subtopics with only 1-2 facts (group related facts together)
-- Leave orphaned facts in the main file after creating a subtopic
-
-**Rationale:**
-Claude's long context capabilities support performance up to 20K+ tokens with data at the top of prompts. However, fact files that you read and parse frequently during research benefit from smaller sizes for efficiency. The 40,000 character threshold (~10,000 tokens) balances manageability with avoiding excessive file fragmentation.
-
-**When you exceed the threshold, follow this process:**
-
-1. **Identify thematic groups:** Review existing facts and identify natural groupings
-2. **Select subtopic name:** Choose a descriptive name for the new subtopic
-3. **Create subtopic folder:** `.memory/[topic]/[topic]-[subtopic]/`
-4. **Move related facts:** Transfer the new fact and related existing facts to the new subtopic file
-5. **Update main topic index:** Add the new subtopic to the main topic index file (`.memory/[topic]/[topic]-index.md`)
-6. **Update main topic keyword indexes:** Add findings from subtopic to main topic keyword index pages (`.memory/[topic]/[topic]-index-keywords-*.md`)
-7. **Update links:** Ensure all cross-references use correct relative paths
-
-**CRITICAL - DO NOT create per-subtopic indexes:**
-- DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index.md`
-- DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index-keywords-*.md`
-- All findings from subtopics MUST be added to the main topic index and keyword indexes at `.memory/[topic]/`
-
-**Example scenario:**
-
-```
-.memory/claude-config/
-├── claude-config-facts.md (38,000 characters)
-└── claude-config-index.md
-
-New fact would add 5,000 characters → exceeds threshold
-```
-
-**Action:**
-```
-.memory/claude-config/
-├── claude-config-facts.md (32,000 characters - related facts moved out)
-├── claude-config-index.md (updated with new subtopic)
-└── claude-config-composition/
-    └── claude-config-composition-facts.md (8,000 characters - new and related facts)
+.memory/ai-problems-analysis-facts.md
+.memory/ai-problems-analysis-hallucination-facts.md
+.memory/ai-problems-analysis-overeagerness-facts.md
 ```
 
 ---
@@ -191,8 +51,6 @@ New fact would add 5,000 characters → exceeds threshold
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [file/documentation/observation]
-**Keywords:** keyword1, keyword2, keyword3
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 [Finding description - fact, observation, theory, hypothesis, or note]
 
@@ -203,91 +61,8 @@ New fact would add 5,000 characters → exceeds threshold
 - `FINDING-YYYY-MM-DD-N`: Unique identifier (date + sequence number)
 - `Captured`: Timestamp when finding was recorded
 - `Source`: Where this information came from (URL, file path, observation, testing, user input)
-- `Keywords`: Comma-separated subject area tags for categorisation and search (required)
-- `Verified`: Verification status (always "NOT YET VERIFIED" during fact-finding)
 - Description: The actual finding content
 - Optional context: Additional details, implications, open questions
-
----
-
-## Keywords (MANDATORY)
-
-Keywords help categorise findings by subject area and enable searching across related facts. You must include keywords in every finding.
-
-**Keyword selection:**
-- Select keywords that describe the technical domains or topics the finding covers
-- Choose keywords that group related findings thematically
-- Include keywords that enable cross-referencing
-
-**Keyword selection guidelines:**
-
-**MUST:**
-- Include keywords in every finding
-- Reuse existing keywords where applicable before creating new ones
-- List keywords in alphabetical order
-- Use lowercase for consistency
-- Use singular form (e.g., "configuration" not "configurations")
-- Limit to 3-5 keywords per finding (maximum 5)
-- Choose keywords that describe subject areas, not actions
-- Use comma-separated format with space after comma
-
-**MUST NOT:**
-- Omit keywords from any finding
-- Create new keywords when existing keywords serve the same purpose
-- Use full sentences or phrases as keywords
-- Duplicate information already in the finding heading
-- Use more than 5 keywords (indicates lack of focus)
-- Use uppercase or mixed case
-
-**Keyword categories:**
-
-Choose keywords from these categories when applicable:
-- **Technology/tool names:** docker, api, webhook, xml, yaml
-- **Concepts:** authentication, caching, validation, composition, configuration
-- **Domains:** security, performance, testing, deployment
-- **Component types:** agent, skill, hook, rule, command, plugin
-- **Patterns:** workflow, pattern, structure, format
-
-**Examples:**
-
-```markdown
-**Keywords:** composition, prompt, structure, xml
-```
-
-```markdown
-**Keywords:** automation, event, hook, shell
-```
-
-```markdown
-**Keywords:** testing, validation, verification
-```
-
----
-
-## Verification Status (MANDATORY)
-
-**During fact-finding phase:**
-
-**MUST:**
-- Include `**Verified:** [NOT YET VERIFIED - requires verification workflow]` in every finding
-- Use this exact tag format for all new findings
-- Leave verification status unchanged when appending findings
-
-**MUST NOT:**
-- Mark findings as VERIFIED during fact-finding
-- Use any variation of "VERIFIED", "CONFIRMED", or "DERIVED" tags
-- Add verification tags until the formal verification workflow is executed
-- Assume findings are verified because they came from official sources
-
-**Rationale:**
-Findings captured during research remain unverified until they go through the formal verification workflow with a working document. This includes findings from official documentation sources. Only the verification workflow, which systematically checks each claim against sources, may add VERIFIED tags.
-
-**When verification happens:**
-- After fact-finding is complete
-- User explicitly requests verification of a subtopic
-- Create verification working document
-- Systematically verify each claim
-- Only then change tag from "NOT YET VERIFIED" to "VERIFIED on YYYY-MM-DD by [source-url]"
 
 ---
 
@@ -311,8 +86,6 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [source of clarifying information]
-**Keywords:** keyword1, keyword2, keyword3
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-YYYY-MM-DD-M
 
 [Clarifying or refining information]
@@ -320,15 +93,11 @@ When new information (from further research or supplied by the user) affects or 
 [Context on how this updates/refines the original finding]
 ```
 
-Note: Keywords must be in alphabetical order.
-
 **Example:**
 ```markdown
 ### FINDING-2026-02-24-8
 **Captured:** 2026-02-24 18:30
 **Source:** https://docs.example.com/api/v2
-**Keywords:** api, deprecation, endpoint
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-2026-02-24-3
 
 API v2 endpoint uses `/api/v2/users` not `/api/users`.
@@ -341,7 +110,7 @@ The v1 endpoint documented in FINDING-2026-02-24-3 is deprecated as of 2026-01.
 ## File Boundaries (MANDATORY)
 
 **During research phase, you may write ONLY to:**
-- **Fact files:** `.memory/[topic]/[topic]-facts.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`
+- **Fact files:** `.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`
 
 **During research phase, these are READ-ONLY:**
 - **Pending analysis:** `.memory/[NAME]-PENDING.md` — written only once when user requests final output
@@ -406,143 +175,6 @@ Capture ALL of the following:
 2. Create new FINDING entry with next sequence number
 3. Append using Edit tool
 4. Update index with new timestamp
-
----
-
-## Index Organization (MANDATORY)
-
-The index system consists of a main index file and separate keyword index pages for navigating findings.
-
-### Main Index File
-
-The main index file (`.memory/[topic]-index.md`) contains:
-- Status summary (total findings, verification status)
-- List of fact files
-- Link to keyword index pages
-- Findings table (sorted by topic and name)
-
-**MUST:**
-- Update the main index after adding findings to fact files
-- Link to keyword index pages from the main index
-- Include only the findings table in the main index (not keywords section)
-
-**MUST NOT:**
-- Include keyword listings in the main index file
-- Skip updating the findings table when adding new findings
-
-### Findings Table Structure
-
-When adding findings to the main index file, maintain a structured Findings table with four columns.
-
-**Findings table structure:**
-
-```markdown
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
-```
-
-**Column definitions:**
-- **Finding:** Markdown link to the finding in its fact file, including anchor (e.g., `[FINDING-2026-03-06-1](claude-config-facts.md#finding-2026-03-06-1)` or `[FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-facts.md#finding-2026-03-06-5)`)
-- **Topic:** Categorical grouping for the finding (e.g., "Configuration", "Composition", "Hooks")
-- **Name:** Short descriptive name from the finding heading (e.g., "Skills - Primary Extension Mechanism")
-- **Keywords:** Comma-separated keywords from the finding's Keywords field
-
-**Sorting requirements:**
-
-**MUST:**
-- Sort findings alphabetically by Topic (primary sort key)
-- Sort findings alphabetically by Name within each Topic (secondary sort key)
-- Maintain this sorting order when adding new findings to the table
-
-**MUST NOT:**
-- Add findings in chronological order without sorting
-- Group findings by subtopic unless subtopic is explicitly the Topic value
-- Skip the Topic column
-
-**Example:**
-
-```markdown
-## Findings
-
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | document, longform, performance, placement, prompt |
-| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response | completion, control, format, prefill, prompt |
-| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
-| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
-```
-
-### Keyword Index Pages
-
-Create separate keyword index pages at the main topic level (`.memory/[topic]/[topic]-index-keywords-[range].md`) to organize findings by keyword. These pages include ALL findings from the main topic and all subtopics. Divide keywords into multiple pages at sensible intervals based on alphabetical ranges.
-
-**File naming convention:**
-- Single page: `.memory/[topic]/[topic]-index-keywords.md`
-- Multiple pages: `.memory/[topic]/[topic]-index-keywords-a-e.md`, `.memory/[topic]/[topic]-index-keywords-f-j.md`, etc.
-
-**Division guidelines:**
-
-**MUST:**
-- Divide at even intervals (roughly equal numbers of keywords per page)
-- Keep all keywords starting with the same letter together (do not split A keywords across pages)
-- Use alphabetical ranges that reflect the actual keyword distribution
-- Create navigation links between keyword index pages
-
-**MUST NOT:**
-- Split keywords of the same letter across different pages
-- Create pages with significantly uneven keyword counts
-- Use arbitrary page divisions unrelated to alphabetical ordering
-
-**Page structure:**
-
-```markdown
-# Findings by Keyword
-
-**Navigation:**
-- [Main Index]([topic]-index.md)
-- [Keywords A-E]([topic]-index-keywords-a-e.md) ← Current page
-- [Keywords F-J]([topic]-index-keywords-f-j.md)
-- [Keywords K-O]([topic]-index-keywords-k-o.md)
-
----
-
-## keyword-name
-
-| Topic | Finding | Name |
-|-------|---------|------|
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
-
-## next-keyword
-
-| Topic | Finding | Name |
-|-------|---------|------|
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
-```
-
-**Keyword section requirements:**
-
-**MUST:**
-- Sort keywords alphabetically
-- Use H2 heading (`##`) for each keyword
-- Include Topic, Finding (with link), and Name columns
-- Sort findings within each keyword by Topic (primary), then Name (secondary)
-- List all findings that include the keyword
-
-**MUST NOT:**
-- Omit any findings tagged with the keyword
-- Skip navigation links between keyword index pages
-- Mix sorting orders within keyword sections
-
-**Example division for 320 keywords:**
-
-Approximate page ranges (adjust based on actual keyword distribution):
-- `[topic]-index-keywords-a-d.md` (keywords starting with A, B, C, D)
-- `[topic]-index-keywords-e-i.md` (keywords starting with E, F, G, H, I)
-- `[topic]-index-keywords-j-n.md` (keywords starting with J, K, L, M, N)
-- `[topic]-index-keywords-o-s.md` (keywords starting with O, P, Q, R, S)
-- `[topic]-index-keywords-t-z.md` (keywords starting with T, U, V, W, X, Y, Z)
 
 ---
 
