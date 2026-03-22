@@ -10,7 +10,7 @@ Perform systematic investigation, capturing raw research findings and creating c
 
 ## Overview
 
-This skill implements a rigorous research methodology with:
+When you engage this skill, follow a rigorous research methodology:
 - Documentation-first verification requirements
 - Two-stage text search (keyword → direct examination)
 - Systematic fact capture with clarifications
@@ -22,7 +22,7 @@ This skill implements a rigorous research methodology with:
 
 ## Documentation-First Principles
 
-This skill operates under strict documentation-first principles. See [documentation-first.md](references/documentation-first.md) for complete requirements including:
+When you conduct research with this skill, operate under strict documentation-first principles. See [documentation-first.md](references/documentation-first.md) for complete requirements including:
 - Mandatory official source verification
 - Two-stage text search policy (keyword search → direct file examination)
 - No speculation or assumptions
@@ -32,7 +32,7 @@ This skill operates under strict documentation-first principles. See [documentat
 
 ### Workflow 1: Procedural Research
 
-Use when asked to find, test, and verify a procedure or process. See [procedural-research.md](references/procedural-research.md) for:
+When the user asks you to find, test, and verify a procedure or process, use this workflow. See [procedural-research.md](references/procedural-research.md) for:
 - Web/documentation search procedures
 - Test result documentation
 - Iterative refinement based on testing
@@ -42,7 +42,7 @@ Use when asked to find, test, and verify a procedure or process. See [procedural
 
 ### Workflow 2: Analytical Research
 
-Use when asked to examine artifacts systematically and synthesise findings. See [analytical-research.md](references/analytical-research.md) for:
+When the user asks you to examine artifacts systematically and synthesise findings, use this workflow. See [analytical-research.md](references/analytical-research.md) for:
 - Artifact indexing and systematic examination
 - Fact capture and index maintenance
 - Disproven finding archival
@@ -73,7 +73,7 @@ See [term-capture.md](references/term-capture.md) for:
 - Term validation against same criteria as facts
 - Term archival and disproven tracking
 
-**Key principle:** Terms enable hierarchical semantic indexing. Extract terms automatically when facts introduce new concepts, and maintain bidirectional links between facts and terms for complete traceability.
+**Key principle:** When you extract terms, create hierarchical semantic indexing. Extract terms automatically when facts introduce new concepts, and maintain bidirectional links between facts and terms for complete traceability.
 
 ### 2. Archive Disproven Findings
 

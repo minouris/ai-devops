@@ -6,17 +6,21 @@
 
 ## Embedded Rules
 
-### What is a Term?
+### Define Terms with Singular Scope
 
-A **term** is a semantic concept label for a topic. Unlike keywords which provide quick flat links to facts, terms define fine-grained concepts with singular scope, enabling hierarchical indexing and cross-domain applicability.
+When you create a term, define it as a semantic concept label for a single coherent idea. Do not create terms that bundle multiple related concepts into one entry.
 
-**Key characteristics:**
-- **Semantic meaning**: Labels coherent concepts, not just access points
-- **Fine-grained scope**: Each term defines ONE concept clearly
-- **Hierarchical**: General principles separate from specific implementations
-- **Independently referenceable**: Each term stands alone with complete context
+**Treat terms differently from keywords:**
+- **Keywords**: Provide quick flat links to facts without semantic relationship
+- **Terms**: Define fine-grained concepts with singular scope, enabling hierarchical indexing and cross-domain applicability
 
-**Example structure:**
+**Use these characteristics to guide your term creation:**
+- **Semantic meaning**: When you label a concept, ensure it labels a coherent idea, not just an access point
+- **Fine-grained scope**: Create each term to define ONE clear concept
+- **Hierarchical**: Keep general principles separate from specific implementations
+- **Independently referenceable**: Create each term as a standalone entry with complete context
+
+**Structure term hierarchies like this example:**
 ```
 General principle:    REST API
 ├── GitHub-specific:  GitHub REST API
@@ -25,38 +29,42 @@ General principle:    REST API
                       GitHub API (parent umbrella concept)
 ```
 
-**NOT** bundled as one term:
+**Do NOT bundle concepts into a single term:**
 - ❌ "REST API / GraphQL API" (bundles two concepts)
-- ✅ Separate: "REST API", "GraphQL API", "GitHub REST API", "GitHub GraphQL API"
+- ✅ Create separately: "REST API", "GraphQL API", "GitHub REST API", "GitHub GraphQL API"
 
 ---
 
 ## Term File Location and Naming
 
-**Topics maintain a central terms file:**
+### Where to Store Terms
+
+When you extract terms from facts, maintain a central terms file for each topic:
 ```
 .memory/[topic]/[topic]-terms.md
 ```
 
-**Subtopics contribute to the main topic terms file:**
-- Subtopic findings can introduce and define new terms
-- All terms (from main topic and all subtopics) are consolidated in the main topic's `[topic]-terms.md`
-- Do NOT create separate terms files for subtopics
+### Consolidate Terms at Topic Level
 
-**Example:**
+When subtopics introduce new terms, add them to the main topic's terms file—do not create separate terms files for subtopics.
+
+**Structure:**
 ```
-.memory/github-api/github-api-terms.md       (main terms file)
+.memory/github-api/github-api-terms.md       (main terms file - put all terms here)
 .memory/github-api/github-api-facts.md       (main facts file)
 .memory/github-api/github-api-subtopic/      (subtopic folder)
 ├── github-api-subtopic-facts.md             (contributes terms to parent)
-└── github-api-subtopic-terms.md             (NOT created - use parent file)
+└── (DO NOT create github-api-subtopic-terms.md)
 ```
 
 ---
 
 ## Term Entry Format (MANDATORY)
 
-**Standard format:**
+### Create Term Entries Using This Format
+
+When you create a term, use this exact structure:
+
 ```markdown
 ### TERM-[topic-slug]-[YYYY-MM-DD-N]
 
@@ -83,19 +91,25 @@ General principle:    REST API
 **Captured:** YYYY-MM-DD HH:MM
 ```
 
-**Field definitions:**
-- `TERM-[topic-slug]-YYYY-MM-DD-N`: Unique identifier (topic slug + date + sequence number)
-- `Term`: The semantic label for the concept (1-4 words typically)
-- `Definition`: Clear explanation of what the term encompasses
-- `Source`: Citation of where this term was extracted from (FINDING-ID or direct source)
-- `Scope`: Explicit statement of what this term covers and boundaries (prevents conflation)
-- `Key attributes`: 2-5 important characteristics of this concept
-- `Related terms`: Links to other terms this one connects to (terms that exist + undefined concepts for future terms)
-- `Used in facts`: Backlinks to every fact that uses or introduces this term
-- `Verified`: Always "NOT YET VERIFIED" during capture phase (same as facts)
-- `Captured`: Timestamp when term was created
+### Field Requirements
 
-**Example:**
+When you create a term entry, populate each field with this requirement:
+
+- **TERM-[topic-slug]-YYYY-MM-DD-N**: Use this unique identifier format (topic slug + date + sequence number)
+- **Term**: Supply the semantic label for the concept (1-4 words)
+- **Definition**: Write a clear explanation of what the term encompasses
+- **Source**: Cite where you extracted this term from (FINDING-ID or direct source URL)
+- **Scope**: Write an explicit statement of what this term covers and its boundaries (prevents conflation with related concepts)
+- **Key attributes**: List 2-5 important characteristics that define this concept
+- **Related terms**: Link to other term IDs this one connects to, and include placeholders for undefined concepts you'll create later
+- **Used in facts**: Include backlinks to every fact that uses or introduces this term
+- **Verified**: Always write "NOT YET VERIFIED - requires verification workflow" during capture phase (same requirement as facts)
+- **Captured**: Record the timestamp when you created this term entry
+
+### Example Term Entry
+
+When you create a term, structure it like this example:
+
 ```markdown
 ### TERM-github-api-2026-03-22-4
 
@@ -128,41 +142,45 @@ General principle:    REST API
 
 ## Term Extraction Workflow
 
-### Automatic Extraction (During Fact Capture)
+### Extract Terms Automatically When Facts Introduce Concepts
 
-**When to extract terms:**
+When you create a fact that introduces a new semantic concept, extract it as a term immediately.
 
-When you create a finding that introduces a new semantic concept, extract it as a term immediately:
+**Determine whether to extract a term:**
 
-**Trigger conditions:**
-1. Finding defines a new concept label with semantic meaning
-2. Concept should be independently referenceable across the topic
-3. Concept has clear boundaries (singular scope)
-4. Concept might be referenced in other facts
+Use these conditions to decide:
+1. Does the fact define a new concept label with semantic meaning?
+2. Should this concept be independently referenceable across the topic?
+3. Does the concept have clear boundaries (singular scope)?
+4. Might other facts reference this concept?
 
-**Trigger examples:**
+If all conditions are yes, extract a term.
+
+**Extract when you identify these triggers:**
 - ✅ Finding about "Pull Request" → Extract as term (singular semantic concept)
 - ✅ Finding about "REST API" → Extract as term (general principle, cross-domain applicable)
 - ✅ Finding about "Head Branch" → Extract as term (specific role in PR structure)
-- ❌ Finding mentions "the number field" → NOT a term (too granular, attribute not concept)
-- ❌ Finding mentions "API" casually → NOT a term unless it defines "API" as a concept
+- ❌ Finding mentions "the number field" → Do NOT extract (too granular, attribute not concept)
+- ❌ Finding mentions "API" casually → Do NOT extract unless it defines "API" as a concept
 
-**Workflow:**
-1. After appending finding to fact file
-2. Identify if finding introduces a concept that should be a term
-3. Create term entry in `[topic]-terms.md` (create file if doesn't exist)
-4. Add backlink in finding to new term (or add term reference if already existed)
+**Execute automatic extraction workflow:**
+
+1. After you append a finding to a fact file
+2. Identify whether the finding introduces a concept that should be a term
+3. Create term entry in `[topic]-terms.md` (create file if it does not exist)
+4. Add backlink in finding to new term (or add term reference if term already existed)
 5. Update terms index
 
-### On-Demand Extraction
+### Extract Terms On Demand
 
-When explicitly requested by user: "Extract terms from these facts" or "Create a terms file for this topic"
+When the user explicitly requests term extraction from facts, use this workflow:
 
-**Workflow:**
-1. Read specified fact files
+**Execute on-demand extraction workflow:**
+
+1. Read the specified fact files
 2. Scan for semantic concepts (not keywords)
 3. For each concept:
-   - Check if term already exists in `[topic]-terms.md`
+   - Check whether term already exists in `[topic]-terms.md`
    - If new: Create term entry with complete definition, scope, and attributes
    - If existing: Update "Used in facts" backlinks with new findings
 4. Update terms index
@@ -172,47 +190,33 @@ When explicitly requested by user: "Extract terms from these facts" or "Create a
 
 ## Bidirectional Linking (MANDATORY)
 
-Terms and facts must maintain two-way links for traceability.
+When you link facts and terms, you must maintain two-way links for complete traceability.
 
-### Facts → Terms
+### Add Term Links to Fact Entries
 
-In fact entries, link to any terms that are defined or used:
+When you create a fact, add term references to the fact entry:
 
-**Where to add link:**
-Add a new line in fact entry:
-```markdown
-### FINDING-2026-03-22-1
-
-**Term:** Pull Request (PR)
-
-**Definition:** A mechanism in GitHub...
-
-**Captured:** 2026-03-22
-**Source:** github-devops SKILL.md
-**Keywords:** api, github, concept
-
-**Introduces term:** TERM-github-api-2026-03-22-1
-
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
-```
-
-**Link format:**
+**Add this line to fact entries:**
 ```markdown
 **Introduces term:** TERM-github-api-2026-03-22-1
 
 **Uses terms:** TERM-github-api-2026-03-22-3, TERM-github-api-2026-03-22-5
 ```
 
-### Terms → Facts
+**Link format requirements:**
+- Write "**Introduces term:**" when the fact defines or first introduces this term
+- Write "**Uses terms:**" when the fact uses existing terms without introducing them
+- Use the complete TERM-ID for each link
 
-In term entries, link to all facts that introduce or use the term:
+### Add Fact Backlinks to Term Entries
 
-**Backlink maintenance:**
-Update "Used in facts" section whenever:
+When you maintain a term, keep its "Used in facts" section current:
+
+**Update "Used in facts" whenever:**
 - A new fact introduces or uses this term
 - An existing fact is archived (remove it from the "Used in facts" list)
 
-**Backlink format:**
+**Format backlinks like this:**
 ```markdown
 **Used in facts:**
 - [FINDING-2026-03-22-4](github-api-facts.md#finding-2026-03-22-4) - GitHub REST API definition
@@ -221,49 +225,50 @@ Update "Used in facts" section whenever:
 
 ---
 
-## Term Validation Criteria
+## Term Validation Criteria (MANDATORY)
 
-Terms are subject to the **exact same validation requirements as facts**.
+When you create and maintain terms, apply the exact same validation requirements as you apply to facts.
 
-### Creation Phase Validation
+### Verify Terms During Creation
+
+Before finalizing a term entry, verify it meets these requirements:
 
 **MUST have before creating a term:**
-- Clear, singular scope (what this term covers; what it doesn't)
+- Clear, singular scope (what this term covers; what it does NOT cover)
 - Source citation (where extracted from)
 - Complete definition with context
-- Key attributes that characterize the concept
-- Related terms listed (existing and placeholders for future)
+- Key attributes that characterize the concept (2-5 attributes)
+- Related terms listed (existing terms + placeholders for future related terms)
 
-**MUST NOT:**
+**MUST NOT do when creating terms:**
 - Create terms that bundle multiple concepts (violates singular scope)
 - Create terms without clear source
 - Create terms without definition
 - Create terms that are just aliases for existing concepts
 
-### Verification Workflow
+### Run Verification Workflow
+
+When you engage the verification workflow, treat terms the same as facts:
 
 **During verification phase:**
-- Terms go through the same verification workflow as facts
 - Verify definition against source material
 - Verify scope boundaries are accurate
 - Verify related terms are correct
 - Verify backlinks to facts are accurate
 
-**Verification tag format:**
+**Update verification tag after verification:**
 ```markdown
 **Verified:** VERIFIED on YYYY-MM-DD by [source-url]
 ```
 
-### Disproven Terms
+### Archive Disproven Terms
 
-When a term is disproven or found to be misconstrued:
+When you discover a term is incorrect or misconstrued, archive it immediately—never delete it.
 
-**MUST:**
-- Archive to `-terms-disproven.md` companion file (never delete)
-- Include disproof metadata (reason, evidence, date)
-- Keep all backlinks for historical reference
+**Archive disproven terms using this format:**
 
-**Archive format:**
+Create or update `.memory/[topic]/[topic]-terms-disproven.md` with:
+
 ```markdown
 ### TERM-github-api-2026-03-22-12 [DISPROVEN]
 
@@ -284,18 +289,19 @@ When a term is disproven or found to be misconstrued:
 
 ## Terms Index Maintenance (MANDATORY)
 
-**File location:**
-```
-.memory/[topic]/[topic]-terms-index.md
-```
+When you manage terms, maintain an index file at the topic level.
 
-**Update after each significant operation:**
+### Create and Update Terms Index
+
+Maintain this index file: `.memory/[topic]/[topic]-terms-index.md`
+
+**Update the index after each significant operation:**
 - New term created
 - Term verified
 - Term archived
 - Backlinks updated
 
-**Index structure:**
+**Structure the index like this:**
 ```markdown
 # [Topic] Terms Index
 
@@ -331,9 +337,9 @@ When a term is disproven or found to be misconstrued:
 
 ## Term Relationships
 
-[Visual or textual representation of term hierarchy and relationships]
+[When you maintain multiple related terms, document their hierarchy]
 
-**Hierarchy Example:**
+**Example hierarchy:**
 ```
 GitHub API (parent)
 ├── GitHub REST API
@@ -357,14 +363,12 @@ GraphQL API (general principle)
 
 ## Integration with Analysis Workflow
 
-### Step 0.5: Extract and Maintain Terms (NEW)
+### Where Term Extraction Fits in Your Process
 
-This workflow step sits between Fact Capture and Disproven Finding archival.
-
-**In your overall research process:**
+Execute term extraction as step 1.5 in the analysis workflow:
 
 1. ✅ Capture Research in Fact Files (existing)
-2. ✨ **Extract and Maintain Terms (NEW)**
+2. ✨ **Extract and Maintain Terms (THIS STEP)** ← You are here
    - Auto-extract terms from facts as created
    - Update bidirectional links
    - Maintain terms index
@@ -373,14 +377,14 @@ This workflow step sits between Fact Capture and Disproven Finding archival.
 5. ✅ Create Final Output (existing)
 6. ✅ Operation Logging (existing)
 
-### When to Create Terms File
+### Create Terms File When Needed
 
 Create `[topic]-terms.md` when:
-- First term is extracted from a finding
+- You extract your first term from a finding
 - User explicitly requests term extraction
 - Topic has 2+ semantic concepts worth indexing
 
-### When to Update Terms
+### Keep Terms Current
 
 Update existing terms when:
 - New facts are added that use or reference the term
@@ -392,11 +396,11 @@ Update existing terms when:
 
 ## File Size Management for Terms
 
-**Size threshold:**
+**Monitor term file size:**
 - **Maximum:** 30,000 characters (~7,500 tokens)
-- **Action trigger:** When adding terms would exceed threshold
+- **Action trigger:** When you would add terms that would exceed this limit
 
-**Action on threshold exceeded:**
+**When you exceed the threshold, execute this process:**
 1. Create subtopic terms file: `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-terms.md`
 2. Move related term entries to subtopic file
 3. Update both files' indices to cross-reference
@@ -404,88 +408,22 @@ Update existing terms when:
 
 ---
 
-## Examples
-
-### Simple Term
-
-```markdown
-### TERM-analysis-concepts-2026-03-22-1
-
-**Term:** Term (in analysis indexing)
-
-**Definition:** A semantic concept label for a topic. A term labels coherent concepts with singular scope, enabling hierarchical indexing and cross-domain applicability. Unlike keywords which provide quick flat access, terms define meaningful concept relationships.
-
-**Source:** User observation (analysis-concepts session)
-
-**Scope:** Refers to semantic concept labels in systematic analysis and indexing workflows. Does NOT include keyword tags (which lack semantic structure) or arbitrary labels.
-
-**Key attributes:**
-- **Semantic meaning**: Labels coherent concepts, not just access points
-- **Singular scope**: Each term defines ONE clear concept
-- **Independent**: Can be referenced and understood standalone
-- **Hierarchical**: Enables parent-child and related concept relationships
-
-**Related terms:** TERM-analysis-concepts-2026-03-22-2 (Keyword), TERM-analysis-concepts-2026-03-22-3 (Topic Index)
-
-**Used in facts:**
-- [FINDING-2026-03-22-1](analysis-concepts-facts.md#finding-2026-03-22-1) - Introduces term vs keyword distinction
-- [FINDING-2026-03-22-2](analysis-concepts-facts.md#finding-2026-03-22-2) - Practical application
-
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
-
-**Captured:** 2026-03-22 10:00
-```
-
-### Hierarchical Terms
-
-```markdown
-### TERM-github-api-2026-03-22-3
-
-**Term:** GitHub API
-
-**Definition:** The umbrella interface provided by GitHub for programmatic access to repository data, pull requests, reviews, automation, and administration. GitHub offers two API implementations: REST API (endpoint-based) and GraphQL API (query language).
-
-**Source:** FINDING-2026-03-22-3 (extracted from github-devops SKILL.md)
-
-**Scope:** Refers to GitHub's complete API platform. Does NOT include specific implementations (see "GitHub REST API", "GitHub GraphQL API") or general API principles (see "REST API", "GraphQL API").
-
-**Key attributes:**
-- **Two implementations**: REST and GraphQL APIs available
-- **Authentication**: Personal access tokens and GitHub Apps
-- **Multiple versions**: Different API versions available
-- **Integrations**: Powers GitHub Actions, apps, and CI/CD
-
-**Related terms:** TERM-github-api-2026-03-22-1 (Pull Request), TERM-github-api-2026-03-22-4 (GitHub REST API), TERM-github-api-2026-03-22-5 (GitHub GraphQL API)
-
-**Used in facts:**
-- [FINDING-2026-03-22-3](github-api-facts.md#finding-2026-03-22-3) - GitHub API definition
-- [FINDING-2026-03-22-1](github-api-facts.md#finding-2026-03-22-1) - Pull Request uses GitHub API
-
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
-
-**Captured:** 2026-03-22 12:00
-```
-
----
-
 ## MUST/MUST NOT Summary
 
-**During term capture:**
-
-**MUST:**
+**During term capture, you MUST:**
 - Extract terms with singular, clear scope
 - Include complete source citation
-- Define key attributes distinct from keywords
+- Define key attributes distinct from keywords (2-5 attributes)
 - Link bidirectionally with facts
 - Update terms index after each change
-- Subject terms to exact same validation as facts
-- Never delete disproven terms (archive instead)
+- Apply exact same validation criteria as facts
+- Archive disproven terms without deletion
 
-**MUST NOT:**
+**During term capture, you MUST NOT:**
 - Create terms that bundle multiple concepts
 - Create terms without clear scope boundaries
 - Skip source citations
 - Create separate terms files for subtopics
 - Edit existing terms during research phase (append clarifications instead)
-- Mark terms as verified before verification workflow
+- Mark terms as verified before running verification workflow
 - Delete or lose bidirectional links
