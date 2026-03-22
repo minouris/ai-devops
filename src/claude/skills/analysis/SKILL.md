@@ -52,6 +52,23 @@ When the user asks you to examine artifacts systematically and synthesise findin
 
 ## Your Process
 
+### CRITICAL: Memory File Location
+
+When you create or update memory files during research, use this path structure ONLY:
+
+```
+.memory/[topic-slug]/[topic-slug]-facts.md
+.memory/[topic-slug]/[topic-slug]-terms.md
+.memory/[topic-slug]/[topic-slug]-index.md
+```
+
+**DO NOT create files in these wrong locations:**
+- ❌ `src/claude/projects/...` (WRONG)
+- ❌ `.claude/projects/.../memory/` (WRONG)
+- ❌ Any location other than workspace root `.memory/` (WRONG)
+
+All memory files must be in the workspace root `.memory/[topic-slug]/` directory.
+
 ### 1. Capture Research in Fact Files
 
 See [fact-capture.md](references/fact-capture.md) for:

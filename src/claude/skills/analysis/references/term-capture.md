@@ -39,10 +39,19 @@ General principle:    REST API
 
 ### Where to Store Terms
 
-When you extract terms from facts, maintain a central terms file for each topic:
+When you extract terms from facts, maintain a central terms file in the workspace root `.memory/` directory:
+
+**CORRECT location:**
 ```
 .memory/[topic]/[topic]-terms.md
 ```
+
+Example: `.memory/github-api/github-api-terms.md`
+
+**MANDATORY: Do NOT create terms files in these wrong locations:**
+- ❌ `src/claude/projects/-workspaces-[workspace-name]/memory/` (WRONG)
+- ❌ `.claude/projects/...` (WRONG)
+- ❌ Any location other than workspace root `.memory/[topic]/` (WRONG)
 
 ### Consolidate Terms at Topic Level
 

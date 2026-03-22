@@ -25,9 +25,14 @@
 
 **Folder-based organisation (MANDATORY):**
 
-Organise topics and subtopics in folders containing the main file and all supplementary files. Use recursive structure: subtopics are folders within the topic folder.
+Organise topics and subtopics in folders within the workspace root `.memory/` directory. This is the ONLY correct location for analysis memory files.
 
-**Structure:**
+**CRITICAL - Path Requirements:**
+- **CORRECT location:** `.memory/[topic]/` (within workspace root)
+- **WRONG locations:** `src/claude/projects/.../memory/` (NEVER use this), `.claude/projects/...` (NEVER use this)
+- When you create any memory file, verify its path starts with `.memory/` in the workspace root
+
+**Correct structure:**
 ```
 .memory/[topic]/
 ├── [topic]-facts.md              (main topic fact file)
