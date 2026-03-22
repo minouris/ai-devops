@@ -9,3 +9,6 @@
 
 # Exclude root level .claude folder (mounted from devcontainer, not committed)
 .claude
+
+# Analysis memory files (not committed)
+.memory/
