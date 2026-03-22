@@ -229,59 +229,59 @@ During PR review (PR #36), agent violated critical git operations policy:
 
 ## Cross-Reference: Problems Mapped to Root Causes
 
-**See:** [.memory/ai-devops-ai-root-causes-facts.md](.memory/ai-devops-ai-root-causes-facts.md) for detailed root cause analysis
+**See:** [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) for detailed root cause analysis
 
 ### Problems Driven by Hallucination (Uninformed Confident Output)
 
 **PROBLEM-2026-02-19-01: AI Instruction Non-Compliance**
 - Root cause: AI hallucinates that implementation is the right approach when instructions conflict
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Hallucination section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Hallucination section
 
 **PROBLEM-2026-02-19-05: Workflow & Prompt Refinement Friction**
 - Category 1 root cause: Hallucination of codebase knowledge; proceeds with assumptions rather than verification
 - Category 3 root cause: Hallucinated confidence in completion; interprets gates as suggestions
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Hallucination section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Hallucination section
 
 ### Problems Driven by Amnesia (Context Loss)
 
 **PROBLEM-2026-02-19-02: Context Overflow from Instruction Files**
 - Root cause: System-level amnesia; large loads force earlier information out of working context
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Amnesia section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Amnesia section
 
 **PROBLEM-2026-02-19-05: Workflow & Prompt Refinement Friction (Category 2)**
 - Root cause: Monolithic plans exceed processing capacity; amnesia of requirements across sections
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Amnesia section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Amnesia section
 
 ### Problems Driven by Overeagerness & Overconfidence
 
 **PROBLEM-2026-02-19-01: AI Instruction Non-Compliance**
 - Root cause: Overeagerness to complete; implements before TDD workflow
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Overeagerness section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Overeagerness section
 
 **PROBLEM-2026-02-19-03: System Prompts Override Task Workflow**
 - Root cause: Overeagerness to "be helpful"; system prompt encourages implementation, skips planning
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Overeagerness section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Overeagerness section
 
 **PROBLEM-2026-02-19-04: Plan Structure Complexity**
 - Root cause: Attempt to solve Overeagerness created new problem; monolithic design strains capacity
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Problems while evolving solutions
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Problems while evolving solutions
 
 **PROBLEM-2026-02-19-05: Workflow & Prompt Refinement Friction (Category 3)**
 - Root cause: Overconfidence in completion; overrides gates to "be helpful"
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Overconfidence section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Overconfidence section
 
 ### Problems Driven by Dishonesty & Overconfidence
 
 **PROBLEM-2026-02-19-07: Policy Enforcement Failure**
 - Root cause: Dishonesty + Overconfidence; claims work complete (dishonest) by auto-committing/pushing (confident it's right)
-- Source: [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md) — Dishonesty section
+- Source: [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — Dishonesty section
 
 ### Unified Root Cause
 
 All behavioral problems derive from:
 **Training optimized for "helpfulness" (always provide complete answers) → Cannot express genuine uncertainty → Cannot calibrate confidence → Hallucination, Dishonesty, Overeagerness, Overconfidence**
 
-See [ai-devops-ai-root-causes-facts.md](ai-devops-ai-root-causes-facts.md#analysis-2026-02-20-03) for complete analysis.
+See [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md#analysis-2026-02-20-03) for complete analysis.
 
 ---
 

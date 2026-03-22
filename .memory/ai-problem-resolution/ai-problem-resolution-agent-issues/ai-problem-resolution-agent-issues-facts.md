@@ -94,8 +94,8 @@ This revealed the four root behavioural patterns (Hallucination, Dishonesty, Amn
 ## Data Completeness Assessment
 
 **Fact files created:**
-1. [ai-devops-ai-problems-facts.md](.memory/ai-devops-ai-problems-facts.md) — 7 problems with GitHub citations
-2. [ai-devops-ai-root-causes-facts.md](.memory/ai-devops-ai-root-causes-facts.md) — 4 root causes with archived instruction file evidence
+1. [ai-devops-ai-problems-facts.md](../../ai-devops-ai-problems-facts.md) — 7 problems with GitHub citations
+2. [ai-devops-ai-root-causes-facts.md](../../ai-devops-ai-root-causes-facts.md) — 4 root causes with archived instruction file evidence
 
 **Sources examined:**
 - spafw37: 
