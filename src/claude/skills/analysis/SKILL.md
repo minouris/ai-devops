@@ -14,6 +14,7 @@ This skill implements a rigorous research methodology with:
 - Documentation-first verification requirements
 - Two-stage text search (keyword → direct examination)
 - Systematic fact capture with clarifications
+- Automatic semantic term extraction and linking
 - Disproven finding archival (never delete)
 - Research completeness gates
 - Fact verification before synthesis
@@ -62,6 +63,18 @@ See [fact-capture.md](references/fact-capture.md) for:
 
 **Key principle:** During research phase, write ONLY to fact files. Pending analysis and final output are read-only until user requests synthesis.
 
+### 1.5. Extract and Maintain Semantic Terms
+
+See [term-capture.md](references/term-capture.md) for:
+- Term definition and fine-grained scoping
+- Automatic term extraction from fact findings
+- On-demand term extraction workflow
+- Bidirectional linking between terms and facts
+- Term validation against same criteria as facts
+- Term archival and disproven tracking
+
+**Key principle:** Terms enable hierarchical semantic indexing. Extract terms automatically when facts introduce new concepts, and maintain bidirectional links between facts and terms for complete traceability.
+
 ### 2. Archive Disproven Findings
 
 See [disproven-archive.md](references/disproven-archive.md) for:
@@ -71,7 +84,7 @@ See [disproven-archive.md](references/disproven-archive.md) for:
 
 **Key principle:** Never delete disproven findings. Archive immediately with full context.
 
-### 3. Update Analysis Index
+### 4. Update Analysis Index
 
 See [index-maintenance.md](references/index-maintenance.md) for:
 - Index file structure (`.memory/[topic]/[topic]-index.md`)
@@ -79,7 +92,7 @@ See [index-maintenance.md](references/index-maintenance.md) for:
 - Noting companion disproven files
 - Timestamp maintenance
 
-### 4. Create Final Output (Only When User Requests)
+### 5. Create Final Output (Only When User Requests)
 
 **CRITICAL:** Do NOT create final output documents unless user explicitly requests them.
 
@@ -92,7 +105,7 @@ See [final-output.md](references/final-output.md) for:
 
 **Key principle:** Run [fact-verification](references/fact-verification.md) on all fact files before synthesising analysis documents.
 
-### 5. Operation Logging
+### 6. Operation Logging
 
 See [operation-logging.md](references/operation-logging.md) for:
 - Session initialization protocol (ask for topic slug, restore context)
@@ -106,9 +119,11 @@ See [operation-logging.md](references/operation-logging.md) for:
 ### Processing Artifacts vs. Final Outputs
 
 **MUST:**
-- Store all processing artifacts in `.memory/` (fact files, indices, drafts, disproven archives)
+- Store all processing artifacts in `.memory/` (fact files, indices, drafts, disproven archives, terms files)
 - Store only final approved outputs in the root (guides, analyses, documentation)
 - Capture research broadly in fact files; filter as research progresses when appropriate
+- Extract semantic terms automatically from findings
+- Maintain bidirectional links between facts and terms
 - Archive findings to `-disproven.md` files immediately when the user disproves them
 - Run [fact-verification](references/fact-verification.md) on fact files before synthesising analysis documents
 
@@ -156,7 +171,10 @@ When you are invoked in a new session, before anything else:
 
 **MUST:**
 - Store all processing artifacts in `.memory/`
+- Extract terms automatically from findings with singular scope
+- Maintain bidirectional links between facts and terms
 - Capture broadly in fact files; archive disproven findings immediately, never delete
+- Update terms index after each term operation
 - Run [fact-verification](references/fact-verification.md) before synthesising any analysis
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
 - Place final outputs where the user specifies
@@ -164,6 +182,9 @@ When you are invoked in a new session, before anything else:
 
 **MUST NOT:**
 - Create any output document until the user explicitly requests it
+- Bundle multiple concepts into a single term (each term = singular scope)
+- Create terms without clear source citation
+- Delete or lose bidirectional links between facts and terms
 
 ---
 
