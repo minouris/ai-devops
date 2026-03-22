@@ -90,7 +90,14 @@ See [term-capture.md](references/term-capture.md) for:
 - Term validation against same criteria as facts
 - Term archival and disproven tracking
 
-**Key principle:** When you extract terms, create hierarchical semantic indexing. Extract terms automatically when facts introduce new concepts, and maintain bidirectional links between facts and terms for complete traceability.
+See [term-indexing.md](references/term-indexing.md) for:
+- Term entry template and standardized formatting
+- Term index file organization and naming conventions
+- Central index maintenance (`index-terms.md`)
+- Term verification workflow and status tracking
+- File size management (500-line limit per index file)
+
+**Key principle:** When you extract terms, create hierarchical semantic indexing with standardized formatting. Extract terms automatically when facts introduce new concepts, maintain bidirectional links between facts and terms, and organize terms into properly formatted glossaries.
 
 ### 2. Archive Disproven Findings
 

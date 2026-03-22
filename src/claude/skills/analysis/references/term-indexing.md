@@ -1,0 +1,364 @@
+# Term Indexing and Glossary Standards
+
+**This file is loaded when: You need guidance on organizing, indexing, and presenting domain terms in a structured glossary format.**
+
+---
+
+## Overview
+
+When you maintain terms for a topic, organize them into a hierarchical glossary structure with:
+- Individual term entries using a standardized template
+- Multiple index files when exceeding size limits
+- A central index that points to all verified terms
+- Bidirectional links between terms, findings, and sources
+
+---
+
+## Term Entry Template
+
+When you create a term entry, use this exact structure:
+
+```markdown
+## <Term Name>
+
+**Captured:** YYYY-MM-DD HH:MM
+
+<Short description - maximum 3 sentences summarizing the term>
+
+### Sources
+
+| Source | Status | Verification |
+|--------|--------|---------------|
+| [Source Name](link/to/source.md) | VERIFIED / UNVERIFIED / PENDING | [Verification](verification/link.md) |
+| [Another Source](link/to/source.md) | VERIFIED | [Verification](verification/link.md) |
+
+### Description
+
+<Long description of the term, including:
+- Detailed definition
+- Key characteristics
+- Scope and boundaries
+- How it relates to the topic>
+
+### See Also
+
+- [Related Term 1](#related-term-1)
+- [Related Term 2](#related-term-2)
+- [Concept Name (not yet defined)](undefined-concept)
+
+### Referenced By
+
+- [FINDING-2026-03-22-1](../facts/topic-facts.md#finding-2026-03-22-1) - Finding Title
+- [FINDING-2026-03-22-4](../facts/topic-facts.md#finding-2026-03-22-4) - Another Finding
+```
+
+### Field Requirements
+
+When you create a term entry, populate these fields:
+
+- **Term Name (H2)**: The semantic concept label (1-4 words typically)
+- **Captured**: Timestamp when term was created (YYYY-MM-DD HH:MM format)
+- **Short description**: 1-3 sentences summarizing what this term is; appears in central index
+- **Sources table**: List all sources where this term appears, with status and verification link
+- **Description**: Complete definition with context, characteristics, scope boundaries, and topic relationships
+- **See Also**: Links to related terms (use internal anchor links for terms in same file; use relative paths for other files)
+- **Referenced By**: Backlinks to facts that use or reference this term
+
+---
+
+## Term Index Files
+
+### File Organization and Naming
+
+When you create term index files, follow this structure:
+
+**Single index file (for topics with ≤500 lines):**
+```
+.memory/[topic]/[topic]-terms.md
+```
+
+**Multiple index files (for topics exceeding 500 lines):**
+```
+.memory/[topic]/[topic]-terms-index-aaa-bbb.md
+```
+
+Where:
+- `aaa` = first 3 letters of the first term in the file
+- `bbb` = first 3 letters of the last term in the file
+- Example: `terms-index-hal-ove.md` (Hallucination → Overeagerness)
+
+### File Structure
+
+When you organize terms in an index file, structure it like this:
+
+```markdown
+# [Topic Name] Terms
+
+**Last Updated:** YYYY-MM-DD HH:MM
+**Verified Terms:** N
+**Pending Terms:** N
+
+---
+
+## Table of Contents
+
+- [Term 1](#term-1)
+- [Term 2](#term-2)
+- [Term 3](#term-3)
+
+---
+
+## Term 1
+
+**Captured:** YYYY-MM-DD HH:MM
+
+Short description here.
+
+### Sources
+
+| Source | Status | Verification |
+|--------|--------|---------------|
+| ... |
+
+### Description
+
+...
+
+### See Also
+
+...
+
+### Referenced By
+
+...
+
+---
+
+## Term 2
+
+...
+```
+
+### Size Management
+
+**Monitor term index file size:**
+- **Maximum:** 500 lines per file
+- **Action trigger:** When you would add a term that would exceed this limit
+
+**When approaching the 500-line limit, execute this process:**
+
+1. Identify terms that should move to a new file (use alphabetical midpoint)
+2. Create new index file: `.memory/[topic]/[topic]-terms-index-[first-3]-[last-3].md`
+3. Move identified terms to new file
+4. Update central index (`index-terms.md`) with both files
+5. Add navigation links between index files
+
+**Alphabetical Range Selection:**
+
+Keep range spans natural and balanced:
+- Don't split at arbitrary points
+- Keep ranges that group related terms together when possible
+- Divide at letters that result in roughly equal distribution
+
+**Example division for 20+ terms:**
+- `terms-index-aut-con.md` (Authentication → Context)
+- `terms-index-des-jso.md` (Design → JSON)
+- `terms-index-key-ove.md` (Keyword → Overeagerness)
+- `terms-index-pat-zap.md` (Pattern → Zapping)
+
+---
+
+## Central Index: index-terms.md
+
+When you maintain terms for a topic, create and maintain a central index file:
+
+**Location:**
+```
+.memory/[topic]/index-terms.md
+```
+
+**Structure:**
+
+```markdown
+# Terms Index
+
+**Topic:** [Topic Name]
+**Last Updated:** YYYY-MM-DD HH:MM
+**Total Verified Terms:** N
+**Total Pending Terms:** N
+
+---
+
+## Index by Term
+
+| # | Term | Short Description |
+|---|------|-------------------|
+| 1 | [Action Plan](#action-plan) | A detailed sequence of steps required to achieve a specific outcome |
+| 2 | [Authentication](#authentication) | Process of verifying... |
+| ... | ... | ... |
+
+---
+
+## Index Files
+
+- [terms-index-aut-con.md](terms-index-aut-con.md) - Authentication through Context (N terms)
+- [terms-index-des-jso.md](terms-index-des-jso.md) - Design through JSON (N terms)
+- [terms-index-key-ove.md](terms-index-key-ove.md) - Keyword through Overeagerness (N terms)
+
+---
+
+## Verification Status
+
+### Verified Terms (N)
+
+- [Term 1](terms-index-XXX.md#term-1)
+- [Term 2](terms-index-XXX.md#term-2)
+
+### Pending Verification (N)
+
+- [Term 3](terms-index-XXX.md#term-3) - Awaiting verification against source
+- [Term 4](terms-index-XXX.md#term-4) - Pending source confirmation
+```
+
+### Central Index Requirements
+
+**MUST:**
+- List only VERIFIED terms in this index
+- Include short description (max 3 sentences) from term entry
+- Link to term location in appropriate index file
+- Maintain alphabetical order
+- Update after each term verification
+- Update term count statistics
+
+**MUST NOT:**
+- Include unverified or pending terms
+- Use this file to store full term definitions (use term index files)
+- Leave stale links or outdated counts
+
+---
+
+## Bidirectional Linking
+
+When you maintain terms, ensure complete traceability:
+
+### Terms → Findings (Backlinks)
+
+In each term entry, maintain a "Referenced By" section:
+
+```markdown
+### Referenced By
+
+- [FINDING-2026-03-22-1](../facts/topic-facts.md#finding-2026-03-22-1) - Finding demonstrates this term
+- [FINDING-2026-03-22-4](../facts/subtopic/topic-subtopic-facts.md#finding-2026-03-22-4) - Another finding using term
+```
+
+**Update "Referenced By" when:**
+- A new fact introduces or uses this term
+- A fact is archived (remove from backlinks)
+- Cross-references are added or removed
+
+### Findings → Terms (Forward Links)
+
+In fact entries, include term references:
+
+```markdown
+**Introduces term:** TERM-[topic]-[YYYY-MM-DD]-1
+
+**Uses terms:** TERM-[topic]-[YYYY-MM-DD]-3, TERM-[topic]-[YYYY-MM-DD]-5
+```
+
+---
+
+## Term Verification Workflow
+
+When you verify terms, update their status:
+
+### Before Verification
+
+**Status:** UNVERIFIED
+- Term appears in index files but NOT in central index
+- Included in "Pending Verification" section if applicable
+
+### During Verification
+
+**Status:** PENDING
+- Verification workflow is in progress
+- Source materials are being checked
+- Scope and boundaries are being validated
+
+### After Verification
+
+**Status:** VERIFIED
+- Term now appears in central `index-terms.md`
+- Verification link points to completed verification document
+- Short description confirmed accurate
+
+**Mark verification in Sources table:**
+```markdown
+| [Source Document](link/to/source.md) | VERIFIED | [Verified on 2026-03-22 by Source](verification/source-link.md) |
+```
+
+---
+
+## Common Patterns
+
+### Single-Level Hierarchy (Small Topics)
+
+For topics with few terms (≤ 5-10 terms):
+```
+.memory/[topic]/[topic]-terms.md        (single file, ≤500 lines)
+.memory/[topic]/index-terms.md          (central index)
+```
+
+### Two-Level Hierarchy (Medium Topics)
+
+For topics with moderate terms (50-100 terms):
+```
+.memory/[topic]/[topic]-terms-index-aut-key.md    (terms A-K)
+.memory/[topic]/[topic]-terms-index-lea-zap.md    (terms L-Z)
+.memory/[topic]/index-terms.md                     (central index)
+```
+
+### Three-Level Hierarchy (Large Topics)
+
+For topics with many terms (100+ terms):
+```
+.memory/[topic]/[topic]-terms-index-aut-con.md    (terms A-C)
+.memory/[topic]/[topic]-terms-index-des-ini.md    (terms D-I)
+.memory/[topic]/[topic]-terms-index-jso-ove.md    (terms J-O)
+.memory/[topic]/[topic]-terms-index-pat-zap.md    (terms P-Z)
+.memory/[topic]/index-terms.md                     (central index)
+```
+
+---
+
+## MUST/MUST NOT Summary
+
+**When creating term index files, you MUST:**
+- Use alphabetical ordering (primary sort key)
+- Include Table of Contents for files with 10+ terms
+- Use H2 heading for each term
+- Include all required fields (Captured, Sources, Description, See Also, Referenced By)
+- Keep line count under 500 per file
+- Create new file when approaching limit
+- Update central index after new term verification
+
+**When maintaining terms, you MUST:**
+- Only include VERIFIED terms in central index
+- Maintain bidirectional links between terms and facts
+- Update "Referenced By" when facts change
+- Use correct naming convention for multi-file organization
+- Update "Last Updated" timestamps after changes
+- Keep term counts accurate
+
+**When verifying terms, you MUST NOT:**
+- Mark terms as VERIFIED without completing verification workflow
+- Include unverified terms in central index
+- Leave incomplete Source entries
+- Create bidirectional links until term is verified
+
+**When organizing terms, you MUST NOT:**
+- Exceed 500 lines per index file without creating new file
+- Use arbitrary term splitting points
+- Leave broken links between index files
+- Omit verified terms from central index

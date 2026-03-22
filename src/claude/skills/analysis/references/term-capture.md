@@ -100,6 +100,8 @@ When you create a term, use this exact structure:
 **Captured:** YYYY-MM-DD HH:MM
 ```
 
+**Note:** This format is for initial term capture during research. Once terms are ready for indexing and publication, format them using the standardized glossary template provided in [term-indexing.md](term-indexing.md). The glossary format includes a complete "Sources" table, expanded "Description" section, bidirectional "See Also" links, and "Referenced By" backlinks.
+
 ### Field Requirements
 
 When you create a term entry, populate each field with this requirement:
@@ -427,6 +429,10 @@ Update existing terms when:
 - Update terms index after each change
 - Apply exact same validation criteria as facts
 - Archive disproven terms without deletion
+- Follow standardized term entry template from [term-indexing.md](term-indexing.md)
+- Maintain central `index-terms.md` with only VERIFIED terms
+- Monitor term index file sizes (maximum 500 lines per file)
+- Use alphabetical ordering in term index files
 
 **During term capture, you MUST NOT:**
 - Create terms that bundle multiple concepts
