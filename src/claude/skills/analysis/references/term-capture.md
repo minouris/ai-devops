@@ -68,6 +68,95 @@ When subtopics introduce new terms, add them to the main topic's terms file—do
 
 ---
 
+## Term Authority and Source Verification (MANDATORY)
+
+When you create or maintain a term, consult authoritative sources and distinguish between official/industry standard terms and internal project terms.
+
+### Source Hierarchy for Term Authority
+
+When defining a term for a concept, prioritize sources in this order:
+
+1. **Industry Standard Terms (Highest Authority)**
+   - Official technical specifications (RFC, OASIS, W3C, etc.)
+   - Standardized glossaries (IEEE, ISO, etc.)
+   - Consensus definitions in official documentation
+   - Examples: REST API, GraphQL, OAuth, JWT
+
+2. **Official Third-Party Terms (High Authority)**
+   - Official product/service documentation (GitHub, Docker, Kubernetes, etc.)
+   - Official API references and specifications
+   - Official language/framework documentation
+   - Examples: GitHub Pull Request, Docker Container, Kubernetes Pod
+
+3. **Internal/Project-Specific Terms (Lower Authority)**
+   - Project documentation and design decisions
+   - Team conventions and terminology
+   - Internal domain concepts without external standards
+   - Created ONLY when no industry standard or official term exists
+
+### Term Creation Requirements
+
+**Before creating a term, you MUST:**
+
+1. **Check for existing standard terminology**
+   - Search official documentation and specifications for the concept
+   - Consult industry glossaries and standards
+   - Review official API references for the service/product
+   - Only proceed to step 2 if no authoritative term is found
+
+2. **If an official or industry standard term exists:**
+   - Use that term exactly as defined in the authoritative source
+   - Cite the official source in the term's Sources table
+   - Include the authoritative definition, not your interpretation
+   - Link to the official documentation
+
+3. **If no standard term exists, create an internal term:**
+   - Document that this is an internal/project-specific term
+   - Provide clear scope boundaries to prevent confusion
+   - Cite project documentation or design decisions as sources
+   - Mark as "Internal Term" in documentation
+
+**MUST NOT create a term if:**
+- An industry standard term already exists for the concept
+- An official term from the canonical source documentation exists
+- A different but equivalent term is already in use (consolidate instead)
+
+### Sources: Definition vs. Usage
+
+**Distinguish between two concepts:**
+
+- **Canonical Sources** (go in Sources table): Authoritative documents that *define* the term
+  - Official specification that defines the concept
+  - Official API documentation defining the term
+  - Standard glossary entry for the concept
+  - Project documentation establishing the internal term
+
+- **Usage References** (go in "Used in facts" / "Referenced By"): Facts and findings that *use or reference* the term
+  - Facts introducing or discussing the concept
+  - Findings that depend on understanding this term
+  - Evidence of the term's relevance to the topic
+
+The Sources table in the glossary template references canonical definitions, not usage locations.
+
+### Verification Workflow for Sources
+
+When you verify a term, authenticate its sources:
+
+**During verification:**
+1. Read the canonical source documents listed in Sources table
+2. Confirm the term definition matches the source exactly
+3. Verify the scope boundaries align with the authoritative definition
+4. Document verification with link to source section
+5. For internal terms: Confirm the project documentation clearly establishes the term
+
+**Example verification:**
+```markdown
+| [Official GraphQL Specification](https://spec.graphql.org/) | VERIFIED | Verified 2026-03-23 against official specification section 3.1 |
+| [GitHub GraphQL API Docs](https://docs.github.com/graphql) | VERIFIED | Verified 2026-03-23 against official documentation |
+```
+
+---
+
 ## Term Entry Format (MANDATORY)
 
 ### Create Term Entries Using This Format
@@ -81,7 +170,7 @@ When you create a term, use this exact structure:
 
 **Definition:** [One or more sentences defining the concept]
 
-**Source:** [Where the term was extracted from - FINDING-ID, user input, documentation URL]
+**Source:** [Canonical source that defines the term - official documentation URL, specification, or project documentation]
 
 **Scope:** [Singular concept statement - what this term covers and what it does NOT cover]
 
@@ -128,7 +217,7 @@ When you create a term, structure it like this example:
 
 **Definition:** GitHub's REST (Representational State Transfer) implementation for API access. Uses HTTP methods (GET, POST, PUT, DELETE) with fixed endpoint paths. Each endpoint returns a structured response containing specific fields.
 
-**Source:** FINDING-2026-03-22-4 (extracted from github-devops create-pr.md)
+**Source:** https://tools.ietf.org/html/rfc7231#section-4.9 (extracted and confirmed via FINDING-2026-03-22-4)
 
 **Scope:** Refers specifically to GitHub's REST API implementation. Does NOT include general REST API principles (see "REST API" term) or GitHub GraphQL API (see "GitHub GraphQL API" term).
 
@@ -264,17 +353,21 @@ When you create and maintain terms, apply the exact same validation requirements
 Before finalizing a term entry, verify it meets these requirements:
 
 **MUST have before creating a term:**
+- Canonical source verification (industry standard or official documentation consulted)
 - Clear, singular scope (what this term covers; what it does NOT cover)
-- Source citation (where extracted from)
-- Complete definition with context
+- Source citation pointing to authoritative definition (not just usage location)
+- Complete definition with context matching the authoritative source
 - Key attributes that characterize the concept (2-5 attributes)
 - Related terms listed (existing terms + placeholders for future related terms)
+- Confirmation that no industry standard or official term already exists for this concept
 
 **MUST NOT do when creating terms:**
 - Create terms that bundle multiple concepts (violates singular scope)
-- Create terms without clear source
-- Create terms without definition
-- Create terms that are just aliases for existing concepts
+- Create terms without clear source documentation
+- Create terms that duplicate industry standard or official terminology
+- Create terms without consulting authoritative sources first
+- Create internal terms when official/industry standard terms exist
+- Ignore existing standard terminology for a concept
 
 ### Run Verification Workflow
 
@@ -441,8 +534,10 @@ Update existing terms when:
 ## MUST/MUST NOT Summary
 
 **During term capture, you MUST:**
+- Consult authoritative sources (industry standards, official documentation) before creating terms
 - Extract terms with singular, clear scope
-- Include complete source citation
+- Include complete source citation pointing to canonical definition
+- Confirm no industry standard or official term already exists before creating a term
 - Define key attributes distinct from keywords (2-5 attributes)
 - Link bidirectionally with facts
 - Update terms index after each change
@@ -457,9 +552,11 @@ Update existing terms when:
 **During term capture, you MUST NOT:**
 - Create terms that bundle multiple concepts
 - Create terms without clear scope boundaries
-- Skip source citations
+- Create terms that duplicate industry standard or official terminology
+- Skip source citations or cite only usage locations
 - Create separate terms files for subtopics
 - Edit existing terms during research phase (append clarifications instead)
 - Mark terms as verified before running verification workflow
 - Delete or lose bidirectional links
 - Forget transitive references when updating parent term "Used in facts"
+- Create internal terms when official or industry standard terms exist

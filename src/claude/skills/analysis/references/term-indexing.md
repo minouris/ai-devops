@@ -14,6 +14,26 @@ When you maintain terms for a topic, organize them into a hierarchical glossary 
 
 ---
 
+## Sources vs. Referenced By: Critical Distinction
+
+When maintaining term entries, understand the difference between these two sections:
+
+**Sources table** (defines the term):
+- Canonical/authoritative documents that *define* the term
+- Official documentation, specifications, standards
+- The authoritative source of truth for the term definition
+- Example: [Official GraphQL Specification](https://spec.graphql.org/)
+
+**Referenced By section** (uses the term):
+- Facts, findings, and research that *reference or use* the term
+- Evidence that this term is relevant to the topic
+- Where the term appears in your analysis
+- Example: FINDING-2026-03-22-1 - Implementation uses GraphQL
+
+These are distinct purposes and must not be confused. The Sources table proves the term is real and well-defined; Referenced By proves it's relevant to your analysis.
+
+---
+
 ## Term Entry Template
 
 When you create a term entry, use this exact structure:
@@ -59,7 +79,7 @@ When you create a term entry, populate these fields:
 - **Term Name (H2)**: The semantic concept label (1-4 words typically)
 - **Captured**: Timestamp when term was created (YYYY-MM-DD HH:MM format)
 - **Short description**: 1-3 sentences summarizing what this term is; appears in central index
-- **Sources table**: List all sources where this term appears, with status and verification link
+- **Sources table**: List canonical/authoritative sources that *define* this term (official documentation, specifications, standards). Do NOT list where the term is used; list only definition sources with verification status.
 - **Description**: Complete definition with context, characteristics, scope boundaries, and topic relationships
 - **See Also**: Links to related terms (use internal anchor links for terms in same file; use relative paths for other files)
 - **Referenced By**: Backlinks to facts that use or reference this term
@@ -205,7 +225,57 @@ When you maintain terms for a topic, create and maintain a central index file:
 
 ---
 
-## Bidirectional Linking
+## Sources Table Requirements
+
+The Sources table in each term entry must contain canonical/authoritative sources that *define* the term, not locations where it is used.
+
+### Source Types by Term Category
+
+**For Industry Standard Terms:**
+- Official specification documents (RFC, W3C, OASIS, ISO, IEEE)
+- Official standards glossaries
+- Consensus definitions in authoritative technical documentation
+- Example source: https://tools.ietf.org/html/rfc7231 (defines REST API)
+
+**For Official Third-Party Terms:**
+- Official product/service documentation
+- Official API references
+- Official language/framework documentation
+- Example source: https://docs.github.com/rest (GitHub REST API definition)
+
+**For Internal/Project-Specific Terms:**
+- Project design documents and specifications
+- Project documentation establishing the term
+- Team documentation or conventions
+- Example source: Project architecture document defining internal concepts
+
+### Source Table Format
+
+Structure the Sources table like this:
+
+```markdown
+### Sources
+
+| Source | Status | Verification |
+|--------|--------|--------------|
+| [Official Specification](https://official.spec/ref) | VERIFIED | Verified 2026-03-23 against section 3.1 |
+| [Official Documentation](https://docs.example.com) | VERIFIED | Verified 2026-03-23 against API reference |
+```
+
+- **Source**: Link to the authoritative definition document or specification
+- **Status**: VERIFIED (term confirmed to match source), UNVERIFIED (needs checking), or DISPUTED (conflicting definitions)
+- **Verification**: Date and specific section/reference confirming the definition
+
+### MUST NOT Put in Sources Table
+
+Do NOT include in the Sources table:
+- ❌ Facts or findings that use the term
+- ❌ Internal project code or analysis files
+- ❌ Facts with IDs (FINDING-XXXX) - those go in "Referenced By"
+- ❌ Multiple locations where the term appears
+- ❌ Sources that reference the term but don't define it
+
+---
 
 When you maintain terms, ensure complete traceability:
 
@@ -339,11 +409,20 @@ For topics with many terms (100+ terms):
 - Mark transitive references with the child term that mediates the reference
 - Use correct naming convention for multi-file organization
 
+**When verifying terms, you MUST:**
+- Verify canonical definition sources before marking term as VERIFIED
+- Confirm term definition matches authoritative source exactly
+- For official/industry standard terms: Link to official specification or documentation
+- For internal terms: Cite project documentation that establishes the term
+- Verify scope boundaries align with authoritative definition
+- Include verification dates and source references
+
 **When verifying terms, you MUST NOT:**
 - Mark terms as VERIFIED without completing verification workflow
 - Include unverified terms in central index
 - Leave incomplete Source entries
 - Create bidirectional links until term is verified
+- Mark terms VERIFIED if no authoritative source can be found (archive as disputed instead)
 
 **When managing hierarchical relationships, you MUST:**
 - Update parent term "Referenced By" when child terms are referenced by facts
@@ -356,3 +435,19 @@ For topics with many terms (100+ terms):
 - Leave broken links between index files
 - Omit verified terms from central index
 - Forget transitive references when updating "Referenced By" sections
+
+**When sourcing and verifying terms, you MUST:**
+- Consult authoritative sources (industry standards, official documentation) before creating terms
+- Cite canonical definition sources in the Sources table (not usage references)
+- Verify that industry standard or official terms exist before creating internal terms
+- Link to authoritative definitions that establish term validity
+- Distinguish between definition sources (Sources) and usage references (Referenced By)
+- For internal terms: Cite project documentation that establishes the term
+- Update verification status with date and specific source section
+
+**When sourcing and verifying terms, you MUST NOT:**
+- Create terms that duplicate existing industry standard or official terminology
+- Put facts or findings in the Sources table (they belong in Referenced By)
+- Include locations where the term appears instead of where it is defined
+- Mark terms VERIFIED without authoritative source documentation
+- Confuse definition sources (Sources table) with usage references (Referenced By section)
