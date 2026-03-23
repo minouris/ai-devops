@@ -235,6 +235,26 @@ In fact entries, include term references:
 **Uses terms:** TERM-[topic]-[YYYY-MM-DD]-3, TERM-[topic]-[YYYY-MM-DD]-5
 ```
 
+### Transitive Fact References Through Term Hierarchy
+
+When a term extends or references another term (establishing a hierarchical relationship), facts that reference the child term automatically also reference the parent term.
+
+**Example:** If GitHub REST API has "See Also: [GitHub API](#github-api)" establishing it as a child/implementation of GitHub API, then any fact referencing GitHub REST API also implicitly references GitHub API.
+
+**When updating "Referenced By":**
+- Include facts that reference this term directly
+- Include facts that reference any child term (as child terms imply parent term usage)
+- Mark transitive references by adding a note: `(via GitHub REST API)`
+
+**Example:**
+```markdown
+### Referenced By
+
+- [FINDING-2026-03-22-1](../facts/topic-facts.md#finding-2026-03-22-1) - Direct reference to GitHub API
+- [FINDING-2026-03-22-3](../facts/topic-facts.md#finding-2026-03-22-3) - Via GitHub REST API
+- [FINDING-2026-03-22-5](../facts/topic-facts.md#finding-2026-03-22-5) - Via GitHub GraphQL API
+```
+
 ---
 
 ## Term Verification Workflow
@@ -315,9 +335,9 @@ For topics with many terms (100+ terms):
 - Only include VERIFIED terms in central index
 - Maintain bidirectional links between terms and facts
 - Update "Referenced By" when facts change
+- Include transitive fact references when a term extends another term
+- Mark transitive references with the child term that mediates the reference
 - Use correct naming convention for multi-file organization
-- Update "Last Updated" timestamps after changes
-- Keep term counts accurate
 
 **When verifying terms, you MUST NOT:**
 - Mark terms as VERIFIED without completing verification workflow
@@ -325,8 +345,14 @@ For topics with many terms (100+ terms):
 - Leave incomplete Source entries
 - Create bidirectional links until term is verified
 
+**When managing hierarchical relationships, you MUST:**
+- Update parent term "Referenced By" when child terms are referenced by facts
+- Add transitive references with notation: `(via Child Term Name)`
+- Ensure all parent terms reflect usage through their children
+
 **When organizing terms, you MUST NOT:**
 - Exceed 500 lines per index file without creating new file
 - Use arbitrary term splitting points
 - Leave broken links between index files
 - Omit verified terms from central index
+- Forget transitive references when updating "Referenced By" sections

@@ -234,6 +234,25 @@ When you maintain a term, keep its "Used in facts" section current:
 - [FINDING-2026-03-22-1](github-api-facts.md#finding-2026-03-22-1) - Pull Request mentions REST API
 ```
 
+### Transitive Fact References Through Term Hierarchy
+
+When a term extends or references another term (hierarchical parent-child relationship), facts that reference the child term automatically also reference the parent term.
+
+**Example:** If GitHub REST API establishes GitHub API as its parent concept, then any fact using GitHub REST API implicitly also uses GitHub API. Update the parent term's "Used in facts" to include these transitive references.
+
+**When updating "Used in facts" for parent terms:**
+- Include facts that directly reference this term
+- Include facts that reference any child term (as child term usage implies parent term usage)
+- Mark transitive references to show which child term mediates the reference
+
+**Example:**
+```markdown
+**Used in facts:**
+- [FINDING-2026-03-22-10](github-api-facts.md#finding-2026-03-22-10) - Direct reference to GitHub API
+- [FINDING-2026-03-22-4](github-api-facts.md#finding-2026-03-22-4) - Via GitHub REST API
+- [FINDING-2026-03-22-5](github-api-facts.md#finding-2026-03-22-5) - Via GitHub GraphQL API
+```
+
 ---
 
 ## Term Validation Criteria (MANDATORY)
@@ -433,6 +452,7 @@ Update existing terms when:
 - Maintain central `index-terms.md` with only VERIFIED terms
 - Monitor term index file sizes (maximum 500 lines per file)
 - Use alphabetical ordering in term index files
+- Include transitive fact references when a term has child terms
 
 **During term capture, you MUST NOT:**
 - Create terms that bundle multiple concepts
@@ -442,3 +462,4 @@ Update existing terms when:
 - Edit existing terms during research phase (append clarifications instead)
 - Mark terms as verified before running verification workflow
 - Delete or lose bidirectional links
+- Forget transitive references when updating parent term "Used in facts"
