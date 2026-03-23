@@ -38,6 +38,24 @@ See [bootstrap.md](references/bootstrap.md) for the bootstrap workflow, which:
 
 **Key principle:** Bootstrap is idempotent — running it again when the structure already exists verifies the structure and reports success without overwriting existing files.
 
+## Topic Bootstrap
+
+When you begin research on a new topic, you must bootstrap the topic structure that organizes findings, logs operations, and maintains topic-specific metadata.
+
+See [topic-bootstrap.md](references/topic-bootstrap.md) for the topic bootstrap workflow, which:
+- Creates the `[topic-slug]/` directory within `.memory/`
+- Initializes `[topic-slug]-index.md` for organizing findings
+- Initializes `[topic-slug]-log.md` for session continuity
+- Initializes `[topic-slug]-facts.md` for fact capture
+- Updates the central knowledge base index with the new topic
+
+**Key principle:** Topic bootstrap is idempotent — running it again when the topic structure already exists verifies the structure and reports success without overwriting existing files.
+
+**Topic Bootstrap Templates:**
+- See [topic-index-template.md](references/topic-index-template.md) for index file structure
+- See [topic-log-template.md](references/topic-log-template.md) for log file structure
+- See [topic-facts-template.md](references/topic-facts-template.md) for facts file structure
+
 ## Research Workflows
 
 ### Workflow 1: Procedural Research
@@ -171,15 +189,20 @@ When fact verification is needed, invoke `/verify-analysis fact` and let that sk
 
 When you are invoked in a new session, before anything else:
 
-1. Ask: "What topic are we working on? (This sets the session context — e.g., `ai-problems-analysis`)"
-2. Once the user provides the topic slug, attempt to read `.memory/[topic]/[topic]-log.md` (if record-operation logging is in use)
-3. If the log exists, summarise the last 1–3 entries to the user: operation type, files changed, and next step recorded
-4. Confirm: "Session context loaded from `.memory/[topic]/[topic]-log.md`. Ready to continue."
-5. If no log exists, confirm: "No previous log found for `[topic]`. Starting fresh."
+1. Check if the knowledge base is bootstrapped: does `.memory/knowledge-base-index.md` exist?
+2. If not bootstrapped, invoke `/analysis bootstrap` to initialize the knowledge base
+3. Ask: "What topic are we working on? (This sets the session context — e.g., `ai-problems-analysis`)"
+4. Once the user provides the topic slug, check if the topic directory exists at `.memory/[topic]/`
+5. If topic directory does not exist, invoke `/analysis bootstrap-topic [topic-slug] [topic-name]` to create the topic
+6. Once the topic directory exists, attempt to read `.memory/[topic]/[topic]-log.md`
+7. If the log exists, summarise the last 1–3 entries to the user: operation type, files changed, and next step recorded
+8. Confirm: "Session context loaded from `.memory/[topic]/[topic]-log.md`. Ready to continue."
+9. If no log exists, confirm: "Topic `[topic]` initialized. Ready to begin research."
 
 **MUST NOT:**
-- Begin any research or respond to the first task before completing steps 1–5
+- Begin any research or respond to the first task before completing steps 1–9
 - Assume a topic slug without asking
+- Assume topic directory exists without checking
 
 ---
 
@@ -192,6 +215,7 @@ When you are invoked in a new session, before anything else:
 
 **MUST:**
 - Bootstrap the knowledge base structure using `/analysis bootstrap` on first use in a workspace
+- Bootstrap each topic using `/analysis bootstrap-topic [topic-slug] [topic-name]` before beginning research on that topic
 - Store all processing artifacts in `.memory/` directory initialized by bootstrap
 - Extract terms automatically from findings with singular scope
 - Verify extracted terms using `/verify-analysis term` before considering findings complete
@@ -230,19 +254,32 @@ This skill uses the following Claude Code tools:
 
 Invoke this skill when you need to:
 - Bootstrap a knowledge base in a new workspace
+- Bootstrap a new research topic
 - Research and document a technical procedure
 - Analyse a codebase or project systematically
 - Capture research findings with proper citation and verification
 - Build and maintain a structured knowledge base for a topic
 
-**Usage:**
+**Workspace Bootstrap:**
 ```
 /analysis bootstrap
 ```
 
 Invokes the bootstrap workflow to initialize the `.memory/` directory and `knowledge-base-index.md`.
 
-**Usage:**
+**Topic Bootstrap:**
+```
+/analysis bootstrap-topic [topic-slug] [topic-name]
+```
+
+Invokes the topic bootstrap workflow to create topic directory, index, log, and facts files. For example:
+```
+/analysis bootstrap-topic github-oauth "GitHub OAuth Implementation"
+```
+
+See [topic-bootstrap.md](references/topic-bootstrap.md) for the complete topic bootstrap workflow.
+
+**Research Engagement:**
 ```
 /analysis
 ```
