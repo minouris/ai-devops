@@ -121,6 +121,25 @@ When defining a term for a concept, prioritize sources in this order:
 - An official term from the canonical source documentation exists
 - A different but equivalent term is already in use (consolidate instead)
 
+### Fast Path: Terms from Official Documentation Sources
+
+When facts are extracted from official documentation, the documentation itself supplies the correct terminology. This creates a fast-path workflow:
+
+**When facts come from official documentation:**
+1. Extract the terminology used in the official documentation (this IS the canonical source)
+2. Cite the official documentation as the term's primary source
+3. Verify that terminology against other industry sources to confirm correct usage
+4. Create the term with the official documentation as the canonical source
+
+**Example workflow:**
+- Fact extracted from GitHub's official API documentation mentions "Pull Request"
+- GitHub's official docs define what a Pull Request is
+- Verify "Pull Request" is the correct term by checking other sources (GitHub GraphQL API docs, REST API docs, GitHub's glossary)
+- Create term "Pull Request" with source: https://docs.github.com/pull-requests (the official documentation)
+- Verification: Confirmed usage across GitHub's official documentation sources
+
+This workflow eliminates the need to search for standard terminology when the source documentation already provides authoritative definitions.
+
 ### Sources: Definition vs. Usage
 
 **Distinguish between two concepts:**
@@ -285,6 +304,27 @@ When the user explicitly requests term extraction from facts, use this workflow:
    - If existing: Update "Used in facts" backlinks with new findings
 4. Update terms index
 5. Report findings: how many terms created/updated, what relationships emerged
+
+### Extracting Terms from Official Documentation
+
+When facts come from official documentation (GitHub docs, API references, specifications), the documentation itself provides the authoritative terms:
+
+**When extracting terms from official documentation sources:**
+
+1. Use terminology exactly as presented in the official documentation
+2. Cite the official documentation URL as the term's Source
+3. The fact's source documentation IS the canonical term definition
+4. During verification: Compare against other official sources to confirm consistent terminology usage
+5. Create the term entry immediately after capturing the fact
+
+**Example extraction:**
+- Fact extracted from https://docs.github.com/pull-requests discussing "Pull Request" concept
+- Extract term "Pull Request" (as named in official docs)
+- Set Source: https://docs.github.com/pull-requests
+- Verification workflow: Check GitHub REST/GraphQL docs for consistent "Pull Request" terminology usage
+- Mark VERIFIED once terminology is confirmed consistent across official sources
+
+This extraction approach leverages the official documentation's authority rather than searching for external definitions.
 
 ---
 

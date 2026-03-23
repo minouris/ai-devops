@@ -275,6 +275,24 @@ Do NOT include in the Sources table:
 - ❌ Multiple locations where the term appears
 - ❌ Sources that reference the term but don't define it
 
+### Verification Fast Path: Terms from Official Documentation
+
+When facts are extracted from official documentation, that documentation provides authoritative term definitions. This creates an efficient verification workflow:
+
+**When verifying terms sourced from official documentation:**
+1. The official documentation cited in the Sources table IS the canonical definition
+2. Verify that terminology against other official sources (alternate documentation, related specifications, cross-references)
+3. Confirm the term is used consistently across the official documentation
+4. Mark as VERIFIED once usage consistency is confirmed across sources
+
+**Example verification:**
+- Term "Pull Request" with source: https://docs.github.com/pull-requests
+- Verify: Check GitHub REST API docs, GitHub GraphQL API docs, and other official GitHub documentation
+- If usage is consistent across these official sources: Mark VERIFIED
+- Verification note: "Verified 2026-03-23 across GitHub REST, GraphQL, and main documentation"
+
+This fast-path avoids unnecessary searching when official documentation already provides the definitive term definition. The verification step confirms the term is used consistently across the official sources.
+
 ---
 
 When you maintain terms, ensure complete traceability:
