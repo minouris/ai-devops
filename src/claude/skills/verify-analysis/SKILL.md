@@ -88,17 +88,14 @@ After verification is complete, this skill performs all post-verification update
 ### For Verified Findings/Terms
 - See [update-finding-tag.md](references/update-finding-tag.md) - Tag finding/term with verification status and link to verification document
 - See [update-index.md](references/update-index.md) - Update analysis index to reflect newly verified item
-- **Automatic:** Update topic's "Verification Status" counts in Knowledge Summary if verification milestone reached (first verified finding, 50%, 100%)
-- **Automatic:** Update central `.memory/KNOWLEDGE_BASE.md` if topic verification rate reaches 100% or other milestone
 
 ### For Disproven/Disputed Items
 - See [archive-disproven-finding.md](references/archive-disproven-finding.md) - Archive to `-disproven.md` with full disproof evidence
-- **Automatic:** Increment disproven count in topic index Knowledge Summary
 
 ### Logging
 - See [verification-logging.md](references/verification-logging.md) - Log verification operation to topic log
 
-**CRITICAL:** The analysis skill MUST NOT perform any post-verification operations. All verification status updates, index updates, archiving, and Knowledge Base index updates are the exclusive responsibility of verify-analysis.
+**CRITICAL:** The analysis skill MUST NOT perform any post-verification operations. All verification status updates, index updates, and archiving are the exclusive responsibility of verify-analysis.
 
 ---
 
