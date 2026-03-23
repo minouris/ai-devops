@@ -1,95 +1,51 @@
-# Term Verification Workflow
-
-**This file is loaded when: You need detailed guidance on verifying individual terms against authoritative definition sources.**
-
+---
+name: verify-term
+description: Verify individual terms against authoritative source definitions with sub-agent autonomy
+allowed-tools: Read, Edit, Write, WebFetch, WebSearch
+context: fork
 ---
 
-# Embedded Rules
+# Verify Term Skill
 
-## Documentation-First Response Requirements (from /src/claude/rules/documentation-first.md)
+Verify individual terms against authoritative definition sources and update memory files with verification status.
 
-**Term verification IS pure documentation-first operation. You must consult authoritative sources to verify every term definition.**
+## Overview
 
-### 1. Documentation Consultation (MANDATORY)
+This skill executes term verification at the individual term level, designed to work as a delegated sub-agent task. It:
+- Retrieves a specific term from a memory file
+- Fetches authoritative definition sources (official documentation, specifications, standards) and compares the term definition
+- Verifies scope boundaries align with authoritative definitions
+- Confirms term usage is correct and consistent across official sources
+- Tags terms as VERIFIED or marks for manual verification
+- Archives disputed terms immediately
+- Updates term files atomically
 
-**MUST:**
-- Search for and reference official documentation sources for every term definition
-- Verify each term against authoritative definition sources
-- Prioritize official documentation, standards, and specifications over general knowledge
+**What counts as authoritative "proof" for terms:**
+- Official documentation that defines the term
+- Official API specifications and references
+- Technical specifications and published standards (RFC, W3C, ISO, etc.)
+- Official glossaries and terminology references
+- Related official documentation confirming consistent terminology usage
 
-**MUST NOT:**
-- Rely on general knowledge or training data to verify terms
-- Provide term verification without consulting official sources
-- Skip documentation research assuming a term is standard
+## Usage
 
----
+```
+/verify-term <topic> [<subtopic>] <term-id>
+```
 
-### 2. No Assumptions or Speculation (MANDATORY)
+### Parameters
 
-**MUST:**
-- Explicitly state when authoritative source documentation cannot be verified
-- Say "I cannot access this source" when definition source is unavailable
-- Mark terms as MANUAL VERIFICATION REQUIRED when sources are inaccessible
+- **topic** (required): Topic slug (e.g., `github-api`)
+- **subtopic** (optional): Subtopic folder name (e.g., `github-api-actions`)
+- **term-id** (required): Term identifier or term name (e.g., `TERM-2026-03-11-06` or `Pull Request`)
 
-**MUST NOT:**
-- Speculate about whether a term definition is correct without proof
-- Make assumptions about what official sources say without reading them
-- Mark terms as VERIFIED without consulting authoritative definition sources
+### Examples
 
----
-
-### 3. Citation Requirements (MANDATORY)
-
-**MUST:**
-- Include precise source reference and URL in verification evidence
-- Link to official documentation sources used for verification
-- Specify exact sections where term definitions are verified or disputed
-- Include verbatim excerpts from sources proving term definitions
-
-**MUST NOT:**
-- Perform verification without documenting the source consulted
-- Reference sources by name only without URLs
-- Archive disputed terms without citing contradicting definition evidence
-
----
-
-### 4. Documentation Source Priority (MANDATORY)
-
-**When verifying terms, prioritize definition sources in this order:**
-
-1. Official project documentation (if project-specific term)
-2. Official specifications and standards (RFC, W3C, ISO, etc.)
-3. Official API references and style guides
-4. Official GitHub repositories and READMEs
-5. Official technical reference documentation
-
-**MUST:**
-- Start verification with the highest priority source available
-- Clearly document which source level defined the term
-
-**MUST NOT:**
-- Treat community forums or unofficial tutorials as authoritative definitions
-- Skip higher priority sources when available
-- Use general knowledge as the term definition source
-
----
-
-### 5. When Documentation is Unavailable (MANDATORY)
-
-**When you cannot find official documentation for a term definition:**
-
-**MUST:**
-- Explicitly state: "Official definition source could not be found for this term"
-- Indicate which sources you consulted
-- Mark term as MANUAL VERIFICATION REQUIRED
-- Do not mark terms as VERIFIED without documentation proof
-
-**MUST NOT:**
-- Proceed as if documented definition is available
-- Present unverified assumptions as verified term definitions
-- Hide the lack of official documentation from the record
-
----
+```
+/verify-term github-api TERM-2026-03-11-06
+/verify-term github-api github-api-actions TERM-2026-03-22-04
+/verify-term github-api "Pull Request"
+```
 
 ## Verification Workflow
 
@@ -130,16 +86,48 @@ Analyze all gathered evidence and determine status:
 - Status: MANUAL VERIFICATION REQUIRED
 - Reason: (specific access limitation encountered)
 
-### 4. Create Verification Working Document for Term
+### 4. Create and Populate Verification Working Document
 
 Once status is determined and all evidence is gathered:
 
 1. **Create if not exists:** `.memory/[topic]/[topic]-[subtopic]-term-verification-working.md` (or `.memory/[topic]/[topic]-term-verification-working.md` for main topic)
-2. **Append complete verification entry** with all required sections
+2. **Append complete verification entry** with all required sections:
+   - Term name and ID
+   - Date, sources from Sources table
+   - Verification method
+   - Status
+   - Definition verification results
+   - Scope verification results
+   - **Full proof text evidence** (verbatim excerpts from authoritative sources)
+   - Consistency check across related sources
+   - Discrepancies or dispute explanations
 
 **DO NOT create or modify the working document until evidence gathering is complete.**
 
-**Verification Working Document Entry Format:**
+### 5. Archive or Update Term File (Final Step)
+
+Only after verification working document is complete, update the primary term file:
+
+1. **If VERIFIED:** Mark in term entry: `**Verified:** VERIFIED on YYYY-MM-DD by [source-urls]`
+2. **If DISPUTED:** Move term to `-disproven.md` archive file with full dispute details
+3. **If MANUAL:** Add note in term entry: `**Verified:** MANUAL VERIFICATION REQUIRED - reason`
+
+**Marking a term as verified (or otherwise tagged) is the LAST step, after evidence documentation is complete.**
+
+### 6. Report Results
+
+Return detailed verification report including:
+- Term name and ID
+- Sources checked and verification results for each
+- Verification status and specific results for definition and scope
+- Consistency check results across related sources
+- Any manual verification notes or dispute evidence
+
+---
+
+## Verification Working Document Entry Format
+
+Reference template for the complete verification entry structure:
 
 ```markdown
 ### TERM-YYYY-MM-DD-N: [Term Name]
@@ -185,44 +173,28 @@ Source: [Related official documentation URL]
 [If MANUAL: Specific explanation of verification limitation, and what type of verification would be required instead]
 ```
 
-### 5. Archive or Update Term File (Final Step)
-
-Only after verification working document is complete, update the primary term file:
-
-1. **If VERIFIED:** Mark in term entry: `**Verified:** VERIFIED on YYYY-MM-DD by [source-urls]`
-2. **If DISPUTED:** Move term to `-disproven.md` archive file with full dispute details
-3. **If MANUAL:** Add note in term entry: `**Verified:** MANUAL VERIFICATION REQUIRED - reason`
-
-**Marking a term as verified is the LAST step, after evidence documentation is complete.**
-
----
-
 ## Mandatory Verification Standards
 
-### Source Fetching
-
+**Source Fetching:**
 - Use WebFetch or WebSearch for official documentation
 - Load source content fresh (no cached assumptions)
 - Verify against current version of authoritative sources
 - Check publication/update dates for currency
 
-### Definition Comparison
-
+**Definition Comparison:**
 - Compare term definition against source definition directly
 - Not just checking URL/source existence
 - Verify technical accuracy matches authoritative terminology
 - Validate scope boundaries align with source scope
 - Check consistency across related official sources
 
-### Currency Checking
-
+**Currency Checking:**
 - Review source publication/update dates
 - Flag if source appears outdated or superseded
 - Note if source cannot be accessed
 - Check for superseding terminology or updated definitions
 
-### Evidence Capture (MANDATORY)
-
+**Evidence Capture (MANDATORY):**
 - Capture verbatim excerpts from authoritative sources defining the term
 - Each verification check must have corresponding proof text from the source
 - Include source section/URL fragment identifying where proof appears
@@ -231,14 +203,11 @@ Only after verification working document is complete, update the primary term fi
 - Evidence must be sufficient for independent audit without re-reading source
 - Do NOT use paraphrases, summaries, or interpretations—use direct quotations
 
-### Consistency Verification
-
+**Consistency Verification:**
 - For official product terms: Check consistency across product documentation (REST API docs, GraphQL docs, main docs)
 - For industry standard terms: Verify consistent usage across related specifications
 - Document which sources confirm terminology consistency
 - Note any variations in terminology usage
-
----
 
 ## Error Handling
 
@@ -262,7 +231,25 @@ Only after verification working document is complete, update the primary term fi
 - Document the replacement term
 - Tag as `[DISPUTED - term superseded by [replacement term]]`
 
+## Integration with Term Capture Workflow
+
+This skill is invoked upon term creation:
+1. Term is appended to memory file with `**Verified:** NOT YET VERIFIED` tag
+2. `/verify-term` skill is invoked as background agent
+3. Verification working document is created/updated with detailed verification entry
+4. Term file is updated with verification tag from working document
+5. Central term index is updated with verified term
+6. Verification result reported to calling context
+
 ---
+
+## Tool Requirements
+
+- **Read**: Access term files and memory structure
+- **Edit**: Update term files with verification tags
+- **Write**: Create archive files for disputed terms
+- **WebFetch**: Fetch official documentation sources
+- **WebSearch**: Find authoritative sources when WebFetch fails
 
 ## Compliance Verification
 

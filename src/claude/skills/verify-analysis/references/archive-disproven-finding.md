@@ -4,6 +4,26 @@
 
 ---
 
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Disproven Finding Archive Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the disproven finding archive format exactly as specified
+- Include all required fields: original finding (verbatim), reason for disproof, contradicting evidence (verbatim), verification working document link
+- Preserve exact structure (heading levels, spacing, field order)
+- Use the specified template without additions
+
+**MUST NOT:**
+- Add fields to archive entries beyond specification
+- Add explanatory sections or metadata not specified
+- Modify the archive format for convenience
+- Add interpretations or reasoning beyond what specification requires
+
+---
+
 ## Execution
 
 Move disproven findings to an archive file separate from the active fact file to maintain a clean active record while preserving full history of all findings including those later found to be inaccurate.

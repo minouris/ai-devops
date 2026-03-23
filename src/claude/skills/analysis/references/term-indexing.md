@@ -4,6 +4,43 @@
 
 ---
 
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Term Entry Template is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Reproduce term entries character-for-character to the specified template
+- Use only the fields and sections in the specification
+- Follow the exact heading level, spacing, and content order
+- Include all required fields: Captured, Short description, Sources table, Referenced By
+
+**MUST NOT:**
+- Add fields to term entries beyond what is specified
+- Add summary sections or metadata not in specification
+- Enhance term entries with additional context or navigation
+- Modify the template structure "for convenience"
+- Include explanatory or contextual sections not in template
+
+---
+
+## Markdown Formatting Standards (from /.claude/rules/markdown-formatting.md)
+
+### Filename Conventions (MANDATORY)
+
+**MUST:**
+- Use lower-snake-case for all term index filenames (e.g., `index_terms.md`, `index_terms_auth_con.md`)
+- Use `.md` extension for all Markdown files
+
+**MUST NOT:**
+- Use kebab-case (e.g., `index-terms.md`)
+- Use camelCase (e.g., `indexTerms.md`)
+- Use PascalCase (e.g., `IndexTerms.md`)
+- Use spaces in filenames
+
+---
+
 ## Overview
 
 When you maintain terms for a topic, organize them into a hierarchical glossary structure with:

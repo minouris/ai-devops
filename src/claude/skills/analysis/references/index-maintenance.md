@@ -4,7 +4,43 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Index Structure is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the exact index file structure as specified
+- Use only the sections and fields in the specification
+- Maintain exact heading levels, spacing, and content order
+- Preserve the standardized table format for Findings table
+
+**MUST NOT:**
+- Add sections or fields beyond specification
+- Add metadata or organizational headers not specified
+- Enhance index structure with additional context
+- Modify the index format "for improvements"
+
+---
+
+## Markdown Formatting Standards (from /.claude/rules/markdown-formatting.md)
+
+### Filename Conventions (MANDATORY)
+
+**MUST:**
+- Use lower-snake-case for index filenames (e.g., `topic_index.md`, `topic_index_keywords_aut_con.md`)
+- Use `.md` extension for all Markdown files
+
+**MUST NOT:**
+- Use kebab-case (e.g., `topic-index.md`)
+- Use camelCase (e.g., `topicIndex.md`)
+- Use PascalCase (e.g., `TopicIndex.md`)
+- Use spaces in filenames
+
+---
+
+## Existing Rules
 
 ### Always Update After Changes (MANDATORY)
 
