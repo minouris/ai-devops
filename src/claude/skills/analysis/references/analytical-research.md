@@ -1,6 +1,6 @@
 # Analytical Research Workflow
 
-**This file is loaded when: You need to examine artifacts systematically and synthesise findings into analysis.**
+**This file is loaded when: You need to examine artifacts systematically and capture research findings.**
 
 ---
 
@@ -75,8 +75,6 @@ When searching for information within artifacts and documentation, use a two-sta
 
 8. **Keep building**: Keep building fact files without pausing for approval
 
-9. **Wait for request**: Do NOT create analysis until the user explicitly requests one
-
 ---
 
 ## Fact Capture Format
@@ -136,20 +134,6 @@ Confirmed via testing in production environment.
 
 ---
 
-## File Boundaries (MANDATORY)
-
-**During research phase:**
-
-- **Fact files** (`.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`) — the ONLY files you write to during research
-- **Pending analysis** (`.memory/[NAME]-PENDING.md`) — read-only during research; written only once when user requests final output
-- **Final output** (root or specified location) — written only after user approval of pending analysis
-
-**MUST NOT:**
-- Write new findings to any `-PENDING.md` or draft output file
-- Edit any pending analysis file during the research phase
-
----
-
 ## Index Maintenance
 
 After appending to fact files or archiving disproven findings, update `.memory/[topic]/[topic]-index.md`.
@@ -170,28 +154,4 @@ After appending to fact files or archiving disproven findings, update `.memory/[
 
 - [.memory/[topic]-[subtopic]-facts.md](.memory/[topic]-[subtopic]-facts.md) - [Brief description]
   - Last updated: YYYY-MM-DD HH:MM
-
----
-
-## Analysis Outputs
-
-- [`[ANALYSIS-NAME].md`]([ANALYSIS-NAME].md) - [Description]
-  - Generated: YYYY-MM-DD HH:MM
-  - Sources: [list of fact files used]
 ```
-
----
-
-## Final Output Creation
-
-Do NOT create final output until the user explicitly requests it.
-
-Final output is an analysis document with citations (e.g., `ai-programming-problems-analysis.md`).
-
-When user requests final output:
-1. Check research completeness (see [final-output.md](final-output.md))
-2. Run [verify-memory-facts](../../../src/claude/prompts/verify-memory-facts.md) on all fact files
-3. Apply clarifications to base facts before verification
-4. Synthesise verified findings into coherent narrative
-5. Present draft in `.memory/[ANALYSIS-NAME]-PENDING.md`
-6. After user approval, create final analysis in specified location

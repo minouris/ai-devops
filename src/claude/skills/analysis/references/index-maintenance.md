@@ -117,20 +117,13 @@ Browse findings by keyword:
 
 | Finding | Topic | Name | Keywords |
 |---------|-------|------|----------|
-| [FINDING-YYYY-MM-DD-N]([topic]-facts.md#finding-yyyy-mm-dd-n) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
-| [FINDING-YYYY-MM-DD-M]([topic]-[subtopic]/[topic]-[subtopic]-facts.md#finding-yyyy-mm-dd-m) | Topic Name | Another Finding | keyword1, keyword4 |
-
-[... all findings sorted alphabetically by topic (primary), then name (secondary) ...]
+| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name | keyword1, keyword2 |
 
 ---
 
-## Analysis Outputs
+## Disproven Findings
 
-- [`[ANALYSIS-NAME].md`]([ANALYSIS-NAME].md) - [Description]
-  - Generated: YYYY-MM-DD HH:MM
-  - Sources: [list of fact files used]
-
-[... additional outputs ...]
+*No findings have been disproven yet.*
 ```
 
 ---
@@ -158,10 +151,6 @@ Perform these manual index updates:
    - Remove finding from keyword index pages
    - Remove finding from Findings table
    - Update total keyword count if keywords are no longer used
-
-4. **Creating final output**
-   - Add entry in "Analysis Outputs" section
-   - Include generation date and source fact files
 
 **Post-Verification Updates (verify-analysis skill):**
 
@@ -209,9 +198,9 @@ Browse findings by keyword:
 
 ---
 
-## Analysis Outputs
+## Disproven Findings
 
-*No analysis documents generated yet.*
+*No findings have been disproven yet.*
 ```
 
 ---

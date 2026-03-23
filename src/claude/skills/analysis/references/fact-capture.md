@@ -404,21 +404,6 @@ The v1 endpoint documented in FINDING-2026-02-24-3 is deprecated as of 2026-01.
 
 ---
 
-## File Boundaries (MANDATORY)
-
-**During research phase, you may write ONLY to:**
-- **Fact files:** `.memory/[topic]/[topic]-facts.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`
-
-**During research phase, these are READ-ONLY:**
-- **Pending analysis:** `.memory/[NAME]-PENDING.md` — written only once when user requests final output
-- **Final output:** root or specified location — written only after user approval of pending analysis
-
-**MUST NOT:**
-- Write new findings to any `-PENDING.md` or draft output file — these are output artifacts, not research records
-- Edit any pending analysis file during the research phase, even to "update" it with new findings
-
----
-
 ## What to Capture
 
 Capture ALL of the following:
@@ -453,7 +438,6 @@ Capture ALL of the following:
 - Capture negative findings (what didn't work)
 
 **MUST NOT:**
-- Filter findings during capture (filtering happens during synthesis)
 - Skip documenting failed approaches
 - Assume findings are "too obvious" to capture
 

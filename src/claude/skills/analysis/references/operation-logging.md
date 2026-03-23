@@ -59,14 +59,6 @@ Log after each of these operations:
    - What changed in the index
    - New files added or timestamps updated
 
-4. **Creating or updating a pending analysis draft**
-   - Which draft file was created/updated
-   - What sections were added/changed
-
-5. **Publishing a final output**
-   - Where final output was published
-   - Which fact files were synthesised
-
 ---
 
 ## Log File Location
@@ -88,7 +80,7 @@ Log after each of these operations:
 ## LOG-YYYY-MM-DD-N: [Brief operation description]
 
 **Date:** YYYY-MM-DD HH:MM
-**Operation:** [append-findings | archive-disproven | update-index | create-draft | publish-output]
+**Operation:** [append-findings | archive-disproven | update-index]
 **Files Changed:** [list of files]
 
 [Description of what changed in this operation]

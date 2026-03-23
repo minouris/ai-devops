@@ -71,8 +71,6 @@ When searching for procedures within documentation, use a two-stage approach bef
 
 6. **Iterate**: Keep capturing everything in the fact file, refining based on test results
 
-7. **Wait for request**: Do NOT create a guide until the user explicitly requests one
-
 ---
 
 ## Fact Capture Format
@@ -155,18 +153,3 @@ Continue iterating until the procedure is verified through successful testing.
 - Edit existing findings during research
 - Delete failed attempts
 - Skip documenting workarounds
-
----
-
-## Final Output Creation
-
-Do NOT create final output until the user explicitly requests it.
-
-Final output is verified procedure documentation (e.g., `pterodactyl-installation-guide.md`).
-
-When user requests final output:
-1. Review fact file containing tested procedures
-2. Extract verified working procedure
-3. Present draft guide in `.memory/[GUIDE-NAME]-PENDING.md`
-4. Include all steps, requirements, troubleshooting notes
-5. After user approval, create final guide in specified location
