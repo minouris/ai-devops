@@ -1,12 +1,12 @@
 ---
 name: analysis
-description: Research and analysis workflow with systematic fact capture, verification, and curated output generation
+description: Research and analysis workflow with systematic fact capture, verification, and knowledge base maintenance
 allowed-tools: Read, Write, Edit, WebFetch, WebSearch
 ---
 
 # Research/Analysis Skill
 
-Perform systematic investigation, capturing raw research findings and creating curated outputs. Execute two distinct research workflows: procedural research (finding and testing procedures) and analytical research (examining artifacts and capturing findings).
+Perform systematic investigation and discovery, capturing research findings in a structured knowledge base. Extract semantic terms, verify facts against authoritative sources, and maintain indexed knowledge for use by other skills. Execute two distinct research workflows: procedural research (finding and testing procedures) and analytical research (examining artifacts and capturing findings).
 
 ## Overview
 
@@ -16,8 +16,7 @@ When you engage this skill, follow a rigorous research methodology:
 - Systematic fact capture with clarifications
 - Automatic semantic term extraction and linking
 - Disproven finding archival (never delete)
-- Research completeness gates
-- Fact verification before synthesis
+- Fact verification for knowledge base integrity
 - Operation logging for session continuity
 
 ## Documentation-First Principles
@@ -32,23 +31,19 @@ When you conduct research with this skill, operate under strict documentation-fi
 
 ### Workflow 1: Procedural Research
 
-When the user asks you to find, test, and verify a procedure or process, use this workflow. See [procedural-research.md](references/procedural-research.md) for:
+When you are asked to find, test, and verify a procedure or process, use this workflow. See [procedural-research.md](references/procedural-research.md) for:
 - Web/documentation search procedures
 - Test result documentation
 - Iterative refinement based on testing
 - Fact file capture format
 
-**Output:** Verified procedure documentation (only when user explicitly requests)
-
 ### Workflow 2: Analytical Research
 
-When the user asks you to examine artifacts systematically and synthesise findings, use this workflow. See [analytical-research.md](references/analytical-research.md) for:
+When you are asked to examine artifacts systematically and capture findings, use this workflow. See [analytical-research.md](references/analytical-research.md) for:
 - Artifact indexing and systematic examination
 - Fact capture and index maintenance
 - Disproven finding archival
 - Multi-file research organization
-
-**Output:** Analysis document with citations (only when user explicitly requests)
 
 ## Your Process
 
@@ -75,11 +70,10 @@ See [fact-capture.md](references/fact-capture.md) for:
 - Fact file naming conventions (`.memory/[topic]/[topic]-facts.md`, `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`)
 - FINDING-YYYY-MM-DD-N format
 - Clarifying existing facts (append with `Clarifies:` reference)
-- File boundaries (fact files vs pending analysis vs final output)
 - When to create subtopic files
 - **CRITICAL: Before finalizing a finding, verify it uses correct terminology:** Extract terms from the finding, invoke `/verify-analysis term` for each, amend finding to use verified term names/IDs
 
-**Key principle:** During research phase, write ONLY to fact files. Use verified terminology in findings. Pending analysis and final output are read-only until user requests synthesis.
+**Key principle:** During research phase, write ONLY to fact files. Use verified terminology in findings.
 
 ### 1.5. Extract and Maintain Semantic Terms
 
@@ -124,20 +118,7 @@ See [disproven-archive.md](references/disproven-archive.md) for:
 
 When fact verification is needed, invoke `/verify-analysis fact` and let that skill handle all verification, index updates, and logging.
 
-### 4. Create Final Output (Only When User Requests)
-
-**CRITICAL:** Do NOT create final output documents unless user explicitly requests them.
-
-See [final-output.md](references/final-output.md) for:
-- Research completeness gate (MANDATORY before synthesis)
-- Procedural guide creation
-- Analytical report synthesis with fact verification
-- Draft approval workflow
-- Citation requirements
-
-**Key principle:** All facts must be VERIFIED (by invoking `/verify-analysis fact`) before creating analysis documents.
-
-### 5. Operation Logging
+### 4. Operation Logging
 - Session initialization protocol (ask for topic slug, restore context)
 - Significant operations requiring logging
 - Log file format (`.memory/[topic]/[topic]-log.md`)
@@ -146,11 +127,10 @@ See [final-output.md](references/final-output.md) for:
 
 ## Key Principles
 
-### Processing Artifacts vs. Final Outputs
+### Processing Artifacts for Knowledge Base
 
 **MUST:**
-- Store all processing artifacts in `.memory/` (fact files, indices, drafts, disproven archives, terms files)
-- Store only final approved outputs in the root (guides, analyses, documentation)
+- Store all research artifacts in `.memory/` (fact files, indices, disproven archives, terms files)
 - Capture research broadly in fact files; filter as research progresses when appropriate
 - Extract semantic terms automatically from findings
 - Verify extracted terms using `/verify-analysis term` before considering findings complete
@@ -159,13 +139,12 @@ See [final-output.md](references/final-output.md) for:
 - Archive findings to `-disproven.md` files immediately when the user disproves them
 - Invoke `/verify-analysis fact` when verification of findings is needed; do not perform verification yourself
 
-### Quality Control
+### Knowledge Base Maintenance
 
 **MUST:**
-- Wait for user approval before publishing any final output
 - Archive disproven findings immediately to preserve history
-- Before creating analysis documents, invoke `/verify-analysis fact` for all fact files to verify findings (facts tagged within the last 30 days are skipped automatically by verify-analysis)
 - Maintain the analysis index for navigation and transparency
+- Keep fact files and indexes in sync
 
 ### Transparency
 
@@ -173,7 +152,7 @@ See [final-output.md](references/final-output.md) for:
 - Capture all research in fact files, including approaches attempted and dead ends
 - Never delete disproven findings — archive them with the reason for disproof
 - Include timestamps on all entries
-- Maintain traceability from final output to fact file entries to original sources
+- Maintain traceability from fact file entries to original sources
 
 ## Response to User
 
@@ -197,7 +176,6 @@ When you are invoked in a new session, before anything else:
 
 - For **procedural research**: See [procedural-research.md](references/procedural-research.md) for complete workflow
 - For **analytical research**: See [analytical-research.md](references/analytical-research.md) for complete workflow
-- When user requests final output: See [final-output.md](references/final-output.md) for synthesis and verification workflow
 
 ### Key Reminders
 
@@ -209,13 +187,10 @@ When you are invoked in a new session, before anything else:
 - Maintain bidirectional links between facts and terms
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Update terms index after each term operation
-- Invoke `/verify-analysis fact` before synthesising any analysis; do not perform verification yourself
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
-- Place final outputs where the user specifies
 - Continue research without interruption for approval
 
 **MUST NOT:**
-- Create any output document until the user explicitly requests it
 - Bundle multiple concepts into a single term (each term = singular scope)
 - Create terms without clear source citation
 - Delete or lose bidirectional links between facts and terms
@@ -227,7 +202,7 @@ When you are invoked in a new session, before anything else:
 This skill uses the following Claude Code tools:
 
 - **Read**: Read fact files, source code, documentation
-- **Write**: Create new fact files, drafts, final outputs
+- **Write**: Create new fact files, indices
 - **Edit**: Update existing fact files, indices, append entries
 - **Grep**: Search code for patterns and keywords
 - **Glob**: Find files matching patterns
@@ -243,7 +218,7 @@ Invoke this skill when you need to:
 - Research and document a technical procedure
 - Analyse a codebase or project systematically
 - Capture research findings with proper citation and verification
-- Create evidence-based technical documentation
+- Build and maintain a structured knowledge base for a topic
 
 **Usage:**
 ```
