@@ -29,7 +29,7 @@
 ### Filename Conventions (MANDATORY)
 
 **MUST:**
-- Use lower-snake-case for index filenames (e.g., `topic_index.md`, `topic_index_keywords_aut_con.md`)
+- Use lower-snake-case for index filenames (e.g., `topic_index.md`)
 - Use `.md` extension for all Markdown files
 
 **MUST NOT:**
@@ -47,19 +47,16 @@
 **MUST:**
 - Update index after appending to fact files
 - Update index after archiving disproven findings
-- Update keyword counts when findings are added or archived
 - Update findings table when findings are added or archived
 - Include file paths and last updated timestamps
 - Keep index concise and navigable
-- Add ALL subtopic findings to the main topic index and keyword indexes
+- Add ALL subtopic findings to the main topic index
 
 **MUST NOT:**
 - Skip index updates
 - Leave index out of sync with fact files
-- Leave keyword counts out of sync with findings
 - Leave findings table out of sync with fact files
 - Create separate index files for subtopics
-- Create separate keyword index files for subtopics
 
 ---
 
@@ -99,25 +96,13 @@
 
 ---
 
-## Keywords
-
-Browse findings by keyword:
-
-- [Keywords A-D]([topic]-index-keywords-a-d.md) - X keywords
-- [Keywords E-L]([topic]-index-keywords-e-l.md) - X keywords
-- [Keywords M-P]([topic]-index-keywords-m-p.md) - X keywords
-- [Keywords Q-S]([topic]-index-keywords-q-s.md) - X keywords
-- [Keywords T-Z]([topic]-index-keywords-t-z.md) - X keywords
-
-**Total:** N unique keywords across all findings
-
 ---
 
 ## Findings
 
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name | keyword1, keyword2 |
+| Finding | Topic | Name |
+|---------|-------|------|
+| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name |
 
 ---
 
@@ -137,7 +122,6 @@ Perform these manual index updates:
 1. **Appending to fact file**
    - Update "Last updated" timestamp for that fact file (in Fact Files section)
    - **DO NOT update Findings table** - facts are added to Findings table only after verification by verify-analysis
-   - **DO NOT update keyword index pages** - keywords are indexed only for verified findings
 
 2. **Creating new subtopic file**
    - Add new entry in "Fact Files" section in the main topic index
@@ -148,16 +132,12 @@ Perform these manual index updates:
    - Add or update "Disproven:" line with count
    - If it's the first disproven finding, add the line
    - If archive already exists, increment the count
-   - Remove finding from keyword index pages
    - Remove finding from Findings table
-   - Update total keyword count if keywords are no longer used
 
 **Post-Verification Updates (verify-analysis skill):**
 
 After verify-analysis completes verification, the following are updated automatically:
 - Findings table: Add verified finding in alphabetically sorted position
-- Keyword index pages: Add keywords or increment counts
-- Total keyword count in main index
 - "Last Updated" timestamp of the main index
 
 ---
@@ -264,21 +244,11 @@ If index doesn't exist, create it with this minimal structure:
 
 ---
 
-## Keywords
-
-Browse findings by keyword:
-
-- [Keywords A-Z]([topic]-index-keywords.md) - N keywords
-
-**Total:** N unique keywords across all findings
-
----
-
 ## Findings
 
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name | keyword1, keyword2 |
+| Finding | Topic | Name |
+|---------|-------|------|
+| [FINDING-YYYY-MM-DD-1]([topic]-facts.md#finding-yyyy-mm-dd-1) | Topic Name | Finding Name |
 
 ---
 
@@ -335,87 +305,17 @@ When adding disproven companion file reference:
 
 ---
 
-## Keyword Index Files (MANDATORY)
-
-Keyword index files are separate files linked from the main index. Each file covers an alphabetical range of keywords. Small topics may use a single A-Z file; larger topics split across multiple files (A-D, E-L, M-P, Q-S, T-Z).
-
-**File naming:**
-```
-[topic]-index-keywords.md              (single file for small topics)
-[topic]-index-keywords-a-d.md         (split files for large topics)
-[topic]-index-keywords-e-l.md
-[topic]-index-keywords-m-p.md
-[topic]-index-keywords-q-s.md
-[topic]-index-keywords-t-z.md
-```
-
-**Single-file A–Z variant (small topics):**
-- File: `[topic]-index-keywords.md`
-- Title (H1): `# Keywords A–Z`
-- Required header:
-  ```md
-  [Topic]: [Topic Name]
-  [Type]: Keyword Index
-  [Range]: A–Z
-  ```
-- Main index MUST link to this file as a single entry, e.g.:
-  ```md
-  - [Keywords A–Z](.memory/[topic]-index-keywords.md) - N keywords
-  ```
-  where `N` is the total number of distinct keywords in the A–Z file.
-
-**MUST:**
-- List keywords in alphabetical order within the file
-- Include count of findings using each keyword
-- Update counts when appending findings with keywords
-- Update counts when archiving disproven findings
-- Use bold formatting for keywords
-- Update the keyword count on each file's link in the main index when counts change
-
-**MUST NOT:**
-- List keywords inline in the main index file — use keyword index files only
-- List keywords without counts
-- Include keywords with zero findings
-- Create keyword index files for subtopics — all keywords go in the main topic's keyword files
-
-**Format for keyword index files:**
-```markdown
-# [Topic] — Keywords [Range]
-
-**N keywords**
-
----
-
-- **api** (12 findings)
-- **authentication** (8 findings)
-- **configuration** (15 findings)
-- **hook** (6 findings)
-- **prompt** (23 findings)
-- **skill** (10 findings)
-- **validation** (9 findings)
-- **workflow** (14 findings)
-```
-
-**When updating keyword counts:**
-
-1. **New finding added:** Count keywords in the new finding and increment each keyword's count (add keyword if not present)
-2. **Finding archived:** Count keywords in the archived finding and decrement each keyword's count (remove keyword if count reaches zero)
-3. **Finding clarified:** No change to counts (clarifications reference existing findings but don't replace them)
-
----
-
 ## Findings Table (MANDATORY)
 
-List all findings from the topic and all subtopics in a table format, sorted alphabetically by finding name, then by keywords.
+List all findings from the topic and all subtopics in a table format, sorted alphabetically by finding name.
 
 **MUST:**
-- Include three columns: Finding (ID as link), Name (title), Keywords (alphabetically ordered)
+- Include three columns: Finding (ID as link), Name (title), Topic (category)
 - Link Finding column to the actual finding heading using anchor syntax
 - Sort findings alphabetically by Name column
-- When names are identical, sort by Keywords column (alphabetically)
+- When names are identical, sort by Topic column (alphabetically)
 - Update table when appending findings
 - Update table when archiving findings (remove archived findings)
-- List keywords in alphabetical order within each row
 
 **MUST NOT:**
 - Omit findings table from index
@@ -427,23 +327,22 @@ List all findings from the topic and all subtopics in a table format, sorted alp
 ```markdown
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-2026-03-04-12](#finding-2026-03-04-12) | API Authentication Methods | api, authentication, security |
-| [FINDING-2026-03-04-15](#finding-2026-03-04-15) | CLAUDE.md Locations and Scope | configuration, documentation, scope |
-| [FINDING-2026-03-04-8](#finding-2026-03-04-8) | Hook Event Types | automation, event, hook |
+| Finding | Name | Topic |
+|---------|------|-------|
+| [FINDING-2026-03-04-12](#finding-2026-03-04-12) | API Authentication Methods | Authentication |
+| [FINDING-2026-03-04-15](#finding-2026-03-04-15) | CLAUDE.md Locations and Scope | Configuration |
+| [FINDING-2026-03-04-8](#finding-2026-03-04-8) | Hook Event Types | Automation |
 ```
 
 **Sorting rules:**
 1. Sort primarily by Name (alphabetical, case-insensitive)
-2. If names match, sort by Keywords (alphabetical comparison of keyword strings)
+2. If names match, sort by Topic (alphabetical comparison)
 3. Finding ID is for reference only, not used for sorting
 
 **When updating findings table:**
 
-1. **New finding added:** Add row in alphabetically correct position by name and keywords
+1. **New finding added:** Add row in alphabetically correct position by name
 2. **Finding archived:** Remove row from table
-3. **Keywords changed:** Re-sort if keyword order affects alphabetical position
 
 ---
 
@@ -474,14 +373,11 @@ Track generated analysis documents:
    - Fact file timestamp updated?
    - New finding added?
    - Finding archived?
-   - Keywords added or removed from findings?
-   - Keyword counts changed?
    - Disproven count changed?
    - New analysis output created?
 
 3. **Update index** using Edit tool:
    - Modify only the relevant sections
-   - Update keyword counts in Keywords section
    - Update Findings table (add/remove rows, maintain alphabetical sort)
    - Update "Last Updated" timestamp at top
    - Keep existing structure intact
@@ -521,29 +417,15 @@ Track generated analysis documents:
 
 ---
 
-## Keywords
-
-Browse findings by keyword:
-
-- [Keywords A-D](ai-problems-analysis-index-keywords-a-d.md) - 14 keywords
-- [Keywords E-L](ai-problems-analysis-index-keywords-e-l.md) - 8 keywords
-- [Keywords M-P](ai-problems-analysis-index-keywords-m-p.md) - 6 keywords
-- [Keywords Q-S](ai-problems-analysis-index-keywords-q-s.md) - 4 keywords
-- [Keywords T-Z](ai-problems-analysis-index-keywords-t-z.md) - 5 keywords
-
-**Total:** 37 unique keywords across all findings
-
----
-
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-2026-02-24-3](#finding-2026-02-24-3) | Attention Mechanism Limitations | context, performance, training |
-| [FINDING-2026-02-24-7](#finding-2026-02-24-7) | Behavioral Training Artifacts | behavioral, pattern, training |
-| [FINDING-2026-02-24-1](#finding-2026-02-24-1) | Confidence Calibration Issues | accuracy, hallucination, verification |
-| [FINDING-2026-02-23-5](#finding-2026-02-23-5) | Context Window Management | context, memory, performance |
-| [FINDING-2026-02-24-9](#finding-2026-02-24-9) | False Positive Patterns | accuracy, pattern, verification |
+| Finding | Name | Topic |
+|---------|------|-------|
+| [FINDING-2026-02-24-3](#finding-2026-02-24-3) | Attention Mechanism Limitations | Context |
+| [FINDING-2026-02-24-7](#finding-2026-02-24-7) | Behavioral Training Artifacts | Training |
+| [FINDING-2026-02-24-1](#finding-2026-02-24-1) | Confidence Calibration Issues | Hallucination |
+| [FINDING-2026-02-23-5](#finding-2026-02-23-5) | Context Window Management | Memory |
+| [FINDING-2026-02-24-9](#finding-2026-02-24-9) | False Positive Patterns | Accuracy |
 
 ---
 

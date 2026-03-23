@@ -55,7 +55,7 @@
 
 **MUST:**
 - Follow FINDING-YYYY-MM-DD-N format precisely (no variations)
-- Include all required fields: timestamp, source, content, keywords
+- Include all required fields: timestamp, source, content
 - Preserve exact field order as specified in template
 
 **MUST NOT:**
@@ -221,13 +221,11 @@ Claude's long context capabilities support performance up to 20K+ tokens with da
 3. **Create subtopic folder:** `.memory/[topic]/[topic]-[subtopic]/`
 4. **Move related facts:** Transfer the new fact and related existing facts to the new subtopic file
 5. **Update main topic index:** Add the new subtopic to the main topic index file (`.memory/[topic]/[topic]-index.md`)
-6. **Update main topic keyword indexes:** Add findings from subtopic to main topic keyword index pages (`.memory/[topic]/[topic]-index-keywords-*.md`)
-7. **Update links:** Ensure all cross-references use correct relative paths
+6. **Update links:** Ensure all cross-references use correct relative paths
 
 **CRITICAL - DO NOT create per-subtopic indexes:**
 - DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index.md`
-- DO NOT create `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-index-keywords-*.md`
-- All findings from subtopics MUST be added to the main topic index and keyword indexes at `.memory/[topic]/`
+- All findings from subtopics MUST be added to the main topic index at `.memory/[topic]/`
 
 **Example scenario:**
 
@@ -257,7 +255,6 @@ New fact would add 5,000 characters → exceeds threshold
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [file/documentation/observation]
-**Keywords:** keyword1, keyword2, keyword3
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 
 [Finding description - fact, observation, theory, hypothesis, or note]
@@ -269,64 +266,9 @@ New fact would add 5,000 characters → exceeds threshold
 - `FINDING-YYYY-MM-DD-N`: Unique identifier (date + sequence number)
 - `Captured`: Timestamp when finding was recorded
 - `Source`: Where this information came from (URL, file path, observation, testing, user input)
-- `Keywords`: Comma-separated subject area tags for categorisation and search (required)
 - `Verified`: Verification status (always "NOT YET VERIFIED" during fact-finding)
 - Description: The actual finding content
 - Optional context: Additional details, implications, open questions
-
----
-
-## Keywords (MANDATORY)
-
-Keywords help categorise findings by subject area and enable searching across related facts. You must include keywords in every finding.
-
-**Keyword selection:**
-- Select keywords that describe the technical domains or topics the finding covers
-- Choose keywords that group related findings thematically
-- Include keywords that enable cross-referencing
-
-**Keyword selection guidelines:**
-
-**MUST:**
-- Include keywords in every finding
-- Reuse existing keywords where applicable before creating new ones
-- List keywords in alphabetical order
-- Use lowercase for consistency
-- Use singular form (e.g., "configuration" not "configurations")
-- Limit to 3-5 keywords per finding (maximum 5)
-- Choose keywords that describe subject areas, not actions
-- Use comma-separated format with space after comma
-
-**MUST NOT:**
-- Omit keywords from any finding
-- Create new keywords when existing keywords serve the same purpose
-- Use full sentences or phrases as keywords
-- Duplicate information already in the finding heading
-- Use more than 5 keywords (indicates lack of focus)
-- Use uppercase or mixed case
-
-**Keyword categories:**
-
-Choose keywords from these categories when applicable:
-- **Technology/tool names:** docker, api, webhook, xml, yaml
-- **Concepts:** authentication, caching, validation, composition, configuration
-- **Domains:** security, performance, testing, deployment
-- **Component types:** agent, skill, hook, rule, command, plugin
-- **Patterns:** workflow, pattern, structure, format
-
-**Examples:**
-
-```markdown
-**Keywords:** composition, prompt, structure, xml
-```
-
-```markdown
-**Keywords:** automation, event, hook, shell
-```
-
-```markdown
-**Keywords:** testing, validation, verification
-```
 
 ---
 
@@ -377,7 +319,6 @@ When new information (from further research or supplied by the user) affects or 
 ### FINDING-YYYY-MM-DD-N
 **Captured:** YYYY-MM-DD HH:MM
 **Source:** [source of clarifying information]
-**Keywords:** keyword1, keyword2, keyword3
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-YYYY-MM-DD-M
 
@@ -386,14 +327,11 @@ When new information (from further research or supplied by the user) affects or 
 [Context on how this updates/refines the original finding]
 ```
 
-Note: Keywords must be in alphabetical order.
-
 **Example:**
 ```markdown
 ### FINDING-2026-02-24-8
 **Captured:** 2026-02-24 18:30
 **Source:** https://docs.example.com/api/v2
-**Keywords:** api, deprecation, endpoint
 **Verified:** [NOT YET VERIFIED - requires verification workflow]
 **Clarifies:** FINDING-2026-02-24-3
 
