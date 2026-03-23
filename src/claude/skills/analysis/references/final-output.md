@@ -4,7 +4,67 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Documentation Standards (from /.claude/rules/documentation-standards.md)
+
+### Language Standards (MANDATORY)
+
+**UK English Only:**
+
+**MUST:**
+- Use UK spelling: "organised" not "organized", "colour", "favour", "recognise", "analyse"
+- Use UK grammar: "ise" endings not "ize"
+
+**MUST NOT:**
+- Use US English spellings
+- Use cultural-specific idioms, metaphors, or region references
+- Assume cultural context
+
+### Tone and Terminology (MANDATORY)
+
+**NEVER Use:**
+- Superlatives: "best", "greatest", "revolutionary"
+- Exaggerations: "game-changing", "cutting-edge", "world-class"
+- Dramatic claims: "incredible", "amazing", "stunning"
+- Marketing buzzwords: "synergy", "leverage", "paradigm shift", "thought leader"
+- Prohibited phrases: "Circle back", "move the needle", "deep dive", "boil the ocean"
+
+**ALWAYS Use:**
+- Factual descriptions
+- Measurable outcomes
+- Precise technical terms
+
+### Heading Formatting (MANDATORY)
+
+**MUST:**
+- Use proper markdown heading levels: `##`, `###`, `####`, `#####`, `######`
+- Reflect hierarchical document structure
+
+**MUST NOT:**
+- Use bold text as headings: `**Heading**` instead of `##Heading`
+- Mix heading styles within the document
+
+---
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Completeness Gate is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Complete all verification before synthesis begins
+- Follow the completeness gate checklist exactly
+- Do NOT create final output until all gate criteria are met
+- Document which gate criteria were verified
+
+**MUST NOT:**
+- Skip completeness gate steps
+- Create output before all gate criteria pass
+- Modify gate requirements "for efficiency"
+
+---
+
+## Existing Rules
 
 ### Never Create Without Request (MANDATORY)
 

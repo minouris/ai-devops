@@ -4,7 +4,27 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Operation Log Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the log entry format exactly as specified
+- Include all required fields: date, operation type, files modified, summary
+- Preserve exact field order and structure
+- Use the specified timestamp format
+
+**MUST NOT:**
+- Add fields to log entries beyond specification
+- Add metadata or summary sections not specified
+- Modify the log format for convenience
+- Change field names or structure
+
+---
+
+## Existing Rules
 
 ### Log After Each Significant Operation (MANDATORY)
 

@@ -4,6 +4,26 @@
 
 ---
 
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Verification Log Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the log entry format exactly as specified
+- Include all required fields: date, operation, items verified/disproven/manual, files modified, summary, sources checked
+- Preserve exact field order and structure
+- Use the specified log entry header format: `## LOG-YYYY-MM-DD-N: Verified [N] findings/terms`
+
+**MUST NOT:**
+- Add fields to log entries beyond specification
+- Modify the log entry header format
+- Skip required fields or metadata
+- Change the structure or field names
+
+---
+
 ## Execution
 
 After verification is complete and all findings/terms have been tagged or archived, log the verification operation to the topic log.
