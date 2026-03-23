@@ -1,11 +1,3 @@
----
-paths:
-  - "**/*.md"
-  - "**/*.instructions.md"
-  - "**/*.prompt.md"
-  - "**/*.skill.md"
----
-
 # Literal Specification Compliance
 
 ## System Prompt Conflict Resolution
