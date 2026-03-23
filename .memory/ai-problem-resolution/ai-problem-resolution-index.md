@@ -1,6 +1,29 @@
 # AI-DevOps Analysis Index
 
-**Last Updated:** 2026-02-23 (session 8 — solutions history split into sub-files; context-poisoning sub-file added; all sub-files expanded with problem definitions, root causes, and catalog entries)
+## Knowledge Summary
+
+**Overview:** Comprehensive analysis of AI coding problems encountered in real projects, root causes driving these problems, and catalogued solutions. Covers endemic issues (instruction non-compliance, hallucination, context overflow) and evolving workflow problems. Includes cross-reference mapping between problems and root causes, external evidence from published research and production incidents, and agent-specific issues.
+
+**Research Domains:** AI Problem Diagnosis, Root Cause Analysis, Hallucination & Dishonesty, Context Management, Workflow Automation, AI Governance, External Research
+
+**Core Terminology:** Hallucination, Dishonesty, Context Poisoning, Overeagerness, Vibe Coding, Root Cause, AI Problem, Instruction Compliance
+
+**Verification Status:**
+- Verified: 5 findings (root causes verified)
+- Unverified: 7+ findings (problems, evidence, solutions)
+- Disproven: 3 findings (incorrect problem characterizations)
+- **Verification Rate:** 42% active findings (complex multi-subtopic domain)
+
+**Total Findings:** 60+ including solutions catalog entries
+
+**Subtopics:**
+- Problems (7 findings + disproven archive)
+- Root Causes (4+ findings)
+- Solutions History (38+ catalog entries)
+- External Evidence (9 findings)
+- Agent Issues (emerging)
+
+**Last Verified:** 2026-02-20 (root causes); 2026-02-23 (external evidence update)
 
 **Note:** Starting 2026-02-20, fact files include bi-directional cross-references:
 - ai-problem-resolution-problems-facts.md → maps each problem to root causes

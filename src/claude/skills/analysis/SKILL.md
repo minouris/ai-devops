@@ -187,6 +187,8 @@ When you are invoked in a new session, before anything else:
 - Maintain bidirectional links between facts and terms
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Update terms index after each term operation
+- **Maintain Knowledge Summary section in topic index** — ensure it reflects actual topic contents, update finding counts when verification occurs
+- **Ensure central knowledge base index** at `.memory/KNOWLEDGE_BASE.md` exists and has your topic listed (verify-analysis will update automatically after verification)
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
 - Continue research without interruption for approval
 

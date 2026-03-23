@@ -1,5 +1,25 @@
 # GitHub API Research Index
 
+## Knowledge Summary
+
+**Overview:** Authoritative research on GitHub API capabilities, authentication methods, and pull request operations. Designed to support both procedural implementation (testing API endpoints) and architectural decision-making (choosing REST vs GraphQL). Covers credential acquisition, API authentication, PR comment resolution workflows, and integration patterns with git and curl.
+
+**Research Domains:** GitHub REST API, GitHub GraphQL API, Authentication & Credentials, Pull Request Operations, Comment Resolution, Git Integration, Curl Integration
+
+**Core Terminology:** Personal Access Token (PAT), GitHub REST API, GitHub GraphQL API, Pull Request, Review Thread, GraphQL Mutation, Git Credential Fill, Curl
+
+**Verification Status:**
+- Verified: 24 findings
+- Unverified: 0 findings
+- Disproven: 5 findings
+- **Verification Rate:** 100% of active findings
+
+**Total Findings:** 29 across main facts and disproven archive
+
+**Last Verified:** 2026-03-23
+
+---
+
 ## Status Summary
 
 **Total Findings:** 29

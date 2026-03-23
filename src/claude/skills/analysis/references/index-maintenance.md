@@ -162,7 +162,91 @@ After verify-analysis completes verification, the following are updated automati
 
 ---
 
-## Creating Index (First Time)
+## Knowledge Summary Maintenance
+
+**Every topic index must include a "Knowledge Summary" section** that allows agents to quickly understand what knowledge a topic contains and whether it's relevant to their task.
+
+### Knowledge Summary Structure
+
+Add this section immediately after the topic title, before other sections:
+
+```markdown
+## Knowledge Summary
+
+**Overview:** [One paragraph describing what knowledge this topic contains, target audience, and primary use cases]
+
+**Research Domains:** [List 3-5 key domains/areas covered, comma-separated]
+
+**Core Terminology:** [List 5-7 key terms/concepts that define the topic's scope]
+
+**Verification Status:**
+- Verified: N findings
+- Unverified: N findings
+- Disproven: N findings
+- **Verification Rate:** N%
+
+**Total Findings:** N
+
+**Subtopics:** [If applicable, list any subtopic areas with finding count in parentheses]
+
+**Last Verified:** YYYY-MM-DD (most recent verification run)
+```
+
+### When to Create/Update Knowledge Summary
+
+**Create when:**
+- Topic index is first created (before any findings captured)
+- Can use placeholder text if topic purpose unclear
+
+**Update when:**
+- First 5 verified findings in topic (populate "Verified" count, "Verification Rate")
+- Topic scope changes or expands (update "Research Domains", "Subtopics")
+- Significant verification milestone reached (10 verified, 50% verified, 100% verified)
+- New subtopic created (add to subtopic list)
+
+**MUST:**
+- Reflect actual topic contents accurately
+- Update finding counts from topic index Findings table
+- Include all active subtopics
+- Use clear, agent-readable language
+
+---
+
+## Central Knowledge Base Index
+
+The central knowledge base index at `.memory/KNOWLEDGE_BASE.md` provides a single entry point for discovering all research across all topics. This file enables agents to locate relevant knowledge without navigating the directory structure.
+
+### When Central Index is Updated
+
+**By verify-analysis skill:**
+- After verification run completes, if this was the first verification for a topic
+- When verification rate of topic reaches 100%
+- Automatic update of verification counts and "Last Verified" timestamp per topic
+
+**Manual review (end of session):**
+- After session with significant new findings added to a topic
+- If topic scope expanded (add to "Quick Search Guide" table)
+- If Knowledge Summary changed substantially
+
+### Central Index Content to Maintain
+
+**Keep in sync with topic indexes:**
+- `Total Findings` count per topic
+- `Verification Status` (verified/unverified/disproven counts)
+- `Last Updated` and `Last Verified` dates
+- Subtopic lists
+- Quick Search Guide: Add entry if new research domain discovered
+
+**Minimal updates needed:**
+- Topic summaries do not need word-for-word sync; overview paragraph can be refreshed during quarterly reviews
+- Quick Search Guide table: Add row if new research domain found; remove if domain no longer relevant
+
+**DO NOT edit:**
+- Directory structure or folder organization
+- File path links (these are permanent once set)
+- Historical maintenance log
+
+
 
 If index doesn't exist, create it with this minimal structure:
 
