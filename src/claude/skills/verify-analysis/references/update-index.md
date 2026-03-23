@@ -81,29 +81,16 @@ If this is the first verified finding in this file, add entry to the "Fact Files
   - Last updated: YYYY-MM-DD HH:MM
 ```
 
-### 3. Update Keywords Index
+### 3. Add to Findings Table
 
-Add new keywords from the finding to the keyword index files:
-
-**If keyword doesn't exist**: Add new keyword entry with count of 1
-
-**If keyword already exists**: Increment the finding count for that keyword
-
-Keyword index format:
-```markdown
-- **[keyword]** ([N] findings)
-```
-
-### 4. Add to Findings Table
-
-Add finding to the Findings table in alphabetically sorted position (by Name, then Keywords):
+Add finding to the Findings table in alphabetically sorted position (by Name, then Topic):
 
 ```markdown
 ## Findings
 
-| Finding | Name | Keywords |
-|---------|------|----------|
-| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Finding Name | keyword1, keyword2, keyword3 |
+| Finding | Name | Topic |
+|---------|------|-------|
+| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Finding Name | Topic Name |
 ```
 
 ---
@@ -113,16 +100,12 @@ Add finding to the Findings table in alphabetically sorted position (by Name, th
 **MUST:**
 - Update "Last Updated" timestamp
 - Add finding to Findings table in correct alphabetical position
-- Update keyword counts in keyword index
-- Add new keywords if not already present
 - Use correct finding anchor format (lowercase, hyphens)
-- Update total keyword count if new keywords added
 - Preserve existing structure and formatting
 
 **MUST NOT:**
 - Leave index out of sync with active findings
 - Break existing links or references
-- Change keyword counts for other findings
 - Remove archived findings from the index
 - Update file directly in memory without using Edit tool
 
@@ -138,13 +121,8 @@ For term verifications using the same topic, also update the term-related index 
 
 **Findings table:**
 - Primary sort: Name (alphabetical, case-insensitive)
-- Secondary sort: Keywords (alphabetical comparison of keyword strings)
+- Secondary sort: Topic (alphabetical, case-insensitive)
 - Finding ID is for reference only, not used for sorting
-
-**Keywords:**
-- Sort alphabetically
-- Include count of findings using each keyword
-- Update counts when findings are added or archived
 
 ---
 
