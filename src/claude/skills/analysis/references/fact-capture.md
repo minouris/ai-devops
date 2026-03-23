@@ -401,7 +401,7 @@ Capture ALL of the following:
 
 ## Index Organization (MANDATORY)
 
-The index system consists of a main index file and separate keyword index pages for navigating findings.
+The index system consists of a main index file for organizing and navigating findings.
 
 ### Main Index File
 
