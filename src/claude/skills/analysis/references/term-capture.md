@@ -79,10 +79,6 @@
 
 When you create a term, define it as a semantic concept label for a single coherent idea. Do not create terms that bundle multiple related concepts into one entry.
 
-**Treat terms differently from keywords:**
-- **Keywords**: Provide quick flat links to facts without semantic relationship
-- **Terms**: Define fine-grained concepts with singular scope, enabling hierarchical indexing and cross-domain applicability
-
 **Use these characteristics to guide your term creation:**
 - **Semantic meaning**: When you label a concept, ensure it labels a coherent idea, not just an access point
 - **Fine-grained scope**: Create each term to define ONE clear concept

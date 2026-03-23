@@ -408,35 +408,31 @@ The index system consists of a main index file and separate keyword index pages 
 The main index file (`.memory/[topic]-index.md`) contains:
 - Status summary (total findings, verification status)
 - List of fact files
-- Link to keyword index pages
 - Findings table (sorted by topic and name)
 
 **MUST:**
 - Update the main index after adding findings to fact files
-- Link to keyword index pages from the main index
-- Include only the findings table in the main index (not keywords section)
+- Include only the findings table in the main index
 
 **MUST NOT:**
-- Include keyword listings in the main index file
 - Skip updating the findings table when adding new findings
 
 ### Findings Table Structure
 
-When adding findings to the main index file, maintain a structured Findings table with four columns.
+When adding findings to the main index file, maintain a structured Findings table with three columns.
 
 **Findings table structure:**
 
 ```markdown
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name | keyword1, keyword2, keyword3 |
+| Finding | Topic | Name |
+|---------|-------|------|
+| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name |
 ```
 
 **Column definitions:**
 - **Finding:** Markdown link to the finding in its fact file, including anchor (e.g., `[FINDING-2026-03-06-1](claude-config-facts.md#finding-2026-03-06-1)` or `[FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-facts.md#finding-2026-03-06-5)`)
 - **Topic:** Categorical grouping for the finding (e.g., "Configuration", "Composition", "Hooks")
 - **Name:** Short descriptive name from the finding heading (e.g., "Skills - Primary Extension Mechanism")
-- **Keywords:** Comma-separated keywords from the finding's Keywords field
 
 **Sorting requirements:**
 
@@ -455,84 +451,20 @@ When adding findings to the main index file, maintain a structured Findings tabl
 ```markdown
 ## Findings
 
-| Finding | Topic | Name | Keywords |
-|---------|-------|------|----------|
-| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | document, longform, performance, placement, prompt |
-| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response | completion, control, format, prefill, prompt |
-| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | extension, mechanism, overview, primary, skill |
-| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | claudemd, configuration, instruction, overview, project |
+| Finding | Topic | Name |
+|---------|-------|------|
+| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top |
+| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response |
+| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism |
+| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File |
 ```
-
-### Keyword Index Pages
-
-Create separate keyword index pages at the main topic level (`.memory/[topic]/[topic]-index-keywords-[range].md`) to organize findings by keyword. These pages include ALL findings from the main topic and all subtopics. Divide keywords into multiple pages at sensible intervals based on alphabetical ranges.
-
-**File naming convention:**
-- Single page: `.memory/[topic]/[topic]-index-keywords.md`
-- Multiple pages: `.memory/[topic]/[topic]-index-keywords-a-e.md`, `.memory/[topic]/[topic]-index-keywords-f-j.md`, etc.
-
-**Division guidelines:**
-
-**MUST:**
-- Divide at even intervals (within ±2 keywords per page)
-- Keep all keywords starting with the same letter together (do not split A keywords across pages)
-- Use alphabetical ranges that reflect the actual keyword distribution
-- Create navigation links between keyword index pages
-
-**MUST NOT:**
-- Split keywords of the same letter across different pages
-- Create pages with significantly uneven keyword counts
-- Use arbitrary page divisions unrelated to alphabetical ordering
-
-**Page structure:**
-
-```markdown
-# Findings by Keyword
-
-**Navigation:**
-- [Main Index]([topic]-index.md)
-- [Keywords A-E]([topic]-index-keywords-a-e.md) ← Current page
-- [Keywords F-J]([topic]-index-keywords-f-j.md)
-- [Keywords K-O]([topic]-index-keywords-k-o.md)
 
 ---
 
-## keyword-name
-
-| Topic | Finding | Name |
-|-------|---------|------|
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
-
-## next-keyword
-
 | Topic | Finding | Name |
 |-------|---------|------|
 | Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
 ```
-
-**Keyword section requirements:**
-
-**MUST:**
-- Sort keywords alphabetically
-- Use H2 heading (`##`) for each keyword
-- Include Topic, Finding (with link), and Name columns
-- Sort findings within each keyword by Topic (primary), then Name (secondary)
-- List all findings that include the keyword
-
-**MUST NOT:**
-- Omit any findings tagged with the keyword
-- Skip navigation links between keyword index pages
-- Mix sorting orders within keyword sections
-
-**Example division for 320 keywords:**
-
-Approximate page ranges (adjust based on actual keyword distribution):
-- `[topic]-index-keywords-a-d.md` (keywords starting with A, B, C, D)
-- `[topic]-index-keywords-e-i.md` (keywords starting with E, F, G, H, I)
-- `[topic]-index-keywords-j-n.md` (keywords starting with J, K, L, M, N)
-- `[topic]-index-keywords-o-s.md` (keywords starting with O, P, Q, R, S)
-- `[topic]-index-keywords-t-z.md` (keywords starting with T, U, V, W, X, Y, Z)
 
 ---
 

@@ -220,8 +220,8 @@ Keep range spans natural and balanced:
 **Example division for 20+ terms:**
 - `terms-index-aut-con.md` (Authentication → Context)
 - `terms-index-des-jso.md` (Design → JSON)
-- `terms-index-key-ove.md` (Keyword → Overeagerness)
-- `terms-index-pat-zap.md` (Pattern → Zapping)
+- `terms-index-mem-pat.md` (Memory → Pattern)
+- `terms-index-sta-zap.md` (Stateful → Zapping)
 
 ---
 
