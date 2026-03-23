@@ -101,11 +101,11 @@ Organise topics and subtopics in folders within the workspace root `.memory/` di
 ├── [topic]-log.md                (operation log)
 ├── [topic]-[subtopic1]/          (subtopic folder)
 │   ├── [topic]-[subtopic1]-facts.md
-│   ├── [topic]-[subtopic1]-verification-working.md
+│   ├── [topic]-[subtopic1]-verification.md
 │   └── [topic]-[subtopic1]-archive.md
 └── [topic]-[subtopic2]/          (subtopic folder)
     ├── [topic]-[subtopic2]-facts.md
-    ├── [topic]-[subtopic2]-verification-working.md
+    ├── [topic]-[subtopic2]-verification.md
     └── [other supplementary files]
 ```
 
@@ -131,14 +131,14 @@ Organise topics and subtopics in folders within the workspace root `.memory/` di
 ├── claude-config-log.md
 ├── claude-config-skills/
 │   ├── claude-config-skills-facts.md
-│   ├── claude-config-skills-verification-working.md
+│   ├── claude-config-skills-verification.md
 │   └── claude-config-skills-archive.md
 ├── claude-config-hooks/
 │   ├── claude-config-hooks-facts.md
-│   └── claude-config-hooks-verification-working.md
+│   └── claude-config-hooks-verification.md
 └── claude-config-composition/
     ├── claude-config-composition-facts.md
-    └── claude-config-composition-verification-working.md
+    └── claude-config-composition-verification.md
 ```
 
 ---
