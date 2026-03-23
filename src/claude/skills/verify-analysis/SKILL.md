@@ -81,6 +81,22 @@ Executes:
 7. Archive disputed terms to `-disproven.md`
 8. Report results
 
+## Post-Verification Operations
+
+After verification is complete, this skill performs all post-verification updates exclusively:
+
+### For Verified Findings/Terms
+- See [update-finding-tag.md](references/update-finding-tag.md) - Tag finding/term with verification status and link to verification working document
+- See [update-index.md](references/update-index.md) - Update analysis index to reflect newly verified item
+
+### For Disproven/Disputed Items
+- See [archive-disproven-finding.md](references/archive-disproven-finding.md) - Archive to `-disproven.md` with full disproof evidence
+
+### Logging
+- See [verification-logging.md](references/verification-logging.md) - Log verification operation to topic log
+
+**CRITICAL:** The analysis skill MUST NOT perform any post-verification operations. All verification status updates, index updates, and archiving are the exclusive responsibility of verify-analysis.
+
 ---
 
 ## Integration with Workflows

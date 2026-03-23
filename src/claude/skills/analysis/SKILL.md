@@ -108,13 +108,30 @@ See [disproven-archive.md](references/disproven-archive.md) for:
 
 **Key principle:** Never delete disproven findings. Archive immediately with full context.
 
-### 4. Update Analysis Index
+**CRITICAL:** This refers to findings disproven DURING RESEARCH (user feedback that a finding is inaccurate). Findings disproven DURING VERIFICATION are archived by the verify-analysis skill, NOT the analysis skill.
+
+### 3. Post-Verification Operations (verify-analysis Skill Only)
+
+**CRITICAL:** The following operations are the EXCLUSIVE responsibility of the verify-analysis skill:
+- Update verification status tags on findings/terms
+- Update indexes with newly verified findings/terms
+- Archive findings/terms when validation fails
+- Log verification operations
+
+**MUST NOT:** The analysis skill performs any of these operations. Only verify-analysis handles all post-verification updates.
+
+When verification is needed, invoke `/verify-analysis fact` or `/verify-analysis term` and let that skill handle all resulting updates to files and indexes.
+
+### 4. Update Analysis Index (For New Findings Only)
 
 See [index-maintenance.md](references/index-maintenance.md) for:
 - Index file structure (`.memory/[topic]/[topic]-index.md`)
 - Tracking fact files and subtopics
 - Noting companion disproven files
 - Timestamp maintenance
+- Adding newly captured findings to index
+
+**Key principle:** Update index when new findings are captured during research. Do NOT update index for verification status changes — that is verify-analysis skill's exclusive responsibility.
 
 ### 5. Create Final Output (Only When User Requests)
 
@@ -130,8 +147,6 @@ See [final-output.md](references/final-output.md) for:
 **Key principle:** Run [fact-verification](references/fact-verification.md) on all fact files before synthesising analysis documents.
 
 ### 6. Operation Logging
-
-See [operation-logging.md](references/operation-logging.md) for:
 - Session initialization protocol (ask for topic slug, restore context)
 - Significant operations requiring logging
 - Log file format (`.memory/[topic]/[topic]-log.md`)
