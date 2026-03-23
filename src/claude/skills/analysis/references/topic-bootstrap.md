@@ -106,7 +106,7 @@ Create the `[topic-slug]-index.md` file using the topic index template.
   - Total Findings (0 initially)
   - Last Updated (today's date in YYYY-MM-DD format)
 - Initialize Fact Files section with planned fact file name
-- Create empty Entries table with no rows (populate as findings are captured)
+- Create empty Findings table with column headers but no rows (populate as findings are captured; Terms column will accumulate as terms are verified and linked)
 
 **File location:** `${WORKSPACE_ROOT}/.memory/[topic-slug]/[topic-slug]-index.md`
 
