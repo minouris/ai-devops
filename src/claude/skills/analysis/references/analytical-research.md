@@ -49,8 +49,8 @@ When searching for information within artifacts and documentation, use a two-sta
 - Examining codebase systematically
 - Analysing project artifacts (commits, issues, documentation)
 - Capturing research findings with proper citation
-- Creating evidence-based technical analysis
-- Any task requiring systematic investigation and synthesis
+- Building structured knowledge from artifacts
+- Any task requiring systematic investigation and discovery
 
 ---
 
