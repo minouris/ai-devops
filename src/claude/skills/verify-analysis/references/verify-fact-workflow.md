@@ -131,7 +131,7 @@ Analyze all gathered evidence and determine status:
 
 Once status is determined and all evidence is gathered:
 
-1. **Create if not exists:** `.memory/[topic]/[topic]-[subtopic]-verification-working.md` (or `.memory/[topic]/[topic]-verification-working.md` for main topic)
+1. **Create if not exists:** `.memory/[topic]/[topic]-[subtopic]-verification.md` (or `.memory/[topic]/[topic]-verification.md` for main topic)
 2. **Append complete verification entry** with all required sections
 
 **DO NOT create or modify the working document until evidence gathering is complete.**

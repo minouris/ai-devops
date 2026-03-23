@@ -6,7 +6,7 @@
 
 **Summary:** The claim that GitHub REST API PATCH endpoint for pull request comments supports comment resolution is false. The PATCH endpoint only supports updating comment text (body field). Comment resolution is exclusively available through GraphQL mutations on review threads, not REST API.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub OpenAPI specification and GraphQL schema.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub OpenAPI specification and GraphQL schema.
 
 ---
 
@@ -18,7 +18,7 @@ See verification entry in `github-api-facts-verification-working.md` for authori
 
 GitHub provides GraphQL mutations for resolving pull request review comments through the `resolveReviewThread` and `unresolveReviewThread` mutations at the PullRequestReviewThread level, not individual comment level. Core finding verified.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub GraphQL API schema queries and mutation definitions.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub GraphQL API schema queries and mutation definitions.
 
 ---
 
@@ -32,7 +32,7 @@ Comment resolution is NOT a direct property on individual comments, but rather m
 
 Individual comments lack any resolution-related fields in both REST API and GraphQL API. Resolution is exclusively managed at the PullRequestReviewThread level via `resolveReviewThread` and `unresolveReviewThread` GraphQL mutations. This is confirmed by the official GitHub OpenAPI specification and GraphQL schema.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub API specifications.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub API specifications.
 
 ---
 
@@ -55,7 +55,7 @@ curl -s -X PATCH \
 
 Result: 404 Not Found. The 404 error itself is verified, but the interpretation is incorrect. The endpoint DOES support PATCH operations (per GitHub REST API OpenAPI Specification). The 404 is most likely due to the specific comment ID not existing, not the method being unsupported. However, the conclusion that "resolution mechanism likely requires different endpoint or verb" is correct—resolution requires GraphQL mutations, not REST API PATCH.
 
-See verification entry in `github-api-facts-verification-working.md` for full analysis.
+See verification entry in `github-api-facts-verification.md` for full analysis.
 
 ---
 
@@ -83,7 +83,7 @@ mutation ResolveCommentThread {
 
 All proposed mutation parameters (threadId input, thread response with id and isResolved fields) verified against official GitHub GraphQL API schema. PATCH on comments endpoint failed because individual comments aren't the resolution target—threads are the resolution unit, and REST comments endpoint doesn't expose resolution capability.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub GraphQL API schema introspection.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub GraphQL API schema introspection.
 
 ---
 
@@ -185,7 +185,7 @@ Pull requests REST API supports these core operation categories:
 
 5. **Related Issue Access**: Access associated issue resource for PR, manage issue-level properties (assignees, labels, milestones) via issue endpoints
 
-All operations verified against official GitHub REST API OpenAPI specification and confirmed via live API testing against kubernetes/kubernetes repository. See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from OpenAPI schema and API response examples.
+All operations verified against official GitHub REST API OpenAPI specification and confirmed via live API testing against kubernetes/kubernetes repository. See verification entry in `github-api-facts-verification.md` for authoritative evidence from OpenAPI schema and API response examples.
 
 ---
 
@@ -195,7 +195,7 @@ All operations verified against official GitHub REST API OpenAPI specification a
 
 **Summary:** The finding describes pull request review data model distinctions that are mostly accurate, but contains a critical factual error. The finding claims review state values include "REQUESTED_CHANGES", but the correct enum value in the GitHub GraphQL API is "CHANGES_REQUESTED". This error makes the finding unreliable for implementation purposes.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub GraphQL API schema introspection showing the correct review state values.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub GraphQL API schema introspection showing the correct review state values.
 
 ---
 
@@ -231,7 +231,7 @@ Pull Request Reviews REST API supports these operation categories:
 
 **Summary:** The finding contains a critical parameter name error. It claims the reply parameter is `in_reply_to_id` when the official GitHub REST API OpenAPI specification defines the correct parameter as `in_reply_to`. The provided curl example uses incorrect JSON that would fail against the actual GitHub API.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from GitHub OpenAPI specification and live API testing.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from GitHub OpenAPI specification and live API testing.
 
 ---
 
@@ -249,7 +249,7 @@ Documentation source difficulties verified as accurate:
 
 All claims about documentation access limitations are accurate. Recommended approach of direct GraphQL API testing is appropriate given documentation accessibility constraints.
 
-See verification entry in `github-api-facts-verification-working.md` for complete evidence and testing results.
+See verification entry in `github-api-facts-verification.md` for complete evidence and testing results.
 
 ---
 
@@ -356,7 +356,7 @@ curl -X POST https://api.github.com/graphql \
 
 **Summary:** The finding's "Registration Form Fields (Required):" section contains critical inaccuracies. It fails to identify two actual required form fields (Permissions and Installation Scope) whilst incorrectly listing webhook configuration (Webhook URL and Webhook secret) as basic required fields. In reality, webhook configuration is optional and conditional.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from official GitHub documentation comparing claimed required fields against actual GitHub App registration form structure.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from official GitHub documentation comparing claimed required fields against actual GitHub App registration form structure.
 
 ---
 
@@ -388,7 +388,7 @@ See verification entry in `github-api-facts-verification-working.md` for authori
 
 **OAuth vs GitHub Apps**: GitHub recommends GitHub Apps over OAuth for most use cases due to enhanced security and fine-grained permissions. [VERIFICATION NOTE: GitHub Apps advantages documented but explicit recommendation language not found in official sources searched]
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from official GitHub documentation.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from official GitHub documentation.
 
 ---
 
@@ -420,7 +420,7 @@ See verification entry in `github-api-facts-verification-working.md` for authori
 - https://docs.github.com/en/apps/creating-github-apps/managing-github-apps - HTTP 404 (VERIFIED)
 - GitHub Apps credential management pages partially documented with genuine gaps
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from official GitHub documentation and HTTP status testing.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from official GitHub documentation and HTTP status testing.
 
 ---
 
@@ -723,7 +723,7 @@ curl \
 
 **Summary:** The finding contains a critical factual error regarding when curl variable expansion was introduced. The finding states curl 7.73.0+, but official curl documentation confirms the feature was added in curl 8.3.0. While most technical details about syntax and functions are accurate, the version number error is a fundamental factual claim that directly contradicts authoritative documentation.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from official curl manpage documentation.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from official curl manpage documentation.
 
 ---
 
@@ -733,7 +733,7 @@ See verification entry in `github-api-facts-verification-working.md` for authori
 
 **Summary:** The finding contains a critical error in the bash script example. The script uses `set -q` to exit on error, but `-q` is not a valid bash option. The correct option is `set -e`. Additionally, the curl option `--expand-header` is not documented in official curl documentation. These errors make the script non-functional as presented.
 
-See verification entry in `github-api-facts-verification-working.md` for authoritative evidence from official curl and git documentation.
+See verification entry in `github-api-facts-verification.md` for authoritative evidence from official curl and git documentation.
 
 ---
 

@@ -11,7 +11,7 @@
 **Verification Tag Format is Expressly Specified - Compliance is MANDATORY:**
 
 **MUST:**
-- Use the exact tag format: `**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#{finding-anchor}))`
+- Use the exact tag format: `**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-file}#{finding-anchor}))`
 - Include all required components: date, source URL, verification document path, anchor link
 - Preserve exact markdown formatting and punctuation
 - Use the specified date format (YYYY-MM-DD)
@@ -37,22 +37,22 @@ After verification is complete and documented in the verification working docume
 Add immediately after the finding content:
 
 ```markdown
-**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-working-file}#{finding-anchor}))
+**Verified:** [VERIFIED on YYYY-MM-DD by {source-url}] ([details]({verification-file}#{finding-anchor}))
 ```
 
 ### Tag Components
 
 - `YYYY-MM-DD` - Date verification was completed
 - `{source-url}` - Primary authoritative URL or `research synthesis` for multi-source findings
-- `{verification-working-file}` - Path to verification working document
-- `{finding-anchor}` - Anchor link to verification section in working document (lowercase with hyphens)
+- `{verification-file}` - Path to verification document
+- `{finding-anchor}` - Anchor link to verification section in document (lowercase with hyphens)
 
 ---
 
 ## Requirements
 
 **MUST:**
-- Include link to verification working document in the verification tag
+- Include link to verification document in the verification tag
 - Use the primary authoritative URL that verified this fact
 - Use lowercase with hyphens for anchor links
 - Preserve all other finding content unchanged
@@ -61,7 +61,7 @@ Add immediately after the finding content:
 **MUST NOT:**
 - Rewrite the entire fact file (wait for finalization step)
 - Remove or modify existing verification tags on other findings
-- Omit the link to the verification working document
+- Omit the link to the verification document
 
 ---
 
