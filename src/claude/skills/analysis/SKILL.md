@@ -77,8 +77,9 @@ See [fact-capture.md](references/fact-capture.md) for:
 - Clarifying existing facts (append with `Clarifies:` reference)
 - File boundaries (fact files vs pending analysis vs final output)
 - When to create subtopic files
+- **CRITICAL: Before finalizing a finding, verify it uses correct terminology:** Extract terms from the finding, invoke `/verify-analysis term` for each, amend finding to use verified term names/IDs
 
-**Key principle:** During research phase, write ONLY to fact files. Pending analysis and final output are read-only until user requests synthesis.
+**Key principle:** During research phase, write ONLY to fact files. Use verified terminology in findings. Pending analysis and final output are read-only until user requests synthesis.
 
 ### 1.5. Extract and Maintain Semantic Terms
 
@@ -162,6 +163,8 @@ See [final-output.md](references/final-output.md) for:
 - Store only final approved outputs in the root (guides, analyses, documentation)
 - Capture research broadly in fact files; filter as research progresses when appropriate
 - Extract semantic terms automatically from findings
+- Verify extracted terms using `/verify-analysis term` before considering findings complete
+- Amend findings to use verified terminology (term IDs or verified names)
 - Maintain bidirectional links between facts and terms
 - Archive findings to `-disproven.md` files immediately when the user disproves them
 - Invoke `/verify-analysis fact` when verification of findings is needed; do not perform verification yourself
@@ -211,6 +214,8 @@ When you are invoked in a new session, before anything else:
 **MUST:**
 - Store all processing artifacts in `.memory/`
 - Extract terms automatically from findings with singular scope
+- Verify extracted terms using `/verify-analysis term` before considering findings complete
+- Amend findings to use verified terminology from verified terms
 - Maintain bidirectional links between facts and terms
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Update terms index after each term operation

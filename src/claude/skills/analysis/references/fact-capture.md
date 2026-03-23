@@ -551,6 +551,68 @@ Approximate page ranges (adjust based on actual keyword distribution):
 
 ---
 
+## Before Finalizing: Terminology Verification (MANDATORY)
+
+Before a fact is considered complete, ensure it uses verified, standardized terminology rather than informal language.
+
+**Workflow:**
+
+1. **Extract terms from fact**
+   - Identify semantic concepts introduced in the finding
+   - Create terms in `[topic]-terms.md` using [term-capture.md](term-capture.md)
+   - Establish bidirectional links between finding and terms
+
+2. **Verify terms are correct**
+   - Invoke `/verify-analysis term [topic] [subtopic] [term-id]` for each extracted term
+   - This verifies term definition, scope, and consistency across sources
+   - verify-analysis skill updates term with verification status
+
+3. **Amend fact to use verified terminology**
+   - Review the finding after term verification completes
+   - Replace informal terminology with verified term names or IDs
+   - Update references to use standardized language from verified terms
+   - Maintain bidirectional links to verified terms
+
+**Example:**
+
+Initial finding (informal terminology):
+```markdown
+## FINDING-2026-03-22-5: PR Review Process
+
+**Source:** GitHub documentation
+
+- A "pull request review" is when someone comments on code changes in a PR
+- Reviews can be positive approval or request changes
+- ...
+```
+
+After term verification:
+```markdown
+## FINDING-2026-03-22-5: PR Review Process
+
+**Source:** GitHub documentation
+**Uses terms:** TERM-github-api-2026-03-22-15 (Pull Request Review)
+
+- A [Pull Request Review](#pull-request-review) (TERM-github-api-2026-03-22-15) is when someone comments on code changes in a Pull Request
+- Reviews can be positive approval or request changes
+- ...
+```
+
+**Key principle:** Standardized, verified terminology makes facts more discoverable and ensures consistency across the knowledge base.
+
+**MUST:**
+- Extract terms from new findings
+- Verify terminology before considering finding complete
+- Update finding to reference verified term IDs/names
+- Maintain bidirectional links to terms
+
+**MUST NOT:**
+- Finalize findings using ad-hoc or informal terminology
+- Skip term verification when new concepts are introduced
+- Use terminology that differs from verified term definitions
+
+---
+
 ## When User Reviews Findings
 
 **During user review:**
