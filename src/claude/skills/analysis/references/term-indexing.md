@@ -182,42 +182,10 @@ When you maintain terms for a topic, create and maintain a central index file:
 ```markdown
 # Terms Index
 
-**Topic:** [Topic Name]
-**Last Updated:** YYYY-MM-DD HH:MM
-**Total Verified Terms:** N
-**Total Pending Terms:** N
-
----
-
-## Index by Term
-
-| # | Term | Short Description |
-|---|------|-------------------|
-| 1 | [Action Plan](#action-plan) | A detailed sequence of steps required to achieve a specific outcome |
-| 2 | [Authentication](#authentication) | Process of verifying... |
-| ... | ... | ... |
-
----
-
-## Index Files
-
-- [terms-index-aut-con.md](terms-index-aut-con.md) - Authentication through Context (N terms)
-- [terms-index-des-jso.md](terms-index-des-jso.md) - Design through JSON (N terms)
-- [terms-index-key-ove.md](terms-index-key-ove.md) - Keyword through Overeagerness (N terms)
-
----
-
-## Verification Status
-
-### Verified Terms (N)
-
-- [Term 1](terms-index-XXX.md#term-1)
-- [Term 2](terms-index-XXX.md#term-2)
-
-### Pending Verification (N)
-
-- [Term 3](terms-index-XXX.md#term-3) - Awaiting verification against source
-- [Term 4](terms-index-XXX.md#term-4) - Pending source confirmation
+| Term | Short Description |
+|------|-------------------|
+| [Term Name](path/to/terms-file.md#term-name) | Short description (max 3 sentences) |
+| [Another Term](path/to/terms-file.md#another-term) | Another short description |
 ```
 
 ### Central Index Requirements
@@ -227,13 +195,13 @@ When you maintain terms for a topic, create and maintain a central index file:
 - Include short description (max 3 sentences) from term entry
 - Link to term location in appropriate index file
 - Maintain alphabetical order
-- Update after each term verification
-- Update term count statistics
+- Include H1 title and two-column table only
 
 **MUST NOT:**
 - Include unverified or pending terms
+- Add metadata, topic fields, or verification status sections
+- Add index file lists, verification sections, or other organizational structure
 - Use this file to store full term definitions (use term index files)
-- Leave stale links or outdated counts
 
 ---
 
