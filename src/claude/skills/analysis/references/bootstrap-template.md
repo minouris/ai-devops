@@ -75,16 +75,6 @@ Use this index to locate knowledge relevant to your task:
 | YYYY-MM-DD | All | knowledge-base-index.md created | Initial knowledge base bootstrap |
 
 ---
-
-## Updating This Index
-
-**When facts are appended:** No changes to this index.
-
-**When facts are verified:** Update topic's Knowledge Summary if scope changed; otherwise no changes to this index.
-
-**When new topics are created:** Add new topic section with Knowledge Summary and Quick Links.
-
----
 ```
 
 ---
