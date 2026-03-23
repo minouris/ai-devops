@@ -144,7 +144,7 @@ See [final-output.md](references/final-output.md) for:
 - Draft approval workflow
 - Citation requirements
 
-**Key principle:** Run [fact-verification](references/fact-verification.md) on all fact files before synthesising analysis documents.
+**Key principle:** Before creating analysis documents, invoke `/verify-analysis fact` to verify all facts. Do not perform verification yourself.
 
 ### 6. Operation Logging
 - Session initialization protocol (ask for topic slug, restore context)
@@ -164,14 +164,14 @@ See [final-output.md](references/final-output.md) for:
 - Extract semantic terms automatically from findings
 - Maintain bidirectional links between facts and terms
 - Archive findings to `-disproven.md` files immediately when the user disproves them
-- Run [fact-verification](references/fact-verification.md) on fact files before synthesising analysis documents
+- Invoke `/verify-analysis fact` when verification of findings is needed; do not perform verification yourself
 
 ### Quality Control
 
 **MUST:**
 - Wait for user approval before publishing any final output
 - Archive disproven findings immediately to preserve history
-- Verify fact files using [fact-verification](references/fact-verification.md) before creating analysis documents; facts tagged within the last 30 days are skipped automatically
+- Before creating analysis documents, invoke `/verify-analysis fact` for all fact files to verify findings (facts tagged within the last 30 days are skipped automatically by verify-analysis)
 - Maintain the analysis index for navigation and transparency
 
 ### Transparency
@@ -214,7 +214,7 @@ When you are invoked in a new session, before anything else:
 - Maintain bidirectional links between facts and terms
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Update terms index after each term operation
-- Run [fact-verification](references/fact-verification.md) before synthesising any analysis
+- Invoke `/verify-analysis fact` before synthesising any analysis; do not perform verification yourself
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
 - Place final outputs where the user specifies
 - Continue research without interruption for approval
