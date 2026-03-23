@@ -281,7 +281,7 @@ When facts are extracted from official documentation, that documentation provide
 
 **When verifying terms sourced from official documentation:**
 1. The official documentation cited in the Sources table IS the canonical definition
-2. Invoke `/verify term [topic] [subtopic] [term-id]` skill
+2. Invoke `/verify-analysis term [topic] [subtopic] [term-id]` skill
 3. Skill verifies that terminology against other official sources (alternate documentation, related specifications, cross-references)
 4. Skill confirms the term is used consistently across the official documentation
 5. Skill marks as VERIFIED once usage consistency is confirmed across sources
@@ -289,12 +289,12 @@ When facts are extracted from official documentation, that documentation provide
 
 **Example verification:**
 - Term "Pull Request" with source: https://docs.github.com/pull-requests
-- Invoke: `/verify term github-api "Pull Request"`
+- Invoke: `/verify-analysis term github-api "Pull Request"`
 - Skill checks GitHub REST API docs, GitHub GraphQL API docs, and other official GitHub documentation
 - If usage is consistent across these official sources: Marked VERIFIED
 - Verification working document: "Verified 2026-03-23 across GitHub REST, GraphQL, and main documentation"
 
-This fast-path workflow leverages the official documentation's authority while maintaining verification rigor through the `/verify term` skill.
+This fast-path workflow leverages the official documentation's authority while maintaining verification rigor through the `/verify-analysis term` skill.
 
 ---
 

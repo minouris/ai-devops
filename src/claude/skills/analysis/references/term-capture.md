@@ -210,7 +210,7 @@ When you create a term, use this exact structure:
 
 **Note:** This format is for initial term capture during research. Once terms are ready for indexing and publication, format them using the standardized glossary template provided in [term-indexing.md](term-indexing.md). The glossary format includes a complete "Sources" table, expanded "Description" section, bidirectional "See Also" links, and "Referenced By" backlinks.
 
-When terms are ready for verification, invoke the `/verify term` skill which creates a verification working document containing verbatim evidence from authoritative sources backing up the verification.
+When terms are ready for verification, invoke the `/verify-analysis term` skill which creates a verification working document containing verbatim evidence from authoritative sources backing up the verification.
 
 ### Field Requirements
 
@@ -413,10 +413,10 @@ Before finalizing a term entry, verify it meets these requirements:
 
 ### Run Verification Workflow
 
-When you engage the verification workflow, treat terms the same as facts. Use the `/verify term` skill to verify individual terms:
+When you engage the verification workflow, treat terms the same as facts. Use the `/verify-analysis term` skill to verify individual terms:
 
 **During verification phase:**
-- Invoke `/verify term [topic] [subtopic] [term-id]` skill for the term
+- Invoke `/verify-analysis term [topic] [subtopic] [term-id]` skill for the term
 - Skill fetches authoritative definition sources
 - Skill verifies term definition matches authoritative source exactly
 - Skill verifies scope boundaries align with source scope
