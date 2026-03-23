@@ -114,27 +114,17 @@ See [disproven-archive.md](references/disproven-archive.md) for:
 ### 3. Post-Verification Operations (verify-analysis Skill Only)
 
 **CRITICAL:** The following operations are the EXCLUSIVE responsibility of the verify-analysis skill:
+- Verify fact content against authoritative sources
 - Update verification status tags on findings/terms
-- Update indexes with newly verified findings/terms
+- Update indexes with newly verified findings/terms (findings added to findings index ONLY after verification)
 - Archive findings/terms when validation fails
 - Log verification operations
 
 **MUST NOT:** The analysis skill performs any of these operations. Only verify-analysis handles all post-verification updates.
 
-When verification is needed, invoke `/verify-analysis fact` or `/verify-analysis term` and let that skill handle all resulting updates to files and indexes.
+When fact verification is needed, invoke `/verify-analysis fact` and let that skill handle all verification, index updates, and logging.
 
-### 4. Update Analysis Index (For New Findings Only)
-
-See [index-maintenance.md](references/index-maintenance.md) for:
-- Index file structure (`.memory/[topic]/[topic]-index.md`)
-- Tracking fact files and subtopics
-- Noting companion disproven files
-- Timestamp maintenance
-- Adding newly captured findings to index
-
-**Key principle:** Update index when new findings are captured during research. Do NOT update index for verification status changes — that is verify-analysis skill's exclusive responsibility.
-
-### 5. Create Final Output (Only When User Requests)
+### 4. Create Final Output (Only When User Requests)
 
 **CRITICAL:** Do NOT create final output documents unless user explicitly requests them.
 
@@ -145,9 +135,9 @@ See [final-output.md](references/final-output.md) for:
 - Draft approval workflow
 - Citation requirements
 
-**Key principle:** Before creating analysis documents, invoke `/verify-analysis fact` to verify all facts. Do not perform verification yourself.
+**Key principle:** All facts must be VERIFIED (by invoking `/verify-analysis fact`) before creating analysis documents.
 
-### 6. Operation Logging
+### 5. Operation Logging
 - Session initialization protocol (ask for topic slug, restore context)
 - Significant operations requiring logging
 - Log file format (`.memory/[topic]/[topic]-log.md`)
