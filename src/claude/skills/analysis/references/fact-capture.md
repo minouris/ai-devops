@@ -97,15 +97,16 @@ Organise topics and subtopics in folders within the workspace root `.memory/` di
 ```
 .memory/[topic]/
 ├── [topic]-facts.md              (main topic fact file)
+├── [topic]-facts-disproven.md    (main topic disproven archive)
 ├── [topic]-index.md              (topic index)
 ├── [topic]-log.md                (operation log)
 ├── [topic]-[subtopic1]/          (subtopic folder)
 │   ├── [topic]-[subtopic1]-facts.md
-│   ├── [topic]-[subtopic1]-verification.md
-│   └── [topic]-[subtopic1]-archive.md
+│   ├── [topic]-[subtopic1]-facts-disproven.md
+│   └── [topic]-[subtopic1]-terms.md (optional)
 └── [topic]-[subtopic2]/          (subtopic folder)
     ├── [topic]-[subtopic2]-facts.md
-    ├── [topic]-[subtopic2]-verification.md
+    ├── [topic]-[subtopic2]-facts-disproven.md
     └── [other supplementary files]
 ```
 
@@ -113,28 +114,39 @@ Organise topics and subtopics in folders within the workspace root `.memory/` di
 - Create a folder for each topic: `.memory/[topic]/`
 - Create a folder for each subtopic: `.memory/[topic]/[topic]-[subtopic]/`
 - Place all topic-level files (main facts, index, log) directly in the topic folder
-- Place all subtopic-level files (subtopic facts, verification docs, archives) in the subtopic folder
+- Place all subtopic-level files (subtopic facts, disproven archives, term files) in the subtopic folder
 - Use the full `[topic]-[subtopic]` prefix for subtopic folder names and file names
+- Use `-facts-disproven.md` suffix for disproven findings archives (not `-archive.md`)
 - Apply this structure recursively for nested subtopics
+- **ENFORCE**: Topic column in index findings table MUST link to actual subtopic facts files
+  - Example: If finding has Topic="Authentication", file `github-api-authentication/github-api-authentication-facts.md` must exist
+  - Finding links in index point directly to subtopic files, not main facts file
 
 **MUST NOT:**
 - Create flat file structures in `.memory/` root for topics with multiple files
 - Place subtopic fact files directly in the topic folder alongside the main fact file
 - Scatter topic or subtopic files across multiple folders
 - Place subtopic files outside their designated subtopic folder
+- Use `-archive.md` suffix for disproven files (use `-facts-disproven.md` instead)
+- List a Topic value unless its corresponding subtopic facts file exists
 
 **Example:**
 ```
-.memory/claude-config/
-├── claude-config-facts.md
-├── claude-config-index.md
-├── claude-config-log.md
-├── claude-config-skills/
-│   ├── claude-config-skills-facts.md
-│   ├── claude-config-skills-verification.md
-│   └── claude-config-skills-archive.md
-├── claude-config-hooks/
-│   ├── claude-config-hooks-facts.md
+.memory/github-api/
+├── github-api-facts.md
+├── github-api-facts-disproven.md
+├── github-api-index.md
+├── github-api-log.md
+├── github-api-authentication/
+│   ├── github-api-authentication-facts.md
+│   └── github-api-authentication-facts-disproven.md
+├── github-api-comment-resolution/
+│   ├── github-api-comment-resolution-facts.md
+│   └── github-api-comment-resolution-facts-disproven.md
+└── github-api-integration/
+    ├── github-api-integration-facts.md
+    └── github-api-integration-facts-disproven.md
+```
 │   └── claude-config-hooks-verification.md
 └── claude-config-composition/
     ├── claude-config-composition-facts.md

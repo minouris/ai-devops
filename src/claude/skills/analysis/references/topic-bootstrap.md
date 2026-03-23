@@ -143,6 +143,23 @@ Create the `[topic-slug]-facts.md` file using the topic facts template.
 
 **File location:** `${WORKSPACE_ROOT}/.memory/[topic-slug]/[topic-slug]-facts.md`
 
+### Step 4a: Plan Subtopic Structure (Conditional)
+
+If your topic will use semantic subtopics (organizational groupings for different research areas):
+
+**MUST:**
+- Identify the logical subtopics that will organize findings
+- Document subtopic names for later use
+- Each subtopic will create a subdirectory and facts files
+- Subtopic naming convention: `[topic-slug]-[subtopic-name]` (kebab-case)
+
+**Example for github-api topic:**
+- `github-api-authentication` → credential management topics
+- `github-api-comment-resolution` → PR comment workflow topics
+- `github-api-integration` → integration patterns topics
+
+**Do NOT create subtopic directories during bootstrap** - create them as subtopics emerge during research. Bootstrap step focuses on top-level topic structure only.
+
 ### Step 5: Verify Topic Bootstrap Completion
 
 After creating all files:
@@ -177,6 +194,61 @@ If your topic will use semantic term indexing:
 Create `index-terms.md` in the topic directory following [term-indexing.md](term-indexing.md) guidelines.
 
 **File location:** `${WORKSPACE_ROOT}/.memory/[topic-slug]/index-terms.md`
+
+---
+
+# Subtopic File Creation Requirements
+
+## Hard Rule: Topic Column ↔ Subtopic Files
+
+When findings are captured with a Topic value in the index:
+
+**MANDATORY:**
+- The Topic value MUST correspond to a subtopic that has an actual facts file
+- Every Topic entry in the Findings table links to a real file at `[topic-slug]-[subtopic]/[topic-slug]-[subtopic]-facts.md`
+- If a finding's Topic column says "Authentication", the file `github-api-authentication/github-api-authentication-facts.md` MUST exist
+- Findings are extracted from the main facts file and placed into their subtopic-specific files
+- The index Findings table links to the subtopic files, not the main facts file
+
+**MUST NOT:**
+- List a Topic value unless its subtopic file exists
+- Link findings to non-existent files
+- Keep findings in generic facts files if they belong to a labeled subtopic
+
+## When to Create Subtopic Files
+
+Create a subtopic file when:
+
+1. **First finding for that topic area is captured** - Extract it immediately into a new subtopic file
+2. **Topic value is assigned in index** - That Topic must have a corresponding facts file
+3. **Moving findings from main facts file** - Create subtopic directory and facts files, then update index links
+
+**Subtopic File Template:**
+
+When creating `[topic-slug]-[subtopic]/[topic-slug]-[subtopic]-facts.md`:
+
+```markdown
+# [Topic Slug] [Subtopic Name] - Facts
+
+## See Also
+- [Disproven findings](github-api-[subtopic]-facts-disproven.md) (if applicable)
+
+[Findings follow...]
+```
+
+Create disproven companion file if subtopic has disproven findings:
+- File: `[topic-slug]-[subtopic]-facts-disproven.md` (same directory)
+- Location: `.memory/[topic-slug]/[subtopic]/`
+- Content: Disproven findings with evidence and rectifications
+
+## Updating Index When Creating Subtopics
+
+When you create subtopic files:
+
+1. **Update main index Fact Files section** - Add entry in Subtopics subsection with link to subtopic facts file
+2. **Update Findings table links** - Move finding links from main facts file to subtopic facts files
+3. **Update Findings table Topic column** - Topic value determines which subtopic file finding links to
+4. **Preserve Terms column** - Keep term links intact during migration
 
 ---
 
