@@ -58,11 +58,11 @@ Use this template to create `${workspace}/.memory/[topic-slug]/[topic-slug]-inde
 - `[topic-slug]-facts.md` - [Description of main fact file contents]
   - Companion disproven: `[topic-slug]-disproven.md` (pending or exists)
 
-## Entries
+## Findings
 
-| Fact ID | Topic | Status |
-|---------|-------|--------|
-| [FINDING-YYYY-MM-DD-N] | [Brief topic description] | [Active/Archived/Verified] |
+| Finding | Topic | Name | Terms |
+|---------|-------|------|-------|
+| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | [Brief topic description] | [Finding name] | [term1](#term1), [term2](#term2) |
 ```
 
 ---
@@ -87,14 +87,15 @@ List all fact files in the topic directory:
 - Primary fact file: `[topic-slug]-facts.md` with description
 - Note companion disproven file status (pending if not yet created)
 
-## Entries Section
+## Entries
 
 Table with columns:
-- **Fact ID**: Finding identifier in FINDING-YYYY-MM-DD-N format
-- **Topic**: Brief description of what the finding covers
-- **Status**: Active (ongoing research), Archived (no longer relevant), or Verified (verification complete)
+- **Finding**: Finding identifier (FINDING-YYYY-MM-DD-N) linked to the finding in the fact file
+- **Topic**: Brief category for what the finding covers
+- **Name**: Short descriptive name of the finding
+- **Terms**: Comma-separated list of relevant semantic terms (optional, populated as terms are defined and linked)
 
-Update this table whenever facts are added or verified.
+Update this table whenever facts are added or verified. Link terms to their definitions in the topic's term index file.
 
 ---
 
@@ -106,7 +107,8 @@ When the analysis skill's topic bootstrap feature creates a new topic:
 1. Create `[topic-slug]-index.md` using this template
 2. Fill Knowledge Summary with research scope and status
 3. Initialize Fact Files section with planned fact file
-4. Initialize empty Entries table (populate as findings are captured)
+4. Initialize empty Findings table (populate as findings are captured)
+5. Leave Terms column empty until terms are extracted and defined
 
 **MUST NOT:**
 - Add sections beyond those in this template

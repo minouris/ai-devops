@@ -419,20 +419,21 @@ The main index file (`.memory/[topic]-index.md`) contains:
 
 ### Findings Table Structure
 
-When adding findings to the main index file, maintain a structured Findings table with three columns.
+When adding findings to the main index file, maintain a structured Findings table with four columns.
 
 **Findings table structure:**
 
 ```markdown
-| Finding | Topic | Name |
-|---------|-------|------|
-| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name |
+| Finding | Topic | Name | Terms |
+|---------|-------|------|-------|
+| [FINDING-ID](path/to/fact-file.md#finding-anchor) | Topic Name | Finding Name | [term1](#term1), [term2](#term2) |
 ```
 
 **Column definitions:**
-- **Finding:** Markdown link to the finding in its fact file, including anchor (e.g., `[FINDING-2026-03-06-1](claude-config-facts.md#finding-2026-03-06-1)` or `[FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-facts.md#finding-2026-03-06-5)`)
+- **Finding:** Markdown link to the finding in its fact file, including anchor (e.g., `[FINDING-2026-03-06-1](claude-config-facts.md#finding-2026-03-06-1)`)
 - **Topic:** Categorical grouping for the finding (e.g., "Configuration", "Composition", "Hooks")
 - **Name:** Short descriptive name from the finding heading (e.g., "Skills - Primary Extension Mechanism")
+- **Terms:** Comma-separated list of verified semantic terms relevant to this finding, linked to term definitions (optional until terms are extracted and defined)
 
 **Sorting requirements:**
 
@@ -440,30 +441,25 @@ When adding findings to the main index file, maintain a structured Findings tabl
 - Sort findings alphabetically by Topic (primary sort key)
 - Sort findings alphabetically by Name within each Topic (secondary sort key)
 - Maintain this sorting order when adding new findings to the table
+- Link terms to their definitions in the topic's term index
 
 **MUST NOT:**
 - Add findings in chronological order without sorting
 - Group findings by subtopic unless subtopic is explicitly the Topic value
 - Skip the Topic column
+- Include terms that haven't been verified
 
 **Example:**
 
 ```markdown
 ## Findings
 
-| Finding | Topic | Name |
-|---------|-------|------|
-| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top |
-| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response |
-| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism |
-| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File |
-```
-
----
-
-| Topic | Finding | Name |
-|-------|---------|------|
-| Topic Name | [FINDING-ID](path/to/fact-file.md#finding-anchor) | Finding Name |
+| Finding | Topic | Name | Terms |
+|---------|-------|------|-------|
+| [FINDING-2026-03-06-5](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-5) | Composition | Long Context Prompting - Put Longform Data at Top | [Prompt Engineering](#prompt-engineering), [Context Window](#context-window) |
+| [FINDING-2026-03-06-8](claude-config-composition/claude-config-composition-official/claude-config-composition-official-facts.md#finding-2026-03-06-8) | Composition | Prefill Claude's Response | [Prompt Engineering](#prompt-engineering), [Response Completion](#response-completion) |
+| [FINDING-2026-03-04-1](claude-config-facts.md#finding-2026-03-04-1) | Configuration | Skills - Primary Extension Mechanism | [Skills](#skills), [Extension Mechanisms](#extension-mechanisms) |
+| [FINDING-2026-03-04-7](claude-config-facts.md#finding-2026-03-04-7) | Configuration | CLAUDE.md - Project Instructions File | [Project Instructions](#project-instructions), [Configuration](#configuration) |
 ```
 
 ---

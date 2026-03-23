@@ -83,14 +83,14 @@ If this is the first verified finding in this file, add entry to the "Fact Files
 
 ### 3. Add to Findings Table
 
-Add finding to the Findings table in alphabetically sorted position (by Name, then Topic):
+Add finding to the Findings table in alphabetically sorted position (by Topic, then Name), including any relevant terms:
 
 ```markdown
 ## Findings
 
-| Finding | Name | Topic |
-|---------|------|-------|
-| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Finding Name | Topic Name |
+| Finding | Topic | Name | Terms |
+|---------|-------|------|-------|
+| [FINDING-YYYY-MM-DD-N](#finding-yyyy-mm-dd-n) | Topic Name | Finding Name | [term1](#term1), [term2](#term2) |
 ```
 
 ---
@@ -120,9 +120,10 @@ For term verifications using the same topic, also update the term-related index 
 ## Sorting Rules
 
 **Findings table:**
-- Primary sort: Name (alphabetical, case-insensitive)
-- Secondary sort: Topic (alphabetical, case-insensitive)
+- Primary sort: Topic (alphabetical, case-insensitive)
+- Secondary sort: Name (alphabetical, case-insensitive)
 - Finding ID is for reference only, not used for sorting
+- Terms column is optional and can accumulate as terms are extracted and verified
 
 ---
 
