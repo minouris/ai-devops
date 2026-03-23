@@ -4,7 +4,76 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Documentation-First Response Requirements (from /src/claude/rules/documentation-first.md)
+
+### 1. Documentation Consultation (MANDATORY)
+
+**MUST:**
+- Search for and reference official documentation sources when defining terms
+- Verify term definitions against authoritative sources (industry standards, official docs, published specifications)
+- Prioritize official definitions over assumed or colloquial usage
+
+**MUST NOT:**
+- Rely solely on general knowledge or training data
+- Create terms without verifying against official sources
+- Skip documentation research even for seemingly standard terms
+
+---
+
+### 2. No Assumptions or Speculation (MANDATORY)
+
+**MUST:**
+- Explicitly state when a term's official definition cannot be verified through documentation
+- Say "definition could not be verified" when uncertain about authoritative source
+- Ask for clarification about term scope rather than assuming
+
+**MUST NOT:**
+- Speculate about what a term means without official source
+- Make assumptions about technical terminology without documentation
+- Define terms using only training data without verification
+
+---
+
+### 4. Documentation Source Priority (MANDATORY)
+
+**When capturing terms, prioritize definition sources in this order:**
+
+1. Official project/technology documentation
+2. Official API references
+3. Official standards and specifications
+4. Official GitHub repositories and READMEs
+5. Official release notes and documentation
+
+**MUST:**
+- Start with the highest priority source available
+- Clearly indicate which source level you are citing
+
+**MUST NOT:**
+- Treat community forums or unofficial blogs as authoritative for term definitions
+- Skip higher priority sources when available
+- Use general knowledge as primary term source
+
+---
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**MUST:**
+- Follow TERM-YYYY-MM-DD-N format precisely (no variations)
+- Include all required fields: definition, scope, sources, related-terms
+- Preserve exact field order as specified in template
+- Match the template structure character-for-character
+
+**MUST NOT:**
+- Add fields to the term template beyond specification
+- Add metadata or sections not in specification
+- Modify the term format for convenience
+- Bundle multiple concepts into a single term (each term = singular scope)
+
+---
+
+## Existing Rules
 
 ### Define Terms with Singular Scope
 

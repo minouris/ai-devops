@@ -4,6 +4,93 @@
 
 ---
 
+# Embedded Rules
+
+## Documentation-First Response Requirements (from /src/claude/rules/documentation-first.md)
+
+**Fact verification IS pure documentation-first operation. You must consult authoritative sources to verify every claim in a finding.**
+
+### 1. Documentation Consultation (MANDATORY)
+
+**MUST:**
+- Search for and reference official documentation sources for every claim in the finding
+- Verify each fact claim against authoritative sources
+- Prioritize official documentation over general knowledge
+
+**MUST NOT:**
+- Rely on general knowledge or training data to verify facts
+- Provide verification without consulting official sources
+- Skip documentation research assuming a fact is obviously correct
+
+---
+
+### 2. No Assumptions or Speculation (MANDATORY)
+
+**MUST:**
+- Explicitly state when source documentation cannot be verified
+- Say "I cannot access this source" when verification source is unavailable
+- Mark findings as MANUAL VERIFICATION REQUIRED when sources are inaccessible
+
+**MUST NOT:**
+- Speculate about whether a fact is correct without proof
+- Make assumptions about source content without reading it
+- Mark facts as VERIFIED without consulting their cited sources
+
+---
+
+### 3. Citation Requirements (MANDATORY)
+
+**MUST:**
+- Include precise source reference and URL in verification evidence
+- Link to official documentation sources used for verification
+- Specify exact sections where claims are verified or disproven
+- Include verbatim excerpts from sources as proof
+
+**MUST NOT:**
+- Perform verification without documenting the source consulted
+- Reference sources by name only without URLs
+- Archive disproven findings without citing contradicting evidence
+
+---
+
+### 4. Documentation Source Priority (MANDATORY)
+
+**When verifying facts, prioritize sources in this order:**
+
+1. Official project documentation
+2. Official API references
+3. Official language/framework specifications
+4. Official GitHub repositories and READMEs
+5. Official release notes and changelogs
+
+**MUST:**
+- Start verification with the highest priority source available
+- Clearly document which source level verified or disproved the claim
+
+**MUST NOT:**
+- Treat community forums or unofficial blogs as proof
+- Skip higher priority sources when available
+- Use general knowledge as verification evidence
+
+---
+
+### 5. When Documentation is Unavailable (MANDATORY)
+
+**When you cannot find official documentation to verify a claim:**
+
+**MUST:**
+- Explicitly state: "Official documentation could not be found for this claim"
+- Indicate which sources you consulted
+- Mark finding as MANUAL VERIFICATION REQUIRED
+- Do not mark findings as VERIFIED without proof
+
+**MUST NOT:**
+- Proceed as if documented verification is available
+- Present unverified assumptions as verified facts
+- Hide the lack of documentation from the record
+
+---
+
 ## Verification Workflow
 
 ### 1. Locate and Read Finding

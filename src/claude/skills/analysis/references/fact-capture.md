@@ -4,7 +4,68 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Documentation-First Response Requirements (from /src/claude/rules/documentation-first.md)
+
+### 1. Documentation Consultation (MANDATORY)
+
+**MUST:**
+- Search for and reference official documentation sources relevant to facts being captured
+- Verify information against authoritative sources before recording facts
+- Prioritize official documentation over general knowledge
+
+**MUST NOT:**
+- Rely solely on general knowledge or training data
+- Provide facts without verifying against official sources
+- Skip documentation research even for seemingly simple facts
+
+---
+
+### 2. No Assumptions or Speculation (MANDATORY)
+
+**MUST:**
+- Explicitly state when information cannot be verified through documentation
+- Say "I don't know" or "I cannot verify this information" when uncertain
+- Ask for clarification rather than assuming what sources say
+
+**MUST NOT:**
+- Speculate or provide unverified facts
+- Make assumptions about technical details without documentation
+- Guess at implementation details
+
+---
+
+### 3. Citation Requirements (MANDATORY)
+
+**MUST:**
+- Include source reference for every fact captured
+- Link to official documentation sources
+- Specify the exact section or page referenced
+- Place citations inline with each fact entry
+
+**MUST NOT:**
+- Record facts without source citations
+- Reference unofficial or unverified sources as authoritative
+- Use vague source references
+
+---
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**MUST:**
+- Follow FINDING-YYYY-MM-DD-N format precisely (no variations)
+- Include all required fields: timestamp, source, content, keywords
+- Preserve exact field order as specified in template
+
+**MUST NOT:**
+- Add fields to the finding template beyond specification
+- Add metadata or sections not in the specification
+- Modify the finding format "for convenience"
+
+---
+
+## Existing Rules
 
 ### No Inline Approval (MANDATORY)
 
