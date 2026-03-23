@@ -101,23 +101,21 @@ Browse findings by keyword:
 
 ## When to Update Index
 
-Update the index after each of these operations:
+**CRITICAL:** The analysis index findings table is updated ONLY by the verify-analysis skill after verification completes. Do NOT manually update the findings table when appending facts.
+
+Perform these manual index updates:
 
 1. **Appending to fact file**
-   - Update "Last updated" timestamp for that fact file
-   - Update keyword index pages with new keywords or add findings to existing keyword sections
-   - Add new row to Findings table in alphabetically sorted position (by Topic, then Name)
-   - Update total keyword count in main index Keywords section
+   - Update "Last updated" timestamp for that fact file (in Fact Files section)
+   - **DO NOT update Findings table** - facts are added to Findings table only after verification by verify-analysis
+   - **DO NOT update keyword index pages** - keywords are indexed only for verified findings
 
 2. **Creating new subtopic file**
    - Add new entry in "Fact Files" section in the main topic index
    - Include brief description of subtopic scope
-   - Update main topic keyword index pages with any new keywords from the subtopic file
-   - Add all findings from new subtopic file to main topic Findings table (sorted by Topic, then Name)
-   - Update total keyword count in main topic index Keywords section
-   - **DO NOT create a separate index for the subtopic** - all subtopic findings go into the main topic index
+   - Include "Last updated" timestamp
 
-3. **Archiving disproven finding**
+3. **Archiving disproven finding** (by verify-analysis)
    - Add or update "Disproven:" line with count
    - If it's the first disproven finding, add the line
    - If archive already exists, increment the count
@@ -128,6 +126,14 @@ Update the index after each of these operations:
 4. **Creating final output**
    - Add entry in "Analysis Outputs" section
    - Include generation date and source fact files
+
+**Post-Verification Updates (verify-analysis skill):**
+
+After verify-analysis completes verification, the following are updated automatically:
+- Findings table: Add verified finding in alphabetically sorted position
+- Keyword index pages: Add keywords or increment counts
+- Total keyword count in main index
+- "Last Updated" timestamp of the main index
 
 ---
 

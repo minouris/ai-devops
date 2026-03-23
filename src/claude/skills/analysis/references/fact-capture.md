@@ -403,14 +403,16 @@ Capture ALL of the following:
 **MUST:**
 - Use Write tool to create new fact file if it doesn't exist
 - Use Edit tool to append new entries to existing fact files
-- Update analysis index after appending
+- Include `[NOT YET VERIFIED]` tag on new findings
 - Continue research without pausing for approval
 
 **Append workflow:**
 1. Read existing fact file to get current sequence number
 2. Create new FINDING entry with next sequence number
-3. Append using Edit tool
-4. Update index with new timestamp
+3. Append using Edit tool with `[NOT YET VERIFIED]` tag
+4. Analysis index will be updated by verify-analysis skill after verification
+
+**Note:** Do NOT manually update the analysis index after appending. The verify-analysis skill will update the findings index when the fact is verified. See [verify-analysis skill](../../verify-analysis/SKILL.md) for the verification workflow.
 
 ---
 
