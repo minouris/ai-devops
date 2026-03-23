@@ -27,6 +27,17 @@ When you conduct research with this skill, operate under strict documentation-fi
 - No speculation or assumptions
 - Explicit uncertainty statements when sources unavailable
 
+## Knowledge Base Bootstrap
+
+When you engage this skill for the first time in a workspace, you must bootstrap the knowledge base structure that enables all subsequent research and fact collection.
+
+See [bootstrap.md](references/bootstrap.md) for the bootstrap workflow, which:
+- Creates the `.memory/` directory at the workspace root
+- Initializes `knowledge-base-index.md` as the central discovery index
+- Verifies structure before proceeding to research workflows
+
+**Key principle:** Bootstrap is idempotent — running it again when the structure already exists verifies the structure and reports success without overwriting existing files.
+
 ## Research Workflows
 
 ### Workflow 1: Procedural Research
@@ -180,7 +191,8 @@ When you are invoked in a new session, before anything else:
 ### Key Reminders
 
 **MUST:**
-- Store all processing artifacts in `.memory/`
+- Bootstrap the knowledge base structure using `/analysis bootstrap` on first use in a workspace
+- Store all processing artifacts in `.memory/` directory initialized by bootstrap
 - Extract terms automatically from findings with singular scope
 - Verify extracted terms using `/verify-analysis term` before considering findings complete
 - Amend findings to use verified terminology from verified terms
@@ -188,7 +200,7 @@ When you are invoked in a new session, before anything else:
 - Capture broadly in fact files; archive disproven findings immediately, never delete
 - Update terms index after each term operation
 - **Maintain Knowledge Summary section in topic index** — ensure it reflects actual topic contents, update finding counts when verification occurs
-- **Ensure topic exists in central knowledge base index** at `.memory/KNOWLEDGE_BASE.md` (create entry when first topic created; update only when scope changes)
+- **Update central knowledge base index** at `.memory/knowledge-base-index.md` (create entry when first topic created; update only when scope changes). Use [bootstrap-template.md](references/bootstrap-template.md) as the structure reference.
 - Run [record-operation](../../prompts/record-operation.prompt.md) with the topic slug after each significant operation (if available)
 - Continue research without interruption for approval
 
@@ -217,10 +229,18 @@ This skill uses the following Claude Code tools:
 ## Invocation
 
 Invoke this skill when you need to:
+- Bootstrap a knowledge base in a new workspace
 - Research and document a technical procedure
 - Analyse a codebase or project systematically
 - Capture research findings with proper citation and verification
 - Build and maintain a structured knowledge base for a topic
+
+**Usage:**
+```
+/analysis bootstrap
+```
+
+Invokes the bootstrap workflow to initialize the `.memory/` directory and `knowledge-base-index.md`.
 
 **Usage:**
 ```
