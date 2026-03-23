@@ -203,12 +203,14 @@ When you create a term, use this exact structure:
 - [FINDING-2026-03-22-1](path/to/fact-file.md#finding anchor) - Finding Name
 - [FINDING-2026-03-22-5](path/to/fact-file.md#finding anchor) - Another Finding Name
 
-**Verified:** [NOT YET VERIFIED - requires verification workflow]
+**Verified:** [NOT YET VERIFIED - requires verification workflow via /verify-term skill]
 
 **Captured:** YYYY-MM-DD HH:MM
 ```
 
 **Note:** This format is for initial term capture during research. Once terms are ready for indexing and publication, format them using the standardized glossary template provided in [term-indexing.md](term-indexing.md). The glossary format includes a complete "Sources" table, expanded "Description" section, bidirectional "See Also" links, and "Referenced By" backlinks.
+
+When terms are ready for verification, invoke the `/verify term` skill which creates a verification working document containing verbatim evidence from authoritative sources backing up the verification.
 
 ### Field Requirements
 
@@ -411,18 +413,29 @@ Before finalizing a term entry, verify it meets these requirements:
 
 ### Run Verification Workflow
 
-When you engage the verification workflow, treat terms the same as facts:
+When you engage the verification workflow, treat terms the same as facts. Use the `/verify term` skill to verify individual terms:
 
 **During verification phase:**
-- Verify definition against source material
-- Verify scope boundaries are accurate
-- Verify related terms are correct
-- Verify backlinks to facts are accurate
+- Invoke `/verify term [topic] [subtopic] [term-id]` skill for the term
+- Skill fetches authoritative definition sources
+- Skill verifies term definition matches authoritative source exactly
+- Skill verifies scope boundaries align with source scope
+- Skill confirms consistent usage across related official sources
+- Skill creates verification working document with verbatim evidence
+- Skill archives disputed terms to `-disproven.md`
 
-**Update verification tag after verification:**
-```markdown
-**Verified:** VERIFIED on YYYY-MM-DD by [source-url]
-```
+**Verification working document captures:**
+- Verbatim excerpts from authoritative definition sources
+- Proof that term definition matches source definition
+- Proof that scope boundaries align with authoritative scope
+- Evidence of terminology consistency across related sources
+- Full context for auditing the verification independently
+
+**After verification:**
+- Review verification working document report
+- Term file is updated with verification status by skill
+- Central index automatically includes newly verified terms
+- Disputed findings are archived with contradiction evidence
 
 ### Archive Disproven Terms
 
