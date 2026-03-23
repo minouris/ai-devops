@@ -1,6 +1,6 @@
 # Operation Logging
 
-**This file is loaded when: The agent needs to log significant operations or initialize a session from operation history.**
+**This file is loaded when: You need to log significant operations or initialize a session from operation history.**
 
 ---
 

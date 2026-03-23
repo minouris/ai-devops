@@ -491,7 +491,7 @@ Create separate keyword index pages at the main topic level (`.memory/[topic]/[t
 **Division guidelines:**
 
 **MUST:**
-- Divide at even intervals (roughly equal numbers of keywords per page)
+- Divide at even intervals (within ±2 keywords per page)
 - Keep all keywords starting with the same letter together (do not split A keywords across pages)
 - Use alphabetical ranges that reflect the actual keyword distribution
 - Create navigation links between keyword index pages
@@ -555,7 +555,7 @@ Approximate page ranges (adjust based on actual keyword distribution):
 
 ## Before Finalizing: Terminology Verification (MANDATORY)
 
-Before a fact is considered complete, ensure it uses verified, standardized terminology rather than informal language.
+Before you consider a fact complete, ensure it uses verified, standardized terminology rather than informal language.
 
 **Workflow:**
 

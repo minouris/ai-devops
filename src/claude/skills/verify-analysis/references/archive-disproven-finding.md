@@ -1,6 +1,6 @@
 # Archive Disproven Finding
 
-**This file is loaded when: A finding has been verified as DISPROVEN and needs to be archived.**
+**This file is loaded when: You need to archive a finding that has been verified as DISPROVEN.**
 
 ---
 

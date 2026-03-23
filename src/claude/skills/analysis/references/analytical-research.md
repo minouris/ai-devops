@@ -1,6 +1,6 @@
 # Analytical Research Workflow
 
-**This file is loaded when: The agent needs to examine artifacts systematically and synthesise findings into analysis.**
+**This file is loaded when: You need to examine artifacts systematically and synthesise findings into analysis.**
 
 ---
 

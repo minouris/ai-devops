@@ -1,6 +1,6 @@
 # Disproven Findings Archive
 
-**This file is loaded when: The agent needs to archive a disproven finding.**
+**This file is loaded when: You need to archive a disproven finding.**
 
 ---
 

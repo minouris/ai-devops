@@ -1,6 +1,6 @@
 # Procedural Research Workflow
 
-**This file is loaded when: The agent needs to find, test, and verify a procedure or process.**
+**This file is loaded when: You need to find, test, and verify a procedure or process.**
 
 ---
 

@@ -178,7 +178,7 @@ Short description here.
 Keep range spans natural and balanced:
 - Don't split at arbitrary points
 - Keep ranges that group related terms together when possible
-- Divide at letters that result in roughly equal distribution
+- Divide at letters that result in ±1-2 terms per page
 
 **Example division for 20+ terms:**
 - `terms-index-aut-con.md` (Authentication → Context)

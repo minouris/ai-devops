@@ -1,6 +1,6 @@
 # Verification Operation Logging
 
-**This file is loaded when: The verify-analysis skill completes verification and needs to log the result.**
+**This file is loaded when: You need to log verification results.**
 
 ---
 

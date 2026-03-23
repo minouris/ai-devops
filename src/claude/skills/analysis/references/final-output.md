@@ -1,6 +1,6 @@
 # Final Output Creation
 
-**This file is loaded when: The user explicitly requests creation of final analysis or procedure guide.**
+**This file is loaded when: You need to create final analysis or procedure guide (when user explicitly requests it).**
 
 ---
 

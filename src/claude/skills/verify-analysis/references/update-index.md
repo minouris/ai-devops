@@ -1,6 +1,6 @@
 # Update Analysis Index
 
-**This file is loaded when: A finding has been verified and the analysis index needs to be updated to reflect the new verified finding.**
+**This file is loaded when: You need to update the analysis index to reflect a newly verified finding.**
 
 ---
 

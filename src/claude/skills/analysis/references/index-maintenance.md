@@ -1,6 +1,6 @@
 # Analysis Index Maintenance
 
-**This file is loaded when: The agent needs to update or create the analysis index file.**
+**This file is loaded when: You need to update or create the analysis index file.**
 
 ---
 

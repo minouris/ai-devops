@@ -1,6 +1,6 @@
 # Update Finding with Verification Tag
 
-**This file is loaded when: A finding has been verified and needs to be tagged in the memory file.**
+**This file is loaded when: You need to tag a verified finding in the memory file.**
 
 ---
 
