@@ -4,6 +4,41 @@
 
 ---
 
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Index Update Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the exact index update format as specified for each operation
+- Use only the sections and fields in the specification
+- Maintain exact table structure and heading levels
+- Preserve the Findings table format character-for-character
+
+**MUST NOT:**
+- Add fields to the Findings table beyond specification
+- Add metadata or summary sections not specified
+- Modify the index structure "for improvements"
+- Change the sorting order or table format
+
+---
+
+## Markdown Formatting Standards (from /.claude/rules/markdown-formatting.md)
+
+### Filename Conventions (MANDATORY)
+
+**MUST:**
+- Use lower-snake-case for index filenames (e.g., `topic_index.md`)
+- Use `.md` extension for all Markdown files
+
+**MUST NOT:**
+- Use kebab-case (e.g., `topic-index.md`)
+- Use camelCase (e.g., `topicIndex.md`)
+- Use spaces in filenames
+
+---
+
 ## Execution
 
 After verification is complete, update the analysis index to include the newly verified finding. This maintains a complete and current index of all active findings in the topic.

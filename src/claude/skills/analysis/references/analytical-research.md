@@ -6,6 +6,29 @@
 
 ## Embedded Rules
 
+### Two-Stage Text Search (MANDATORY)
+
+When searching for information within artifacts and documentation, use a two-stage approach before concluding that information is unavailable.
+
+**Stage 1 — Keyword search:**
+- Use Grep or search tools as the initial approach
+- Try multiple related terms, synonyms, and variations
+- Search for feature names, configuration keys, code patterns
+
+**If Stage 1 yields no results or only false positives, proceed to Stage 2:**
+
+**Stage 2 — Direct file examination:**
+- Read the full relevant files or sections directly using Read tool
+- Design rationales, configuration logic, and architectural decisions are frequently expressed in natural language comments
+- Do NOT report that information cannot be found until Stage 2 has been completed
+
+**MUST NOT:**
+- Report information as unavailable after only a keyword search
+- Treat search/grep returning zero results as confirmation that information does not exist
+- Skip file examination when keyword search yields no results
+
+---
+
 ### Documentation-First (MANDATORY)
 
 **MUST:**

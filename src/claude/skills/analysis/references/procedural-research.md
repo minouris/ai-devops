@@ -4,7 +4,33 @@
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Documentation-First Response Requirements (from /src/claude/rules/documentation-first.md)
+
+### Two-Stage Text Search (MANDATORY)
+
+When searching for procedures within documentation, use a two-stage approach before concluding that a procedure is unavailable.
+
+**Stage 1 — Keyword search:**
+- Use Grep or search tools as the initial approach
+- Try multiple related terms, synonyms, and variations
+- Search for procedure names, command names, configuration options
+
+**If Stage 1 yields no results or only false positives, proceed to Stage 2:**
+
+**Stage 2 — Direct file examination:**
+- Read the full relevant documentation files directly using Read tool
+- Procedures, configuration guidelines, and step-by-step instructions are frequently expressed in natural language
+- Do NOT report a procedure as unavailable until Stage 2 has been completed
+
+**MUST NOT:**
+- Report that procedure cannot be found after only a keyword search
+- Treat search/grep returning zero results as confirmation that procedure does not exist
+
+---
+
+## Existing Rules
 
 ### Documentation-First (MANDATORY)
 
