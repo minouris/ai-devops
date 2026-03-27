@@ -2,6 +2,11 @@
 paths:
   - "**/CLAUDE*.md"
   - ".claude/**/*.md"
+  - "**/agents/**/*.md"
+  - "**/commands/**/*.md"
+  - "**/hooks/**/*.md"
+  - "**/rules/**/*.md"
+  - "**/skills/**/*.md"
   - "**/*.instructions.md"
   - "**/*.prompt.md"
   - "**/*.skill.md"
