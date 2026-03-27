@@ -139,6 +139,55 @@ First, consider your audience. Then, think about what changed...
 
 ---
 
+## Language Standards (MANDATORY)
+
+**MUST:**
+- Write all rule content complying with [ai-targeted-language.md](/workspaces/ai-devops/src/claude/rules/ai-targeted-language.md) standards
+- Use second-person imperative addressing the AI ("you must", "when you create", "do not")
+- Use imperative mood for instructions ("Use X", "Write Y", "Apply Z")
+- Use consistent, direct imperatives: "MUST", "MUST NOT", "When you...", "Do not..."
+- Avoid third-person descriptions of AI behaviour ("The AI should", "Copilot will", "Claude Code handles")
+- Avoid vague language ("try to", "consider", "maybe", "roughly", "approximately")
+- Avoid conditional language ("might", "could", "may") when giving instructions
+
+**MUST NOT:**
+- Write rules assuming human readers as the audience
+- Mix second-person instructions with third-person commentary
+- Use marketing language or buzzwords (synergy, leverage, paradigm shift, etc.)
+- Leave requirements open to interpretation through vague wording
+- Use subjunctive mood ("should", "should probably") for requirements
+
+**Rationale:**
+AI models interpret direct, unambiguous language more accurately than vague or conditional phrasing. Second-person imperative tells the AI exactly what to do, eliminating room for misinterpretation. Complying with ai-targeted-language.md standards ensures consistency across all project rules and maximises AI understanding and compliance.
+
+**Examples:**
+
+✅ **Correct (AI-Targeted Language):**
+```markdown
+**MUST:**
+- Write commit messages under 72 characters
+- Use imperative mood ("Add feature", not "Added feature")
+- Begin each message with a verb
+
+**MUST NOT:**
+- Use vague messages ("Fix stuff", "Update code")
+- Include Co-Authored-By lines unless explicitly requested
+```
+
+❌ **Incorrect (Third Person / Vague):**
+```markdown
+**MUST:**
+- The commit message should be kept under 72 characters
+- Rules might suggest using imperative mood
+- Developers should probably consider starting with a verb
+
+**MUST NOT:**
+- The system should avoid vague messages
+- It could be appropriate to include Co-Authored-By lines in some cases
+```
+
+---
+
 ## Content Requirements (MANDATORY)
 
 **MUST:**
@@ -407,7 +456,11 @@ Ask yourself:
 - [ ] If unconditional, does it have no frontmatter at all?
 - [ ] Does the rule enforce compliance standards (not provide procedural instructions)?
 - [ ] Does the rule avoid step-by-step "how to" content?
+- [ ] Does the rule comply with ai-targeted-language.md standards throughout?
 - [ ] Is all content written in second-person imperative (not third person)?
+- [ ] Does the rule avoid third-person descriptions of AI behaviour?
+- [ ] Does the rule avoid vague language ("try to", "consider", "maybe")?
+- [ ] Does the rule avoid conditional language ("might", "could", "may") in requirements?
 - [ ] Does the rule include at least one MUST/MUST NOT section?
 - [ ] If the rule overrides AI defaults, is there a System Prompt Conflict Resolution section?
 - [ ] Does every MUST/MUST NOT section use proper bold labels and bullet lists?
