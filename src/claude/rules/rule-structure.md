@@ -358,6 +358,59 @@ Rationales help AI models understand intent and apply rules correctly in edge ca
 
 ---
 
+## Rule Inclusion and Attribution Requirements (MANDATORY)
+
+**MUST:**
+- When including content or articles from other rules within a rule, comply with [rule-copying.md](/workspaces/ai-devops/src/claude/rules/rule-copying.md) standards
+- When a rule references or embeds sections from other rules as examples or guidance, comply with [rule-embedding.md](/workspaces/ai-devops/src/claude/rules/rule-embedding.md) standards
+- Copy complete rules verbatim with no abbreviation, condensing, summarizing, or paraphrasing
+- Embed only complete sections of referenced rules (no partial sections or simplified versions)
+- Clearly attribute content to source rules in formatted headers (e.g., "### From [source-rule.md]")
+- Include rule source files in the document for user transparency
+
+**MUST NOT:**
+- Abbreviate, condense, summarize, or paraphrase rules included from other sources
+- Include only partial sections of rules presented as complete guidance
+- Mix your own interpretation with copied rule content
+- Embed rules "just in case" without clear applicability to the current rule
+- Replace copied rules with references (e.g., "See X for details")
+- Omit source attribution when including articles from other rules
+
+**Rationale:**
+Rules are structured compliance mechanisms. Copying or embedding rules incompletely creates ambiguity and risk of errors. Abbreviating rules defeats their purpose—enforcement requires complete, clear standards. Proper attribution ensures transparency about where guidance originates and enables users to refer to authoritative source files. Rule-copying.md and rule-embedding.md provide specialised guidance for this specific practice.
+
+**Examples:**
+
+✅ **Correct (Complete Attribution):**
+```markdown
+## Example Standards (incorporating required patterns from git-commits.md)
+
+When adapting the Git Commit Standards pattern from git-commits.md, follow this structure:
+
+### From git-commits.md
+
+**MUST:**
+- Write clear, descriptive subject lines
+- Use present tense, imperative mood ("Add feature" not "Added feature")
+- Keep subject line under 72 characters
+- Include context in the body when helpful
+
+**MUST NOT:**
+- Add "Co-Authored-By" lines unless explicitly requested
+- Add attribution or credit lines to yourself
+```
+
+❌ **Incorrect (Abbreviated and Unattributed):**
+```markdown
+## Example Standards
+
+Write clear commit messages in imperative mood. Subject lines should be short (under 72 chars) and avoid credits or co-author lines.
+
+(No source attribution, condensed version of git-commits.md, lacks complete MUST/MUST NOT structure)
+```
+
+---
+
 ## Compliance Verification Section Requirements (MANDATORY)
 
 **MUST:**
@@ -461,6 +514,10 @@ Ask yourself:
 - [ ] Does the rule avoid third-person descriptions of AI behaviour?
 - [ ] Does the rule avoid vague language ("try to", "consider", "maybe")?
 - [ ] Does the rule avoid conditional language ("might", "could", "may") in requirements?
+- [ ] If the rule includes content from other rules, does it comply with rule-copying.md standards?
+- [ ] If the rule embeds sections from other rules, does it comply with rule-embedding.md standards?
+- [ ] Are all included rules or sections copied verbatim with no abbreviation or summarization?
+- [ ] Are included articles attributed to their source rules with clear source headers?
 - [ ] Does the rule include at least one MUST/MUST NOT section?
 - [ ] If the rule overrides AI defaults, is there a System Prompt Conflict Resolution section?
 - [ ] Does every MUST/MUST NOT section use proper bold labels and bullet lists?
@@ -468,7 +525,6 @@ Ask yourself:
 - [ ] Does Compliance Verification include a checkbox list of yes/no questions?
 - [ ] Does Compliance Verification end with "If ANY answer is 'No':" enforcement block?
 - [ ] Are all headings proper Markdown levels (##, ###, ####), not bold text?
-- [ ] Does the rule avoid vague language ("try to", "consider", "maybe")?
 - [ ] Are rationales included where requirements involve judgment or override defaults?
 - [ ] Are rationales omitted for mechanical requirements?
 
