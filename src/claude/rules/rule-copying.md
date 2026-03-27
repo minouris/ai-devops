@@ -7,14 +7,6 @@ paths:
   - "**/hooks/**/*.md"
   - "**/rules/**/*.md"
   - "**/skills/**/*.md"
-  - "**/*.instructions.md"
-  - "**/*.prompt.md"
-  - "**/*.skill.md"
-  - "**/*.agent.md"
-  - "**/*.mode.md"
-  - "**/*.workflow.md"
-  - "docs/plans/**/*.md"
-  - "docs/steps/**/*.md"
 ---
 
 # Rule Copying Requirements

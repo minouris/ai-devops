@@ -7,9 +7,6 @@ paths:
   - "**/hooks/**/*.md"
   - "**/rules/**/*.md"
   - "**/skills/**/*.md"
-  - "**/*.skill.md"
-  - "**/*.agent.md"
-  - "**/*.prompt.md"
 ---
 
 # Rule Embedding Standards for Skills and Agents
