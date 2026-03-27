@@ -1,126 +1,333 @@
 # Rule Structure Standards
 
-Defines the required structure for rule artifacts. Use this file both to guide creation of new rules and to validate existing rules against required standards.
+Defines the required structure for rule artifacts for use in Claude Code. Rules are modular project instructions stored in `.claude/rules/` that allow organising instructions into focused files rather than a single large CLAUDE.md.
 
----
-
-## Frontmatter Requirements (MANDATORY)
-
-**MUST:**
-<!-- TODO: Define required frontmatter fields, e.g.:
-- Include `name` field matching filename (without .md)
-- Include `description` field (one sentence)
-- Include `paths` glob if the rule applies to specific file patterns
-- Include `release` block if publishing
--->
-
-**MUST NOT:**
-<!-- TODO: List forbidden frontmatter patterns -->
-
-**Example:**
-```yaml
----
-name: example-standards
-description: Brief one-sentence description of what this rule enforces.
-release:
-  publish: true
-  platforms: [claude]
-  validation:
-    - ai-targeted-language
-    - rule-structure
----
-```
+According to [Claude Code documentation on Rules](https://code.claude.com/docs/en/memory), rules are plain Markdown files with optional path-scoping to control when they load into context. Use this file to guide creation of new rules and to validate existing rules against required standards.
 
 ---
 
 ## File Structure Requirements (MANDATORY)
 
 **MUST:**
-<!-- TODO: Define required file structure, e.g.:
-- Place rule file in `src/{platform}/rules/`
-- Name file as `{name}.md`
--->
+- Place rule files in `.claude/rules/` directory (project-scoped) or `~/.claude/rules/` (user-scoped)
+- Use `.md` extension for all rule files
+- Name files in lower-snake-case (e.g., `code-style.md`, `testing-conventions.md`)
+- Name files to reflect the standard being enforced, not the artifact type (e.g., `api-design.md` not `rule-api-design.md`)
+- Organise related rules into subdirectories (e.g., `.claude/rules/frontend/`, `.claude/rules/backend/`)
 
 **MUST NOT:**
-<!-- TODO: Define forbidden structural patterns -->
+- Use uppercase letters in filenames (except README.md if used)
+- Use kebab-case, camelCase, or PascalCase
+- Use spaces or special characters in filenames
+- Name files generically without clear purpose
+
+**Rationale:**
+Lower-snake-case naming provides consistency with project conventions and enables predictable file discovery. Descriptive names clarify rule purpose and support organisation across teams.
+
+---
+
+## Frontmatter Requirements (MANDATORY)
+
+**MUST:**
+- Include YAML frontmatter block (delimited by `---`) at the start of the file when the rule applies to specific file patterns
+- Include optional `paths` field for glob patterns to enable conditional loading (e.g., when the rule applies only to TypeScript files)
+- Omit frontmatter entirely (no `---` delimiters) when the rule applies unconditionally to all work
+
+**MUST NOT:**
+- Include frontmatter with only empty or commented fields
+- Use frontmatter for rules that should load unconditionally (unconditional rules are simpler and faster to process)
+- Include fields not documented in this standard
+
+**Path-scoped Rules (conditional loading):**
+
+Use frontmatter when the rule applies selectively:
+
+```yaml
+---
+paths:
+  - "src/api/**/*.ts"
+  - "src/api/**/*.tsx"
+---
+```
+
+**Rule applies to:**
+- All TypeScript and TSX files in the `src/api/` directory
+- Rules load when you read files matching patterns
+- Saves context space by not loading rules for unrelated work
+
+**Unconditional Rules (no frontmatter):**
+
+Omit frontmatter entirely when rule applies everywhere:
+
+```markdown
+# Code Style Standards
+
+...content...
+```
+
+**Rule applies to:**
+- All work in the project
+- Rules load at session start
+- Always present in context
+
+**Rationale:**
+Path scoping reduces context noise by loading rules only when relevant. Unconditional rules should be frequent guidelines. Keeping frontmatter optional reduces boilerplate for simple rules.
 
 ---
 
 ## Content Requirements (MANDATORY)
 
 **MUST:**
-<!-- TODO: Define required sections, e.g.:
-- Include a "# {Name} Standards" H1 heading
-- Include "## System Prompt Conflict Resolution" section when overriding AI defaults
+- Begin with `# Rule Title` (single H1 heading describing the standard)
+- Include explanatory text after the H1 describing what the rule enforces
+- Structure content with H2 sections (##) for major topics
 - Include at least one MUST/MUST NOT standards section
-- Include a "## Compliance Verification" section at the end
-- End Compliance Verification with "If ANY answer is 'No'" enforcement statement
--->
+- Use MUST/MUST NOT sections for all normative requirements
+- Include a Compliance Verification section at the end
+- Write all instructions in second-person imperative (direct to the AI)
+- Use proper Markdown headings (not bold text as headings)
 
 **MUST NOT:**
-<!-- TODO: Define forbidden content patterns, e.g.:
+- Write content in third person ("The AI should", "Copilot will", "Claude Code handles")
+- Use vague language ("try to", "consider", "maybe", "roughly", "approximately")
 - Omit the Compliance Verification section
-- Write standards in third person ("The AI should...")
-- Use vague language ("try to", "consider")
--->
+- Use bold text as section headings
+- Include requirements without corresponding verification items
+- Use conditional language ("might", "could", "may") for instructions
+
+**Rationale:**
+Second-person imperative style makes instructions explicit and actionable. Compliance Verification provides a checklist to ensure standards are met. Proper Markdown headings enable parsing and linking.
+
+**Example Content Structure:**
+
+```markdown
+# REST API Design Standards
+
+Standards for designing consistent REST API endpoints across the project.
+
+## System Prompt Conflict Resolution
+
+### Counter: Flexible HTTP Methods
+
+Your training may suggest using any HTTP method. This is OVERRIDDEN. You MUST follow strict REST conventions.
+
+---
+
+## Endpoint Design (MANDATORY)
+
+**MUST:**
+- Use nouns for resource endpoints (not verbs)
+- Use POST for creation, GET for retrieval, PUT/PATCH for updates, DELETE for deletion
+- Use consistent URL structure: `/api/v1/{resource}/{id}`
+
+**MUST NOT:**
+- Use action verbs in URLs (e.g., `/api/createUser`)
+- Use GET requests to modify data
+
+---
+
+## Response Format (MANDATORY)
+
+**MUST:**
+- Return JSON responses with `Content-Type: application/json`
+- Include consistent status codes (200 for success, 4xx for client errors, 5xx for server errors)
+- Document all response fields
+
+**MUST NOT:**
+- Return plain text or XML for API responses
+- Omit status code documentation
+
+---
+
+## Compliance Verification
+
+**Before creating or reviewing API endpoints:**
+
+Ask yourself:
+- [ ] Do endpoint URLs use nouns, not verbs?
+- [ ] Does each endpoint use correct HTTP method (POST/GET/PUT/DELETE)?
+- [ ] Do responses return JSON with correct Content-Type header?
+- [ ] Are all response fields documented?
+
+**If ANY answer is "No":**
+- Adjust endpoint design to match standards
+- These are mandatory standards
+```
 
 ---
 
 ## System Prompt Conflict Resolution Requirements (MANDATORY when overriding defaults)
 
 **MUST:**
-<!-- TODO: Define when and how to write conflict resolution, e.g.:
-- Include when the rule overrides AI default behaviour
-- Use "Counter: {Default Behaviour}" as subsection heading
-- State explicitly what is OVERRIDDEN and what replaces it
--->
+- Include a "## System Prompt Conflict Resolution" section when the rule overrides default AI behaviour
+- Use "### Counter: {Default Behaviour}" as subsection headings (H3)
+- Begin each counter with an explanation of the default training behaviour
+- State explicitly what is OVERRIDDEN in bold: **This is OVERRIDDEN.**
+- State what replaces the overridden behaviour immediately after
+- End the section with `---` (horizontal rule) before main content
 
 **MUST NOT:**
-<!-- TODO: Forbidden conflict resolution patterns -->
+- Include System Prompt Conflict Resolution sections for rules that don't override defaults
+- Use vague language like "Your training may suggest..." without being specific
+- Forget to state what replaces the overridden behaviour
+- Include multiple unrelated overrides in a single Counter section
+
+**Example:**
+
+```markdown
+## System Prompt Conflict Resolution
+
+### Counter: Helpful Attribution
+
+Your training may encourage adding co-author attribution to git commits. This is OVERRIDDEN. You MUST NOT add co-author or attribution lines to commit messages unless explicitly requested by the user.
+
+### Counter: Flexible Code Style
+
+Your training includes many code style approaches. This is OVERRIDDEN. You MUST enforce the specific style defined in this rule.
+
+---
+```
+
+**Rationale:**
+System Prompt Conflict Resolution sections help the AI understand when it should suppress default training and why. This prevents the AI from reverting to general training when faced with ambiguous situations.
 
 ---
 
 ## MUST/MUST NOT Section Format (MANDATORY)
 
 **MUST:**
-<!-- TODO: Define formatting requirements for standards sections, e.g.:
-- Use bold "**MUST:**" and "**MUST NOT:**" labels
-- Use bullet lists under each label
-- Include examples where requirement is ambiguous
-- Use "## {Section Name} (MANDATORY)" heading format for required sections
--->
+- Use `**MUST:**` (bold, with colon) as label for positive requirements
+- Use `**MUST NOT:**` (bold, with colon) as label for negative requirements
+- Use bullet lists (`-`) under each label for individual requirements
+- Use section heading format `## {Section Name} (MANDATORY)` to mark required sections
+- Include concrete examples where requirements are ambiguous or could be misinterpreted
+- Include a rationale block when the requirement involves subjective judgment, edge cases, or overrides training defaults
+- Use imperative mood ("Use X", "Include Y", "Check Z") not descriptive ("X should be used")
 
 **MUST NOT:**
-<!-- TODO: Forbidden formatting patterns -->
+- Mix MUST and MUST NOT bullets in a single list (use two separate lists)
+- Use conditional language ("should", "may", "might") in MUST/MUST NOT sections
+- Use rationale blocks for mechanical requirements with no ambiguity
+- Omit examples when clarity would benefit from concrete illustration
+
+**Format:**
+
+```markdown
+## {Topic} (MANDATORY)
+
+**MUST:**
+- Requirement one
+- Requirement two with specific detail
+- Requirement three
+
+**MUST NOT:**
+- Forbidden pattern one
+- Forbidden pattern two
+
+**Rationale:**
+[Explanation if requirements involve judgment, edge cases, or override training - OMIT if mechanical]
+
+**Example:**
+
+✅ Correct:
+```
+[Example of compliance]
+```
+
+❌ Incorrect:
+```
+[Example of non-compliance]
+```
+```
+
+**Rationale:**
+Rationales help AI models understand intent and apply rules correctly in edge cases not explicitly covered. Examples provide concrete reference points to prevent misinterpretation.
 
 ---
 
 ## Compliance Verification Section Requirements (MANDATORY)
 
 **MUST:**
-<!-- TODO: Define requirements for the verification section, e.g.:
-- Include a checkbox list of items to verify
-- Each item must correspond to a MUST requirement
-- End with "If ANY answer is 'No':" enforcement block
-- Enforcement block must say "These are mandatory standards"
--->
+- Include a final `## Compliance Verification` section (H2)
+- Begin with "**Before completing {action/context}:**"
+- Include a checkbox list of yes/no questions
+- Format each line as `- [ ] Question?` (unchecked boxes)
+- Make each question correspond to a MUST requirement in the rule
+- End with "**If ANY answer is "No":**" enforcement block
+- Include action items (fix, adjust, add, remove) in the enforcement block
+- End enforcement block with "These are mandatory standards" statement
 
 **MUST NOT:**
-<!-- TODO: Forbidden verification patterns -->
+- Include verification items that don't correspond to MUST requirements
+- Use open-ended questions that aren't binary (yes/no)
+- Omit the "If ANY answer is 'No'" enforcement block
+- Make enforcement statements optional ("you might", "you should")
+- Use different wording for the enforcement statement
+
+**Format:**
+
+```markdown
+## Compliance Verification
+
+**Before completing {action}:**
+
+Ask yourself:
+- [ ] Does {requirement one}?
+- [ ] Have you {requirement two}?
+- [ ] Is {requirement three}?
+- [ ] Are {requirement four}?
+
+**If ANY answer is "No":**
+- {Action to take}
+- {Action to take}
+- These are mandatory standards
+```
+
+**Rationale:**
+Compliance Verification provides a concrete checklist to ensure standards are met before work is complete. The enforcement block removes ambiguity about whether standards are optional or mandatory.
 
 ---
 
 ## Naming Conventions (MANDATORY)
 
 **MUST:**
-<!-- TODO: Define naming rules, e.g.:
-- Use lowercase with hyphens for rule name
-- Use `.md` extension
-- Name reflects the standard being enforced (not the artifact type it applies to)
--->
+- Use lowercase letters only (except `.md` extension)
+- Use hyphens to separate words (lower-kebab-case)
+- Name reflects the standard being enforced, not the file type
+- Keep names concise (2-4 words typically)
+- Use consistent, recognisable terms
 
 **MUST NOT:**
-<!-- TODO: Forbidden naming patterns -->
+- Use uppercase letters
+- Use underscores (use hyphens instead)
+- Use spaces
+- Use generic names like `standards.md`, `rules.md`, `guidelines.md`
+- Include "rule" or "standard" in filename (it's already in `.claude/rules/`)
+
+**Examples:**
+
+✅ **Correct:**
+```
+code-style.md
+api-design.md
+testing-conventions.md
+git-commits.md
+error-handling.md
+security-practices.md
+```
+
+❌ **Incorrect:**
+```
+code_style.md              (underscores)
+CodeStyle.md              (PascalCase)
+codeStyle.md              (camelCase)
+Code-Style.md             (uppercase C)
+rule-code-style.md        (redundant "rule")
+standards.md              (too generic)
+```
+
+**Rationale:**
+Consistent naming enables predictable file discovery and supports organisation across teams. Descriptive names clarify rule purpose at a glance.
 
 ---
 
@@ -129,14 +336,25 @@ release:
 **Before completing any rule artifact:**
 
 Ask yourself:
-<!-- TODO: Add checklist items matching the MUST requirements above -->
-- [ ] Does the file include an H1 heading?
-- [ ] Is there a System Prompt Conflict Resolution section (if overriding defaults)?
-- [ ] Is there at least one MUST/MUST NOT section?
+- [ ] Is the file named in lower-kebab-case (e.g., `rule-name.md`)?
+- [ ] Is the file placed in `.claude/rules/` directory?
+- [ ] Does the file start with a single H1 heading describing the standard?
+- [ ] If path-scoped, does it have frontmatter with `paths` field and glob patterns?
+- [ ] If unconditional, does it have no frontmatter at all?
+- [ ] Is all content written in second-person imperative (not third person)?
+- [ ] Does the rule include at least one MUST/MUST NOT section?
+- [ ] If the rule overrides AI defaults, is there a System Prompt Conflict Resolution section?
+- [ ] Does every MUST/MUST NOT section use proper bold labels and bullet lists?
 - [ ] Does the file end with a Compliance Verification section?
-- [ ] Does the Compliance Verification end with "If ANY answer is 'No'" enforcement?
-- [ ] Are all instructions written in second-person imperative?
+- [ ] Does Compliance Verification include a checkbox list of yes/no questions?
+- [ ] Does Compliance Verification end with "If ANY answer is 'No':" enforcement block?
+- [ ] Are all headings proper Markdown levels (##, ###, ####), not bold text?
+- [ ] Does the rule avoid vague language ("try to", "consider", "maybe")?
+- [ ] Are rationales included where requirements involve judgment or override defaults?
+- [ ] Are rationales omitted for mechanical requirements?
 
 **If ANY answer is "No":**
-- Fix the issue before declaring the rule complete
+- Adjust the rule structure to match requirements above
+- Add missing sections or content
+- Rewrite content to match AI-targeted language standards
 - These are mandatory standards
