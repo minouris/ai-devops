@@ -1,3 +1,9 @@
+---
+paths:
+  - ".claude/rules/**/*.md"
+  - "src/claude/rules/**/*.md"
+---
+
 # Rule Structure Standards
 
 Defines the required structure for rule artifacts for use in Claude Code. Rules are modular project instructions stored in `.claude/rules/` that allow organising instructions into focused files rather than a single large CLAUDE.md.
