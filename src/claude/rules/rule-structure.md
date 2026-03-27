@@ -75,6 +75,70 @@ Path scoping reduces context noise by loading rules only when relevant. Uncondit
 
 ---
 
+## Rule Purpose and Scope (MANDATORY)
+
+**MUST:**
+- Write rules to enforce compliance standards and requirements
+- Use rules to specify "what MUST be true" about code, process, or practice
+- Focus rules on verifiable outcomes and constraints
+- Apply rules to validate or check work against standards
+
+**MUST NOT:**
+- Write rules as instructional guides or tutorials
+- Include step-by-step "how to" procedures in rules
+- Write procedural explanations ("First do X, then do Y")
+- Use rules to teach skills or document workflows
+- Include learning content or educational material
+
+**Rationale:**
+Rules are enforcement mechanisms—they state what standards must be met and how to verify compliance. Instructional content (how to perform tasks, step-by-step workflows, tutorials) belongs in separate guides or documentation, not in rules. Rules remain focused and efficient by stating requirements, not explaining processes.
+
+**Examples:**
+
+✅ **Correct (Compliance Rule):**
+```markdown
+# Git Commit Standards
+
+## Commit Messages (MANDATORY)
+
+**MUST:**
+- Write commit messages under 72 characters
+- Use imperative mood ("Add feature", not "Added feature")
+- Include rationale in message body
+
+**MUST NOT:**
+- Use vague messages ("Fix stuff", "Update code")
+- Include Co-Authored-By lines unless requested
+
+## Compliance Verification
+
+Ask yourself:
+- [ ] Is commit message under 72 characters?
+- [ ] Does message use imperative mood?
+
+If ANY answer is "No":
+- Revise commit message
+- These are mandatory standards
+```
+
+❌ **Incorrect (Instructional Content):**
+```markdown
+# How to Create Git Commits
+
+## Step-by-Step Process
+
+1. Make your code changes
+2. Run `git add` to stage files
+3. Create a message with `git commit -m`
+4. Push to remote with `git push`
+
+## Writing Good Messages
+
+First, consider your audience. Then, think about what changed...
+```
+
+---
+
 ## Content Requirements (MANDATORY)
 
 **MUST:**
@@ -341,6 +405,8 @@ Ask yourself:
 - [ ] Does the file start with a single H1 heading describing the standard?
 - [ ] If path-scoped, does it have frontmatter with `paths` field and glob patterns?
 - [ ] If unconditional, does it have no frontmatter at all?
+- [ ] Does the rule enforce compliance standards (not provide procedural instructions)?
+- [ ] Does the rule avoid step-by-step "how to" content?
 - [ ] Is all content written in second-person imperative (not third person)?
 - [ ] Does the rule include at least one MUST/MUST NOT section?
 - [ ] If the rule overrides AI defaults, is there a System Prompt Conflict Resolution section?
