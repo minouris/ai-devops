@@ -148,7 +148,7 @@ First, consider your audience. Then, think about what changed...
 ## Language Standards (MANDATORY)
 
 **MUST:**
-- Write all rule content complying with [ai-targeted-language.md](/workspaces/ai-devops/src/claude/rules/ai-targeted-language.md) standards
+- Write all rule content complying with [ai-targeted-language.md](ai-targeted-language.md) standards
 - Use second-person imperative addressing the AI ("you must", "when you create", "do not")
 - Use imperative mood for instructions ("Use X", "Write Y", "Apply Z")
 - Use consistent, direct imperatives: "MUST", "MUST NOT", "When you...", "Do not..."
@@ -205,6 +205,7 @@ AI models interpret direct, unambiguous language more accurately than vague or c
 - Include a Compliance Verification section at the end
 - Write all instructions in second-person imperative (direct to the AI)
 - Use proper Markdown headings (not bold text as headings)
+- Use relative links when referencing other files in the project (e.g., `[rule-copying.md](rule-copying.md)` not `[rule-copying.md](/workspaces/ai-devops/src/claude/rules/rule-copying.md)`)
 
 **MUST NOT:**
 - Write content in third person ("The AI should", "Copilot will", "Claude Code handles")
@@ -213,6 +214,7 @@ AI models interpret direct, unambiguous language more accurately than vague or c
 - Use bold text as section headings
 - Include requirements without corresponding verification items
 - Use conditional language ("might", "could", "may") for instructions
+- Use absolute paths when linking to other project files
 
 **Rationale:**
 Second-person imperative style makes instructions explicit and actionable. Compliance Verification provides a checklist to ensure standards are met. Proper Markdown headings enable parsing and linking.
@@ -367,8 +369,8 @@ Rationales help AI models understand intent and apply rules correctly in edge ca
 ## Rule Inclusion and Attribution Requirements (MANDATORY)
 
 **MUST:**
-- When including content or articles from other rules within a rule, comply with [rule-copying.md](/workspaces/ai-devops/src/claude/rules/rule-copying.md) standards
-- When a rule references or embeds sections from other rules as examples or guidance, comply with [rule-embedding.md](/workspaces/ai-devops/src/claude/rules/rule-embedding.md) standards
+- When including content or articles from other rules within a rule, comply with [rule-copying.md](rule-copying.md) standards
+- When a rule references or embeds sections from other rules as examples or guidance, comply with [rule-embedding.md](rule-embedding.md) standards
 - Copy complete rules verbatim with no abbreviation, condensing, summarizing, or paraphrasing
 - Embed only complete sections of referenced rules (no partial sections or simplified versions)
 - Clearly attribute content to source rules in formatted headers (e.g., "### From [source-rule.md]")
@@ -513,6 +515,7 @@ Ask yourself:
 - [ ] Does the file start with a single H1 heading describing the standard?
 - [ ] If path-scoped, does it have frontmatter with `paths` field and glob patterns?
 - [ ] If unconditional, does it have no frontmatter at all?
+- [ ] Do all links to other project files use relative paths (not absolute)?
 - [ ] Does the rule enforce compliance standards (not provide procedural instructions)?
 - [ ] Does the rule avoid step-by-step "how to" content?
 - [ ] Does the rule comply with ai-targeted-language.md standards throughout?
