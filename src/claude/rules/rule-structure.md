@@ -11,7 +11,7 @@ According to [Claude Code documentation on Rules](https://code.claude.com/docs/e
 **MUST:**
 - Place rule files in `.claude/rules/` directory (project-scoped) or `~/.claude/rules/` (user-scoped)
 - Use `.md` extension for all rule files
-- Name files in lower-snake-case (e.g., `code-style.md`, `testing-conventions.md`)
+- Name files in lower-kebab-case (e.g., `code-style.md`, `testing-conventions.md`)
 - Name files to reflect the standard being enforced, not the artifact type (e.g., `api-design.md` not `rule-api-design.md`)
 - Organise related rules into subdirectories (e.g., `.claude/rules/frontend/`, `.claude/rules/backend/`)
 
@@ -22,7 +22,7 @@ According to [Claude Code documentation on Rules](https://code.claude.com/docs/e
 - Name files generically without clear purpose
 
 **Rationale:**
-Lower-snake-case naming provides consistency with project conventions and enables predictable file discovery. Descriptive names clarify rule purpose and support organisation across teams.
+Lower-kebab-case naming provides consistency with project conventions and enables predictable file discovery. Descriptive names clarify rule purpose and support organisation across teams.
 
 ---
 
@@ -38,7 +38,7 @@ Lower-snake-case naming provides consistency with project conventions and enable
 - Use frontmatter for rules that should load unconditionally (unconditional rules are simpler and faster to process)
 - Include fields not documented in this standard
 
-**Path-scoped Rules (conditional loading):**
+### Path-scoped Rules (conditional loading)
 
 Use frontmatter when the rule applies selectively:
 
@@ -55,7 +55,7 @@ paths:
 - Rules load when you read files matching patterns
 - Saves context space by not loading rules for unrelated work
 
-**Unconditional Rules (no frontmatter):**
+### Unconditional Rules (no frontmatter)
 
 Omit frontmatter entirely when rule applies everywhere:
 
