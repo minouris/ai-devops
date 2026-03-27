@@ -23,7 +23,8 @@ According to [Claude Code documentation on Rules](https://code.claude.com/docs/e
 
 **MUST NOT:**
 - Use uppercase letters in filenames (except README.md if used)
-- Use kebab-case, camelCase, or PascalCase
+- Use mixed-case or uppercase kebab-case (e.g., `Code-Style.md`, `API-Design.md`)
+- Use camelCase or PascalCase
 - Use spaces or special characters in filenames
 - Name files generically without clear purpose
 
