@@ -375,6 +375,7 @@ Rationales help AI models understand intent and apply rules correctly in edge ca
 - Embed only complete sections of referenced rules (no partial sections or simplified versions)
 - Clearly attribute content to source rules in formatted headers (e.g., "### From [source-rule.md]")
 - Include rule source files in the document for user transparency
+- Adjust heading levels of included content so they are subordinate to the including section's heading level (e.g., if including under an H2 `##` section, demote included H2s to H3 `###`, H3s to H4 `####`, and so on)
 
 **MUST NOT:**
 - Abbreviate, condense, summarize, or paraphrase rules included from other sources
@@ -383,39 +384,43 @@ Rationales help AI models understand intent and apply rules correctly in edge ca
 - Embed rules "just in case" without clear applicability to the current rule
 - Replace copied rules with references (e.g., "See X for details")
 - Omit source attribution when including articles from other rules
+- Use heading levels in included content that are equal to or higher than the containing section's heading level
 
 **Rationale:**
-Rules are structured compliance mechanisms. Copying or embedding rules incompletely creates ambiguity and risk of errors. Abbreviating rules defeats their purpose—enforcement requires complete, clear standards. Proper attribution ensures transparency about where guidance originates and enables users to refer to authoritative source files. Rule-copying.md and rule-embedding.md provide specialised guidance for this specific practice.
+Rules are structured compliance mechanisms. Copying or embedding rules incompletely creates ambiguity and risk of errors. Abbreviating rules defeats their purpose—enforcement requires complete, clear standards. Proper attribution ensures transparency about where guidance originates and enables users to refer to authoritative source files. Maintaining correct heading hierarchy preserves document structure and navigation—headings at the same or higher level than their container break the document outline and confuse parsers, renderers, and readers. Rule-copying.md and rule-embedding.md provide specialised guidance for this specific practice.
 
 **Examples:**
 
-✅ **Correct (Complete Attribution):**
+✅ **Correct (Complete Attribution with Adjusted Hierarchy):**
 ```markdown
 ## Example Standards (incorporating required patterns from git-commits.md)
 
-When adapting the Git Commit Standards pattern from git-commits.md, follow this structure:
-
 ### From git-commits.md
+
+#### Commit Messages (MANDATORY)
 
 **MUST:**
 - Write clear, descriptive subject lines
 - Use present tense, imperative mood ("Add feature" not "Added feature")
 - Keep subject line under 72 characters
-- Include context in the body when helpful
 
 **MUST NOT:**
 - Add "Co-Authored-By" lines unless explicitly requested
-- Add attribution or credit lines to yourself
 ```
+*The source rule's H2 `## Commit Messages` is demoted to H4 `####` because it sits under H2 `##` + H3 `###` in this document.*
 
-❌ **Incorrect (Abbreviated and Unattributed):**
+❌ **Incorrect (Heading hierarchy violation):**
 ```markdown
 ## Example Standards
 
-Write clear commit messages in imperative mood. Subject lines should be short (under 72 chars) and avoid credits or co-author lines.
+## From git-commits.md
 
-(No source attribution, condensed version of git-commits.md, lacks complete MUST/MUST NOT structure)
+## Commit Messages (MANDATORY)
+
+**MUST:**
+- Write clear, descriptive subject lines
 ```
+*Included H2 headings break the document outline — they appear at the same level as the containing section.*
 
 ---
 
@@ -527,6 +532,7 @@ Ask yourself:
 - [ ] If the rule embeds sections from other rules, does it comply with rule-embedding.md standards?
 - [ ] Are all included rules or sections copied verbatim with no abbreviation or summarization?
 - [ ] Are included articles attributed to their source rules with clear source headers?
+- [ ] Are heading levels of included content adjusted to be subordinate to the containing section?
 - [ ] Does the rule include at least one MUST/MUST NOT section?
 - [ ] If the rule overrides AI defaults, is there a System Prompt Conflict Resolution section?
 - [ ] Does every MUST/MUST NOT section use proper bold labels and bullet lists?
