@@ -6,12 +6,6 @@ paths:
 
 # Rule Structure Standards
 
-Defines the required structure for rule artifacts for use in Claude Code. Rules are modular project instructions stored in `.claude/rules/` that allow organising instructions into focused files rather than a single large CLAUDE.md.
-
-According to [Claude Code documentation on Rules](https://code.claude.com/docs/en/memory), rules are plain Markdown files with optional path-scoping to control when they load into context. Use this file to guide creation of new rules and to validate existing rules against required standards.
-
----
-
 ## File Structure Requirements (MANDATORY)
 
 **MUST:**
