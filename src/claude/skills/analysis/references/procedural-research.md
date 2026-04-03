@@ -63,93 +63,70 @@ When searching for procedures within documentation, use a two-stage approach bef
 
 2. **Confirm topic slug**: Confirm the topic slug with the user (e.g., `pterodactyl-install`); this is used for file naming and operation logging throughout this work
 
-3. **Search and capture**: Search web/docs using WebFetch/WebSearch and capture ALL findings in the fact file `.memory/[topic]-facts.md`
+3. **Search and capture**: Search web/docs using WebFetch/WebSearch and capture ALL findings using the [Fact Capture Guidelines](fact-capture.md)
 
-4. **Document procedures**: Document procedures found, variations, requirements, attempts, and results in the fact file
+4. **Document procedures**: Document procedures found, variations, requirements, attempts, and results in fact files following [Fact Capture Guidelines](fact-capture.md)
 
 5. **Test if possible**: If testing is possible, document all attempts and outcomes using Bash
 
-6. **Iterate**: Keep capturing everything in the fact file, refining based on test results
+6. **Iterate**: Keep capturing everything in fact files, refining based on test results using [Fact Capture Guidelines](fact-capture.md)
 
 ---
 
-## Fact Capture Format
+## Fact Capture
 
-Use `.memory/[topic]-facts.md` for capturing findings.
+Use [Fact Capture Guidelines](fact-capture.md) to save all findings.
 
-**Entry format:**
-```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD HH:MM
-**Source:** [URL or observation]
+**When you capture findings:**
 
-[Finding description - procedure, variation, requirement, test result]
+**MUST:**
+- Use the folder-based organisation at `.memory/[topic]/` with structure specified in [Fact Capture Guidelines](fact-capture.md)
+- Follow the entry format specified in [Fact Capture Guidelines](fact-capture.md): FINDING-YYYY-MM-DD-N with Captured, Source, and Verified fields
+- Include source references for all findings (documentation, testing observation, URL)
+- Timestamp each entry accurately
+- Add `**Verified:** [NOT YET VERIFIED - requires verification workflow]` to every new finding
+- Use the Write tool to create fact files, Edit tool to append findings
+- Document procedures, variations, requirements, test results, and workarounds
 
-[Optional: Additional context, alternatives, or notes]
-```
-
-**Example:**
-```markdown
-### FINDING-2026-02-24-1
-**Captured:** 2026-02-24 14:30
-**Source:** https://docs.example.com/installation
-
-Installation requires Python 3.9+ and Node.js 18+.
-
-Tested on Ubuntu 22.04 - works as documented.
-Alternative: Can use Docker image (example/app:latest) to skip dependency installation.
-```
+**MUST NOT:**
+- Use the flat `.memory/[topic]-facts.md` path (use folder structure instead)
+- Mark findings as verified during fact-finding phase
+- Edit existing findings during research
+- Delete failed attempts
+- Skip documenting workarounds or negative findings
 
 ---
 
 ## Testing Documentation
 
-When testing procedures:
+When you test procedures:
 
 **MUST:**
-- Document exact commands run
+- Document exact commands executed
 - Record output/errors
 - Note environment details (OS, versions)
 - Indicate success/failure clearly
 - Document workarounds discovered
+- Use the format specified in [Fact Capture Guidelines](fact-capture.md)
 
-**Testing entry format:**
-```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD HH:MM
-**Source:** Testing on [environment]
-
-Tested command: `[exact command]`
-Result: [Success/Failed with error "..."]
-Workaround: [if applicable]
-Success: [confirmation]
-```
-
-**Example:**
-```markdown
-### FINDING-2026-02-24-2
-**Captured:** 2026-02-24 14:45
-**Source:** Testing on Ubuntu 22.04
-
-Tested command: `npm install`
-Result: Failed with error "EACCES: permission denied"
-Workaround: Used `sudo npm install --unsafe-perm`
-Success: Installation completed
-```
+**MUST NOT:**
+- Skip environment details
+- Omit error messages or failures
+- Hide workarounds - capture them as findings
 
 ---
 
 ## Iterative Refinement
 
-Continue iterating until the procedure is verified through successful testing.
+Continue iterating until you verify the procedure through successful testing.
 
-**When refining:**
-- Add new findings to the fact file (don't edit existing)
+**When you refine findings:**
+- Append new findings to fact files (do not edit existing)
 - Reference previous findings if building on them
 - Note which variations work in which environments
-- Capture dead ends and why they failed
+- Capture dead ends and the reasons they failed
 
 **MUST NOT:**
 - Edit existing findings during research
 - Delete failed attempts
-- Skip documenting workarounds
+- Skip documenting workarounds or failed approaches
