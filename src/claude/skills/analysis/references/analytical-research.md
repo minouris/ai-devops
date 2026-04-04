@@ -46,18 +46,18 @@ When searching for information within artifacts and documentation, use a two-sta
 
 # Separation of Concerns
 
-## Research Responsibility
+## Your Responsibilities
 
-The analytical-research workflow is responsible ONLY for:
+When you execute analytical-research, you are responsible ONLY for:
 - Clarifying research scope and objectives
 - Conducting systematic examination of artifacts
 - Performing two-stage text searches
 - Collecting raw findings and observations
 - **Invoking the fact-capture flow** to record findings
 
-## Fact-Capture Responsibility
+## What Fact-Capture Does
 
-**DO NOT** attempt fact-capture implementation:
+**Do NOT** attempt fact-capture implementation:
 - DO NOT format findings entries
 - DO NOT manage fact file structure
 - DO NOT handle verification tags or timestamps
@@ -65,7 +65,7 @@ The analytical-research workflow is responsible ONLY for:
 - DO NOT extract or verify terms
 - DO NOT archive disproven findings
 
-All fact recording, verification, and maintenance **MUST** be delegated to the fact-capture flow.
+You MUST delegate all fact recording, verification, and maintenance to the fact-capture flow.
 
 ---
 
@@ -101,7 +101,9 @@ All fact recording, verification, and maintenance **MUST** be delegated to the f
    - clarifies: [optional: FINDING-YYYY-MM-DD-N if this clarifies an existing finding]
    ```
 
-   **The fact-capture flow is responsible for:**
+   **When you invoke fact-capture for a finding:**
+
+   Fact-capture performs:
    - Generating FINDING-YYYY-MM-DD-N identifiers
    - Creating/appending to fact files with proper structure
    - Adding Captured timestamps (YYYY-MM-DD HH:MM)
@@ -110,7 +112,7 @@ All fact recording, verification, and maintenance **MUST** be delegated to the f
    - Maintaining the main topic index
    - Handling subtopic creation when thresholds are exceeded
 
-6. **Continue research**: Keep capturing findings without pausing for approval. The fact-capture flow handles all recording and maintenance.
+6. **Continue research**: Keep capturing findings without pausing for approval. The fact-capture flow handles all recording, verification, and maintenance.
 
 7. **Handle disproven findings**: When user disproves a finding during review, invoke the fact-capture flow with:
    ```
@@ -120,7 +122,9 @@ All fact recording, verification, and maintenance **MUST** be delegated to the f
    - reason: [user explanation of why finding is disproven]
    ```
 
-   **The fact-capture flow is responsible for:**
+   **When you invoke fact-capture to archive a disproven finding:**
+
+   Fact-capture performs:
    - Moving the finding to the `-disproven.md` archive
    - Recording the disproof metadata
    - Updating the index
@@ -152,6 +156,6 @@ Invoke fact-capture flow with:
 - clarifies: FINDING-2026-02-24-3  (the finding being clarified)
 ```
 
-The fact-capture flow is responsible for appending the clarification as a new finding with proper linking.
+Fact-capture appends the clarification as a new finding with proper linking.
 
 ---

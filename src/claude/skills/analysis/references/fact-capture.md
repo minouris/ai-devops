@@ -1,49 +1,16 @@
 # Fact-Capture Flow Specification
 
-**This document defines the fact-capture flow as invoked by research workflows (procedural-research and analytical-research).**
+**When you implement the fact-capture flow, use this specification to understand your responsibilities.**
 
 ---
 
-# Flow Purpose
+# Your Responsibilities (What You MUST Do)
 
-The fact-capture flow is responsible for **all aspects of recording, formatting, verification, indexing, and term linking** for research findings. Research workflows do not implement fact-capture logic; they invoke this flow.
-
----
-
-# Flow Invocation Interface
-
-## Standard Finding Capture
-
-When a research workflow encounters a finding, invoke the fact-capture flow:
-
-```
-Invoke fact-capture flow with:
-- topic: [string] - Topic slug used throughout research (e.g., "ai-config-distribution-strategies")
-- observation: [string] - Finding description: fact, observation, theory, hypothesis, dead end, or note
-- source: [string] - Citation to authoritative source, URL, file path, or "User observation"
-- subtopic: [optional string] - Subtopic category if finding belongs to specific area within topic
-- clarifies: [optional string] - FINDING-YYYY-MM-DD-N if this clarifies an existing finding
-```
-
-## Disproven Finding Archive
-
-When research workflow receives user feedback that a finding is disproven, invoke the fact-capture flow:
-
-```
-Invoke fact-capture flow with:
-- action: "archive-disproven"
-- topic: [string] - Topic slug
-- finding-id: [string] - FINDING-YYYY-MM-DD-N identifier of finding to archive
-- reason: [string] - User explanation of why finding is disproven
-```
-
----
-
-# Flow Responsibilities (What Fact-Capture MUST Do)
-
-When invoked, the fact-capture flow is **solely responsible** for:
+When you are invoked to capture a finding, you are **solely responsible** for:
 
 ## Finding Recording
+
+**MUST:**
 - Generate unique FINDING-YYYY-MM-DD-N identifiers
 - Create or append to fact files in proper location (`.memory/[topic]/[topic]-facts.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`)
 - Add **Captured:** YYYY-MM-DD HH:MM timestamp to each finding
@@ -51,58 +18,112 @@ When invoked, the fact-capture flow is **solely responsible** for:
 - Record complete observation text with source citation
 
 ## File Structure Management
+
+**MUST:**
 - Create topic directories (`.memory/[topic]/`) when needed
-- Create subtopic directories (`.memory/[topic]/[topic]-[subtopic]/`) when thresholds exceeded
+- Create subtopic directories (`.memory/[topic]/[topic]-[subtopic]/`) when thresholds are exceeded
 - Manage file naming conventions and folder organisation
 - Maintain folder-based structure (.memory/[topic]/ not flat .memory/ root)
 - Enforce maximum file size (40,000 characters) with automatic subtopic creation when exceeded
 
 ## Index Maintenance
+
+**MUST:**
 - Maintain `.memory/[topic]/[topic]-index.md` as single source of truth for all findings
 - Add findings to findings table only after capturing in fact file
 - Organise findings table by Topic (primary) and Name (secondary)
 - Link findings to their actual location in fact files
-- Update verification status counts
-- **NEVER create per-subtopic indices** - all findings route through main topic index
 
-## Term Management (Before Verification)
-- Extract semantic terms automatically when findings introduce new concepts
-- Create `.memory/[topic]/[topic]-terms.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-terms.md`
-- Create bidirectional links between findings and terms
-- Maintain term index with proper entry format
-
-## Disproven Finding Management
-- Move disproven findings to `-disproven.md` companion file
-- Record disproof metadata (when, reason, who disproved)
-- Preserve full context of original finding
-- Never delete disproven findings
+**MUST NOT:**
+- Create per-subtopic indices; all findings route through main topic index
 
 ## Clarification Handling
+
+**MUST:**
 - Append clarifications as new FINDING-YYYY-MM-DD-N entries
 - Link clarifications to original findings via `Clarifies:` reference
 - Leave original findings unchanged
 - Store clarifications in same fact file as originals
 
 ## Documentation-First Compliance
-- Verify all findings reference authoritative sources
-- Enforce source citations on every finding
-- Reject findings without proper source documentation
+
+**MUST:**
+- Enforce that all findings reference authoritative sources
+- Reject findings without proper source citations
 
 ---
 
-# Flow Guarantees (Idempotence)
+# Invocation Contract
 
-The fact-capture flow **MUST** be idempotent and absolute:
+## Single Finding Per Invocation
 
-1. **Multiple invocations of the same finding are safe**: If the same finding is invoked twice with identical parameters, it is recorded once (not duplicated)
+Fact-capture is designed as a **single-concern, single-fact operation**:
 
-2. **Finding references are globally consistent**: Any invocation that references another finding by ID (e.g., `clarifies: FINDING-2026-04-04-01`) works consistently regardless of invocation order
+- **One invocation = one finding recorded**
+- Fact-capture accepts a single finding observation and records it
+- Fact-capture returns immediately after recording (or when duplicate detected)
+- No batch operations; research workflows invoke once per finding
 
-3. **Fact files remain in valid state**: The fact-capture flow never leaves fact files in incomplete or inconsistent states
+## Return Value
 
-4. **Index always reflects actual findings**: Index is updated synchronously with fact capture; index and fact files never diverge
+Fact-capture MUST return status to the invoking research workflow:
 
-5. **File location migrations are transparent**: If a finding is moved to a new subtopic file due to size thresholds, the finding reference (e.g., `FINDING-2026-04-04-01`) remains valid and consistent
+```
+Return:
+- status: "captured" | "rejected" | "duplicate"
+- finding-id: FINDING-YYYY-MM-DD-N (if captured or duplicate)
+- reason: [explanation if rejected or duplicate]
+- verification-status: [NOT YET VERIFIED | VERIFIED on YYYY-MM-DD by source-url | REJECTED on YYYY-MM-DD by reason]
+```
+
+**Status meanings:**
+- `captured`: Finding was successfully recorded, verified synchronously
+- `duplicate`: Finding already exists; same FINDING-YYYY-MM-DD-N returned with existing verification status
+- `rejected`: Finding was rejected (missing source citation, or disproven during verification); not recorded
+
+---
+
+# Downstream Operations (You Invoke These)
+
+**You are responsible for invoking verification via subagents, maintaining independent agent context for isolation:**
+
+## Synchronous Verification Invocation
+
+After recording a finding, invoke verify-analysis subagent (synchronously, in isolated context):
+
+```
+Invoke verify-analysis subagent with:
+- action: "verify-fact"
+- finding-id: FINDING-YYYY-MM-DD-N
+- topic: [topic-slug]
+```
+
+**When verify-analysis completes:**
+- If verified: Return with verification status VERIFIED and source URL
+- If disproven: verify-analysis archives to `-disproven.md`; you return rejection status
+- If unverifiable: Return with [NOT YET VERIFIED] tag
+
+**verify-analysis responsibilities (in independent context):**
+- Verify finding content against authoritative sources
+- Archive findings to `-disproven.md` if false
+- Update finding tags with verification metadata
+- Report results to you
+
+---
+
+# Your Guarantees (Idempotence)
+
+**You MUST be idempotent and absolute:**
+
+1. **Multiple invocations of the same finding are safe**: When invoked twice with identical parameters, record the finding once (do not duplicate)
+
+2. **Finding references are globally consistent**: When invoked with a reference to another finding by ID (e.g., `clarifies: FINDING-2026-04-04-01`), work consistently regardless of invocation order
+
+3. **Fact files remain in valid state**: Do NOT leave fact files in incomplete or inconsistent states
+
+4. **Index always reflects actual findings**: Update index synchronously with fact capture; never let index and fact files diverge
+
+5. **File location migrations are transparent**: When a finding is moved to a new subtopic file due to size thresholds, keep the finding reference (e.g., `FINDING-2026-04-04-01`) valid and consistent
 
 ---
 
@@ -120,48 +141,19 @@ Research workflows (procedural-research, analytical-research) **MUST NOT**:
 - Create or manage subtopics
 - Extract or link terms
 - Archive disproven findings
+- Verify facts or terms
 
-Research workflows must invoke the fact-capture flow for all recording, maintenance, and verification tasks.
-
----
-
-# Verification Phase (Separate from Capture)
-
-This flow specification covers fact CAPTURE only. After fact capture is complete:
-
-- Research workflows are finished
-- The verify-analysis skill takes over
-- verify-analysis verifies each finding against sources
-- verify-analysis extracts and verifies terms
-- verify-analysis updates findings with [VERIFIED on YYYY-MM-DD by source-url] tags
-- verify-analysis updates indices with verification status
-- Only then are findings considered "complete"
-
-See [verify-analysis skill](../../verify-analysis/SKILL.md) for the verification workflow.
+Research workflows **MUST** invoke you for all recording and maintenance tasks. Verification depends on downstream flows (verify-analysis, term-capture).
 
 ---
 
-# How Fact-Capture Flow is Implemented
+# Implementation Details
 
-**CRITICAL:** This specification defines WHAT the fact-capture flow does, not HOW it is implemented.
+**CRITICAL:** This specification defines what YOU MUST DO (not HOW you implement it).
 
-Implementation details (which tools are used, file I/O patterns, parsing logic, etc.) are encapsulated within the fact-capture flow and **MUST NOT be visible to research workflows**.
+Implementation details (which tools you use, file I/O patterns, parsing logic, etc.) are encapsulated within you and **MUST NOT be visible to research workflows**.
 
-Research workflows invoke the flow by name with defined parameters. The implementation is a black box.
-
----
-
-# Before Finalizing Research: Terminology Verification
-
-After fact capture is complete, research workflows must request fact verification:
-
-For each captured finding:
-1. Notice any semantic concepts or terminology introduced in the finding
-2. Request term verification: "Please verify terminology used in FINDING-2026-04-04-01"
-3. The verify-analysis skill updates findings with verified term references
-4. Findings are amended to use standardised terminology from verified terms
-
-See [verify-analysis skill](../../verify-analysis/SKILL.md) for the complete verification workflow.
+Research workflows invoke you by name with defined parameters. You are a black box to them.
 
 ---
 
@@ -187,12 +179,14 @@ Research captures: FINDING-2026-04-04-03 (clarifies FINDING-2026-04-04-01)
 Result: All clarifications properly linked and ordered, links remain valid regardless of invocation sequence
 ```
 
-**Example 3: File migration due to size**
+**Example 3: Downstream invocation**
 ```
-FINDING-2026-04-04-01 initially in ai-config-distribution-strategies-facts.md
-→ When main file exceeds 40,000 characters, finding moves to subtopic file
-→ FINDING-2026-04-04-01 reference remains valid: fact-capture flow handles redirect
-→ Index still links to FINDING-2026-04-04-01 correctly
+Fact-capture records: FINDING-2026-04-04-01
+→ Fact-capture invokes term-capture flow for concept extraction
+→ Term-capture creates TERM-[topic]-YYYY-MM-DD-N
+→ Fact-capture invokes verify-analysis for term verification
+→ verify-analysis updates term with verification status
+→ Finding remains unchanged; all updates flow through downstream operations
 ```
 
 ---
