@@ -281,3 +281,146 @@ Skills with multiple chained flows violate single-responsibility principle and c
 - flow ambiguity: multiple flows in one skill with conflicting responsibilities
 
 ---
+
+## FINDING-2026-04-04-7
+**Captured:** 2026-04-04 09:30
+**Source:** [Subagent Frontmatter Fields Complete Specification - Claude Config Knowledge Base](https://code.claude.com/docs/en/sub-agents) (from ai-artifact/batch/authoring-workflow branch, FINDING-2026-03-04-26)
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
+
+### Explicit Subagent Definitions Provide Comprehensive Control Over Plugin-Based Skills
+
+When bundling related skills in a plugin, defining explicit subagents (`.agent.md` files) provides granular control over invocation behaviour, tool access, execution context, and resource allocation. This is significantly more powerful than relying on implicit subagent spawning via skill `context: fork` settings.
+
+**Comparison: Implicit vs. Explicit Subagents**
+
+**Implicit (skill with `context: fork`):**
+```yaml
+---
+name: verify-analysis
+description: Verify research findings
+context: fork
+agent: general-purpose
+---
+```
+- Uses built-in `general-purpose` agent defaults
+- Cannot customize execution mode, tools, permissions, or preloaded skills
+- Subject to default subagent behaviour (may run asynchronously)
+
+**Explicit (custom `.agent.md` in plugin):**
+```yaml
+---
+name: verify-analysis-agent
+description: Specialized verification subagent
+tools: [Read, Grep, Glob, Bash]
+disallowedTools: [Write, Edit]
+model: sonnet
+permissionMode: default
+background: false
+skills:
+  - fact-capture
+maxTurns: 20
+memory: project
+---
+```
+- **Synchronous execution:** `background: false` ensures blocking invocation
+- **Tool restriction:** Specify exact tools available (`tools`) and what's denied (`disallowedTools`)
+- **Skill preloading:** Use `skills` field to inject dependent skills at startup
+- **Model control:** Specify exact model for capabilities/cost tradeoff
+- **Permission handling:** Control permission prompt behaviour
+- **Lifecycle limits:** `maxTurns` prevents runaway recursion
+- **Persistent memory:** Cross-session knowledge retention
+- **Lifecycle hooks:** For PreToolUse, PostToolUse, Stop events
+- **Isolation:** `isolation: worktree` for safe testing
+
+**Key benefits of explicit subagents:**
+
+1. **Synchronous guarantees:** `background: false` ensures blocking execution (fixes verify-analysis async problem)
+2. **Security:** Restrict tools per subagent (verify-analysis denies Write/Edit)
+3. **Dependency injection:** Preload related skills via `skills` field
+4. **Cost control:** Assign specific models per subagent
+5. **Isolation:** Use `isolation: worktree` for risky operations
+6. **Lifecycle control:** `maxTurns` prevents recursion, hooks enable event handling
+7. **Persistent knowledge:** `memory` for cross-session learning
+
+**Plugin structure with explicit subagents:**
+
+```
+analysis-plugin/
+├── agents/
+│   ├── fact-capture-recorder.agent.md (background: false, tools: [Read, Write, Edit])
+│   ├── verify-facts-specialist.agent.md (background: false, tools: [Read, Bash], skills: [fact-capture])
+│   └── term-extractor.agent.md (background: false, tools: [Read, Grep])
+└── skills/
+    ├── fact-capture/
+    │   └── SKILL.md (context: fork, agent: fact-capture-recorder)
+    ├── verify-analysis/
+    │   └── SKILL.md (context: fork, agent: verify-facts-specialist)
+    └── term-capture/
+        └── SKILL.md (context: fork, agent: term-extractor)
+```
+
+**Critical for fact-capture workflow:**
+If verify-analysis is running asynchronously, explicit subagent definition with `background: false` guarantees synchronous blocking execution. Fact-capture would receive results before proceeding, solving the silent-return problem observed in FINDING-2026-04-04-5.
+
+---
+
+## FINDING-2026-04-04-8
+**Captured:** 2026-04-04 09:45
+**Source:** Architectural analysis and refinement based on FINDING-2026-04-04-6
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
+
+### Skill Design Principle: Multiple Flows Within Same Responsibility vs. Separate Responsibilities
+
+A skill CAN contain multiple flows (alternative execution approaches), but only when all flows execute the same responsibility. Different responsibilities must be implemented as separate skills.
+
+**When multiple flows in ONE skill is appropriate:**
+
+Flows represent different approaches or execution paths for the same responsibility:
+- `analysis` skill with `procedural-research` and `analytical-research` flows
+  - Both conduct research (same responsibility)
+  - Different approaches: following a procedure vs. systematic examination
+  - Both satisfy research requirement, just different methods
+  - Clear single concern: investigation and discovery
+
+- Capture flows within `fact-capture` skill
+  - `capture-inline`: Record to main topic facts file
+  - `capture-to-subtopic`: Record to subtopic facts file
+  - Both satisfy finding-recording responsibility
+  - Variations based on file size thresholds, not separate concerns
+
+**Characteristics of valid multi-flow skills:**
+- All flows implement variations of ONE responsibility
+- Flows are alternative execution paths, not sequential dependencies
+- One flow is NOT mandatory for another's completion
+- All flows have equal status (none is a "helper" for another)
+- Skill has clear, singular concern that encompasses all flows
+
+**When flows should be SEPARATE skills:**
+
+Flows have different responsibilities and cannot be alternatives:
+- `fact-capture` (responsibility: record findings) vs `verify-analysis` (responsibility: verify facts)
+  - Different concerns: recording ≠ verification
+  - Sequential dependency: fact-capture → verify-analysis (one requires output from other)
+  - verify-analysis cannot execute independently; it depends on fact-capture output
+  - Each has distinct invocation contract and return values
+
+- `analysis` (responsibility: research) vs `fact-capture` (responsibility: record)
+  - Analysis needs fact-capture to complete its output process
+  - Analysis cannot do what fact-capture does
+  - Violation of single responsibility if combined
+
+**Architectural rule:**
+
+If you can say "Flow X is a different way to accomplish [responsibility]", the flows can coexist in one skill.
+
+If you must say "Flow A feeds into Flow B" or "Flow X is a mandatory step for Flow Y", they should be separate skills that invoke each other.
+
+**For the analysis skill issue (FINDING-2026-04-04-6):**
+
+The problem was NOT that analytical-research and procedural-research were in the same skill (that would be fine—they're both research approaches).
+
+The problem WAS that `analysis` skill was creating ambiguity about which "you" applies where due to responsibility mixing (research + fact-capture together), and creating invocation contract confusion (does the skill record findings or invoke something to record them?).
+
+Solution: Keep research flows together within `analysis` skill, but ensure they clearly invoke `fact-capture` as a black-box service, not as an internal flow. This maintains the single-responsibility principle (research coordination) while delegating recording responsibility.
+
+---

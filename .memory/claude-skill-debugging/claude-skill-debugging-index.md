@@ -7,15 +7,15 @@
 
 | Category | Count | Status |
 |----------|-------|--------|
-| Total Findings | 6 | In Progress |
+| Total Findings | 8 | In Progress |
 | Verified | 0 | Pending |
-| Not Yet Verified | 6 | Awaiting Verification |
+| Not Yet Verified | 8 | Awaiting Verification |
 | Disproven | 0 | — |
 
 ## Fact Files
 
 - [claude-skill-debugging-facts.md](claude-skill-debugging-facts.md) — Core findings on skill debugging issues
-  - Last updated: 2026-04-04 08:28
+  - Last updated: 2026-04-04 09:45
 
 ---
 
@@ -29,3 +29,5 @@
 | [FINDING-2026-04-04-4](claude-skill-debugging-facts.md#finding-2026-04-04-4) | Skill Configuration | Skill Frontmatter Fields Controlling Sub-Agent Invocation and Execution | [Skill Frontmatter](#skill-frontmatter), [Context Forking](#context-forking) |
 | [FINDING-2026-04-04-5](claude-skill-debugging-facts.md#finding-2026-04-04-5) | Skill Configuration | Skills Automatically Spawn Sub-Agents When `context: fork` is Set | [Automatic Spawning](#automatic-spawning), [Context Forking](#context-forking) |
 | [FINDING-2026-04-04-6](claude-skill-debugging-facts.md#finding-2026-04-04-6) | Architecture | Architectural Root Cause: Single Skill with Multiple Chained Flows Causes Governance Ambiguity | [Architecture](#architecture), [Modular Design](#modular-design), [Skill Governance](#skill-governance) |
+| [FINDING-2026-04-04-7](claude-skill-debugging-facts.md#finding-2026-04-04-7) | Plugin Architecture | Explicit Subagent Definitions Provide Comprehensive Control Over Plugin-Based Skills | [Subagent Control](#subagent-control), [Plugin Architecture](#plugin-architecture) |
+| [FINDING-2026-04-04-8](claude-skill-debugging-facts.md#finding-2026-04-04-8) | Architecture | Skill Design Principle: Multiple Flows Within Same Responsibility vs. Separate Responsibilities | [Flow Design](#flow-design), [Single Responsibility](#single-responsibility), [Skill Architecture](#skill-architecture) |
