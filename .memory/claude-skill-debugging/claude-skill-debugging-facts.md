@@ -542,3 +542,51 @@ The original problem (verify-analysis returning silently without results) was pa
 - Multiple plugins can coexist without persona conflicts (namespacing: `plugin-name:persona-name`)
 
 ---
+
+## FINDING-2026-04-04-10
+**Captured:** 2026-04-04 10:15
+**Source:** Direct verification against [Claude Code Subagents Documentation](https://code.claude.com/docs/en/sub-agents) and [Claude Code Plugins Reference](https://code.claude.com/docs/en/plugins-reference)
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
+
+### Context Poisoning Confirmed: `.agent.md` Extension Not Documented in Official Sources
+
+**Issue:** The claude-config knowledge base (ai-artifact/batch/authoring-workflow branch) documents `.agent.md` as the standard extension for Claude Code subagent files, claiming it is "by convention, not required." This assertion is NOT supported by official Claude Code documentation and represents context poisoning from Copilot agent files in the codebase.
+
+**Verification findings:**
+
+**Official documentation states:**
+- Subagents stored in `agents/` directory (plugin root)
+- "Subagents are Markdown files with YAML frontmatter" (no extension specified)
+- Example shows content structure but **no filename format specified**
+- Skills use `<name>/SKILL.md` hierarchical structure
+- **No mention of `.agent.md` extension anywhere in official docs**
+
+**What claude-config incorrectly claimed:**
+- FINDING-2026-03-04-25: "Extension: `.agent.md` (by convention, not required)"
+- Verification note admitted: "implied by documentation but not explicitly stated"
+
+**Root cause analysis:**
+
+1. **Pattern match with prior disproof:** Log documents Prompts (a Copilot feature) was mistakenly researched as Claude Code and later disproven by user (log line 144: "prompts are a Copilot thing—they've gotten mixed up during the port from CP to CC")
+
+2. **Local codebase inspection:** Knowledge base research consulted "local codebase structure files" as sources (log line 33). The codebase contains Copilot conventions mixed with Claude Code conventions.
+
+3. **Agent file observation:** `.agent.md` files exist in codebase as Copilot agents, not Claude Code agents. These were mistakenly treated as evidence of Claude Code standard.
+
+4. **Weak verification:** Verification acknowledged the extension was "implied, not explicitly stated" yet accepted the finding anyway. The verification process did not flag this as insufficient evidence.
+
+**Correct Claude Code standard (inferred from official documentation):**
+
+Agents stored in `agents/` directory with `.md` extension (consistent with skills pattern):
+- Agents use: `agents/<name>.md` (singular agent per file)
+- NOT `.agent.md`
+- NOT `agents/<name>/<name>.agent.md`
+
+**Impact on downstream:**
+- Analysis Skill Refactoring Plan (design/analysis-skill/issue-37-analysis-skill-refactoring.md) used `.agent.md` naming (copied from claude-config)
+- Plugin structure specification in plan requires immediate correction
+- All documentation created from claude-config subagents findings is now unreliable
+
+**Classification:** Context poisoning from Copilot conventions in local codebase misattributed to Claude Code
+
+---
