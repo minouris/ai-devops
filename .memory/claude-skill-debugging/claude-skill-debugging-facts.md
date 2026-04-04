@@ -424,3 +424,121 @@ The problem WAS that `analysis` skill was creating ambiguity about which "you" a
 Solution: Keep research flows together within `analysis` skill, but ensure they clearly invoke `fact-capture` as a black-box service, not as an internal flow. This maintains the single-responsibility principle (research coordination) while delegating recording responsibility.
 
 ---
+
+## FINDING-2026-04-04-9
+**Captured:** 2026-04-04 10:00
+**Source:** User specification for skill architecture constraints
+**Verified:** [NOT YET VERIFIED - requires verification workflow]
+
+### Architectural Principle: Skills Should Be Consigned to Rigidly Defined Subagents with Persona-Driven Capabilities
+
+Skills should not run in generic or ad-hoc subagents. Instead, each skill must be assigned to a specific custom subagent that has:
+1. Rigidly defined responsibilities (what it does, what it doesn't do)
+2. Rigidly defined execution patterns (synchronous vs async, tool access, permissions)
+3. A persona that defines its capabilities and constraints (researcher, verifier, tester, fact-checker, etc.)
+
+**Not recommended:**
+```yaml
+---
+name: verify-analysis
+context: fork
+agent: general-purpose  # Generic, no constraints
+---
+```
+
+**Recommended:**
+```yaml
+# .agent.md file in plugin
+---
+name: fact-verifier-scholar
+description: Fact verification specialist with source verification capabilities
+background: false
+tools: [Read, Grep, Bash]
+disallowedTools: [Write, Edit]
+model: opus
+permissionMode: default
+---
+
+You are a Fact Verifier Scholar. Your role is to verify research findings against
+authoritative sources. You have rigidly defined constraints:
+
+**Your Capabilities:**
+- Read documentation and source files
+- Search for relevant information
+- Execute verification procedures
+- Report verification results with metadata
+
+**Your Constraints:**
+- You CANNOT modify findings (read-only on fact files)
+- You CANNOT create new findings
+- You CANNOT make architectural decisions
+- You work in isolation; you report results, you don't implement them
+
+**Your Execution Pattern:**
+- You always verify findings synchronously
+- You always report results with source citations
+- You always present evidence for disproof or verification
+```
+
+Then reference in skill:
+```yaml
+# within skill frontmatter
+---
+name: verify-analysis
+description: Verify research findings
+context: fork
+agent: fact-verifier-scholar  # Specific custom persona
+---
+```
+
+**Benefits of persona-driven subagents:**
+
+1. **Clear responsibility boundaries:** Persona defines exactly what the subagent does
+2. **Predictable execution:** Rigid patterns mean no surprises (sync vs async, tool access)
+3. **Tool restrictions by role:** Fact-verifier cannot Write/Edit; researcher can. Protected by design.
+4. **Persona constraints enforce guardrails:** "You CANNOT modify source findings" prevents corruption
+5. **Documentation as specification:** Persona description doubles as specification for how to use the subagent
+6. **Testable contracts:** Persona guarantees make it possible to test integration points
+7. **Easier skill packaging:** Skills paired with specific personas travel as a unit
+8. **Prevents generic-agent mistakes:** No risk of invoking verify-analysis in a generic-purpose agent with Write access
+
+**Persona examples for plugin:**
+
+| Persona | Role | Key Capabilities | Key Constraints | Execution |
+|---------|------|------------------|-----------------|-----------|
+| `researcher-explorer` | Investigation and systematic examination | Read, Grep, Glob, Bash (read-only) | No modification, no creation, no decisions | Synchronous, detailed reporting |
+| `fact-verifier-scholar` | Fact verification against sources | Read, Grep, Bash, WebFetch | No modification, read-only, verification only | Synchronous blocking |
+| `term-definer-lexicographer` | Semantic term extraction and definition | Read, Grep, Bash | No modification of findings, term definition only | Synchronous, bidirectional linking |
+| `test-runner-validator` | Test execution and result validation | Bash (test commands only), Read | No destructive operations, testing only | Can be async, result reporting |
+
+**Integration pattern with skills:**
+
+```
+analysis-plugin/
+├── agents/
+│   ├── researcher-explorer.agent.md (background: false, tools: [Read, Grep, Glob, Bash])
+│   ├── fact-verifier-scholar.agent.md (background: false, tools: [Read, Grep, Bash])
+│   ├── term-definer-lexicographer.agent.md (background: false, tools: [Read, Grep])
+│   └── test-runner-validator.agent.md (background: false, tools: [Bash])
+└── skills/
+    ├── analysis/SKILL.md (agent: researcher-explorer)
+    ├── verify-analysis/SKILL.md (agent: fact-verifier-scholar)
+    ├── term-capture/SKILL.md (agent: term-definer-lexicographer)
+    └── test-runner/SKILL.md (agent: test-runner-validator)
+```
+
+**Critical for Issue #37 resolution:**
+
+The original problem (verify-analysis returning silently without results) was partly due to invoking generic `general-purpose` agent. A custom `fact-verifier-scholar` persona with `background: false` and explicit responsibilities would:
+- Guarantee synchronous blocking execution
+- Clearly specify that verification must report results
+- Prevent tool scope creep (no Write access)
+- Make the contract explicit: "This is a verification agent, it verifies"
+
+**This pattern becomes essential when packaging skills for distribution:**
+- Skills packaged with their personas are self-documenting
+- Personas enforce constraints; no need to trust the invoker to set them correctly
+- Each plugin can define its own persona set (Personas are scoped to plugin)
+- Multiple plugins can coexist without persona conflicts (namespacing: `plugin-name:persona-name`)
+
+---
