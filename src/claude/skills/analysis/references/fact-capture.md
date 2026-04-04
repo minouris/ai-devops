@@ -51,6 +51,20 @@ When you are invoked to capture a finding, you are **solely responsible** for:
 - Enforce that all findings reference authoritative sources
 - Reject findings without proper source citations
 
+## Verification Invocation
+
+**MUST:**
+- Invoke verify-analysis subagent immediately after recording the finding
+- Invoke synchronously in isolated context (do not return to research workflow until verification completes)
+- Pass finding-id and topic to verify-analysis subagent
+- Wait for verification to complete before proceeding
+- Return verification status in response to research workflow:
+  - If verified: Return status "captured" with VERIFIED metadata and source URL
+  - If disproven: Accept disproven archive from verify-analysis; return status "rejected"
+  - If unverifiable: Return status "captured" with [NOT YET VERIFIED] tag
+
+**Verification is a mandatory blocking operation.** Do not return to the research workflow with a finding that has not been submitted to verify-analysis for verification.
+
 ---
 
 # Invocation Contract
