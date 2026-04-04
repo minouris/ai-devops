@@ -47,6 +47,31 @@ When searching for procedures within documentation, use a two-stage approach bef
 
 ---
 
+# Separation of Concerns
+
+## Research Responsibility
+
+The procedural-research workflow is responsible ONLY for:
+- Clarifying the procedure being researched and target environment
+- Conducting two-stage text searches through documentation
+- Testing procedures when possible
+- Collecting findings, test results, and observations
+- **Invoking the fact-capture flow** to record all findings
+
+## Fact-Capture Responsibility
+
+**DO NOT** attempt fact-capture implementation:
+- DO NOT format findings entries
+- DO NOT manage fact file structure
+- DO NOT handle verification tags or timestamps
+- DO NOT update indices
+- DO NOT extract or verify terms
+- DO NOT archive disproven findings
+
+All fact recording, verification, and maintenance **MUST** be delegated to the fact-capture flow.
+
+---
+
 ## When to Use This Workflow
 
 - Finding installation procedures
@@ -63,70 +88,95 @@ When searching for procedures within documentation, use a two-stage approach bef
 
 2. **Confirm topic slug**: Confirm the topic slug with the user (e.g., `pterodactyl-install`); this is used for file naming and operation logging throughout this work
 
-3. **Search and capture**: Search web/docs using WebFetch/WebSearch and capture ALL findings using the [Fact Capture Guidelines](fact-capture.md)
+3. **Search documentation**: Search web/docs using WebFetch/WebSearch for procedures
 
-4. **Document procedures**: Document procedures found, variations, requirements, attempts, and results in fact files following [Fact Capture Guidelines](fact-capture.md)
+4. **Capture findings**: For each finding or observation, invoke the fact-capture flow:
 
-5. **Test if possible**: If testing is possible, document all attempts and outcomes using Bash
+   **Fact-Capture Flow Invocation:**
+   ```
+   Invoke fact-capture flow with:
+   - topic: [topic-slug]
+   - observation: [finding description - procedure step, requirement, variation, test result, workaround, etc.]
+   - source: [citation to authoritative documentation or testing observation]
+   - subtopic: [optional: if finding belongs to a specific subtopic category]
+   - clarifies: [optional: FINDING-YYYY-MM-DD-N if this clarifies an existing finding]
+   ```
 
-6. **Iterate**: Keep capturing everything in fact files, refining based on test results using [Fact Capture Guidelines](fact-capture.md)
+   **The fact-capture flow is responsible for:**
+   - Generating FINDING-YYYY-MM-DD-N identifiers
+   - Creating/appending to fact files with proper structure
+   - Adding Captured timestamps (YYYY-MM-DD HH:MM)
+   - Adding Verified tags [NOT YET VERIFIED - requires verification workflow]
+   - Managing file locations and folder organisation
+   - Maintaining the main topic index
+   - Handling subtopic creation when thresholds are exceeded
 
----
+5. **Test if possible**: If testing is possible, document all attempts and outcomes:
+   - Exact commands executed
+   - Output and errors
+   - Environment details (OS, versions, configuration)
+   - Success/failure clearly indicated
+   - Workarounds discovered
+   - Dead ends and reasons they failed
 
-## Fact Capture
+   For each test result, invoke the fact-capture flow to record the finding.
 
-Use [Fact Capture Guidelines](fact-capture.md) to save all findings.
+6. **Iterate**: Continue capturing findings from testing results without pausing for approval. The fact-capture flow handles all recording, verification, and maintenance.
 
-**When you capture findings:**
+7. **Handle disproven findings**: When user disproves a finding, invoke the fact-capture flow with:
+   ```
+   Invoke fact-capture flow with:
+   - action: archive-disproven
+   - finding-id: FINDING-YYYY-MM-DD-N
+   - reason: [user explanation of why finding is disproven]
+   ```
 
-**MUST:**
-- Use the folder-based organisation at `.memory/[topic]/` with structure specified in [Fact Capture Guidelines](fact-capture.md)
-- Follow the entry format specified in [Fact Capture Guidelines](fact-capture.md): FINDING-YYYY-MM-DD-N with Captured, Source, and Verified fields
-- Include source references for all findings (documentation, testing observation, URL)
-- Timestamp each entry accurately
-- Add `**Verified:** [NOT YET VERIFIED - requires verification workflow]` to every new finding
-- Use the Write tool to create fact files, Edit tool to append findings
-- Document procedures, variations, requirements, test results, and workarounds
-
-**MUST NOT:**
-- Use the flat `.memory/[topic]-facts.md` path (use folder structure instead)
-- Mark findings as verified during fact-finding phase
-- Edit existing findings during research
-- Delete failed attempts
-- Skip documenting workarounds or negative findings
-
----
-
-## Testing Documentation
-
-When you test procedures:
-
-**MUST:**
-- Document exact commands executed
-- Record output/errors
-- Note environment details (OS, versions)
-- Indicate success/failure clearly
-- Document workarounds discovered
-- Use the format specified in [Fact Capture Guidelines](fact-capture.md)
-
-**MUST NOT:**
-- Skip environment details
-- Omit error messages or failures
-- Hide workarounds - capture them as findings
+   **The fact-capture flow is responsible for:**
+   - Moving the finding to the `-disproven.md` archive
+   - Recording the disproof metadata
+   - Updating the index
 
 ---
 
-## Iterative Refinement
+# Fact Capture Interface
 
-Continue iterating until you verify the procedure through successful testing.
+See [fact-capture.md](fact-capture.md) for:
+- Complete flow invocation specification
+- Idempotence guarantees
+- File structure contracts
+- Verification workflow integration
+- Term extraction and linking requirements
 
-**When you refine findings:**
-- Append new findings to fact files (do not edit existing)
-- Reference previous findings if building on them
+**CRITICAL:** Do not read fact-capture.md as a guideline. It defines the fact-capture flow contract. Research workflows invoke this flow; they do not implement it.
+
+---
+
+# Clarifying Existing Facts
+
+When new information (from testing or further research) affects or refines an existing fact, invoke the fact-capture flow with the `clarifies` parameter:
+
+```
+Invoke fact-capture flow with:
+- topic: [topic-slug]
+- observation: [clarifying or refining information]
+- source: [source of clarification - documentation or testing observation]
+- clarifies: FINDING-2026-02-24-3  (the finding being clarified)
+```
+
+The fact-capture flow is responsible for appending the clarification as a new finding with proper linking, storing it with reference to the original.
+
+---
+
+# Iterative Refinement
+
+Continue iterating on procedures by invoking the fact-capture flow:
+- Append findings for variations and workarounds
+- Reference previous findings when building on them
 - Note which variations work in which environments
-- Capture dead ends and the reasons they failed
+- Document dead ends and reasons they failed
 
 **MUST NOT:**
-- Edit existing findings during research
-- Delete failed attempts
+- Attempt to edit existing findings (invoke fact-capture with `clarifies` instead)
+- Delete failed attempts (they are recorded by the fact-capture flow)
 - Skip documenting workarounds or failed approaches
+
