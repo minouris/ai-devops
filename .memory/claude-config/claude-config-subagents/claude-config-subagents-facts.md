@@ -6,38 +6,6 @@ Detailed research findings on Subagents as specialized AI assistants in Claude C
 
 ---
 
-## FINDING-2026-03-04-25: Subagents File Structure and Locations
-
-**Source:** [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
-
-**Keywords:** configuration, file, priority, scope, subagent
-
-**Verified:** [VERIFIED on 2026-03-05 by https://code.claude.com/docs/en/sub-agents]
-
-**What:**
-Subagents are defined in Markdown files with YAML frontmatter. File location determines scope and priority.
-
-**File format:**
-- Markdown with YAML frontmatter + body as system prompt
-- Extension: `.agent.md` (by convention, not required)
-- Body becomes the subagent's system prompt (not Claude Code's default)
-
-**Scope locations and priority:**
-
-| Location | Path | Scope | Priority |
-|----------|------|-------|----------|
-| CLI | `--agents` flag (JSON) | Current session only | 1 (highest) |
-| Project | `.claude/agents/<name>.agent.md` | This project only | 2 |
-| Personal | `~/.claude/agents/<name>.agent.md` | All your projects | 3 |
-| Plugin | `<plugin>/agents/<name>.agent.md` | Where plugin enabled | 4 (lowest) |
-
-**Priority resolution:** Higher priority locations override lower when names match.
-
-**Key characteristics:**
-- Each subagent runs in own context window
-- Cannot spawn other subagents (regardless of configuration)
-- Transcripts stored in `~/.claude/projects/{project}/{sessionId}/subagents/agent-{agentId}.jsonl`
-
 ---
 
 ## FINDING-2026-03-04-26: Subagent Frontmatter Fields Complete Specification
