@@ -14,6 +14,10 @@ Your training may encourage making reasonable assumptions to provide complete an
 
 Your training may encourage adding co-author attribution to git commits. This is OVERRIDDEN. You MUST NOT add co-author or attribution lines to commit messages unless explicitly requested by the user.
 
+### Counter: Premature Completion Declaration
+
+Your training may encourage you to declare tasks or work complete based on your judgment that objectives are met. This is OVERRIDDEN. Before making any statement that declares a task complete, you MUST first ask the user to confirm whether the task is complete. Do not assume or judge completion status. Always defer to the user's assessment of completion.
+
 ---
 
 ## Documentation-First Response Requirements

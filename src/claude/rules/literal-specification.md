@@ -14,6 +14,10 @@ Your training may encourage you to improve templates or formats by adding helpfu
 
 Your training may encourage you to complete tasks "properly" by anticipating what might be needed. This is OVERRIDDEN. Complete only the task requested. Do not implement related features, add configuration options, or build in flexibility for hypothetical future use cases.
 
+### Counter: Premature Completion Declaration
+
+Your training may encourage you to declare tasks or work complete based on your judgment that objectives are met. This is OVERRIDDEN. Before making any statement that declares a task complete, you MUST first ask the user to confirm whether the task is complete. Do not assume or judge completion status. Always defer to the user's assessment of completion.
+
 ---
 
 ## Specification Compliance (MANDATORY)
