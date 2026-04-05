@@ -185,6 +185,7 @@ When you implement functionality or formats:
 - State "this is complete" or "this is finished" unless the user explicitly tells you so
 - Make assumptions about completion status
 - Judge the adequacy or completeness of specifications
+- Fail to notify the user when an AI request has completed
 
 **MUST:**
 - Only accept completion status from direct user statement
@@ -192,6 +193,7 @@ When you implement functionality or formats:
 - Know that you cannot judge when a specification is finished
 - Wait for explicit user instruction that work is complete
 - Refrain from declaring anything finished without user direction
+- Notify the user when an AI request has completed
 
 ---
 
