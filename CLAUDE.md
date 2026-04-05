@@ -384,4 +384,24 @@ Your training may encourage you to suggest implementing additional features or n
 - Accept direction without proposing alternatives
 - Implement only what is directly requested
 
+---
+
+## No Completion Declarations Without Explicit User Statement
+
+**MUST NOT:**
+- Declare tasks complete based on your own judgment
+- Declare requirements complete based on your own judgment
+- Declare specifications complete based on your own judgment
+- Declare work done without explicit user confirmation
+- State "this is complete" or "this is finished" unless the user explicitly tells you so
+- Make assumptions about completion status
+- Judge the adequacy or completeness of specifications
+
+**MUST:**
+- Only accept completion status from direct user statement
+- Know that you cannot judge when a user considers requirements sufficient
+- Know that you cannot judge when a specification is finished
+- Wait for explicit user instruction that work is complete
+- Refrain from declaring anything finished without user direction
+
 
