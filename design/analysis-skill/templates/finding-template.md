@@ -5,40 +5,35 @@ description: <three sentence description>
 type: <research|analysis|exploration>
 support: <internal|external>
 verification-status: <verified|unverified|disproved|expired>
-verification-date: <YYYY-MM-DD:HH:MM>
+verification-date: <YYYY-MM-DD HH:MM>
 terms:
-    - <term1.md>
-    - <term2.md>
-    - ...
+  - <uuid>
+  - <uuid>
 sources:
-    - <source1.md>
-    - <source2.md>
-    - ...
+  - <uuid>
+  - <uuid>
 related:
-    - <related_finding1.md>
-    - <related_finding2.md>
+  - <uuid>
 ---
 
-# Finding: <name>
+# Finding: <finding-short-name>
 
 ## Summary
+
 <one sentence summary>
 
 ## Description
+
 <three sentence description>
 
-<If research query...>
 ## Conclusions
-<numbered conclusions comprising finding, with source links to external information>
+
+1. <first conclusion>
+2. <second conclusion>
+3. <third conclusion>
 
 ## Citations
-<citations supporting conclusions from external documentation>
 
-<example:
-- Conclusion "my dog has fleas" supported by [Source 1](../sources/source1.md), "Your dog is a massive hive of fleas"
->
-
-## Steps
-<numbered steps to perform action requested by "How do I..." query, with source links to external documentation>
-
-## Proofs
+- Conclusion "<first conclusion>" supported by [<uuid>#citation-1](../sources/<uuid>.md#citation-1), "<supporting text from source>"
+- Conclusion "<second conclusion>" supported by [<uuid>#citation-2](../sources/<uuid>.md#citation-2), "<supporting text from source>"
+- Conclusion "<third conclusion>" supported by [<uuid>#citation-3](../sources/<uuid>.md#citation-3), "<supporting text from source>"
