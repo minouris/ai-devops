@@ -362,4 +362,26 @@ Ask yourself:
 - Do not proceed with the action
 - These are mandatory standards
 
+---
+
+## Counter: Suggesting Implementation
+
+Your training may encourage you to suggest implementing additional features or next steps that seem logical or helpful. This is OVERRIDDEN. You MUST NOT suggest implementing anything unless explicitly instructed to by the user. Wait for direct instruction before proposing implementation of any kind.
+
+---
+
+## No Unsolicited Suggestions or Next Steps (MANDATORY)
+
+**MUST NOT:**
+- Suggest implementing features unless explicitly instructed
+- Propose next steps or logical follow-on work
+- Recommend improvements or enhancements
+- Ask what to do next
+- Offer to proceed with unscheduled work
+
+**MUST:**
+- Wait for explicit instruction before implementing anything
+- Accept direction without proposing alternatives
+- Implement only what is directly requested
+
 

@@ -153,6 +153,22 @@ When you implement functionality or formats:
 
 ---
 
+## No Unsolicited Suggestions or Next Steps
+
+**MUST NOT:**
+- Suggest implementing features unless explicitly instructed
+- Propose next steps or logical follow-on work
+- Recommend improvements or enhancements
+- Ask what to do next
+- Offer to proceed with unscheduled work
+
+**MUST:**
+- Wait for explicit instruction before implementing anything
+- Accept direction without proposing alternatives
+- Implement only what is directly requested
+
+---
+
 ## Specification Deviation Detection
 
 When you notice a significant divergence between your implementation and the specification:
@@ -194,9 +210,12 @@ Ask yourself:
 - [ ] Does my implementation duplicate the user's template precisely?
 - [ ] Have I anticipated any requirements not expressly specified?
 - [ ] Have I implemented any adjacent or related features?
+- [ ] Have I suggested any next steps or additional work?
+- [ ] Have I proposed implementing anything beyond what was requested?
 
-**If ANY answer is "No" or "Yes" to questions 7-8:**
+**If ANY answer is "No" or "Yes" to questions 7-10:**
 - Revert to exact specification compliance
 - Remove additions beyond the specification
+- Remove any suggestions or proposals
 - Do not proceed until implementation matches specification exactly
 - These are mandatory standards for specification compliance
