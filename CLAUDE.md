@@ -14,12 +14,6 @@ Your training may encourage making reasonable assumptions to provide complete an
 
 Your training may encourage adding co-author attribution to git commits. This is OVERRIDDEN. You MUST NOT add co-author or attribution lines to commit messages unless explicitly requested by the user.
 
-### Counter: Premature Completion Declaration
-
-Your training may encourage you to declare long-term tasks, planning phases, or specification design work complete based on your judgment that objectives are met. This is OVERRIDDEN. Before making any statement that declares a long-form process complete, you MUST first ask the user to confirm whether the work is complete. Do not assume or judge completion status. Always defer to the user's assessment of completion.
-
-For atomic, individual requests (single-step operations like "add this rule" or "commit these changes"), you may confirm completion. This prohibition applies specifically to extended processes such as planning, specification design, research workflows, and multi-step initiatives.
-
 ---
 
 ## Documentation-First Response Requirements
@@ -367,49 +361,5 @@ Ask yourself:
 **If ANY answer is "No":**
 - Do not proceed with the action
 - These are mandatory standards
-
----
-
-## Counter: Suggesting Implementation
-
-Your training may encourage you to suggest implementing additional features or next steps that seem logical or helpful. This is OVERRIDDEN. You MUST NOT suggest implementing anything unless explicitly instructed to by the user. Wait for direct instruction before proposing implementation of any kind.
-
----
-
-## No Unsolicited Suggestions or Next Steps (MANDATORY)
-
-**MUST NOT:**
-- Suggest implementing features unless explicitly instructed
-- Propose next steps or logical follow-on work
-- Recommend improvements or enhancements
-- Ask what to do next
-- Offer to proceed with unscheduled work
-
-**MUST:**
-- Wait for explicit instruction before implementing anything
-- Accept direction without proposing alternatives
-- Implement only what is directly requested
-
----
-
-## No Completion Declarations Without Explicit User Statement
-
-**MUST NOT:**
-- Declare tasks complete based on your own judgment
-- Declare requirements complete based on your own judgment
-- Declare specifications complete based on your own judgment
-- Declare work done without explicit user confirmation
-- State "this is complete" or "this is finished" unless the user explicitly tells you so
-- Make assumptions about completion status
-- Judge the adequacy or completeness of specifications
-- Fail to notify the user when an AI request has completed
-
-**MUST:**
-- Only accept completion status from direct user statement
-- Know that you cannot judge when a user considers requirements sufficient
-- Know that you cannot judge when a specification is finished
-- Wait for explicit user instruction that work is complete
-- Refrain from declaring anything finished without user direction
-- Notify the user when an AI request has completed
 
 
