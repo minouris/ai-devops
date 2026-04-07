@@ -31,14 +31,15 @@ Execute the following flows in order:
 3. **Identify rule violations and contributing factors** — see [identify-violations.md](references/identify-violations.md)
 4. **Classify root causes** — see [classify-causes.md](references/classify-causes.md)
 5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
-6. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
+6. **Present report and confirm** — see [present-report.md](references/present-report.md)
+7. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
 
 ## Requirements
 
 **MUST:**
 - Complete all flows before submitting
+- Present the full analysis report to the user in chat before any GitHub action
 - Obtain explicit user confirmation before submitting
-- Present the composed issue body to the user for review before submitting
 
 **MUST NOT:**
 - Skip any flow
