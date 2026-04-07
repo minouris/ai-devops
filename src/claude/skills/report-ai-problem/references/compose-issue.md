@@ -55,7 +55,7 @@ AI Problem: <concise description of the violation>
 
 ## Contributing Factors
 
-<Training tendencies, system prompt conflicts, context issues, or recovered system prompt excerpts>
+<Training tendencies, system prompt conflicts, context issues, or recovered system prompt excerpts — paste verbatim; do not reference internal skill file names or paths>
 
 ## Root Cause Classification
 
@@ -72,6 +72,7 @@ Pass the main issue number and the list of cause labels to [check-sub-issues.md]
 - Personal or identifying data (names, emails, accounts)
 - Secrets, tokens, API keys, or credentials
 - File paths that are not part of AI configuration or training
+- Internal skill library file paths or file names (e.g. `root_cause_definitions.md`, `check-sub-issues.md`) — inline quoted text directly without file attribution
 
 **MAY include:**
 - Paths to AI configuration files (`CLAUDE.md`, `.claude/`, `src/claude/rules/`)

@@ -14,4 +14,7 @@ Determine which `cause:` labels apply to the incident. Reference the root cause 
 - Apply all labels that are applicable — multiple labels may apply
 - Write one sentence per applied label explaining why it applies to this specific incident
 - Read the root cause facts file directly when clarification is needed on label scope
-- Quote relevant passages from the root cause facts file verbatim — do not cite by finding ID or reference only
+- Quote relevant passages verbatim — do not cite by finding ID or reference only
+
+**MUST NOT:**
+- Name `root_cause_definitions.md` or any internal file path in produced output — inline quoted text directly without file attribution
