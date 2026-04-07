@@ -22,3 +22,7 @@ Identify any context, system rules, or training tendencies that contributed to t
 - Context window or attention issues that caused instructions to be deprioritised
 - Prior context items that may have poisoned subsequent reasoning
 - System prompt excerpts recovered in [gather-context.md](gather-context.md)
+
+**MUST:**
+- Quote knowledge base findings and root cause facts verbatim when citing them as contributing factors
+- Do not cite findings by ID or reference only — reproduce the relevant passage directly in the report
