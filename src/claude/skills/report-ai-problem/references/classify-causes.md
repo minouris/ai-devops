@@ -1,6 +1,6 @@
 # Classify Root Causes
 
-Determine which `cause:` labels apply to the incident. Reference the root cause definitions in `.memory/ai-problem-resolution/ai-problem-resolution-root-causes/ai-problem-resolution-root-causes-facts.md`.
+Determine which `cause:` labels apply to the incident. Reference the root cause definitions in [root_cause_definitions.md](root_cause_definitions.md).
 
 | Label | Apply when |
 |-------|-----------|
