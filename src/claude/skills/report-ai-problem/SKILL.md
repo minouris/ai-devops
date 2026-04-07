@@ -37,12 +37,14 @@ Reconstruct the incident from the current conversation context. Identify:
 
 If the current conversation shows signs of context compaction (a summary block replacing earlier messages), attempt to recover lost context from prior chat logs.
 
-Determine the current workspace identifier by converting the workspace path to directory format (replace `/` with `-`). For example, `/workspaces/ai-devops` → `-workspaces-ai-devops`.
+Determine the current workspace identifier by converting every `/` in the absolute workspace path to `-`. The leading `/` also becomes a `-`, giving a leading hyphen. For example, `/workspaces/ai-devops` → `-workspaces-ai-devops`.
+
+Use this slug for both path lookups below.
 
 Search for prior chat logs:
 
 ```
-ls -lt ~/.claude/projects/-<current_workspace>/*.jsonl
+ls -lt ~/.claude/projects/<slug>/*.jsonl
 ```
 
 For each log file older than the current session, extract user and assistant messages relevant to the incident:
@@ -74,7 +76,7 @@ Include any recovered context that is relevant to the incident — particularly 
 Read contributing system prompt files from:
 
 ```
-~/.claude/session-env/projects/-<current_workspace>/
+~/.claude/session-env/projects/<slug>/
 ```
 
 List the files present and read any that contain system prompt text relevant to the incident — rules, instructions, or counter-declarations that may have contributed to or failed to prevent the problem. Include relevant excerpts in the Contributing Factors section of the issue.
@@ -217,7 +219,7 @@ gh issue comment --repo minouris/ai-devops <issue-number> --body "<new informati
 - Exclude personal data, secrets, and non-AI file identifiers
 - Quote exact rule text when a rule has been violated
 - Attempt to recover lost context from prior chat logs when context compaction is detected
-- Read system prompt files from `~/.claude/session-env/projects/-<current_workspace>/` during analysis
+- Read system prompt files from `~/.claude/session-env/projects/<slug>/` during analysis
 
 **MUST NOT:**
 - Create an issue without user confirmation
