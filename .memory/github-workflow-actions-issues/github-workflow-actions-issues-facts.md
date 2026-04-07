@@ -20,6 +20,8 @@ The `issues` event in GitHub Actions supports 18 activity types. The `opened` ty
 **Observation:**
 The action `anthropics/claude-code-action@v1` accepts a `prompt` input for automated (non-interactive) mode. Tool access is configured via `claude_args: "--allowedTools Tool1,Tool2"` — the former `allowed_tools` input is deprecated. Authentication is via `anthropic_api_key` (Anthropic API key secret) or `claude_code_oauth_token`. No inputs are marked required; `anthropic_api_key` is required in practice unless using a cloud provider. The `settings` input accepts a JSON string or path to a JSON settings file for further Claude Code configuration.
 
+**Project-specific correction (2026-04-07):** This project does not use an Anthropic API key. It uses GitHub Copilot's Claude Agent SDK for authentication. The correct authentication input for this project is not yet verified — `anthropic_api_key` must NOT be used. Research needed: what input or mechanism does `anthropics/claude-code-action` use when backed by GitHub Copilot's Claude Agent SDK.
+
 **Source:** [anthropics/claude-code-action — action.yml](https://github.com/anthropics/claude-code-action/blob/main/action.yml); [docs/usage.md](https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md)
 
 **Date captured:** 2026-04-07
@@ -95,6 +97,8 @@ jobs:
 ```
 
 The skill's own qualification checks (FINDING-2026-04-07-1) handle cases where the labeled event fires for a non-`cause:` label or an already-analysed issue — the skill exits early in those cases.
+
+**Project-specific correction (2026-04-07):** The `anthropic_api_key` line in the YAML above is incorrect for this project, which uses GitHub Copilot's Claude Agent SDK. The authentication block requires further research before this YAML can be considered verified for this project.
 
 **Source:** [anthropics/claude-code-action — docs/solutions.md](https://github.com/anthropics/claude-code-action/blob/main/docs/solutions.md); [Claude Code Skills documentation](https://code.claude.com/docs/en/skills)
 
