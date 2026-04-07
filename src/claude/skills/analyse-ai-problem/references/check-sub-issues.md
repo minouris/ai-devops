@@ -24,14 +24,12 @@ Record for each cause label:
 
 For each cause that requires a new sub-issue, compose its body:
 
-**MUST NOT** name `root_cause_definitions.md` or any local file path in the composed body — readers of the issue will not have access to these files. Paste text verbatim; do not attribute it to a file.
-
 ````markdown
 ## Root Cause
 
 **Label:** `cause: <label>`
 
-<Paste the full definition section for this cause verbatim — do not summarise or name the source file>
+<Verbatim excerpt from root_cause_definitions.md defining this cause — the full definition section, not a summary>
 
 ## How This Cause Manifested in the Incident
 
@@ -39,7 +37,7 @@ For each cause that requires a new sub-issue, compose its body:
 
 ## Contributing Factors Specific to This Cause
 
-<Paste the relevant contributing factor text verbatim — do not name the source file>
+<The subset of contributing factors attributable to this cause — verbatim quotes from root_cause_definitions.md where applicable>
 
 ## Parent Issue
 
