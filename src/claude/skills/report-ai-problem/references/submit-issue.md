@@ -12,7 +12,8 @@ gh issue create \
   --title "<title>" \
   --body "<body>" \
   --label "<label1>" \
-  --label "<label2>"
+  --label "<label2>" \
+  --label "created-by: report-ai-problem"
 ```
 
 Apply all `cause:` labels identified in [classify-causes.md](classify-causes.md).
@@ -44,7 +45,8 @@ gh issue create \
   --repo minouris/ai-devops \
   --title "AI Problem: cause:<label> — <brief description of how this cause manifested>" \
   --body "<sub-issue body composed in compose-issue.md>" \
-  --label "cause:<label>"
+  --label "cause:<label>" \
+  --label "created-by: report-ai-problem"
 ```
 
 Record the new sub-issue number as `<sub_issue_number>`.
