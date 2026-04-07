@@ -75,4 +75,4 @@ AI Problem: <concise description of the violation>
 - Rule names and rule text
 - Root cause labels and descriptions
 
-**MUST** present the composed body to the user for review before submitting.
+Output of this flow is passed to [present-report.md](present-report.md).

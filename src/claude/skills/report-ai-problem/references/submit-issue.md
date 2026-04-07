@@ -1,6 +1,6 @@
 # Submit the Issue
 
-**MUST** obtain explicit user confirmation before submitting.
+Execute this flow only after the user confirms in [present-report.md](present-report.md).
 
 ## Create a New Issue
 
