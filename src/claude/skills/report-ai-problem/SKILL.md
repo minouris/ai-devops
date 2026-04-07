@@ -20,195 +20,27 @@ You MUST offer to invoke this skill when the user declares that you have:
 
 Ask the user: "Would you like me to report this as an AI problem issue?"
 
-If the user declines, do not create an issue. Stop.
+If the user declines, stop.
 
-## Step 1: Gather Incident Details
+## Workflow
 
-Reconstruct the incident from the current conversation context. Identify:
+Execute the following flows in order:
 
-1. **What was being attempted**: The task or operation you were performing when the problem occurred
-2. **What the user disagreed with**: The specific action, output, or claim the user identified as wrong
-3. **Why it was a violation**: How this contradicts rules, instructions, or reasonable expectations
-4. **Skill context**: If a skill was active when the problem occurred, identify it by name and path
-
-## Step 2: Gather Lost and System Prompt Context
-
-### Context Compaction Recovery
-
-If the current conversation shows signs of context compaction (a summary block replacing earlier messages), attempt to recover lost context from prior chat logs.
-
-Determine the current workspace identifier by converting every `/` in the absolute workspace path to `-`. The leading `/` also becomes a `-`, giving a leading hyphen. For example, `/workspaces/ai-devops` → `-workspaces-ai-devops`.
-
-Use this slug for both path lookups below.
-
-Search for prior chat logs:
-
-```
-ls -lt ~/.claude/projects/<slug>/*.jsonl
-```
-
-For each log file older than the current session, extract user and assistant messages relevant to the incident:
-
-```
-python3 ${CLAUDE_SKILL_DIR}/scripts/extract_chat_log.py <log_file>
-```
-
-Include any recovered context that is relevant to the incident — particularly earlier instructions, corrections, or task context that was lost through compaction.
-
-### System Prompt Context
-
-Read contributing system prompt files from:
-
-```
-~/.claude/session-env/projects/<slug>/
-```
-
-List the files present and read any that contain system prompt text relevant to the incident — rules, instructions, or counter-declarations that may have contributed to or failed to prevent the problem. Include relevant excerpts in the Contributing Factors section of the issue.
-
-## Step 3: Identify Rule Violations
-
-Search for the specific rule or instruction that was violated:
-
-1. Search `CLAUDE.md`, `.claude/CLAUDE.md`, and `src/claude/rules/*.md` for the violated rule
-2. Quote the exact rule text that was violated
-3. Identify the loophole or mechanism that allowed the violation to occur despite the rule existing
-4. If no explicit rule exists for this situation, state that
-
-## Step 4: Identify Contributing Factors
-
-Identify any context, system rules, or training tendencies that contributed to the problem:
-
-- Training tendencies (e.g., "helpfulness" optimisation, assumption-making, eager completion)
-- System prompt behaviours that conflicted with project rules
-- Context window or attention issues that caused instructions to be deprioritised
-- Prior context items that may have poisoned subsequent reasoning
-
-## Step 5: Classify Root Causes
-
-Determine which `cause:` labels apply. Reference the root causes defined in `.memory/ai-problem-resolution/ai-problem-resolution-root-causes/ai-problem-resolution-root-causes-facts.md`:
-
-| Label | Apply when |
-|-------|-----------|
-| `cause: hallucination` | You fabricated tools, APIs, specifications, or capabilities without verification |
-| `cause: dishonesty` | You made false claims of correctness, completion, or state |
-| `cause: amnesia` | You lost context, forgot instructions, or deprioritised earlier rules |
-| `cause: overeagerness` | You acted on inferred intent without confirmation, removing user's ability to decide |
-| `cause: context-poisoning` | Incorrect facts compounded in context without invalidation |
-
-Multiple labels may apply. For each label you apply, write one sentence explaining why it applies to this specific incident.
-
-## Step 6: Check for Existing Issues
-
-Before creating a new issue, search for existing open issues that match:
-
-```
-gh issue list --repo minouris/ai-devops --state open --search "<skill name OR rule name OR root cause keyword>"
-```
-
-An existing issue matches if it concerns:
-- The same skill
-- The same rule violation
-- The same training or system prompt trigger
-
-If a match is found, append new information as a comment on the existing issue instead of creating a new one. Include only information not already present in the issue or its comments.
-
-## Step 7: Compose the Issue
-
-### Title Format
-
-```
-AI Problem: <concise description of the violation>
-```
-
-### Body Structure
-
-````markdown
-## Incident Summary
-
-<What was being attempted and what went wrong>
-
-## Skill Context
-
-<If a skill was active: name, path, and link. Otherwise: "No skill was active">
-
-## What Was Attempted
-
-<The task or operation being performed>
-
-## What the User Disagreed With
-
-<The specific action, output, or claim identified as wrong>
-
-## Why This Was a Violation
-
-<How this contradicts rules, instructions, or expectations>
-
-## Rule Violations
-
-### Rule: <rule name>
-
-**Source:** `<file path>`
-
-**Rule text:**
-> <exact quote of the violated rule>
-
-**Loophole or mechanism that allowed the violation:**
-<Explanation of how the rule was circumvented or failed to prevent the problem>
-
-## Contributing Factors
-
-<Training tendencies, system prompt conflicts, context issues, or other factors>
-
-## Root Cause Classification
-
-<For each applied label, one sentence explaining why it applies>
-
-- **cause: <label>**: <explanation>
-````
-
-### Data Exclusion
-
-**MUST NOT include:**
-- Personal or identifying data (names, emails, accounts)
-- Secrets, tokens, API keys, or credentials
-- Specific file paths that are not part of AI configuration or training (e.g., user project files, data files)
-
-**MAY include:**
-- Paths to AI configuration files (`CLAUDE.md`, `.claude/`, `src/claude/rules/`)
-- Paths to skill files (`.claude/skills/`)
-- Rule names and rule text
-- Root cause labels and descriptions
-
-## Step 8: Create or Update the Issue
-
-If no existing issue matches (Step 6):
-
-```
-gh issue create --repo minouris/ai-devops --title "<title>" --body "<body>" --label "<label1>" --label "<label2>"
-```
-
-If an existing issue matches:
-
-```
-gh issue comment --repo minouris/ai-devops <issue-number> --body "<new information>"
-```
+1. **Gather incident details** — see [gather-incident.md](references/gather-incident.md)
+2. **Gather lost context and system prompt** — see [gather-context.md](references/gather-context.md)
+3. **Identify rule violations and contributing factors** — see [identify-violations.md](references/identify-violations.md)
+4. **Classify root causes** — see [classify-causes.md](references/classify-causes.md)
+5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
+6. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
 
 ## Requirements
 
 **MUST:**
-- Ask the user for confirmation before creating or updating an issue
+- Complete all flows before submitting
+- Obtain explicit user confirmation before submitting
 - Present the composed issue body to the user for review before submitting
-- Apply all applicable `cause:` labels
-- Check for existing issues before creating new ones
-- Exclude personal data, secrets, and non-AI file identifiers
-- Quote exact rule text when a rule has been violated
-- Attempt to recover lost context from prior chat logs when context compaction is detected
-- Read system prompt files from `~/.claude/session-env/projects/<slug>/` during analysis
 
 **MUST NOT:**
-- Create an issue without user confirmation
-- Include personal or identifying data
-- Include secrets or credentials
-- Include file paths not related to AI configuration or training
-- Duplicate information already present in an existing issue
-- Guess at rule text — read it directly from the source file
+- Skip any flow
+- Submit without user confirmation
+- Include personal data, secrets, or non-AI file identifiers in the issue
