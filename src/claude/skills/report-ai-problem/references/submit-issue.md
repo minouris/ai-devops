@@ -57,12 +57,20 @@ When an existing issue was found for this cause, use its number directly as `<su
 
 After creating or identifying each sub-issue, link it as a child of the main issue:
 
+First, retrieve the database ID of the sub-issue (the issue number is not sufficient):
+
+```
+gh api /repos/minouris/ai-devops/issues/<sub_issue_number> --jq '.id'
+```
+
+Then link using the database ID with the `-F` flag (integer, not string):
+
 ```
 gh api \
   --method POST \
   -H "Accept: application/vnd.github+json" \
   /repos/minouris/ai-devops/issues/<main_issue_number>/sub_issues \
-  -f sub_issue_id=<sub_issue_number>
+  -F sub_issue_id=<database_id>
 ```
 
 Repeat for every cause label. Each cause becomes a separate child issue under the main incident issue.
