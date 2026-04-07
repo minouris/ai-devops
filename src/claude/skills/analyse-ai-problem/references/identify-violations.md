@@ -26,3 +26,7 @@ Identify any context, system rules, or training tendencies that contributed to t
 **MUST:**
 - Quote knowledge base findings and root cause facts verbatim when citing them as contributing factors
 - Do not cite findings by ID or reference only — reproduce the relevant passage directly in the report
+
+**MUST NOT:**
+- Name `root_cause_definitions.md` or any local file path in the issue or comment body — readers will not have access to these files
+- Write attribution phrases such as "from root_cause_definitions.md" or "per root_cause_definitions.md" in output text
