@@ -50,23 +50,7 @@ ls -lt ~/.claude/projects/<slug>/*.jsonl
 For each log file older than the current session, extract user and assistant messages relevant to the incident:
 
 ```
-python3 -c "
-import json, sys
-with open('<log_file>') as f:
-    for line in f:
-        try:
-            e = json.loads(line)
-            msg = e.get('message', {})
-            role = msg.get('role', '')
-            content = msg.get('content', '')
-            if isinstance(content, list):
-                text = ' '.join(c.get('text','') for c in content if isinstance(c,dict) and c.get('type')=='text')
-            else:
-                text = str(content)
-            if text.strip():
-                print(f'[{role}]: {text[:500]}')
-        except: pass
-"
+python3 ${CLAUDE_SKILL_DIR}/scripts/extract_chat_log.py <log_file>
 ```
 
 Include any recovered context that is relevant to the incident — particularly earlier instructions, corrections, or task context that was lost through compaction.
