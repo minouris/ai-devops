@@ -19,7 +19,9 @@ Record any matches: number, title, URL.
 
 ## Comment Body
 
-Compose a comment using the following template:
+Compose a comment using the following template.
+
+**MUST NOT** name `root_cause_definitions.md` or any local file path in the composed comment — readers of the issue will not have access to these files. Paste text verbatim; do not attribute it to a file.
 
 ````markdown
 ## AI Problem Analysis — inspect-ai-problem-issue
@@ -30,7 +32,7 @@ Compose a comment using the following template:
 
 ### Contributing Factors
 
-<Findings from identify-violations.md — verbatim quotes from root_cause_definitions.md where applicable>
+<Verbatim contributing factor text — do not name the source file>
 
 ### Root Cause Classification
 
