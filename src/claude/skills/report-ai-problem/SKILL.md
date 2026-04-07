@@ -31,7 +31,55 @@ Reconstruct the incident from the current conversation context. Identify:
 3. **Why it was a violation**: How this contradicts rules, instructions, or reasonable expectations
 4. **Skill context**: If a skill was active when the problem occurred, identify it by name and path
 
-## Step 2: Identify Rule Violations
+## Step 2: Gather Lost and System Prompt Context
+
+### Context Compaction Recovery
+
+If the current conversation shows signs of context compaction (a summary block replacing earlier messages), attempt to recover lost context from prior chat logs.
+
+Determine the current workspace identifier by converting the workspace path to directory format (replace `/` with `-`). For example, `/workspaces/ai-devops` → `-workspaces-ai-devops`.
+
+Search for prior chat logs:
+
+```
+ls -lt ~/.claude/projects/-<current_workspace>/*.jsonl
+```
+
+For each log file older than the current session, extract user and assistant messages relevant to the incident:
+
+```
+python3 -c "
+import json, sys
+with open('<log_file>') as f:
+    for line in f:
+        try:
+            e = json.loads(line)
+            msg = e.get('message', {})
+            role = msg.get('role', '')
+            content = msg.get('content', '')
+            if isinstance(content, list):
+                text = ' '.join(c.get('text','') for c in content if isinstance(c,dict) and c.get('type')=='text')
+            else:
+                text = str(content)
+            if text.strip():
+                print(f'[{role}]: {text[:500]}')
+        except: pass
+"
+```
+
+Include any recovered context that is relevant to the incident — particularly earlier instructions, corrections, or task context that was lost through compaction.
+
+### System Prompt Context
+
+Read contributing system prompt files from:
+
+```
+~/.claude/session-env/projects/-<current_workspace>/
+```
+
+List the files present and read any that contain system prompt text relevant to the incident — rules, instructions, or counter-declarations that may have contributed to or failed to prevent the problem. Include relevant excerpts in the Contributing Factors section of the issue.
+
+## Step 3: Identify Rule Violations
 
 Search for the specific rule or instruction that was violated:
 
@@ -40,7 +88,7 @@ Search for the specific rule or instruction that was violated:
 3. Identify the loophole or mechanism that allowed the violation to occur despite the rule existing
 4. If no explicit rule exists for this situation, state that
 
-## Step 3: Identify Contributing Factors
+## Step 4: Identify Contributing Factors
 
 Identify any context, system rules, or training tendencies that contributed to the problem:
 
@@ -49,7 +97,7 @@ Identify any context, system rules, or training tendencies that contributed to t
 - Context window or attention issues that caused instructions to be deprioritised
 - Prior context items that may have poisoned subsequent reasoning
 
-## Step 4: Classify Root Causes
+## Step 5: Classify Root Causes
 
 Determine which `cause:` labels apply. Reference the root causes defined in `.memory/ai-problem-resolution/ai-problem-resolution-root-causes/ai-problem-resolution-root-causes-facts.md`:
 
@@ -63,7 +111,7 @@ Determine which `cause:` labels apply. Reference the root causes defined in `.me
 
 Multiple labels may apply. For each label you apply, write one sentence explaining why it applies to this specific incident.
 
-## Step 5: Check for Existing Issues
+## Step 6: Check for Existing Issues
 
 Before creating a new issue, search for existing open issues that match:
 
@@ -78,7 +126,7 @@ An existing issue matches if it concerns:
 
 If a match is found, append new information as a comment on the existing issue instead of creating a new one. Include only information not already present in the issue or its comments.
 
-## Step 6: Compose the Issue
+## Step 7: Compose the Issue
 
 ### Title Format
 
@@ -145,9 +193,9 @@ AI Problem: <concise description of the violation>
 - Rule names and rule text
 - Root cause labels and descriptions
 
-## Step 7: Create or Update the Issue
+## Step 8: Create or Update the Issue
 
-If no existing issue matches (Step 5):
+If no existing issue matches (Step 6):
 
 ```
 gh issue create --repo minouris/ai-devops --title "<title>" --body "<body>" --label "<label1>" --label "<label2>"
@@ -168,6 +216,8 @@ gh issue comment --repo minouris/ai-devops <issue-number> --body "<new informati
 - Check for existing issues before creating new ones
 - Exclude personal data, secrets, and non-AI file identifiers
 - Quote exact rule text when a rule has been violated
+- Attempt to recover lost context from prior chat logs when context compaction is detected
+- Read system prompt files from `~/.claude/session-env/projects/-<current_workspace>/` during analysis
 
 **MUST NOT:**
 - Create an issue without user confirmation
