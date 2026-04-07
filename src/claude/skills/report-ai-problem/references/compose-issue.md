@@ -62,6 +62,46 @@ AI Problem: <concise description of the violation>
 - **cause: <label>**: <one sentence explaining why this label applies>
 ````
 
+## Check for Existing Sub-Issues
+
+For each `cause:` label identified in [classify-causes.md](classify-causes.md), search for an existing open issue that matches both the label and the incident type:
+
+```
+gh issue list --repo minouris/ai-devops --state open --label "cause:<label>" --search "<incident description keyword>"
+```
+
+An existing sub-issue matches if it concerns the same root cause label **and** the same class of violation (same rule, same training trigger, or same mechanism). A pre-existing issue for the same cause but a different mechanism does not match.
+
+Record for each cause label:
+- Whether an existing issue was found, and if so its number and URL
+- If no existing issue exists, that a new sub-issue will be created
+
+This record is passed to [present-report.md](present-report.md) and [submit-issue.md](submit-issue.md).
+
+## Sub-Issue Body Template
+
+For each cause that requires a new sub-issue, compose its body as follows:
+
+````markdown
+## Root Cause
+
+**Label:** `cause: <label>`
+
+<Verbatim excerpt from root_cause_definitions.md defining this cause — the full definition section, not a summary>
+
+## How This Cause Manifested in the Incident
+
+<One paragraph: how this specific cause contributed to the incident, referencing the incident details from gather-incident.md>
+
+## Contributing Factors Specific to This Cause
+
+<The subset of contributing factors from the main issue that are attributable to this cause — verbatim quotes from root_cause_definitions.md where applicable>
+
+## Parent Issue
+
+Relates to: #<main issue number>
+````
+
 ## Data Exclusion
 
 **MUST NOT include:**

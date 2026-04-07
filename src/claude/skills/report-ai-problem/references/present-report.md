@@ -43,7 +43,7 @@ List training tendencies, system prompt conflicts, context issues, or recovered 
 
 List each applicable `cause:` label with one sentence explaining why it applies.
 
-## Show Existing Issues
+## Show Existing Main Issue
 
 If a matching issue was found in [compose-issue.md](compose-issue.md):
 
@@ -54,15 +54,27 @@ If no matching issue was found:
 
 - State that a new issue will be created
 
+## Show Planned Sub-Issues
+
+For each `cause:` label identified in [classify-causes.md](classify-causes.md), show one row:
+
+| Cause label | Action | Existing issue |
+|-------------|--------|----------------|
+| `cause: <label>` | Create new sub-issue | — |
+| `cause: <label>` | Link existing issue as sub-issue | #N — <title> (<url>) |
+
+- **Create new sub-issue** — no matching issue was found; a new issue will be created and linked as a child of the main issue
+- **Link existing issue as sub-issue** — a matching issue was found; it will be linked as a child of the main issue without duplication
+
 ## Ask for Confirmation
 
-Ask the user one of the following, depending on whether an existing issue was found:
+Ask the user the following, covering both the main issue and all sub-issues:
 
-**New issue:**
-> "Would you like me to create a new GitHub issue for this incident?"
+**New main issue:**
+> "Would you like me to create a new GitHub issue for this incident, plus sub-issues for each root cause?"
 
-**Existing issue:**
-> "Would you like me to append this as a comment on issue #N?"
+**Existing main issue:**
+> "Would you like me to append this as a comment on issue #N, and create or link sub-issues for each root cause?"
 
 **MUST NOT** proceed to [submit-issue.md](submit-issue.md) unless the user explicitly confirms.
 
