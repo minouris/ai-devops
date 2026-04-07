@@ -28,8 +28,8 @@ Execute the following flows in order:
 
 1. **Gather incident details** — see [gather-incident.md](references/gather-incident.md)
 2. **Gather lost context and system prompt** — see [gather-context.md](references/gather-context.md)
-3. **Identify rule violations and contributing factors** — see [identify-violations.md](references/identify-violations.md)
-4. **Classify root causes** — see [classify-causes.md](references/classify-causes.md)
+3. **Identify rule violations and contributing factors** — see [identify-violations.md](../analyse-ai-problem/references/identify-violations.md)
+4. **Classify root causes** — see [classify-causes.md](../analyse-ai-problem/references/classify-causes.md)
 5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
 6. **Present report and confirm** — see [present-report.md](references/present-report.md)
 7. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
