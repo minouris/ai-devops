@@ -1,0 +1,19 @@
+name: Inspect AI Problem Issue
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: /inspect-ai-problem-issue ${{ github.event.issue.number }}
+          claude_args: --allowedTools Bash,Read,Grep,Glob
