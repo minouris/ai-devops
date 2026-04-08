@@ -33,8 +33,6 @@ jobs:
       - run: npm install -g --prefer-offline @github/copilot
         if: steps.copilot-cache.outputs.cache-hit != 'true'
 
-      - uses: anthropics/claude-code-action@v1
-        with:
-          skill: inspect-ai-problem-issue
+      - run: copilot --prompt "/inspect-ai-problem-issue ${{ github.event.issue.number }}" --model claude-haiku-4.5 --no-ask-user
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
