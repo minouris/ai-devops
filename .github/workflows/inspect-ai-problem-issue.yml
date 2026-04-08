@@ -12,7 +12,7 @@ jobs:
   inspect-issue:
     runs-on: ubuntu-latest
     if: |
-      contains(github.event.issue.labels.*.name, 'caused-by:') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'cause:') &&
       !contains(github.event.issue.labels.*.name, 'created-by: report-ai-problem') &&
       !contains(github.event.issue.labels.*.name, 'inspected-by: inspect-ai-problem-issue')
     steps:
