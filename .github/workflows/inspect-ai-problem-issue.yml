@@ -1,0 +1,40 @@
+name: Inspect AI Problem Issue
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  issues: read
+  contents: read
+
+jobs:
+  inspect-issue:
+    runs-on: ubuntu-latest
+    if: |
+      contains(github.event.issue.labels.*.name, 'caused-by:') &&
+      !contains(github.event.issue.labels.*.name, 'created-by: report-ai-problem') &&
+      !contains(github.event.issue.labels.*.name, 'inspected-by: inspect-ai-problem-issue')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - uses: actions/cache@v4
+        id: copilot-cache
+        with:
+          key: copilot-cli-${{ runner.os }}-v1
+          path: ~/.npm
+          restore-keys: |
+            copilot-cli-${{ runner.os }}-
+
+      - run: npm install -g --prefer-offline @github/copilot
+        if: steps.copilot-cache.outputs.cache-hit != 'true'
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          skill: inspect-ai-problem-issue
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
