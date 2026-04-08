@@ -5,7 +5,7 @@ on:
     types: [opened, labeled]
 
 permissions:
-  issues: read
+  issues: write
   contents: read
 
 jobs:
@@ -36,3 +36,4 @@ jobs:
       - run: copilot --prompt "/inspect-ai-problem-issue ${{ github.event.issue.number }}" --model claude-haiku-4.5 --no-ask-user
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
