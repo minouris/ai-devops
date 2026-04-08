@@ -2,14 +2,11 @@
 paths:
   - "**/CLAUDE*.md"
   - ".claude/**/*.md"
-  - "**/*.instructions.md"
-  - "**/*.prompt.md"
-  - "**/*.skill.md"
-  - "**/*.agent.md"
-  - "**/*.mode.md"
-  - "**/*.workflow.md"
-  - "docs/plans/**/*.md"
-  - "docs/steps/**/*.md"
+  - "**/agents/**/*.md"
+  - "**/commands/**/*.md"
+  - "**/hooks/**/*.md"
+  - "**/rules/**/*.md"
+  - "**/skills/**/*.md"
 ---
 
 # Rule Copying Requirements
