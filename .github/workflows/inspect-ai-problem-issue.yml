@@ -5,14 +5,14 @@ on:
     types: [opened, labeled]
 
 permissions:
-  issues: read
+  issues: write
   contents: read
 
 jobs:
   inspect-issue:
     runs-on: ubuntu-latest
     if: |
-      contains(github.event.issue.labels.*.name, 'caused-by:') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'cause:') &&
       !contains(github.event.issue.labels.*.name, 'created-by: report-ai-problem') &&
       !contains(github.event.issue.labels.*.name, 'inspected-by: inspect-ai-problem-issue')
     steps:
@@ -31,7 +31,6 @@ jobs:
             copilot-cli-${{ runner.os }}-
 
       - run: npm install -g --prefer-offline @github/copilot
-        if: steps.copilot-cache.outputs.cache-hit != 'true'
 
       - uses: anthropics/claude-code-action@v1
         with:
