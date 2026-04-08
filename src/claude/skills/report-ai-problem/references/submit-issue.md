@@ -43,9 +43,9 @@ When no existing issue was found for this cause:
 ```
 gh issue create \
   --repo minouris/ai-devops \
-  --title "AI Problem: cause:<label> — <brief description of how this cause manifested>" \
+  --title "AI Problem: cause: <label> — <brief description of how this cause manifested>" \
   --body "<sub-issue body composed in compose-issue.md>" \
-  --label "cause:<label>" \
+  --label "cause: <label>" \
   --label "created-by: report-ai-problem"
 ```
 

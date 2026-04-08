@@ -10,7 +10,7 @@ For each cause label:
 gh issue list \
   --repo minouris/ai-devops \
   --state open \
-  --label "cause:<label>" \
+  --label "cause: <label>" \
   --search "<incident description keyword>"
 ```
 
