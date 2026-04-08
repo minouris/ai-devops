@@ -277,3 +277,50 @@ Documentation references the feature but technical specifications are not availa
 **Date captured:** 2026-04-09
 
 ---
+
+## FINDING-2026-04-09-2
+
+**Topic:** Specifying custom instructions directories for Copilot CLI
+
+**Observation:**
+
+Copilot CLI can be configured to read custom instructions from specific directories using the `COPILOT_CUSTOM_INSTRUCTIONS_DIRS` environment variable. This variable accepts a comma-separated list of directory paths where Copilot will search for instruction files.
+
+**File Structure and Discovery:**
+
+Within the specified directories (or repository root), Copilot CLI searches for:
+
+1. **`AGENTS.md`** — Treated as primary instructions/additional context for the agent
+2. **`.github/instructions/**/*.instructions.md`** — Path-specific instructions with YAML frontmatter containing `applyTo` patterns for selective application
+
+**Repository-Level Instructions (automatic discovery):**
+
+Without environment variables, Copilot reads from:
+- `CLAUDE.md` — Repository root (model-specific)
+- `GEMINI.md` — Repository root (model-specific)
+- `AGENTS.md` — Repository root (highest priority for agent context)
+
+**Personal/User-Level Instructions:**
+
+For personal Copilot CLI configuration (outside workflows):
+- `$HOME/.copilot/copilot-instructions.md`
+
+**Workflow Application:**
+
+In GitHub Actions workflows, set the environment variable on the step running Copilot CLI:
+
+```yaml
+- name: Run Copilot with custom instructions
+  env:
+    COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    COPILOT_CUSTOM_INSTRUCTIONS_DIRS: /path/to/instructions,/another/path
+  run: copilot -p "PROMPT" --no-ask-user
+```
+
+**Note:** No command-line flag exists for specifying custom instructions folders; the environment variable approach is the documented method for programmatic configuration.
+
+**Source:** [GitHub Docs — Copilot CLI: Add Custom Instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
+
+**Date captured:** 2026-04-09
+
+---

@@ -21,6 +21,7 @@ Research into executing GitHub Copilot prompts as GitHub Actions workflow steps.
 - Installation and setup in workflow environments
 - Tool restrictions and automation flags (`--no-ask-user`, `--allow-tool`)
 - Output capture and integration with subsequent workflow steps
+- Custom instructions directory configuration via environment variables
 
 ---
 
@@ -35,7 +36,7 @@ Research into executing GitHub Copilot prompts as GitHub Actions workflow steps.
 
 ## Research Progress
 
-**Total Findings Captured:** 7
+**Total Findings Captured:** 9
 
 | Finding | Topic | Status |
 |---------|-------|--------|
@@ -46,6 +47,8 @@ Research into executing GitHub Copilot prompts as GitHub Actions workflow steps.
 | FINDING-2026-04-08-5 | Invoking custom actions and passing inputs | Captured |
 | FINDING-2026-04-08-6 | GitHub Copilot integration (initial) | Captured |
 | FINDING-2026-04-08-7 | Copilot CLI invocation in workflows (AUTHORITATIVE) | Captured |
+| FINDING-2026-04-09-1 | Custom instructions investigation (incomplete docs) | Captured |
+| FINDING-2026-04-09-2 | Custom instructions directory configuration (AUTHORITATIVE) | Captured |
 
 **Previous Findings:** 6 findings (FINDING-2026-04-07-1 through 6) archived to `-facts-disproven.md` after identifying external project sources
 
@@ -64,6 +67,7 @@ Run GitHub Copilot prompts in workflows via Copilot CLI:
 - name: Run Copilot CLI
   env:
     COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    COPILOT_CUSTOM_INSTRUCTIONS_DIRS: /path/to/instructions,/another/path
   run: copilot -p "YOUR_PROMPT" --allow-tool=write --no-ask-user
 ```
 
@@ -71,9 +75,19 @@ Setup:
 1. Install: `npm install -g @github/copilot`
 2. Authenticate: Create PAT with "Copilot Requests" permission
 3. Set `COPILOT_GITHUB_TOKEN` environment variable
-4. Invoke: `copilot -p "PROMPT" --allow-tool=[TOOLS] --no-ask-user`
+4. Optional: Configure custom instructions via `COPILOT_CUSTOM_INSTRUCTIONS_DIRS` (comma-separated paths)
+5. Invoke: `copilot -p "PROMPT" --allow-tool=[TOOLS] --no-ask-user`
 
-Source: [GitHub Docs — Automate Copilot CLI with Actions](https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions)
+**Custom Instructions:**
+
+Copilot CLI searches for instructions in specified directories or repository root:
+- `AGENTS.md` — Primary agent context/instructions
+- `.github/instructions/**/*.instructions.md` — Path-specific instructions
+- `CLAUDE.md`, `GEMINI.md` — Model-specific repo instructions
+
+Sources:
+- [GitHub Docs — Automate Copilot CLI with Actions](https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions)
+- [GitHub Docs — Copilot CLI: Add Custom Instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
 
 ---
 

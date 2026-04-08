@@ -158,3 +158,35 @@ All aspects of running a GitHub Copilot prompt as a GitHub Actions workflow have
 
 ---
 
+### OP-2026-04-09-002: Research completion — custom instructions directory configuration
+
+**Operation type:** Research with authoritative source discovery
+
+**Files created/modified:**
+- `github-workflow-agent-actions-facts.md` - Added FINDING-2026-04-09-2 (custom instructions directory configuration)
+
+**Key finding:**
+- FINDING-2026-04-09-2: Copilot CLI uses `COPILOT_CUSTOM_INSTRUCTIONS_DIRS` environment variable to specify custom instruction directories
+
+**Critical information:**
+- Environment variable: `COPILOT_CUSTOM_INSTRUCTIONS_DIRS` (comma-separated list)
+- File discovery: `AGENTS.md`, `.github/instructions/**/*.instructions.md`
+- Repository-level files: `CLAUDE.md`, `GEMINI.md`, `AGENTS.md` (auto-discovered)
+- Applicable to GitHub Actions workflows via environment variable configuration
+- No command-line flag exists; environment variable is the documented approach
+
+**Solution for workflows:**
+```yaml
+env:
+  COPILOT_CUSTOM_INSTRUCTIONS_DIRS: /path/to/instructions,/another/path
+run: copilot -p "PROMPT" --no-ask-user
+```
+
+**Source:** [GitHub Docs — Copilot CLI: Add Custom Instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
+
+**Research status:** COMPLETE
+
+**Timestamp:** 2026-04-09
+
+---
+
