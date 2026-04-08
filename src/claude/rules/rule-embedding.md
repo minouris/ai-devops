@@ -1,8 +1,12 @@
 ---
 paths:
-  - "**/*.skill.md"
-  - "**/*.agent.md"
-  - "**/*.prompt.md"
+  - "**/CLAUDE*.md"
+  - ".claude/**/*.md"
+  - "**/agents/**/*.md"
+  - "**/commands/**/*.md"
+  - "**/hooks/**/*.md"
+  - "**/rules/**/*.md"
+  - "**/skills/**/*.md"
 ---
 
 # Rule Embedding Standards for Skills and Agents
