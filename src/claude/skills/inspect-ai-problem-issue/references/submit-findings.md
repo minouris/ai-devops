@@ -62,3 +62,15 @@ gh api \
 **MUST** use `-F` (not `-f`) for `sub_issue_id` — GitHub API requires an integer, not a string.
 
 Repeat for every cause label. Each cause becomes a separate child issue under the inspected issue.
+
+## Step 4: Mark As Inspected
+
+After all analysis is complete, apply the inspection completion label:
+
+```
+gh issue edit $ARGS \
+  --repo minouris/ai-devops \
+  --add-label "inspected-by: inspect-ai-problem-issue"
+```
+
+This prevents duplicate analyses if the skill is triggered again on the same issue.

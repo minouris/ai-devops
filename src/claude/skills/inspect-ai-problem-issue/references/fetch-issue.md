@@ -20,7 +20,7 @@ Record the issue number, title, body, URL, current labels, and existing comments
 
 2. **No cause label:** The issue has no `cause:` label — it has not been identified as an AI problem issue; this skill does not apply.
 
-3. **Already inspected:** The issue has an existing comment containing the heading `## AI Problem Analysis — inspect-ai-problem-issue` — this skill has already run on this issue; do not duplicate.
+3. **Already inspected:** The issue has label `inspected-by: inspect-ai-problem-issue` — this skill has already run on this issue; do not duplicate.
 
 **Proceed** if:
 - The issue has at least one `cause:` label
