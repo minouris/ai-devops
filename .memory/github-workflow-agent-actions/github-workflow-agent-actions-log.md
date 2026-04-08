@@ -128,3 +128,33 @@ All aspects of running a GitHub Copilot prompt as a GitHub Actions workflow have
 
 ---
 
+### OP-2026-04-09-001: Research on custom instructions folder configuration
+
+**Operation type:** Procedural research
+
+**Files created/modified:**
+- `github-workflow-agent-actions-facts.md` - Added FINDING-2026-04-09-1 (custom instructions investigation)
+
+**Key finding:**
+- FINDING-2026-04-09-1: Custom instructions feature exists in GitHub documentation but technical specifications are incomplete
+
+**Research approach:**
+- Consulted GitHub Docs CLI reference — lists available flags but no custom instructions folder option
+- Consulted GitHub Docs Copilot customizing — mentions feature but detailed configuration documentation not accessible
+- Searched for official documentation on file paths, command-line flags, configuration format
+
+**Gaps identified:**
+- No CLI flag documented for specifying custom instructions folder
+- File path/directory location not specified in accessible documentation
+- File format and naming conventions not documented
+- How Copilot CLI discovers or reads instructions not specified
+
+**Next steps:**
+- May require empirical testing to discover if/how Copilot CLI respects project-level instruction files
+- Check actual Copilot CLI `help` output for undocumented flags
+- Consult community resources or GitHub support for clarification
+
+**Timestamp:** 2026-04-09
+
+---
+

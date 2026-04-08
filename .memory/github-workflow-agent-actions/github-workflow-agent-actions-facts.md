@@ -245,3 +245,35 @@ When running Copilot CLI in GitHub Actions workflows (as shown in FINDING-2026-0
 **Date captured:** 2026-04-08
 
 ---
+
+## FINDING-2026-04-09-1
+
+**Topic:** Custom instructions configuration for Copilot CLI
+
+**Observation:**
+
+Official GitHub documentation references "custom instructions" for Copilot and describes them as a way to "give Copilot additional context on how to understand your project and how to build, test and validate its changes." Documentation mentions three levels:
+
+1. **Personal instructions** — User-specific customization
+2. **Repository instructions** — Project-specific context
+3. **Organization instructions** — Organization-wide customization
+
+However, **official GitHub documentation does not specify:**
+- The exact file path or directory where Copilot CLI reads custom instructions
+- Whether a command-line flag exists to specify an instructions folder
+- The required file format or naming convention for instruction files
+- How to configure Copilot CLI to read from a specific folder in workflows
+
+**Investigation method:** Searched GitHub official documentation for:
+- `docs.github.com/en/copilot/reference/copilot-cli-reference` — Lists available CLI flags but does not include custom instructions directory specification
+- `docs.github.com/en/copilot/customizing-copilot` — Mentions custom instructions exist but references incomplete documentation pages
+
+**Research status:** INCOMPLETE
+
+Documentation references the feature but technical specifications are not available in GitHub's currently-accessible official documentation.
+
+**Source:** [GitHub Docs — Copilot CLI Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference); [GitHub Docs — Customizing Copilot](https://docs.github.com/en/copilot/customizing-copilot)
+
+**Date captured:** 2026-04-09
+
+---
