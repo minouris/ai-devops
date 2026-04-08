@@ -10,6 +10,8 @@
 
 **Topic:** Using contains() function to filter jobs based on issue labels
 
+**Introduces terms:** [`contains()` function](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#contains-function), [Label filtering](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#label-filtering)
+
 **Observation:**
 
 GitHub Actions provides the `contains()` function to check whether an array includes a specific item. The function returns `true` if the item is found in the array and is case-insensitive.

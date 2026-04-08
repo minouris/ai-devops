@@ -10,6 +10,8 @@
 
 **Topic:** GitHub Actions runner environment and default working directory
 
+**Introduces terms:** [`GITHUB_WORKSPACE` environment variable](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github_workspace-environment-variable)
+
 **Observation:**
 
 GitHub Actions runners are freshly-provisioned virtual machines. Each job executes on a new runner instance. The default working directory available to all jobs is represented by the `GITHUB_WORKSPACE` default environment variable.
@@ -33,6 +35,10 @@ This is described as "the default working directory on the runner for steps, and
 ## FINDING-2026-04-09-2
 
 **Topic:** Repository code availability and checkout requirement
+
+**Introduces terms:** [`actions/checkout` action](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#actionscheckout-action), [GitHub-hosted runner provisioning](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github-hosted-runner-provisioning)
+
+**Uses terms:** [Preinstalled software on runners](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#preinstalled-software-on-runners)
 
 **Observation:**
 
@@ -66,6 +72,8 @@ Without the `actions/checkout` step, the runner's workspace lacks access to repo
 ## FINDING-2026-04-09-3
 
 **Topic:** GitHub Actions scope regarding branch context and ref information
+
+**Uses terms:** [GitHub context object](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github-context-object)
 
 **Observation:**
 

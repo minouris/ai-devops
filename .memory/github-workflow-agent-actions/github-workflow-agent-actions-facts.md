@@ -10,6 +10,8 @@
 
 **Topic:** GitHub Actions overview and custom actions
 
+**Introduces terms:** [Custom actions](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#custom-actions)
+
 **Observation:**
 
 According to GitHub's official documentation, GitHub Actions are individual tasks that can be combined to create jobs and customise workflows. Actions are reusable components available from GitHub's community or developed privately.
@@ -30,6 +32,8 @@ Action metadata files use YAML syntax with filenames `action.yml` or `action.yam
 ## FINDING-2026-04-08-2
 
 **Topic:** GitHub Workflow file structure and core properties
+
+**Introduces terms:** [Workflow file](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#workflow-file)
 
 **Observation:**
 
@@ -53,6 +57,8 @@ Workflow files are stored in `.github/workflows/` directory using `.yml` or `.ya
 ## FINDING-2026-04-08-3
 
 **Topic:** Event triggers and custom inputs in workflows
+
+**Uses terms:** [Event triggers](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#event-triggers), [Workflow_dispatch trigger](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#workflow_dispatch-trigger)
 
 **Observation:**
 
@@ -83,6 +89,8 @@ Environment variables defined with `env:` are accessed using shell syntax (e.g.,
 
 **Topic:** Executing commands in workflow steps
 
+**Introduces terms:** [Run keyword](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#run-keyword)
+
 **Observation:**
 
 Commands and scripts in workflows are executed using the `run` keyword within job steps. Shell environments are specified via the `shell` parameter.
@@ -105,6 +113,8 @@ Default shell can be configured workflow-wide using `defaults.run.shell` or per-
 ## FINDING-2026-04-08-5
 
 **Topic:** Invoking custom actions and passing inputs to steps
+
+**Uses terms:** [Uses keyword](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#uses-keyword), [Steps](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#steps)
 
 **Observation:**
 
@@ -133,6 +143,8 @@ Each step can be given a `name` for display in the GitHub interface. Jobs refere
 
 **Topic:** GitHub Copilot functionality and GitHub integration
 
+**Introduces terms:** [GitHub Copilot](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github-copilot)
+
 **Observation:**
 
 GitHub Copilot is characterised as "an AI coding assistant that helps you write code faster and with less effort." It functions across multiple GitHub environments:
@@ -154,6 +166,8 @@ For premium tiers (Copilot Pro+, Business, Enterprise), Copilot can conduct rese
 ## FINDING-2026-04-08-7
 
 **Topic:** Running GitHub Copilot CLI in GitHub Actions workflows
+
+**Uses terms:** [Copilot CLI invocation](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#copilot-cli-invocation), [`--no-ask-user` flag](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#--no-ask-user-flag), [`COPILOT_GITHUB_TOKEN` environment variable](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#copilot_github_token-environment-variable), [npm installation of Copilot CLI](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#npm-installation-of-copilot-cli)
 
 **Observation:**
 
@@ -193,6 +207,10 @@ CLI output can be captured and used in subsequent workflow steps.
 ## FINDING-2026-04-08-8
 
 **Topic:** Specifying model in Copilot CLI for GitHub Actions workflows
+
+**Introduces terms:** [Model selection priority](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#model-selection-priority)
+
+**Uses terms:** [`--model` flag](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#--model-flag), [`COPILOT_MODEL` environment variable](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#copilot_model-environment-variable)
 
 **Observation:**
 
@@ -281,6 +299,10 @@ Documentation references the feature but technical specifications are not availa
 ## FINDING-2026-04-09-2
 
 **Topic:** Specifying custom instructions directories for Copilot CLI
+
+**Introduces terms:** [Custom instructions](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#custom-instructions)
+
+**Uses terms:** [`COPILOT_CUSTOM_INSTRUCTIONS_DIRS` environment variable](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#copilot_custom_instructions_dirs-environment-variable)
 
 **Observation:**
 

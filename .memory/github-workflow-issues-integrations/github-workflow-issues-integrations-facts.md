@@ -10,6 +10,8 @@
 
 **Topic:** Triggering workflows on GitHub issue events
 
+**Introduces terms:** [`issues` event](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#issues-event), [Issue activity types](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#issue-activity-types)
+
 **Observation:**
 
 The `issues` event in GitHub Actions triggers workflows when issues in the repository are created or modified. The event fires for multiple activity types representing different issue lifecycle changes:
@@ -52,6 +54,8 @@ The workflow file must exist on the repository's default branch for the issue ev
 
 **Topic:** Configuring permissions for issue operations in workflow jobs
 
+**Introduces terms:** [`issues: write` permission](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#issues-write-permission), [`issues: read` permission](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#issues-read-permission)
+
 **Observation:**
 
 The `issues` permission in GitHub Actions workflow jobs controls access to repository issues. Permissions can be configured at workflow level or job level, with job-level settings overriding workflow-level settings.
@@ -90,6 +94,8 @@ jobs:
 ## FINDING-2026-04-08-3
 
 **Topic:** Issue data available in GitHub Actions workflows
+
+**Introduces terms:** [`github.event.issue` context object](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#githubeeventissue-context-object)
 
 **Observation:**
 

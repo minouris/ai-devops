@@ -1,6 +1,6 @@
-# GitHub Workflow Agent Actions - Fact File
+# GitHub DevOps Workflow Actions — Workflow Execution Fundamentals - Facts
 
-**Topic:** github-workflow-agent-actions
+**Topic:** github-devops-workflow-actions / Subtopic: workflow-execution
 
 **Status:** Research complete
 
@@ -9,6 +9,8 @@
 ## FINDING-2026-04-08-1
 
 **Topic:** GitHub Actions overview and custom actions
+
+**Introduces terms:** [Custom actions](../github-devops-workflow-actions-terms.md#custom-actions)
 
 **Observation:**
 
@@ -31,18 +33,11 @@ Action metadata files use YAML syntax with filenames `action.yml` or `action.yam
 
 **Topic:** GitHub Workflow file structure and core properties
 
+**Introduces terms:** [Workflow file](../github-devops-workflow-actions-terms.md#workflow-file)
+
 **Observation:**
 
-Workflow files are stored in `.github/workflows/` directory using `.yml` or `.yaml` extensions. Core workflow properties:
-
-- **`name`** — Sets the workflow's display name in the Actions tab
-- **`on`** — Defines triggering events via the `on` keyword; "To automatically trigger a workflow, use `on` to define which events can cause the workflow to run"
-- **`run-name`** — Customises name shown for individual workflow runs (supports dynamic expressions)
-- **`permissions`** — Controls `GITHUB_TOKEN` access levels (read, write, or none)
-- **`env`** — Sets workflow-wide environment variables
-- **`defaults`** — Establishes default settings like shell type and working directory
-- **`concurrency`** — Manages parallel execution; ensures only one job with same concurrency group runs concurrently
-- **`jobs`** — Contains jobs that run in parallel by default; use `jobs.<job_id>.needs` for sequential execution
+Workflow files are stored in `.github/workflows/` directory using `.yml` or `.yaml` extensions. Core workflow properties include `name`, `on`, `run-name`, `permissions`, `env`, `defaults`, `concurrency`, and `jobs`.
 
 **Source:** [GitHub Actions — Workflow Syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions)
 
@@ -54,24 +49,11 @@ Workflow files are stored in `.github/workflows/` directory using `.yml` or `.ya
 
 **Topic:** Event triggers and custom inputs in workflows
 
+**Uses terms:** [Event triggers](../github-devops-workflow-actions-terms.md#event-triggers), [Workflow_dispatch trigger](../github-devops-workflow-actions-terms.md#workflow_dispatch-trigger)
+
 **Observation:**
 
-Workflows are triggered by events defined using the `on` keyword. Custom inputs can be defined for manual workflow dispatch:
-
-```yaml
-on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-```
-
-Inputs are accessed via the `inputs` context: `${{ inputs.logLevel }}`. The `inputs` context preserves Boolean values as Booleans (not strings), whereas `github.event.inputs` converts all values to strings.
-
-Environment variables defined with `env:` are accessed using shell syntax (e.g., `$LEVEL` or `$MESSAGE`).
+Workflows are triggered by events defined using the `on` keyword. The `inputs` context preserves Boolean values; `github.event.inputs` converts all to strings.
 
 **Source:** [GitHub Actions — Events that Trigger Workflows](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows)
 
@@ -83,20 +65,13 @@ Environment variables defined with `env:` are accessed using shell syntax (e.g.,
 
 **Topic:** Executing commands in workflow steps
 
+**Introduces terms:** [Run keyword](../github-devops-workflow-actions-terms.md#run-keyword)
+
 **Observation:**
 
-Commands and scripts in workflows are executed using the `run` keyword within job steps. Shell environments are specified via the `shell` parameter.
+Commands and scripts use the `run` keyword with configurable shell environments (bash, pwsh, python, cmd, powershell).
 
-Supported shells:
-- **bash** — Default on Linux/macOS; runs `bash --noprofile --norc -eo pipefail {0}`
-- **pwsh** — PowerShell Core; runs `pwsh -command ". '{0}'"`
-- **python** — Executes Python directly
-- **cmd** — Windows Command Prompt
-- **powershell** — PowerShell Desktop on Windows
-
-Default shell can be configured workflow-wide using `defaults.run.shell` or per-step using the `shell` parameter. Default working directory is set via `defaults.run.working-directory`.
-
-**Source:** [GitHub Actions — Workflow Syntax (`run` keyword)](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun)
+**Source:** [GitHub Actions — Workflow Syntax (run keyword)](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun)
 
 **Date captured:** 2026-04-08
 
@@ -106,22 +81,11 @@ Default shell can be configured workflow-wide using `defaults.run.shell` or per-
 
 **Topic:** Invoking custom actions and passing inputs to steps
 
+**Uses terms:** [Uses keyword](../github-devops-workflow-actions-terms.md#uses-keyword), [Steps](../github-devops-workflow-actions-terms.md#steps)
+
 **Observation:**
 
-Custom actions are invoked in workflow steps using the `uses` keyword, and inputs are passed via the `with` keyword:
-
-```yaml
-- name: Pass the received secret to an action
-  uses: ./.github/actions/my-action
-  with:
-    token: ${{ secrets.access-token }}
-```
-
-Steps execute sequentially within a job. Steps can either:
-1. Run shell commands using the `run` keyword
-2. Execute reusable actions using the `uses` keyword
-
-Each step can be given a `name` for display in the GitHub interface. Jobs reference outputs and variables from other jobs using expressions.
+Custom actions are invoked using `uses` keyword; inputs passed via `with` keyword. Steps execute sequentially within a job.
 
 **Source:** [GitHub Actions — Workflow Syntax (steps and uses)](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps)
 
@@ -133,17 +97,11 @@ Each step can be given a `name` for display in the GitHub interface. Jobs refere
 
 **Topic:** GitHub Copilot functionality and GitHub integration
 
+**Introduces terms:** [GitHub Copilot](../github-devops-workflow-actions-terms.md#github-copilot)
+
 **Observation:**
 
-GitHub Copilot is characterised as "an AI coding assistant that helps you write code faster and with less effort." It functions across multiple GitHub environments:
-
-- IDEs (real-time code suggestions)
-- GitHub Mobile (chat-based assistance)
-- GitHub CLI (command-line support)
-- GitHub website
-- Windows Terminal
-
-For premium tiers (Copilot Pro+, Business, Enterprise), Copilot can conduct research, draft code modifications, and generate pull requests for developer review. It can "generate descriptions of changes in a pull request."
+GitHub Copilot is an AI coding assistant functioning across IDEs, GitHub Mobile, GitHub CLI, GitHub website, and Windows Terminal.
 
 **Source:** [GitHub Copilot — About GitHub Copilot](https://docs.github.com/en/copilot/about-github-copilot/what-is-github-copilot)
 
@@ -155,172 +113,14 @@ For premium tiers (Copilot Pro+, Business, Enterprise), Copilot can conduct rese
 
 **Topic:** Running GitHub Copilot CLI in GitHub Actions workflows
 
+**Uses terms:** [Copilot CLI invocation](../github-devops-workflow-actions-terms.md#copilot-cli-invocation), [`--no-ask-user` flag](../github-devops-workflow-actions-terms.md#--no-ask-user-flag), [`COPILOT_GITHUB_TOKEN` environment variable](../github-devops-workflow-actions-terms.md#copilot_github_token-environment-variable), [npm installation of Copilot CLI](../github-devops-workflow-actions-terms.md#npm-installation-of-copilot-cli)
+
 **Observation:**
 
-GitHub Copilot CLI can be invoked directly in GitHub Actions workflows using the command syntax `copilot -p PROMPT [OPTIONS]`, enabling non-interactive programmatic execution without user input.
-
-**Five-Step Setup Process:**
-
-1. **Trigger** — Initiate workflow on schedule or manually via `on:` configuration
-2. **Environment Preparation** — Checkout repository code and configure the runner with `actions/checkout@v4`
-3. **Installation** — Install Copilot CLI globally: `npm install -g @github/copilot`
-4. **Authentication** — Create a personal access token (PAT) with "Copilot Requests" permission and store as repository secret
-5. **Authorization** — Set `COPILOT_GITHUB_TOKEN` environment variable within workflow step using the stored secret
-
-**Workflow Step Syntax:**
-
-```yaml
-- name: Run Copilot CLI
-  env:
-    COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  run: copilot -p "YOUR_PROMPT" --allow-tool=[TOOLS] --no-ask-user
-```
-
-**Key Command Flags:**
-
-- `--allow-tool='shell(git:*)'` — Enable Git commands
-- `--allow-tool=write` — Permit file operations
-- `--no-ask-user` — Prevent interactive prompts (required for automation)
-
-CLI output can be captured and used in subsequent workflow steps.
+GitHub Copilot CLI can be invoked directly in workflows using `copilot -p PROMPT [OPTIONS]` for non-interactive execution.
 
 **Source:** [GitHub Docs — Automate Copilot CLI with Actions](https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions)
 
 **Date captured:** 2026-04-08
-
----
-
-## FINDING-2026-04-08-8
-
-**Topic:** Specifying model in Copilot CLI for GitHub Actions workflows
-
-**Observation:**
-
-GitHub Copilot CLI supports model specification via the `--model=<model>` flag. When running Copilot CLI in GitHub Actions workflows, you can specify which AI model to use through this flag.
-
-**Configuration methods (in priority order):**
-
-1. **Command-line flag:**
-```bash
-copilot -p "YOUR_PROMPT" --model claude-haiku-4.5 --no-ask-user
-```
-
-2. **Environment variable:**
-```yaml
-- name: Run Copilot with specific model
-  env:
-    COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    COPILOT_MODEL: claude-haiku-4.5
-  run: copilot -p "YOUR_PROMPT" --no-ask-user
-```
-
-3. **Configuration file:**
-Persists model preference in `~/.copilot/config.json`:
-```json
-{
-  "model": "claude-haiku-4.5"
-}
-```
-
-**Model selection priority in Copilot CLI:**
-1. Custom agent definition (if applicable)
-2. Command-line option (`--model=<model>`)
-3. Environment variable (`COPILOT_MODEL`)
-4. Configuration file (`~/.copilot/config.json`)
-5. Default model (if none specified)
-
-**Available models (examples from documentation):**
-- `claude-haiku-4.5` — Fast, lower-cost option for straightforward tasks
-- `claude-sonnet-4.6` — Standard Claude model
-- `gpt-5.3-codex` — More powerful model for complex reasoning
-- `gpt-5.2` — Alternative model
-
-**Note:** Complete list of available models for your account can be found by running `copilot help` in your terminal.
-
-**Applicable to workflows:**
-When running Copilot CLI in GitHub Actions workflows (as shown in FINDING-2026-04-08-7), the `--model` flag can be included in the `run` command to specify which model Copilot should use for the prompt execution.
-
-**Source:** [GitHub Docs — Copilot CLI Programmatic Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference)
-
-**Date captured:** 2026-04-08
-
----
-
-## FINDING-2026-04-09-1
-
-**Topic:** Custom instructions configuration for Copilot CLI
-
-**Observation:**
-
-Official GitHub documentation references "custom instructions" for Copilot and describes them as a way to "give Copilot additional context on how to understand your project and how to build, test and validate its changes." Documentation mentions three levels:
-
-1. **Personal instructions** — User-specific customization
-2. **Repository instructions** — Project-specific context
-3. **Organization instructions** — Organization-wide customization
-
-However, **official GitHub documentation does not specify:**
-- The exact file path or directory where Copilot CLI reads custom instructions
-- Whether a command-line flag exists to specify an instructions folder
-- The required file format or naming convention for instruction files
-- How to configure Copilot CLI to read from a specific folder in workflows
-
-**Investigation method:** Searched GitHub official documentation for:
-- `docs.github.com/en/copilot/reference/copilot-cli-reference` — Lists available CLI flags but does not include custom instructions directory specification
-- `docs.github.com/en/copilot/customizing-copilot` — Mentions custom instructions exist but references incomplete documentation pages
-
-**Research status:** INCOMPLETE
-
-Documentation references the feature but technical specifications are not available in GitHub's currently-accessible official documentation.
-
-**Source:** [GitHub Docs — Copilot CLI Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference); [GitHub Docs — Customizing Copilot](https://docs.github.com/en/copilot/customizing-copilot)
-
-**Date captured:** 2026-04-09
-
----
-
-## FINDING-2026-04-09-2
-
-**Topic:** Specifying custom instructions directories for Copilot CLI
-
-**Observation:**
-
-Copilot CLI can be configured to read custom instructions from specific directories using the `COPILOT_CUSTOM_INSTRUCTIONS_DIRS` environment variable. This variable accepts a comma-separated list of directory paths where Copilot will search for instruction files.
-
-**File Structure and Discovery:**
-
-Within the specified directories (or repository root), Copilot CLI searches for:
-
-1. **`AGENTS.md`** — Treated as primary instructions/additional context for the agent
-2. **`.github/instructions/**/*.instructions.md`** — Path-specific instructions with YAML frontmatter containing `applyTo` patterns for selective application
-
-**Repository-Level Instructions (automatic discovery):**
-
-Without environment variables, Copilot reads from:
-- `CLAUDE.md` — Repository root (model-specific)
-- `GEMINI.md` — Repository root (model-specific)
-- `AGENTS.md` — Repository root (highest priority for agent context)
-
-**Personal/User-Level Instructions:**
-
-For personal Copilot CLI configuration (outside workflows):
-- `$HOME/.copilot/copilot-instructions.md`
-
-**Workflow Application:**
-
-In GitHub Actions workflows, set the environment variable on the step running Copilot CLI:
-
-```yaml
-- name: Run Copilot with custom instructions
-  env:
-    COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    COPILOT_CUSTOM_INSTRUCTIONS_DIRS: /path/to/instructions,/another/path
-  run: copilot -p "PROMPT" --no-ask-user
-```
-
-**Note:** No command-line flag exists for specifying custom instructions folders; the environment variable approach is the documented method for programmatic configuration.
-
-**Source:** [GitHub Docs — Copilot CLI: Add Custom Instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
-
-**Date captured:** 2026-04-09
 
 ---

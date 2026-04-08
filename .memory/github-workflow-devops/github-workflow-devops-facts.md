@@ -10,6 +10,8 @@
 
 **Topic:** GitHub CLI preinstallation and setup requirement
 
+**Introduces terms:** [GitHub CLI preinstallation](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github-cli-preinstallation)
+
 **Observation:**
 
 GitHub CLI (`gh`) is preinstalled on all GitHub-hosted runners, eliminating the need for explicit installation steps in workflows. The only requirement for using GitHub CLI in workflows is authentication setup.
@@ -29,6 +31,8 @@ To use GitHub CLI in workflows, an environment variable must be set for each ste
 ## FINDING-2026-04-08-2
 
 **Topic:** Authenticating GitHub CLI with GH_TOKEN in workflows
+
+**Uses terms:** [`GH_TOKEN` environment variable](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#gh_token-environment-variable), [`GITHUB_TOKEN` automatic token](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#github_token-automatic-token)
 
 **Observation:**
 
@@ -62,6 +66,8 @@ GitHub CLI can execute API calls via `gh api` subcommand, enabling GraphQL queri
 ## FINDING-2026-04-08-3
 
 **Topic:** Copilot CLI installation requirement vs GitHub CLI preinstallation
+
+**Uses terms:** [npm installation of Copilot CLI](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#npm-installation-of-copilot-cli)
 
 **Observation:**
 

@@ -10,6 +10,8 @@
 
 **Topic:** GitHub Actions cache restoration and key matching mechanism
 
+**Introduces terms:** [Cache restoration algorithm](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#cache-restoration-algorithm)
+
 **Observation:**
 
 GitHub Actions caches use a tiered search algorithm to restore cached artifacts. When a workflow step requests a cache restoration, the system searches using a priority-based approach that balances exact matches against partial matches.
@@ -52,6 +54,8 @@ Best practice is to use expressions like `hashFiles('package-lock.json')` to aut
 ## FINDING-2026-04-08-2
 
 **Topic:** Cache scope, branch access hierarchy, and isolation in GitHub Actions
+
+**Introduces terms:** [Cache scope isolation](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#cache-scope-isolation)
 
 **Observation:**
 
@@ -99,6 +103,8 @@ Repositories default to 10 GB maximum cache storage. When quota is exceeded, cac
 
 **Topic:** Automatic dependency caching via setup-* actions and security considerations
 
+**Uses terms:** [Automatic caching via setup actions](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#automatic-caching-via-setup-actions)
+
 **Observation:**
 
 GitHub Actions provides automatic caching for common dependency managers through specialized setup actions. These actions eliminate the need for manual cache configuration for popular languages and package managers, while caches present specific security considerations.
@@ -143,6 +149,8 @@ Public repositories and pull requests present security risks with caches:
 ## FINDING-2026-04-08-4
 
 **Topic:** GitHub cache action inputs, outputs, and advanced configuration options
+
+**Introduces terms:** [`cache-hit` output](../github-devops-workflow-actions/github-devops-workflow-actions-terms.md#cache-hit-output)
 
 **Observation:**
 
