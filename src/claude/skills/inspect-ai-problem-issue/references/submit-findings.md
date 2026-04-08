@@ -10,7 +10,17 @@ gh issue comment $ARGS \
   --body-file <path to composed comment from compose-findings.md>
 ```
 
-## Step 2: Apply New Labels
+## Step 2: Apply Inspection Label
+
+Mark the issue as inspected:
+
+```
+gh issue edit $ARGS \
+  --repo minouris/ai-devops \
+  --add-label "inspected-by: inspect-ai-problem-issue"
+```
+
+## Step 3: Apply New Labels
 
 For each `cause:` label identified in [classify-causes.md](../../analyse-ai-problem/references/classify-causes.md) that is **not already on the issue**:
 
@@ -20,7 +30,7 @@ gh issue edit $ARGS \
   --add-label "cause:<label>"
 ```
 
-## Step 3: Create or Link Sub-Issues
+## Step 4: Create or Link Sub-Issues
 
 For each cause label, use the result from [check-sub-issues.md](../../analyse-ai-problem/references/check-sub-issues.md).
 
