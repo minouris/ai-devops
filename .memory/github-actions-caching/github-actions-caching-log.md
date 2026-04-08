@@ -1,6 +1,6 @@
-# GitHub Agents Caching - Operation Log
+# GitHub Actions Caching - Operation Log
 
-**Topic:** github-agents-caching
+**Topic:** github-actions-caching
 
 **Session started:** 2026-04-08
 
@@ -11,9 +11,9 @@
 **Operation type:** Session initialisation
 
 **Files created:**
-- `github-agents-caching-index.md` - Topic index initialised
-- `github-agents-caching-log.md` - This log
-- `github-agents-caching-facts.md` - Fact file initialised
+- `github-actions-caching-index.md` - Topic index initialised
+- `github-actions-caching-log.md` - This log
+- `github-actions-caching-facts.md` - Fact file initialised
 
 **Key output:**
 - Topic structure created, ready for research

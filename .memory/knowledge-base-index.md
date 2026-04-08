@@ -15,7 +15,7 @@ Use this index to locate knowledge relevant to your task:
 | Triggering workflows on issues and providing issue tools | [github-workflow-issues-integrations](#github-workflow-issues-integrations) | Issue events, permissions, R/W access |
 | Installing and authenticating GitHub CLI in workflows | [github-workflow-devops](#github-workflow-devops) | CLI installation, authentication, GITHUB_TOKEN |
 | Filtering jobs based on issue labels | [github-workflow-issue-filtering](#github-workflow-issue-filtering) | Job conditionals, label presence checks |
-| Caching environments in GitHub Actions | [github-agents-caching](#github-agents-caching) | Caching strategies, dependency management |
+| Caching environments in GitHub Actions | [github-actions-caching](#github-actions-caching) | Caching strategies, dependency management |
 | Understanding GitHub Actions runner scope and repository access | [github-actions-scope](#github-actions-scope) | Default working directory, checkout requirement |
 
 ---
@@ -133,15 +133,15 @@ Research into using GitHub Actions job filtering and conditionals to determine w
 
 ---
 
-### GitHub Agents Caching
+### GitHub Actions Caching
 
 **Knowledge Summary:**
 
 Research into caching strategies for environments and dependencies constructed within GitHub Actions workflows, optimizing CI/CD pipeline performance through artifact reuse across runs.
 
 **Quick Links:**
-- Full index: [github-agents-caching-index.md](github-agents-caching/github-agents-caching-index.md)
-- Main facts: [github-agents-caching-facts.md](github-agents-caching/github-agents-caching-facts.md)
+- Full index: [github-actions-caching-index.md](github-actions-caching/github-actions-caching-index.md)
+- Main facts: [github-actions-caching-facts.md](github-actions-caching/github-actions-caching-facts.md)
 
 **Research Areas:**
 - Caching mechanisms in GitHub Actions (1 verified finding)
@@ -187,8 +187,9 @@ Research into the execution scope of GitHub Actions runners and their default ac
 | 2026-04-08 | github-workflow-issues-integrations | Topic added | Research: triggering workflows on issues and providing issue tools |
 | 2026-04-08 | github-workflow-devops | Topic added | Research: install and authenticate GitHub CLI in workflows |
 | 2026-04-08 | github-workflow-issue-filtering | Topic added | Research: using job filtering to check issue labels |
-| 2026-04-08 | github-agents-caching | Topic added | Research: cache environments constructed for GitHub Actions |
+| 2026-04-08 | github-actions-caching | Topic added | Research: cache environments constructed for GitHub Actions |
 | 2026-04-08 | github-workflow-actions-issues | Topic removed | Obsolete: replaced by Copilot CLI approach, no longer relevant |
 | 2026-04-09 | github-actions-scope | Topic added | Research: runner scope, working directory, repository code availability |
+| 2026-04-09 | github-agents-caching | Topic renamed | Renamed to github-actions-caching for consistency |
 
 ---

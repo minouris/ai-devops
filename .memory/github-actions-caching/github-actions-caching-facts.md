@@ -1,6 +1,6 @@
-# GitHub Agents Caching - Fact File
+# GitHub Actions Caching - Fact File
 
-**Topic:** github-agents-caching
+**Topic:** github-actions-caching
 
 **Status:** Research in progress
 

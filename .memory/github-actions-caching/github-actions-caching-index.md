@@ -1,6 +1,6 @@
-# GitHub Agents Caching - Topic Index
+# GitHub Actions Caching - Topic Index
 
-**Topic:** github-agents-caching
+**Topic:** github-actions-caching
 
 **Status:** Research in progress
 
@@ -24,7 +24,7 @@ Research into caching strategies for environments and dependencies constructed w
 
 ## Topic Directory
 
-- `github-agents-caching-facts.md` — Captured research findings
-- `github-agents-caching-log.md` — Operation log
+- `github-actions-caching-facts.md` — Captured research findings
+- `github-actions-caching-log.md` — Operation log
 
 ---
