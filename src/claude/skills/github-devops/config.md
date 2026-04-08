@@ -26,5 +26,5 @@ Configure repository details via environment variables before invoking the skill
 
 ## Current Configuration
 
-repo: owner/repository-name
+repo: minouris/ai-devops
 org: organization-name
