@@ -17,7 +17,7 @@ For each `cause:` label identified in [classify-causes.md](../../analyse-ai-prob
 ```
 gh issue edit $ARGS \
   --repo minouris/ai-devops \
-  --add-label "cause:<label>"
+  --add-label "cause: <label>"
 ```
 
 ## Step 3: Create or Link Sub-Issues
@@ -31,9 +31,9 @@ When no existing issue was found for this cause:
 ```
 gh issue create \
   --repo minouris/ai-devops \
-  --title "AI Problem: cause:<label> — <brief description of how this cause manifested>" \
+  --title "AI Problem: cause: <label> — <brief description of how this cause manifested>" \
   --body-file <path to composed sub-issue body> \
-  --label "cause:<label>" \
+  --label "cause: <label>" \
   --label "created-by: inspect-ai-problem-issue"
 ```
 
