@@ -1,6 +1,6 @@
 # Knowledge Base Index
 
-**Last Updated:** 2026-04-07
+**Last Updated:** 2026-04-09
 
 ---
 
@@ -10,36 +10,17 @@ Use this index to locate knowledge relevant to your task:
 
 | If you need... | See Topic | Key Findings |
 |---|---|---|
-| Triggering Claude agent on GitHub issue events | [github-workflow-actions-issues](#github-workflow-actions-issues) | Trigger config, permission requirements |
 | Running a Copilot prompt as a GitHub Actions workflow | [github-workflow-agent-actions](#github-workflow-agent-actions) | Authentication, CLI invocation |
 | Specifying model in Copilot CLI | [copilot-cli-agent-modes](#copilot-cli-agent-modes) | `--model=<model>` flag, config methods |
 | Triggering workflows on issues and providing issue tools | [github-workflow-issues-integrations](#github-workflow-issues-integrations) | Issue events, permissions, R/W access |
 | Installing and authenticating GitHub CLI in workflows | [github-workflow-devops](#github-workflow-devops) | CLI installation, authentication, GITHUB_TOKEN |
 | Filtering jobs based on issue labels | [github-workflow-issue-filtering](#github-workflow-issue-filtering) | Job conditionals, label presence checks |
 | Caching environments in GitHub Actions | [github-agents-caching](#github-agents-caching) | Caching strategies, dependency management |
+| Understanding GitHub Actions runner scope and repository access | [github-actions-scope](#github-actions-scope) | Default working directory, checkout requirement |
 
 ---
 
 ## Topic Directories
-
-### GitHub Workflow Actions Issues
-
-**Knowledge Summary:**
-
-Research into triggering a GitHub Actions workflow that runs a Claude Code skill via the GitHub Claude agent when a GitHub issue is created. Covers the `issues` event trigger, the `anthropics/claude-code-action` runner, required permissions, and how to target a specific skill.
-
-**Quick Links:**
-- Full index: [github-workflow-actions-issues-index.md](github-workflow-actions-issues/github-workflow-actions-issues-index.md)
-- Main facts: [github-workflow-actions-issues-facts.md](github-workflow-actions-issues/github-workflow-actions-issues-facts.md)
-
-**Research Areas:**
-- GitHub Actions issue event trigger (0 verified findings)
-- Claude Code Action configuration (0 verified findings)
-- Issue read/write permissions (0 verified findings)
-
-**Key Concepts:**
-- `issues` event — GitHub Actions event that fires on issue lifecycle changes
-- `anthropics/claude-code-action` — GitHub Action that runs Claude Code with a given prompt or skill
 
 ### GitHub Workflow Agent Actions
 
@@ -172,17 +153,42 @@ Research into caching strategies for environments and dependencies constructed w
 - **Dependency management** — Node modules, packages, build outputs
 - **Environment setup** — Pre-constructed runtime environments
 
+---
+
+### GitHub Actions Scope
+
+**Knowledge Summary:**
+
+Research into the execution scope of GitHub Actions runners and their default access to repository code. Covers runner environment initialization, default working directory configuration, and checkout requirements.
+
+**Quick Links:**
+- Full index: [github-actions-scope-index.md](github-actions-scope/github-actions-scope-index.md)
+- Main facts: [github-actions-scope-facts.md](github-actions-scope/github-actions-scope-facts.md)
+
+**Research Areas:**
+- Runner environment scope (1 finding)
+- Default working directory and GITHUB_WORKSPACE (1 finding)
+- Repository code availability and checkout requirement (1 finding)
+- Branch context availability (1 finding - incomplete)
+
+**Key Concepts:**
+- **GITHUB_WORKSPACE** — Default working directory on runner (e.g., `/home/runner/work/my-repo-name/my-repo-name`)
+- **Repository code NOT available by default** — Critical finding: runners start without repository code
+- **checkout action** — Required action to fetch and place repository code in workspace
+- **Runner isolation** — Freshly-provisioned VMs with only system tools and preinstalled software
+
 ---## Central Index Maintenance Log
 
 | Date | Topic | Action | Details |
 |---|---|---|---|
 | 2026-04-07 | All | knowledge-base-index.md created | Initial knowledge base bootstrap |
-| 2026-04-07 | github-workflow-actions-issues | Topic added | Research: trigger action for Claude skill on issue creation |
 | 2026-04-08 | github-workflow-agent-actions | Topic added | Research: running Copilot prompts in GitHub Actions workflows |
 | 2026-04-08 | copilot-cli-agent-modes | Topic added | Research: specifying models in Copilot CLI |
 | 2026-04-08 | github-workflow-issues-integrations | Topic added | Research: triggering workflows on issues and providing issue tools |
 | 2026-04-08 | github-workflow-devops | Topic added | Research: install and authenticate GitHub CLI in workflows |
 | 2026-04-08 | github-workflow-issue-filtering | Topic added | Research: using job filtering to check issue labels |
 | 2026-04-08 | github-agents-caching | Topic added | Research: cache environments constructed for GitHub Actions |
+| 2026-04-08 | github-workflow-actions-issues | Topic removed | Obsolete: replaced by Copilot CLI approach, no longer relevant |
+| 2026-04-09 | github-actions-scope | Topic added | Research: runner scope, working directory, repository code availability |
 
 ---
