@@ -16,15 +16,15 @@ Record the issue number, title, body, URL, current labels, and existing comments
 
 **Stop and exit** if any of the following are true:
 
-1. **Already created by the skill:** The issue has label `created-by: report-ai-problem` — it was created by the report-ai-problem skill and is already fully structured; no inspection needed.
+1. **Already created by the skill:** The issue has label `created-by: ai-problem-report` — it was created by the ai-problem-report skill and is already fully structured; no inspection needed.
 
 2. **No cause label:** The issue has no `cause:` label — it has not been identified as an AI problem issue; this skill does not apply.
 
-3. **Already inspected:** The issue has label `inspected-by: inspect-ai-problem-issue` — this skill has already run on this issue; do not duplicate.
+3. **Already inspected:** The issue has label `inspected-by: ai-problem-inspect-issue` — this skill has already run on this issue; do not duplicate.
 
 **Proceed** if:
 - The issue has at least one `cause:` label
-- It lacks `created-by: report-ai-problem`
+- It lacks `created-by: ai-problem-report`
 - No previous analysis comment exists
 
 ## Extract Incident Description
