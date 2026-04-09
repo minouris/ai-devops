@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       contains(join(github.event.issue.labels.*.name, ','), 'cause:') &&
-      !contains(github.event.issue.labels.*.name, 'created-by: report-ai-problem') &&
-      !contains(github.event.issue.labels.*.name, 'inspected-by: inspect-ai-problem-issue')
+      !contains(github.event.issue.labels.*.name, 'created-by: ai-problem-report') &&
+      !contains(github.event.issue.labels.*.name, 'inspected-by: ai-problem-inspect-issue')
     steps:
       - uses: actions/checkout@v4
 
@@ -34,6 +34,6 @@ jobs:
 
       - uses: anthropics/claude-code-action@v1
         with:
-          skill: inspect-ai-problem-issue
+          skill: ai-problem-inspect-issue
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

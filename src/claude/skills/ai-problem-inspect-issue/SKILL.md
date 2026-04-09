@@ -1,6 +1,6 @@
 ---
-name: inspect-ai-problem-issue
-description: Inspect a GitHub issue that has a cause: label but was not created by report-ai-problem. Diagnoses the AI behavioural problem described in the issue, appends structured findings as a comment, applies additional cause labels, and creates or links sub-issues for each identified cause.
+name: ai-problem-inspect-issue
+description: Inspect a GitHub issue that has a cause: label but was not created by ai-problem-report. Diagnoses the AI behavioural problem described in the issue, appends structured findings as a comment, applies additional cause labels, and creates or links sub-issues for each identified cause.
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
@@ -27,9 +27,9 @@ Invoke this skill when:
 Execute the following flows in order:
 
 1. **Fetch and validate the issue** — see [fetch-issue.md](references/fetch-issue.md)
-2. **Identify rule violations and contributing factors** — see [identify-violations.md](../analyse-ai-problem/references/identify-violations.md)
-3. **Classify root causes** — see [classify-causes.md](../analyse-ai-problem/references/classify-causes.md)
-4. **Check sub-issues and compose bodies** — see [check-sub-issues.md](../analyse-ai-problem/references/check-sub-issues.md)
+2. **Identify rule violations and contributing factors** — see identify-ai-problem-violations skill
+3. **Classify root causes** — see classify-ai-problem-causes skill
+4. **Check sub-issues and compose bodies** — see check-ai-problem-sub-issues skill
 5. **Compose the findings comment** — see [compose-findings.md](references/compose-findings.md)
 6. **Submit findings, labels, and sub-issues** — see [submit-findings.md](references/submit-findings.md)
 
@@ -44,5 +44,5 @@ Execute the following flows in order:
 **MUST NOT:**
 - Skip any flow
 - Duplicate an analysis comment if one already exists
-- Apply `created-by: report-ai-problem` to issues or sub-issues — use `created-by: inspect-ai-problem-issue` instead
+- Apply `created-by: ai-problem-report` to issues or sub-issues — use `created-by: ai-problem-inspect-issue` instead
 - Include personal data, secrets, or non-AI file identifiers in comments or sub-issues
