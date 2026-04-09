@@ -12,7 +12,7 @@ gh issue comment $ARGS \
 
 ## Step 2: Apply New Labels
 
-For each `cause:` label identified in [classify-causes.md](../../analyse-ai-problem/references/classify-causes.md) that is **not already on the issue**:
+For each `cause:` label identified in [classify-causes.md](../../ai-problem-analyse/references/classify-causes.md) that is **not already on the issue**:
 
 ```
 gh issue edit $ARGS \
@@ -22,7 +22,7 @@ gh issue edit $ARGS \
 
 ## Step 3: Create or Link Sub-Issues
 
-For each cause label, use the result from [check-sub-issues.md](../../analyse-ai-problem/references/check-sub-issues.md).
+For each cause label, use the result from [check-sub-issues.md](../../ai-problem-analyse/references/check-sub-issues.md).
 
 ### Create a new sub-issue
 

@@ -1,6 +1,6 @@
 ---
 name: ai-problem-taxonomy
-description: Reference taxonomy defining authoritative label definitions and common data structures used by report-ai-problem, inspect-ai-problem-issue, and analyse-ai-problem skills
+description: Reference taxonomy defining authoritative label definitions and common data structures used by ai-problem-report, ai-problem-inspect-issue, and ai-problem-analyse skills
 user-invocable: false
 ---
 
@@ -26,8 +26,8 @@ All root cause labels use the format `cause: <label>` with a **space** after the
 
 | Label | Description | Applied by |
 |-------|-------------|------------|
-| `created-by: report-ai-problem` | Issue created by the report-ai-problem skill | report-ai-problem skill during issue creation |
-| `inspected-by: inspect-ai-problem-issue` | Issue has been analysed by the inspect-ai-problem-issue skill (idempotency check) | inspect-ai-problem-issue skill after analysis complete |
+| `created-by: ai-problem-report` | Issue created by the ai-problem-report skill | ai-problem-report skill during issue creation |
+| `inspected-by: ai-problem-inspect-issue` | Issue has been analysed by the ai-problem-inspect-issue skill (idempotency check) | ai-problem-inspect-issue skill after analysis complete |
 
 ## Standard Label Format Rules
 
