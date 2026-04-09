@@ -26,15 +26,15 @@ Compose a comment using the following template:
 
 ### Rule Violations
 
-<Findings from identify-violations.md — exact rule quotes, source file paths, and loophole explanation>
+<Findings from the identify-ai-problem-violations flow — exact rule quotes, source file paths, and loophole explanation>
 
 ### Contributing Factors
 
-<Findings from identify-violations.md — verbatim quotes from root_cause_definitions.md where applicable>
+<Findings from the identify-ai-problem-violations flow — verbatim quotes of contributing factors where applicable>
 
 ### Root Cause Classification
 
-<Table of applied cause labels from classify-causes.md — one sentence each explaining why it applies>
+<Table of applied cause labels from the classify-ai-problem-causes flow — one sentence each explaining why it applies>
 
 | Label | Applied | Reason |
 |-------|---------|--------|
@@ -46,7 +46,7 @@ Compose a comment using the following template:
 
 ### Sub-Issues
 
-<Table from check-sub-issues.md showing action planned for each cause label>
+<Table from the check-ai-problem-sub-issues flow showing action planned for each cause label>
 
 | Cause label | Action | Existing issue |
 |-------------|--------|----------------|

@@ -1,6 +1,6 @@
 # Check Sub-Issues
 
-For each `cause:` label identified in [classify-causes.md](classify-causes.md), check for an existing open issue that already covers this cause in the context of the current incident, then compose a body for any that require a new sub-issue.
+For each `cause:` label identified in the classify-ai-problem-causes skill, check for an existing open issue that already covers this cause in the context of the current incident, then compose a body for any that require a new sub-issue.
 
 **IMPORTANT:** Use the label format `cause: <label>` (with a space after the colon) as defined in the [ai-problem-taxonomy](../../ai-problem-taxonomy/SKILL.md).
 
@@ -31,7 +31,7 @@ For each cause that requires a new sub-issue, compose its body:
 
 **Label:** `cause: <label>`
 
-<Verbatim excerpt from root_cause_definitions.md defining this cause — the full definition section, not a summary>
+<Verbatim excerpt defining this cause — the full definition section, not a summary>
 
 ## How This Cause Manifested in the Incident
 
@@ -39,7 +39,7 @@ For each cause that requires a new sub-issue, compose its body:
 
 ## Contributing Factors Specific to This Cause
 
-<The subset of contributing factors attributable to this cause — verbatim quotes from root_cause_definitions.md where applicable>
+<The subset of contributing factors attributable to this cause — verbatim quotes where applicable>
 
 ## Parent Issue
 
