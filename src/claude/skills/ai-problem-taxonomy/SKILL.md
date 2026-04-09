@@ -1,7 +1,7 @@
 ---
 name: ai-problem-taxonomy
-description: Shared label taxonomy and common data used by report-ai-problem, inspect-ai-problem-issue, and analyse-ai-problem skills
-allowed-tools: 
+description: Reference taxonomy defining authoritative label definitions and common data structures used by report-ai-problem, inspect-ai-problem-issue, and analyse-ai-problem skills
+user-invocable: false
 ---
 
 # AI Problem Taxonomy
