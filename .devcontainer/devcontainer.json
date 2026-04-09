@@ -25,14 +25,19 @@
       "settings": {
         "chat.useClaudeMdFile": true,
         "chat.rulesLocations": [
-          "${containerWorkspaceFolder}/src/claude/rules"
+          "src/claude/rules"
         ],
-        "chat.skillsLocations": [
-          "${containerWorkspaceFolder}/src/claude/skills"
-        ],
-        "chat.instructionsFilesLocations": [
-          "${containerWorkspaceFolder}/src/claude"
-        ],
+        "chat.promptFilesLocations": {
+          ".github/prompts": false
+        },
+        "chat.agentSkillsLocations": {
+          ".github/skills": false,
+          "src/claude/skills": true
+        },
+        "chat.instructionsFilesLocations": {
+          ".github/instructions": false,
+          "src/claude/rules": true
+        },
         "chat.useAgentsMdFile": true
       }
     }
