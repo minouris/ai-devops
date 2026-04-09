@@ -64,7 +64,7 @@ AI Problem: <concise description of the violation>
 
 ## Sub-Issues
 
-Pass the main issue number and the list of cause labels to [check-sub-issues.md](../../analyse-ai-problem/references/check-sub-issues.md) to check for existing sub-issues and compose new sub-issue bodies.
+Pass the main issue number and the list of cause labels to [check-sub-issues.md](../../ai-problem-analyse/references/check-sub-issues.md) to check for existing sub-issues and compose new sub-issue bodies.
 
 ## Data Exclusion
 

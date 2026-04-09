@@ -22,7 +22,7 @@ Record any matches: number, title, URL.
 Compose a comment using the following template:
 
 ````markdown
-## AI Problem Analysis — inspect-ai-problem-issue
+## AI Problem Analysis — ai-problem-inspect-issue
 
 ### Rule Violations
 
