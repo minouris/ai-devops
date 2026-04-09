@@ -16,7 +16,7 @@ All labels used by this skill are defined in the [ai-problem-taxonomy](../ai-pro
 
 Invoke this skill when:
 - Given an issue number to inspect, OR
-- A GitHub Action triggers on `labeled` event with a `cause:` label where the issue lacks `created-by: report-ai-problem`
+- A GitHub Action triggers on `labeled` event with a `cause:` label where the issue lacks `created-by: ai-problem-report`
 
 ## Arguments
 
