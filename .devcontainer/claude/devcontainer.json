@@ -49,7 +49,18 @@
             "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
             "value": "1"
           }
-        ]
+        ],
+        "chat.useClaudeMdFile": true,
+        "chat.rulesLocations": [
+          "${containerWorkspaceFolder}/src/claude/rules"
+        ],
+        "chat.skillsLocations": [
+          "${containerWorkspaceFolder}/src/claude/skills"
+        ],
+        "chat.instructionsFilesLocations": [
+          "${containerWorkspaceFolder}/src/claude"
+        ],
+        "chat.useAgentsMdFile": true
       }
     }
   },

@@ -22,7 +22,19 @@
         "GitHub.vscode-github-actions",
         "GitHub.vscode-pull-request-github"
       ],
-      "settings": {}
+      "settings": {
+        "chat.useClaudeMdFile": true,
+        "chat.rulesLocations": [
+          "${containerWorkspaceFolder}/src/claude/rules"
+        ],
+        "chat.skillsLocations": [
+          "${containerWorkspaceFolder}/src/claude/skills"
+        ],
+        "chat.instructionsFilesLocations": [
+          "${containerWorkspaceFolder}/src/claude"
+        ],
+        "chat.useAgentsMdFile": true
+      }
     }
   },
 
