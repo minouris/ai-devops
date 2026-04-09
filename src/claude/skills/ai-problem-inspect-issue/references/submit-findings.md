@@ -34,7 +34,7 @@ gh issue create \
   --title "AI Problem: cause: <label> — <brief description of how this cause manifested>" \
   --body-file <path to composed sub-issue body> \
   --label "cause: <label>" \
-  --label "created-by: inspect-ai-problem-issue"
+  --label "created-by: ai-problem-inspect-issue"
 ```
 
 Record the new sub-issue number as `<sub_issue_number>`.
@@ -70,7 +70,7 @@ After all analysis is complete, apply the inspection completion label:
 ```
 gh issue edit $ARGS \
   --repo minouris/ai-devops \
-  --add-label "inspected-by: inspect-ai-problem-issue"
+  --add-label "inspected-by: ai-problem-inspect-issue"
 ```
 
 This prevents duplicate analyses if the skill is triggered again on the same issue.

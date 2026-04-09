@@ -39,6 +39,7 @@ Execute the following flows in order:
 - Complete all flows before writing to GitHub
 - Stop at step 1 if the issue has already been analysed (existing analysis comment found) or does not qualify
 - Apply all newly identified `cause:` labels not already present on the issue
+- Apply `inspected-by: ai-problem-inspect-issue` label after successful completion (see [submit-findings.md](references/submit-findings.md) Step 4)
 - Follow the same duplicate checking as `report-ai-problem` when creating sub-issues
 
 **MUST NOT:**
