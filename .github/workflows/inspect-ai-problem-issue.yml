@@ -33,8 +33,6 @@ jobs:
 
       - run: npm install -g --prefer-offline @github/copilot
 
-      - uses: anthropics/claude-code-action@v1
-        with:
-          skill: ai-problem-inspect-issue
+      - run: copilot run --skill ai-problem-inspect-issue -- ${{ github.event.issue.number }}
         env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
