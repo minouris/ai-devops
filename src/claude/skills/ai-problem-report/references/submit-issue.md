@@ -16,7 +16,7 @@ gh issue create \
   --label "created-by: ai-problem-report"
 ```
 
-Apply all `cause:` labels identified in the classify-ai-problem-causes skill.
+Apply all `cause:` labels identified in the ai-problem-classify-causes skill.
 
 Record the new issue number as `<main_issue_number>`.
 
@@ -34,7 +34,7 @@ Record the existing issue number as `<main_issue_number>`.
 
 ## Step 2: Create or Link Sub-Issues
 
-For each `cause:` label identified in the classify-ai-problem-causes skill, execute one of the following based on the search results from [compose-issue.md](compose-issue.md).
+For each `cause:` label identified in the ai-problem-classify-causes skill, execute one of the following based on the search results from [compose-issue.md](compose-issue.md).
 
 ### Create a new sub-issue
 

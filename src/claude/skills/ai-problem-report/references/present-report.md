@@ -56,7 +56,7 @@ If no matching issue was found:
 
 ## Show Planned Sub-Issues
 
-For each `cause:` label identified in the classify-ai-problem-causes skill, show one row:
+For each `cause:` label identified in the ai-problem-classify-causes skill, show one row:
 
 | Cause label | Action | Existing issue |
 |-------------|--------|----------------|

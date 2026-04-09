@@ -1,5 +1,5 @@
 ---
-name: identify-ai-problem-violations
+name: ai-problem-identify-violations
 description: Shared diagnostic flow for identifying rule violations and contributing factors in AI behavioural problems. Called by report-ai-problem and inspect-ai-problem-issue — not user-invocable directly.
 user-invocable: false
 allowed-tools: Read, Grep, Glob

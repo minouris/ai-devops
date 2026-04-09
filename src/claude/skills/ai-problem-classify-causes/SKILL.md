@@ -1,5 +1,5 @@
 ---
-name: classify-ai-problem-causes
+name: ai-problem-classify-causes
 description: Shared diagnostic flow for classifying root causes in AI behavioural problems. Called by report-ai-problem and inspect-ai-problem-issue — not user-invocable directly.
 user-invocable: false
 allowed-tools: Read, Grep

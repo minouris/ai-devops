@@ -1,5 +1,5 @@
 ---
-name: check-ai-problem-sub-issues
+name: ai-problem-check-sub-issues
 description: Shared diagnostic flow for checking and composing sub-issues for root causes. Called by report-ai-problem and inspect-ai-problem-issue — not user-invocable directly.
 user-invocable: false
 allowed-tools: Bash, Read, Grep, Glob

@@ -32,8 +32,8 @@ Execute the following flows in order:
 
 1. **Gather incident details** — see [gather-incident.md](references/gather-incident.md)
 2. **Gather lost context and system prompt** — see [gather-context.md](references/gather-context.md)
-3. **Identify rule violations and contributing factors** — see identify-ai-problem-violations skill
-4. **Classify root causes** — see classify-ai-problem-causes skill
+3. **Identify rule violations and contributing factors** — see ai-problem-identify-violations skill
+4. **Classify root causes** — see ai-problem-classify-causes skill
 5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
 6. **Present report and confirm** — see [present-report.md](references/present-report.md)
 7. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)

@@ -20,9 +20,9 @@ Provide shared diagnostic flows for:
 
 Execute these flows in order when called by a parent skill:
 
-1. **Identify violations and contributing factors** — see identify-ai-problem-violations skill
-2. **Classify root causes** — see classify-ai-problem-causes skill
-3. **Check sub-issues and compose bodies** — see check-ai-problem-sub-issues skill
+1. **Identify violations and contributing factors** — see ai-problem-identify-violations skill
+2. **Classify root causes** — see ai-problem-classify-causes skill
+3. **Check sub-issues and compose bodies** — see ai-problem-check-sub-issues skill
 
 ## Reference Data
 

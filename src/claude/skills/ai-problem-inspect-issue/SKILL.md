@@ -27,9 +27,9 @@ Invoke this skill when:
 Execute the following flows in order:
 
 1. **Fetch and validate the issue** — see [fetch-issue.md](references/fetch-issue.md)
-2. **Identify rule violations and contributing factors** — see identify-ai-problem-violations skill
-3. **Classify root causes** — see classify-ai-problem-causes skill
-4. **Check sub-issues and compose bodies** — see check-ai-problem-sub-issues skill
+2. **Identify rule violations and contributing factors** — see ai-problem-identify-violations skill
+3. **Classify root causes** — see ai-problem-classify-causes skill
+4. **Check sub-issues and compose bodies** — see ai-problem-check-sub-issues skill
 5. **Compose the findings comment** — see [compose-findings.md](references/compose-findings.md)
 6. **Submit findings, labels, and sub-issues** — see [submit-findings.md](references/submit-findings.md)
 
