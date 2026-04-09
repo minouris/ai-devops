@@ -7,7 +7,7 @@ import sys
 
 def extract(log_file):
     with open(log_file) as f:
-        for line in f:
+        for line_num, line in enumerate(f, 1):
             try:
                 e = json.loads(line)
                 msg = e.get('message', {})
@@ -23,8 +23,12 @@ def extract(log_file):
                     text = str(content)
                 if text.strip():
                     print(f'[{role}]: {text[:500]}')
-            except Exception:
+            except json.JSONDecodeError:
+                # Skip malformed JSON lines silently
                 pass
+            except Exception as e:
+                # Report unexpected errors
+                print(f'Warning: Failed to parse line {line_num}: {type(e).__name__}: {e}', file=sys.stderr)
 
 
 if __name__ == '__main__':
