@@ -37,3 +37,4 @@ jobs:
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           COPILOT_CUSTOM_INSTRUCTIONS_DIRS: ${{ github.workspace }}/src/claude
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
