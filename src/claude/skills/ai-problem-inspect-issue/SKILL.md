@@ -6,7 +6,7 @@ allowed-tools: Bash, Read, Grep, Glob
 
 # Inspect AI Problem Issue
 
-Analyse an existing GitHub issue that identifies an AI behavioural problem and was not already processed by `report-ai-problem`. Append diagnostic findings, apply additional labels, and create or link sub-issues.
+Analyse an existing GitHub issue that identifies an AI behavioural problem and was not already processed by `ai-problem-report`. Append diagnostic findings, apply additional labels, and create or link sub-issues.
 
 ## Label Taxonomy
 
