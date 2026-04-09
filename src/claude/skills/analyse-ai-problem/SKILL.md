@@ -28,6 +28,8 @@ Execute these flows in order when called by a parent skill:
 
 Root cause definitions (verbatim): [root_cause_definitions.md](references/root_cause_definitions.md)
 
+**Label Taxonomy:** All labels used by this skill are defined in the [ai-problem-taxonomy](../ai-problem-taxonomy/SKILL.md) reference skill. Root cause labels must use the format `cause: <label>` (with a space after the colon).
+
 ## Requirements
 
 **MUST:**

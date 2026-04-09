@@ -8,6 +8,10 @@ allowed-tools: Bash, Read, Grep, Glob
 
 Report incidents where you have acted incorrectly or against the user's intent. Create or update GitHub issues on the `minouris/ai-devops` repository with structured root cause analysis, rule violation identification, and applicable cause labels.
 
+## Label Taxonomy
+
+All labels used by this skill are defined in the [ai-problem-taxonomy](../ai-problem-taxonomy/SKILL.md) reference skill. Root cause labels must use the format `cause: <label>` (with a space after the colon).
+
 ## Trigger
 
 You MUST offer to invoke this skill when the user declares that you have:

@@ -1,6 +1,14 @@
 # Classify Root Causes
 
-Determine which `cause:` labels apply to the incident. Reference the root cause definitions in [root_cause_definitions.md](root_cause_definitions.md).
+Determine which `cause:` labels apply to the incident.
+
+**IMPORTANT:** All label formats must follow the [ai-problem-taxonomy](../../ai-problem-taxonomy/SKILL.md) specification. Use the exact label syntax and formats defined there.
+
+Reference the root cause definitions in [root_cause_definitions.md](root_cause_definitions.md) for detailed explanation of each cause.
+
+## Root Cause Classification
+
+Apply the `cause:` labels identified below using the format `cause: <label>` (with a space after the colon):
 
 | Label | Apply when |
 |-------|-----------|

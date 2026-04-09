@@ -8,6 +8,10 @@ allowed-tools: Bash, Read, Grep, Glob
 
 Analyse an existing GitHub issue that identifies an AI behavioural problem and was not already processed by `report-ai-problem`. Append diagnostic findings, apply additional labels, and create or link sub-issues.
 
+## Label Taxonomy
+
+All labels used by this skill are defined in the [ai-problem-taxonomy](../ai-problem-taxonomy/SKILL.md) reference skill. Root cause labels must use the format `cause: <label>` (with a space after the colon).
+
 ## Trigger
 
 Invoke this skill when:
