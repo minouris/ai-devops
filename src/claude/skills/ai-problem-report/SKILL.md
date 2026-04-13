@@ -33,33 +33,20 @@ Execute the following flows in order:
 
 1. **Gather incident details** — see [gather-incident.md](references/gather-incident.md)
 2. **Gather lost context and system prompt** — see [gather-context.md](references/gather-context.md)
-3. **Identify rule violations and contributing factors** — invoke skill(ai-problem-identify-violations) with incident context from steps 1–2
-4. **Classify root causes** — invoke skill(ai-problem-classify-causes) with violations from step 3
+3. **Identify rule violations and contributing factors** — see [ai-problem-identify-violations](../ai-problem-identify-violations/SKILL.md)
+4. **Classify root causes** — see [ai-problem-classify-causes](../ai-problem-classify-causes/SKILL.md)
 5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
 6. **Present report and confirm** — see [present-report.md](references/present-report.md)
 7. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
-
-## Implementation
-
-When you invoke this skill:
-
-1. Read [gather-incident.md](references/gather-incident.md) and gather incident details from the user
-2. Read [gather-context.md](references/gather-context.md) and document relevant context and system prompt
-3. Call `skill(ai-problem-identify-violations)` passing the incident context
-4. Call `skill(ai-problem-classify-causes)` passing the violations identified in step 3
-5. Read [compose-issue.md](references/compose-issue.md) and compose the issue body with analysis results
-6. Read [present-report.md](references/present-report.md) and present findings to the user for confirmation
-7. Read [submit-issue.md](references/submit-issue.md) and submit the issue once confirmed
 
 ## Requirements
 
 **MUST:**
 - Complete all flows before submitting
-- Call skill(ai-problem-identify-violations) and skill(ai-problem-classify-causes) in sequence — do not skip library skill invocations
 - Present the full analysis report to the user in chat before any GitHub action
 - Obtain explicit user confirmation before submitting
 
 **MUST NOT:**
-- Skip any flow or library skill invocation
+- Skip any flow
 - Submit without user confirmation
 - Include personal data, secrets, or non-AI file identifiers in the issue

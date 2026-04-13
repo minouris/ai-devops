@@ -37,3 +37,13 @@ From the issue body, identify:
 4. **Any skill context** — if a skill is named in the issue
 
 Record these as the incident context for use in subsequent flows.
+
+## Next Step: Invoke Library Skills
+
+After completing this fetch-and-validate step, you MUST proceed to the analysis flows in this order:
+
+1. Call `skill(ai-problem-identify-violations)` — pass the incident context extracted above
+2. Call `skill(ai-problem-classify-causes)` — pass the violations identified by ai-problem-identify-violations
+3. Call `skill(ai-problem-check-sub-issues)` — pass the root causes classified by ai-problem-classify-causes
+
+**IMPORTANT:** Do not skip these library skill invocations. Each step depends on the output of the previous step.
