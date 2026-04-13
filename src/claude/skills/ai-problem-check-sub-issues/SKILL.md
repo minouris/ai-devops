@@ -35,7 +35,7 @@ An existing sub-issue matches if it concerns the **same root cause label** and t
 
 For each cause that requires a new sub-issue, compose its body using this template:
 
-```markdown
+````markdown
 ## Root Cause
 
 **Label:** `cause: <label>`
@@ -53,7 +53,7 @@ For each cause that requires a new sub-issue, compose its body using this templa
 ## Parent Issue
 
 Relates to: #<main issue number>
-```
+````
 
 **IMPORTANT:**
 - Do NOT name file paths (e.g., "root_cause_definitions.md") in issue bodies — readers will not have access to these files

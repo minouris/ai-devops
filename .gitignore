@@ -9,3 +9,4 @@
 
 # Exclude root level .claude folder (mounted from devcontainer, not committed)
 .claude
+__pycache__/
