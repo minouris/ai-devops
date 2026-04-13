@@ -33,7 +33,7 @@ jobs:
 
       - run: npm install -g --prefer-offline @github/copilot
 
-      - run: copilot -p "/ai-problem-inspect-issue ${{ github.event.issue.number }}" --no-ask-user
+      - run: copilot -p "/ai-problem-inspect-issue ${{ github.event.issue.number }}" --model claude-haiku-4.5 --no-ask-user
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           COPILOT_CUSTOM_INSTRUCTIONS_DIRS: ${{ github.workspace }}/src/claude
