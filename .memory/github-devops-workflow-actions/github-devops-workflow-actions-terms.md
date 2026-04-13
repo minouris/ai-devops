@@ -61,7 +61,7 @@ The `--model` flag allows explicit model selection when invoking Copilot CLI in 
 
 ### Referenced By
 
-- [FINDING-2026-04-08-8](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-8) - Model specification via --model flag
+- [FINDING-2026-04-08-8](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-8) - Model specification via --model flag
 
 ---
 
@@ -87,7 +87,7 @@ Required for non-interactive execution in GitHub Actions workflows. Suppresses u
 
 ### Referenced By
 
-- [FINDING-2026-04-08-7](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
+- [FINDING-2026-04-08-7](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
 
 ---
 
@@ -114,7 +114,7 @@ The `actions/checkout` action is required to enable workflow access to repositor
 
 ### Referenced By
 
-- [FINDING-2026-04-09-2](../facts/github-actions-scope-facts.md#finding-2026-04-09-2) - Repository code availability
+- [FINDING-2026-04-09-2](./runner-environment/runner-environment-facts.md#finding-2026-04-09-2) - Repository code availability
 
 ---
 
@@ -140,7 +140,7 @@ Enables project-specific instruction directory configuration for Copilot CLI. Ac
 
 ### Referenced By
 
-- [FINDING-2026-04-09-2](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-09-2) - Specifying custom instructions directories
+- [FINDING-2026-04-09-2](./copilot-cli/copilot-cli-facts.md#finding-2026-04-09-2) - Specifying custom instructions directories
 
 ---
 
@@ -167,8 +167,8 @@ Required for Copilot CLI authentication in GitHub Actions workflows. The token m
 
 ### Referenced By
 
-- [FINDING-2026-04-08-7](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
-- [FINDING-2026-04-09-2](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-09-2) - Custom instructions configuration
+- [FINDING-2026-04-08-7](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
+- [FINDING-2026-04-09-2](./copilot-cli/copilot-cli-facts.md#finding-2026-04-09-2) - Custom instructions configuration
 
 ---
 
@@ -195,7 +195,7 @@ Provides a fallback model specification method for Copilot CLI. Takes precedence
 
 ### Referenced By
 
-- [FINDING-2026-04-08-8](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-8) - Model specification options
+- [FINDING-2026-04-08-8](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-8) - Model specification options
 
 ---
 
@@ -222,7 +222,7 @@ When a workflow requests cache restoration, the system searches using a priority
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-actions-caching-facts.md#finding-2026-04-08-1) - GitHub Actions cache mechanism
+- [FINDING-2026-04-08-1](./caching/caching-facts.md#finding-2026-04-08-1) - GitHub Actions cache mechanism
 
 ---
 
@@ -248,7 +248,7 @@ GitHub Actions implements hierarchical cache access control: workflows can resto
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-actions-caching-facts.md#finding-2026-04-08-2) - Cache scope and isolation
+- [FINDING-2026-04-08-2](./caching/caching-facts.md#finding-2026-04-08-2) - Cache scope and isolation
 
 ---
 
@@ -274,7 +274,7 @@ The cache action outputs `cache-hit` to indicate restoration outcome. `'true'` i
 
 ### Referenced By
 
-- [FINDING-2026-04-08-4](../facts/github-actions-caching-facts.md#finding-2026-04-08-4) - Cache action outputs
+- [FINDING-2026-04-08-4](./caching/caching-facts.md#finding-2026-04-08-4) - Cache action outputs
 
 ---
 
@@ -301,7 +301,7 @@ Used in workflow conditionals to check array membership. For issue label checkin
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-issue-filtering-facts.md#finding-2026-04-08-1) - Label filtering via contains()
+- [FINDING-2026-04-08-1](./issue-handling/issue-handling-facts.md#finding-2026-04-08-1) - Label filtering via contains()
 
 ---
 
@@ -329,7 +329,7 @@ Copilot CLI invocation pattern for GitHub Actions: `copilot -p "YOUR_PROMPT" --n
 
 ### Referenced By
 
-- [FINDING-2026-04-08-7](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
+- [FINDING-2026-04-08-7](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-7) - Running Copilot CLI in workflows
 
 ---
 
@@ -355,8 +355,8 @@ Custom instructions are discovered at multiple levels: `CLAUDE.md`, `GEMINI.md`,
 
 ### Referenced By
 
-- [FINDING-2026-04-09-1](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-09-1) - Custom instructions configuration
-- [FINDING-2026-04-09-2](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-09-2) - Custom instructions directories
+- [FINDING-2026-04-09-1](./copilot-cli/copilot-cli-facts.md#finding-2026-04-09-1) - Custom instructions configuration
+- [FINDING-2026-04-09-2](./copilot-cli/copilot-cli-facts.md#finding-2026-04-09-2) - Custom instructions directories
 
 ---
 
@@ -383,7 +383,7 @@ When GitHub Actions workflows are triggered by the `issues` event, issue data be
 
 ### Referenced By
 
-- [FINDING-2026-04-08-3](../facts/github-workflow-issues-integrations-facts.md#finding-2026-04-08-3) - Issue data availability
+- [FINDING-2026-04-08-3](./issue-handling/issue-handling-facts.md#finding-2026-04-08-3) - Issue data availability
 
 ---
 
@@ -410,7 +410,7 @@ Required to authenticate GitHub CLI in workflows. Token scopes are determined by
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-workflow-devops-facts.md#finding-2026-04-08-2) - GitHub CLI authentication
+- [FINDING-2026-04-08-2](./workflow-execution/workflow-execution-facts.md#finding-2026-04-08-2) - GitHub CLI authentication
 
 ---
 
@@ -437,7 +437,7 @@ Every GitHub Actions workflow has access to an automatic `GITHUB_TOKEN` with sco
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-workflow-devops-facts.md#finding-2026-04-08-2) - GitHub CLI authentication
+- [FINDING-2026-04-08-2](./workflow-execution/workflow-execution-facts.md#finding-2026-04-08-2) - GitHub CLI authentication
 
 ---
 
@@ -464,7 +464,7 @@ Represents the default working directory available to all jobs on GitHub-hosted 
 
 ### Referenced By
 
-- [FINDING-2026-04-09-1](../facts/github-actions-scope-facts.md#finding-2026-04-09-1) - Runner working directory
+- [FINDING-2026-04-09-1](./runner-environment/runner-environment-facts.md#finding-2026-04-09-1) - Runner working directory
 
 ---
 
@@ -491,7 +491,7 @@ Unlike Copilot CLI, GitHub CLI does not require installation steps in workflows.
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-devops-facts.md#finding-2026-04-08-1) - GitHub CLI preinstallation
+- [FINDING-2026-04-08-1](./workflow-execution/workflow-execution-facts.md#finding-2026-04-08-1) - GitHub CLI preinstallation
 
 ---
 
@@ -519,7 +519,7 @@ GitHub Actions runners are fresh VMs provisioned for each job. Available by defa
 
 ### Referenced By
 
-- [FINDING-2026-04-09-2](../facts/github-actions-scope-facts.md#finding-2026-04-09-2) - Runner provisioning
+- [FINDING-2026-04-09-2](./runner-environment/runner-environment-facts.md#finding-2026-04-09-2) - Runner provisioning
 
 ---
 
@@ -545,7 +545,7 @@ Project lifecycle events that can trigger workflows via the `issues` event. Grou
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-issues-integrations-facts.md#finding-2026-04-08-1) - Issue event types
+- [FINDING-2026-04-08-1](./issue-handling/issue-handling-facts.md#finding-2026-04-08-1) - Issue event types
 
 ---
 
@@ -572,7 +572,7 @@ Triggers workflows when issues are created, modified, or manipulated. Configurat
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-issues-integrations-facts.md#finding-2026-04-08-1) - Triggering workflows on issue events
+- [FINDING-2026-04-08-1](./issue-handling/issue-handling-facts.md#finding-2026-04-08-1) - Triggering workflows on issue events
 
 ---
 
@@ -598,7 +598,7 @@ Limited permission scope restricting workflow jobs to reading issue data without
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-workflow-issues-integrations-facts.md#finding-2026-04-08-2) - Permission configuration
+- [FINDING-2026-04-08-2](./issue-handling/issue-handling-facts.md#finding-2026-04-08-2) - Permission configuration
 
 ---
 
@@ -624,7 +624,7 @@ Grants full read-write access to repository issues. Configuration: `permissions:
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-workflow-issues-integrations-facts.md#finding-2026-04-08-2) - Permission configuration
+- [FINDING-2026-04-08-2](./issue-handling/issue-handling-facts.md#finding-2026-04-08-2) - Permission configuration
 
 ---
 
@@ -651,7 +651,7 @@ Conditional job execution pattern: `if: contains(github.event.issue.labels.*.nam
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-issue-filtering-facts.md#finding-2026-04-08-1) - Label filtering
+- [FINDING-2026-04-08-1](./issue-handling/issue-handling-facts.md#finding-2026-04-08-1) - Label filtering
 
 ---
 
@@ -678,7 +678,7 @@ Copilot CLI evaluates model selection in this order: 1. Custom agent definition 
 
 ### Referenced By
 
-- [FINDING-2026-04-08-8](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-8) - Model selection priority
+- [FINDING-2026-04-08-8](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-8) - Model selection priority
 
 ---
 
@@ -705,8 +705,8 @@ Unlike GitHub CLI, Copilot CLI must be explicitly installed in workflows. Requir
 
 ### Referenced By
 
-- [FINDING-2026-04-08-7](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-7) - Copilot CLI in workflows
-- [FINDING-2026-04-08-3](../facts/github-workflow-devops-facts.md#finding-2026-04-08-3) - CLI installation requirement
+- [FINDING-2026-04-08-7](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-7) - Copilot CLI in workflows
+- [FINDING-2026-04-08-3](./workflow-execution/workflow-execution-facts.md#finding-2026-04-08-3) - CLI installation requirement
 
 ---
 
@@ -732,7 +732,7 @@ All GitHub-hosted runners include system tools such as grep, find, and which. Th
 
 ### Referenced By
 
-- [FINDING-2026-04-09-2](../facts/github-actions-scope-facts.md#finding-2026-04-09-2) - Default runner capabilities
+- [FINDING-2026-04-09-2](./runner-environment/runner-environment-facts.md#finding-2026-04-09-2) - Default runner capabilities
 
 ---
 
@@ -758,7 +758,7 @@ Setup actions like `actions/setup-node`, `actions/setup-python`, and `actions/se
 
 ### Referenced By
 
-- [FINDING-2026-04-08-3](../facts/github-actions-caching-facts.md#finding-2026-04-08-3) - Automatic dependency caching
+- [FINDING-2026-04-08-3](./caching/caching-facts.md#finding-2026-04-08-3) - Automatic dependency caching
 
 ---
 
@@ -784,7 +784,7 @@ Custom actions are individual tasks combined to create jobs and customise workfl
 
 ### Referenced By
 
-- [FINDING-2026-04-08-1](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-1) - Custom actions overview
+- [FINDING-2026-04-08-1](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-1) - Custom actions overview
 
 ---
 
@@ -811,7 +811,7 @@ Workflows are triggered by events defined using the `on` keyword. Events include
 
 ### Referenced By
 
-- [FINDING-2026-04-08-3](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-3) - Event triggers and inputs
+- [FINDING-2026-04-08-3](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-3) - Event triggers and inputs
 
 ---
 
@@ -837,7 +837,7 @@ GitHub Copilot is "an AI coding assistant that helps you write code faster and w
 
 ### Referenced By
 
-- [FINDING-2026-04-08-6](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-6) - GitHub Copilot functionality
+- [FINDING-2026-04-08-6](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-6) - GitHub Copilot functionality
 
 ---
 
@@ -864,7 +864,7 @@ The `run` keyword executes commands and scripts in workflow steps. Supported she
 
 ### Referenced By
 
-- [FINDING-2026-04-08-4](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-4) - Executing commands in workflow steps
+- [FINDING-2026-04-08-4](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-4) - Executing commands in workflow steps
 
 ---
 
@@ -891,7 +891,7 @@ Steps execute sequentially within a job. Each step can either run shell commands
 
 ### Referenced By
 
-- [FINDING-2026-04-08-5](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-5) - Invoking custom actions and passing inputs
+- [FINDING-2026-04-08-5](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-5) - Invoking custom actions and passing inputs
 
 ---
 
@@ -918,7 +918,7 @@ Custom actions are invoked in workflow steps using the `uses` keyword. Inputs ar
 
 ### Referenced By
 
-- [FINDING-2026-04-08-5](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-5) - Invoking custom actions and passing inputs
+- [FINDING-2026-04-08-5](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-5) - Invoking custom actions and passing inputs
 
 ---
 
@@ -944,8 +944,8 @@ Workflow files use `.yml` or `.yaml` extensions and are stored in the `.github/w
 
 ### Referenced By
 
-- [FINDING-2026-04-08-2](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-2) - Workflow file structure
-- [FINDING-2026-04-08-3](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-3) - Event triggers and inputs
+- [FINDING-2026-04-08-2](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-2) - Workflow file structure
+- [FINDING-2026-04-08-3](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-3) - Event triggers and inputs
 
 ---
 
@@ -971,6 +971,6 @@ Event trigger enabling manual workflow execution from GitHub interface with cust
 
 ### Referenced By
 
-- [FINDING-2026-04-08-3](../facts/github-workflow-agent-actions-facts.md#finding-2026-04-08-3) - Event triggers and inputs
+- [FINDING-2026-04-08-3](./copilot-cli/copilot-cli-facts.md#finding-2026-04-08-3) - Event triggers and inputs
 
 
