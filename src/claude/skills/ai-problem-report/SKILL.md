@@ -1,6 +1,7 @@
 ---
 name: ai-problem-report
 description: Report AI behavioural problems as GitHub issues with root cause analysis and label classification
+user-invocable: true
 allowed-tools: Bash, Read, Grep, Glob
 ---
 

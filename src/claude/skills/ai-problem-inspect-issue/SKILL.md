@@ -1,6 +1,7 @@
 ---
 name: ai-problem-inspect-issue
 description: Inspect a GitHub issue that has a cause: label but was not created by ai-problem-report. Diagnoses the AI behavioural problem described in the issue, appends structured findings as a comment, applies additional cause labels, and creates or links sub-issues for each identified cause.
+user-invocable: true
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
