@@ -1,13 +1,13 @@
 ---
 name: ai-problem-identify-violations
-description: Shared diagnostic flow for identifying rule violations and contributing factors in AI behavioural problems. Called by report-ai-problem and inspect-ai-problem-issue — not user-invocable directly.
+description: Shared diagnostic flow for identifying rule violations and contributing factors in AI behavioural problems. Called by ai-problem-report and ai-problem-inspect-issue — not user-invocable directly.
 user-invocable: false
 allowed-tools: Read, Grep, Glob
 ---
 
 # Identify Rule Violations and Contributing Factors
 
-This is a library skill. It is called from within the workflows of `report-ai-problem` and `inspect-ai-problem-issue` to perform diagnostic analysis of AI behavioural problems.
+This is a library skill. It is called from within the workflows of `ai-problem-report` and `ai-problem-inspect-issue` to perform diagnostic analysis of AI behavioural problems.
 
 ## Rule Violations
 

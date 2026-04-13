@@ -1,13 +1,13 @@
 ---
 name: ai-problem-classify-causes
-description: Shared diagnostic flow for classifying root causes in AI behavioural problems. Called by report-ai-problem and inspect-ai-problem-issue — not user-invocable directly.
+description: Shared diagnostic flow for classifying root causes in AI behavioural problems. Called by ai-problem-report and ai-problem-inspect-issue — not user-invocable directly.
 user-invocable: false
 allowed-tools: Read, Grep
 ---
 
 # Classify Root Causes
 
-This is a library skill. It is called from within the workflows of `report-ai-problem` and `inspect-ai-problem-issue` to classify which root cause labels apply to an AI behavioural incident.
+This is a library skill. It is called from within the workflows of `ai-problem-report` and `ai-problem-inspect-issue` to classify which root cause labels apply to an AI behavioural incident.
 
 ## Label Taxonomy Reference
 

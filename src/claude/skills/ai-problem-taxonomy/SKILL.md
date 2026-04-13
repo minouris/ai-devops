@@ -47,12 +47,12 @@ All root cause labels use the format `cause: <label>` with a **space** after the
 ### When Labels Are Applied
 
 **cause: labels** are applied by:
-- report-ai-problem skill: All identified cause labels on issue creation (Step 7)
-- inspect-ai-problem-issue skill: All newly identified cause labels after analysis (Step 6, if not already present)
+- ai-problem-report skill: All identified cause labels on issue creation (Step 7)
+- ai-problem-inspect-issue skill: All newly identified cause labels after analysis (Step 6, if not already present)
 
 **Metadata labels** are applied by:
-- `created-by: report-ai-problem`: Applied during issue creation only
-- `inspected-by: inspect-ai-problem-issue`: Applied after analysis completes successfully (idempotency gate)
+- `created-by: ai-problem-report`: Applied during issue creation only
+- `inspected-by: ai-problem-inspect-issue`: Applied after analysis completes successfully (idempotency gate)
 
 ### Multiple Labels
 
