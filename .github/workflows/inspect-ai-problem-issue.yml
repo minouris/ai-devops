@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       contains(join(github.event.issue.labels.*.name, ','), 'cause:') &&
-      !contains(github.event.issue.labels.*.name, 'created-by: ai-problem-report') &&
-      !contains(github.event.issue.labels.*.name, 'created-by: ai-problem-inspect-issue') &&
-      !contains(github.event.issue.labels.*.name, 'inspected-by: ai-problem-inspect-issue')
+      !contains(join(github.event.issue.labels.*.name, ','), 'created-by: ai-problem-report') &&
+      !contains(join(github.event.issue.labels.*.name, ','), 'created-by: ai-problem-inspect-issue') &&
+      !contains(join(github.event.issue.labels.*.name, ','), 'inspected-by: ai-problem-inspect-issue')
     steps:
       - uses: actions/checkout@v4
 

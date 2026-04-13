@@ -1,6 +1,7 @@
 ---
 name: ai-problem-analyse
 description: Shared diagnostic library for AI behavioural problem analysis. Provides violation identification, root cause classification, and sub-issue preparation. Called from ai-problem-report and ai-problem-inspect-issue — not user-invocable directly.
+user-invocable: false
 allowed-tools: Bash, Read, Grep, Glob
 ---
 

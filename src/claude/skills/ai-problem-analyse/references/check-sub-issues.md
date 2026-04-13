@@ -46,6 +46,10 @@ For each cause that requires a new sub-issue, compose its body:
 Relates to: #<main issue number>
 ````
 
+**IMPORTANT:**
+- Do NOT name file paths (e.g., "root_cause_definitions.md") in issue bodies — readers will not have access to these files
+- Include full definition text verbatim, not summaries or paraphrases
+
 ## Output
 
 Pass the following to the calling skill's present and submit flows:
