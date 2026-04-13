@@ -1,18 +1,22 @@
 # Submit Findings
 
-Write all outputs to GitHub. Execute the following steps in order.
+You MUST execute all steps in this order. Do not skip any step.
 
 ## Step 1: Append Analysis Comment
+
+You MUST have completed [compose-findings.md](compose-findings.md) before this step. Using the comment body you composed:
 
 ```
 gh issue comment $ARGS \
   --repo minouris/ai-devops \
-  --body-file <path to composed comment from compose-findings.md>
+  --body "<full comment body from compose-findings.md>"
 ```
 
-## Step 2: Apply New Labels
+Record this as completed.
 
-For each `cause:` label identified in [classify-causes.md](../../ai-problem-analyse/references/classify-causes.md) that is **not already on the issue**:
+## Step 2: Apply New Cause Labels
+
+For each `cause:` label identified by ai-problem-classify-causes that is **NOT already on the issue**:
 
 ```
 gh issue edit $ARGS \
@@ -20,36 +24,46 @@ gh issue edit $ARGS \
   --add-label "cause: <label>"
 ```
 
+Repeat this command for each newly identified cause label. Do not re-apply labels already present.
+
 ## Step 3: Create or Link Sub-Issues
 
-For each cause label, use the result from [check-sub-issues.md](../../ai-problem-analyse/references/check-sub-issues.md).
+You MUST receive the sub-issue results from ai-problem-check-sub-issues before this step.
 
-### Create a new sub-issue
+For each cause label, you will either create a new sub-issue or link an existing one:
 
-When no existing issue was found for this cause:
+### When creating a new sub-issue:
+
+Use the composed sub-issue body from ai-problem-check-sub-issues:
 
 ```
 gh issue create \
   --repo minouris/ai-devops \
   --title "AI Problem: cause: <label> — <brief description of how this cause manifested>" \
-  --body-file <path to composed sub-issue body> \
+  --body "<body from ai-problem-check-sub-issues>" \
   --label "cause: <label>" \
   --label "created-by: ai-problem-inspect-issue"
 ```
 
-Record the new sub-issue number as `<sub_issue_number>`.
+Record the new sub-issue number. Proceed to "Add as child of inspected issue" below.
 
-### Link an existing issue as sub-issue
+### When linking an existing sub-issue:
 
-When an existing issue was found for this cause, use its number directly as `<sub_issue_number>`. Do not create a new issue or append a comment unless the existing issue does not already reference the inspected issue.
+Use the existing issue number identified by ai-problem-check-sub-issues. Do not create a new issue. Proceed to "Add as child of inspected issue" below.
 
-### Add as child of inspected issue
+### Add as child of inspected issue:
 
-After creating or identifying each sub-issue, retrieve its database ID and link it as a child:
+For each sub-issue (newly created or existing), you MUST link it as a child of the inspected issue:
+
+**Step 3a:** Get the sub-issue database ID:
 
 ```
 gh api /repos/minouris/ai-devops/issues/<sub_issue_number> --jq '.id'
 ```
+
+Record the returned ID as `<database_id>`.
+
+**Step 3b:** Link it as a child issue:
 
 ```
 gh api \
@@ -59,13 +73,13 @@ gh api \
   -F sub_issue_id=<database_id>
 ```
 
-**MUST** use `-F` (not `-f`) for `sub_issue_id` — GitHub API requires an integer, not a string.
+**CRITICAL:** Use `-F` not `-f` for `sub_issue_id`. GitHub API requires an integer, not a string.
 
-Repeat for every cause label. Each cause becomes a separate child issue under the inspected issue.
+**Repeat Steps 3a and 3b** for every cause label. Each cause becomes a separate child issue under the inspected issue.
 
 ## Step 4: Mark As Inspected
 
-After all analysis is complete, apply the inspection completion label:
+After completing all previous steps, apply the inspection completion label:
 
 ```
 gh issue edit $ARGS \
@@ -73,4 +87,15 @@ gh issue edit $ARGS \
   --add-label "inspected-by: ai-problem-inspect-issue"
 ```
 
-This prevents duplicate analyses if the skill is triggered again on the same issue.
+This prevents duplicate analyses if the skill runs again on the same issue.
+
+## Completion
+
+You have finished the inspection workflow. The issue has been:
+1. Analysed for rule violations and contributing factors
+2. Root causes classified and labelled
+3. Sub-issues checked and created/linked
+4. Findings documented in a comment
+5. Marked as inspected
+
+The skill execution is complete.

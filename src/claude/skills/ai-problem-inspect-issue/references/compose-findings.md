@@ -1,10 +1,10 @@
 # Compose Findings Comment
 
-Compose the comment body to be appended to the inspected issue.
+Compose the comment body to append to the issue. You MUST complete every step.
 
-## Related Issues
+## Step 1: Search for Related Issues
 
-Search for other issues concerning the same problem:
+You MUST search for issues concerning the same problem. Execute:
 
 ```
 gh issue list \
@@ -13,13 +13,26 @@ gh issue list \
   --search "<incident description keyword OR rule name OR skill name>"
 ```
 
-A related issue matches if it concerns the same AI behaviour, the same rule violation, or the same training trigger — regardless of label.
+Where `<incident description...>` is your best search term from the incident context.
 
-Record any matches: number, title, URL.
+A related issue matches if it concerns:
+- The same AI behaviour
+- The same rule violation
+- The same training trigger
 
-## Comment Body
+Record any matches: issue number, title, URL.
 
-Compose a comment using the following template:
+## Step 2: Compose Comment Using Template
+
+Using the template below, compose the findings comment. You MUST include:
+
+1. Rule violations (exact quotes and source paths from ai-problem-identify-violations results)
+2. Contributing factors (verbatim quotes from ai-problem-identify-violations results)
+3. Root causes (from ai-problem-classify-causes results with reasoning)
+4. Related issues (from Step 1 above)
+5. Sub-issues (from ai-problem-check-sub-issues results)
+
+**Comment Template:
 
 ````markdown
 ## AI Problem Analysis — ai-problem-inspect-issue
@@ -54,4 +67,6 @@ Compose a comment using the following template:
 | `cause: <label>` | Link existing issue as sub-issue | #N — <title> |
 ````
 
-Output of this flow is passed to [submit-findings.md](submit-findings.md).
+## Step 3: Pass to Submit Flow
+
+You have completed composition. The comment body is now ready. Proceed to [submit-findings.md](submit-findings.md).
