@@ -47,7 +47,7 @@
           },
           {
             "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
-            "value": "1"
+            "value": "0"
           }
         ]
       }

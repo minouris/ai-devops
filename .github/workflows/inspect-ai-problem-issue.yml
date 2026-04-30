@@ -1,0 +1,40 @@
+name: Inspect AI Problem Issue
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  inspect-issue:
+    runs-on: ubuntu-latest
+    if: |
+      contains(join(github.event.issue.labels.*.name, ','), 'cause:') &&
+      !contains(join(github.event.issue.labels.*.name, ','), 'created-by: ai-problem-report') &&
+      !contains(join(github.event.issue.labels.*.name, ','), 'created-by: ai-problem-inspect-issue') &&
+      !contains(join(github.event.issue.labels.*.name, ','), 'inspected-by: ai-problem-inspect-issue')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - uses: actions/cache@v4
+        id: copilot-cache
+        with:
+          key: copilot-cli-${{ runner.os }}-v1
+          path: ~/.npm
+          restore-keys: |
+            copilot-cli-${{ runner.os }}-
+
+      - run: npm install -g --prefer-offline @github/copilot
+
+      - run: copilot -p "/ai-problem-inspect-issue ${{ github.event.issue.number }}" --model claude-haiku-4.5 --no-ask-user
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          COPILOT_CUSTOM_INSTRUCTIONS_DIRS: ${{ github.workspace }}/src/claude
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
