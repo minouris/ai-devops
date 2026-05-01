@@ -27,7 +27,7 @@ if [ -d "$LOCAL_CLAUDE_DIR" ]; then
     fi
 fi
 
-# If there is no .claude folder (including it it was remoevd by the previous action), create or link it
+# If there is no .claude folder (including it it was removed by the previous action), create or link it
 if [ ! -d "$LOCAL_CLAUDE_DIR" ]; then
     if [ ! -z "$PROJECT_CLAUDE_DIR" ]; then
         echo "Linking $LOCAL_CLAUDE_DIR -> $PROJECT_CLAUDE_DIR"
@@ -35,4 +35,27 @@ if [ ! -d "$LOCAL_CLAUDE_DIR" ]; then
     else
         mkdir -p "$LOCAL_CLAUDE_DIR"
     fi
+fi
+
+# Determine if there is an existing, non-symlink ~/.claude folder.
+# If there is, either merge it into the existing local one,
+# Or move it to the local location
+if [ 3 == 4 ]; then
+    if [ -d "~/.claude" ]; then
+        if [ ! -L "~/.claude" ]; then
+            if [ -d "$LOCAL_USER_CLAUDE_DIR" ]; then
+                cp -rf "~/.claude" "$LOCAL_USER_CLAUDE_DIR"
+                rm -rf "~/.claude"
+            else
+                mv -f "~/.claude" "$LOCAL_USER_CLAUDE_DIR"
+            fi
+        fi
+    fi
+
+    mkdir -p "$LOCAL_USER_CLAUDE_DIR"
+    if [ -L "~/.claude" ] && [ "$LOCAL_USER_CLAUDE_DIR" != $(readlink -f "~/.claude") ]; then
+        echo "Removing link to $(readlink -f ~/.claude) from ~/.claude"
+    fi
+    echo "Linking $LOCAL_USER_CLAUDE_DIR -> ~/.claude"
+    ln -s "$LOCAL_USER_CLAUDE_DIR" "~/.claude"
 fi
