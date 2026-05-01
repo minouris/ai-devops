@@ -44,7 +44,7 @@ fi
 if [ -d "$HOME/.claude" ]; then
     if [ ! -L "$HOME/.claude" ]; then
         if [ -d "$LOCAL_USER_CLAUDE_DIR" ]; then
-            cp -rf "$HOME/.claude" "$LOCAL_USER_CLAUDE_DIR"
+            cp -a "$HOME/.claude/." "$LOCAL_USER_CLAUDE_DIR"
             rm -rf "$HOME/.claude"
         else
             mv -f "$HOME/.claude" "$LOCAL_USER_CLAUDE_DIR"
