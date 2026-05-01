@@ -40,22 +40,22 @@ fi
 # Determine if there is an existing, non-symlink ~/.claude folder.
 # If there is, either merge it into the existing local one,
 # Or move it to the local location
-if [ 3 == 4 ]; then
-    if [ -d "~/.claude" ]; then
-        if [ ! -L "~/.claude" ]; then
-            if [ -d "$LOCAL_USER_CLAUDE_DIR" ]; then
-                cp -rf "~/.claude" "$LOCAL_USER_CLAUDE_DIR"
-                rm -rf "~/.claude"
-            else
-                mv -f "~/.claude" "$LOCAL_USER_CLAUDE_DIR"
-            fi
+
+if [ -d "$HOME/.claude" ]; then
+    if [ ! -L "$HOME/.claude" ]; then
+        if [ -d "$LOCAL_USER_CLAUDE_DIR" ]; then
+            cp -rf "$HOME/.claude" "$LOCAL_USER_CLAUDE_DIR"
+            rm -rf "$HOME/.claude"
+        else
+            mv -f "$HOME/.claude" "$LOCAL_USER_CLAUDE_DIR"
         fi
     fi
-
-    mkdir -p "$LOCAL_USER_CLAUDE_DIR"
-    if [ -L "~/.claude" ] && [ "$LOCAL_USER_CLAUDE_DIR" != $(readlink -f "~/.claude") ]; then
-        echo "Removing link to $(readlink -f ~/.claude) from ~/.claude"
-    fi
-    echo "Linking $LOCAL_USER_CLAUDE_DIR -> ~/.claude"
-    ln -s "$LOCAL_USER_CLAUDE_DIR" "~/.claude"
 fi
+
+mkdir -p "$LOCAL_USER_CLAUDE_DIR"
+if [ -L "$HOME/.claude" ] && [ "$LOCAL_USER_CLAUDE_DIR" != $(readlink -f "$HOME/.claude") ]; then
+    echo "Removing link to $(readlink -f $HOME/.claude) from $HOME/.claude"
+    rm "$HOME/.claude"
+fi
+echo "Linking $LOCAL_USER_CLAUDE_DIR -> $HOME/.claude"
+ln -s "$LOCAL_USER_CLAUDE_DIR" "$HOME/.claude"
