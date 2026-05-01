@@ -57,5 +57,7 @@ if [ -L "$HOME/.claude" ] && [ "$LOCAL_USER_CLAUDE_DIR" != $(readlink -f "$HOME/
     echo "Removing link to $(readlink -f $HOME/.claude) from $HOME/.claude"
     rm "$HOME/.claude"
 fi
-echo "Linking $LOCAL_USER_CLAUDE_DIR -> $HOME/.claude"
-ln -s "$LOCAL_USER_CLAUDE_DIR" "$HOME/.claude"
+if [ ! -e "$HOME/.claude" ] && [ ! -L "$HOME/.claude" ]; then
+    echo "Linking $LOCAL_USER_CLAUDE_DIR -> $HOME/.claude"
+    ln -s "$LOCAL_USER_CLAUDE_DIR" "$HOME/.claude"
+fi
