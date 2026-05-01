@@ -5,14 +5,11 @@
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest"
-    },
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
     }
   },
-  "initializeCommand": "mkdir -p .devcontainer/.claude-data",
+  "postStartCommand": "${containerWorkspaceFolder}/.devcontainer/scripts/claude-folder-setup.sh",
   
   "customizations": {
     "vscode": {
@@ -22,14 +19,15 @@
         "GitHub.vscode-github-actions",
         "GitHub.vscode-pull-request-github"
       ],
-      "settings": {}
+      "settings": {
+        "chat.useClaudeMdFile": true
+      }
     }
   },
 
-  "remoteEnv": {},
+  "remoteEnv": {
+    "WORKSPACE_FOLDER" : "${containerWorkspaceFolder}"
+  },
 
-  "mounts": [
-    "source=${localWorkspaceFolder}/.devcontainer/.claude-data,target=/home/vscode/.claude,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/src/claude,target=${containerWorkspaceFolder}/.claude,type=bind,consistency=cached"
-  ]
+  "mounts": []
 }

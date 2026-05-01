@@ -7,5 +7,11 @@
 # Claude data files (not committed)
 .devcontainer/.claude-data
 
-# Exclude root level .claude folder (mounted from devcontainer, not committed)
+# Exclude root level .claude folder 
 .claude
+
+#Exclude .claude-data folder
+**/.claude-data
+
+# Exclude .sessions folder
+**/.sessions
