@@ -4,7 +4,7 @@ LOCAL_CLAUDE_DIR=.claude
 LOCAL_USER_CLAUDE_DIR=.claude-data
 
 
-if [ ! -z $WORKSPACE_FOLDER ]; then
+if [ -n "${WORKSPACE_FOLDER:-}" ]; then
     . "$WORKSPACE_FOLDER/.devcontainer/claude.env"
     if [ ! -z "$PROJECT_CLAUDE_DIR" ]; then
         PROJECT_CLAUDE_DIR="$WORKSPACE_FOLDER/$PROJECT_CLAUDE_DIR"
