@@ -1,10 +1,30 @@
 # Disproven Findings Archive
 
-**This file is loaded when: The agent needs to archive a disproven finding.**
+**This file is loaded when: You need to archive a disproven finding.**
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Archive Entry Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the disproven finding archive format exactly as specified
+- Include all required fields: original finding, reason for disproof, evidence, date archived
+- Preserve exact structure (heading levels, spacing, field order)
+- Use the specified template without additions
+
+**MUST NOT:**
+- Add fields to archive entries beyond specification
+- Add explanatory sections or metadata not specified
+- Modify the archive format for convenience
+- Add interpretations or additional context not in the specification
+
+---
+
+## Existing Rules
 
 ### Never Delete (MANDATORY)
 

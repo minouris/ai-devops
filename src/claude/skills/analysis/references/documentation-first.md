@@ -1,6 +1,6 @@
 # Documentation-First Response Requirements
 
-**This file is loaded when: The agent needs documentation-first verification policies.**
+**This file is loaded when: You need documentation-first verification policies.**
 
 ---
 

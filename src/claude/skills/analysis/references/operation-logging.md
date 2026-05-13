@@ -1,17 +1,37 @@
 # Operation Logging
 
-**This file is loaded when: The agent needs to log significant operations or initialize a session from operation history.**
+**This file is loaded when: You need to log significant operations or initialize a session from operation history.**
 
 ---
 
-## Embedded Rules
+# Embedded Rules
+
+## Literal Specification Compliance (from /src/claude/rules/literal-specification.md)
+
+**Operation Log Format is Expressly Specified - Compliance is MANDATORY:**
+
+**MUST:**
+- Follow the log entry format exactly as specified
+- Include all required fields: date, operation type, files modified, summary
+- Preserve exact field order and structure
+- Use the specified timestamp format
+
+**MUST NOT:**
+- Add fields to log entries beyond specification
+- Add metadata or summary sections not specified
+- Modify the log format for convenience
+- Change field names or structure
+
+---
+
+## Existing Rules
 
 ### Log After Each Significant Operation (MANDATORY)
 
 **MUST:**
 - Run [record-operation](../../../src/claude/prompts/record-operation.prompt.md) with `topic=[slug]` after each significant operation (if the prompt is available in the workspace)
 - Record only what changed in the current operation — not a summary of the whole session
-- Append to `.memory/[topic]-log.md`; never overwrite earlier entries
+- Append to `.memory/[topic]/[topic]-log.md`; never overwrite earlier entries
 
 **MUST NOT:**
 - Skip logging because an operation seemed minor
@@ -39,25 +59,17 @@ Log after each of these operations:
    - What changed in the index
    - New files added or timestamps updated
 
-4. **Creating or updating a pending analysis draft**
-   - Which draft file was created/updated
-   - What sections were added/changed
-
-5. **Publishing a final output**
-   - Where final output was published
-   - Which fact files were synthesised
-
 ---
 
 ## Log File Location
 
 ```
-.memory/[topic]-log.md
+.memory/[topic]/[topic]-log.md
 ```
 
 **Example:**
 ```
-.memory/ai-problems-analysis-log.md
+.memory/ai-problems-analysis/ai-problems-analysis-log.md
 ```
 
 ---
@@ -68,7 +80,7 @@ Log after each of these operations:
 ## LOG-YYYY-MM-DD-N: [Brief operation description]
 
 **Date:** YYYY-MM-DD HH:MM
-**Operation:** [append-findings | archive-disproven | update-index | create-draft | publish-output]
+**Operation:** [append-findings | archive-disproven | update-index]
 **Files Changed:** [list of files]
 
 [Description of what changed in this operation]
@@ -108,7 +120,7 @@ Ask: "What topic are we working on? (This sets the session context — e.g., `ai
 
 **Step 2: Attempt to read operation log**
 
-Once the user provides the topic slug, attempt to read `.memory/[topic]-log.md`.
+Once the user provides the topic slug, attempt to read `.memory/[topic]/[topic]-log.md`.
 
 **Step 3: Summarise last operations (if log exists)**
 
@@ -131,7 +143,7 @@ Ready to continue.
 
 **Step 4: Confirm readiness**
 
-Confirm: "Session context loaded from `.memory/[topic]-log.md`. Ready to continue."
+Confirm: "Session context loaded from `.memory/[topic]/[topic]-log.md`. Ready to continue."
 
 **Step 5: If no log exists**
 

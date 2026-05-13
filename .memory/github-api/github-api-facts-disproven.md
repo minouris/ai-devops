@@ -70,7 +70,7 @@ Source: GitHub GraphQL API PullRequestReviewState enum definition (live API quer
 
 **Verification Details:**
 
-See verification working document entry in `github-api-facts-verification-working.md` for complete verification methodology and evidence breakdown across all claims.
+See verification working document entry in `github-api-facts-verification.md` for complete verification methodology and evidence breakdown across all claims.
 
 ---
 
@@ -135,7 +135,7 @@ NOT (as shown in the finding):
 
 **Verification Details:**
 
-See verification working document entry in `github-api-facts-verification-working.md` for complete verification methodology and evidence breakdown across all claims.
+See verification working document entry in `github-api-facts-verification.md` for complete verification methodology and evidence breakdown across all claims.
 
 ---
 
@@ -195,7 +195,7 @@ Majority of other claims in the finding are accurate (registration locations, pe
 
 The missing Permissions and Installation Scope fields are both functionally critical—Permissions determine what the app can access, and Installation Scope determines whether the app can be installed in any account or only the registering account.
 
-See verification working document entry in `github-api-facts-verification-working.md` for complete verification methodology and evidence breakdown across all claims.
+See verification working document entry in `github-api-facts-verification.md` for complete verification methodology and evidence breakdown across all claims.
 
 ---
 
@@ -243,7 +243,7 @@ However, the version number claim is fundamentally wrong. The feature was introd
 
 **Related Verification Entry:**
 
-See `github-api-facts-verification-working.md` section "FINDING-2026-03-11-25 Verification" for complete verification documentation including direct quotations from official curl manpage.
+See `github-api-facts-verification.md` section "FINDING-2026-03-11-25 Verification" for complete verification documentation including direct quotations from official curl manpage.
 
 ---
 
@@ -332,5 +332,5 @@ set +H  # Disable history expansion in scripts
 
 **Related Verification Entry:**
 
-See `github-api-facts-verification-working.md` section "FINDING-2026-03-11-26 Verification" for complete verification documentation including direct quotations from official curl and git documentation, and bash option testing results.
+See `github-api-facts-verification.md` section "FINDING-2026-03-11-26 Verification" for complete verification documentation including direct quotations from official curl and git documentation, and bash option testing results.
 

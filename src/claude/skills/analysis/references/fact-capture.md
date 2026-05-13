@@ -1,192 +1,206 @@
-# Fact Capture Guidelines
+# Fact-Capture Flow Specification
 
-**This file is loaded when: The agent needs detailed guidance on capturing research findings in fact files.**
+**When you implement the fact-capture flow, use this specification to understand your responsibilities.**
 
 ---
 
-## Embedded Rules
+# Your Responsibilities (What You MUST Do)
 
-### No Inline Approval (MANDATORY)
+When you are invoked to capture a finding, you are **solely responsible** for:
+
+## Finding Recording
 
 **MUST:**
-- Continue research without pausing for approval
-- Capture broadly: facts, observations, theories, hypotheses, approaches attempted
-- Archive disproven findings immediately when user disproves them
-- Never delete disproven findings
+- Generate unique FINDING-YYYY-MM-DD-N identifiers
+- Create or append to fact files in proper location (`.memory/[topic]/[topic]-facts.md` or `.memory/[topic]/[topic]-[subtopic]/[topic]-[subtopic]-facts.md`)
+- Add **Captured:** YYYY-MM-DD HH:MM timestamp to each finding
+- Add **Verified:** [NOT YET VERIFIED - requires verification workflow] tag to each new finding
+- Record complete observation text with source citation
 
-**MUST NOT:**
-- Stop to ask for inline approval during research
-- Duplicate existing entries
-- Edit existing findings during research phase
-
----
-
-## File Naming Conventions
-
-**Main topic file:**
-```
-.memory/[topic]-facts.md
-```
-
-**Subtopic files (when topic has distinct areas):**
-```
-.memory/[topic]-[subtopic]-facts.md
-```
-
-The main topic prefix is mandatory for subtopic files.
-
-**Example:**
-```
-.memory/ai-problems-analysis-facts.md
-.memory/ai-problems-analysis-hallucination-facts.md
-.memory/ai-problems-analysis-overeagerness-facts.md
-```
-
----
-
-## Entry Format (MANDATORY)
-
-**Standard format:**
-```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD HH:MM
-**Source:** [file/documentation/observation]
-
-[Finding description - fact, observation, theory, hypothesis, or note]
-
-[Optional: Additional context, implications, or questions]
-```
-
-**Field definitions:**
-- `FINDING-YYYY-MM-DD-N`: Unique identifier (date + sequence number)
-- `Captured`: Timestamp when finding was recorded
-- `Source`: Where this information came from (URL, file path, observation, testing, user input)
-- Description: The actual finding content
-- Optional context: Additional details, implications, open questions
-
----
-
-## Clarifying Existing Facts
-
-When new information (from further research or supplied by the user) affects or refines an existing fact:
+## File Structure Management
 
 **MUST:**
-- Append it as a new finding with a reference to the fact it clarifies (`Clarifies: FINDING-YYYY-MM-DD-N`)
-- Leave the original finding unchanged
-- Continue appending further clarifications as additional new findings
+- Create topic directories (`.memory/[topic]/`) when needed
+- Create subtopic directories (`.memory/[topic]/[topic]-[subtopic]/`) when thresholds are exceeded
+- Manage file naming conventions and folder organisation
+- Maintain folder-based structure (.memory/[topic]/ not flat .memory/ root)
+- Enforce maximum file size (40,000 characters) with automatic subtopic creation when exceeded
 
-**MUST NOT:**
-- Edit or merge new information into an existing finding during the research phase
-- Treat a clarification as a correction to be applied immediately
-
-**Rationale:** Clarifications are applied to their base facts during the verification step, in reverse chronological order, so that later clarifications can supersede earlier ones before any are merged.
-
-**Clarification format:**
-```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD HH:MM
-**Source:** [source of clarifying information]
-**Clarifies:** FINDING-YYYY-MM-DD-M
-
-[Clarifying or refining information]
-
-[Context on how this updates/refines the original finding]
-```
-
-**Example:**
-```markdown
-### FINDING-2026-02-24-8
-**Captured:** 2026-02-24 18:30
-**Source:** https://docs.example.com/api/v2
-**Clarifies:** FINDING-2026-02-24-3
-
-API v2 endpoint uses `/api/v2/users` not `/api/users`.
-
-The v1 endpoint documented in FINDING-2026-02-24-3 is deprecated as of 2026-01.
-```
-
----
-
-## File Boundaries (MANDATORY)
-
-**During research phase, you may write ONLY to:**
-- **Fact files:** `.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`
-
-**During research phase, these are READ-ONLY:**
-- **Pending analysis:** `.memory/[NAME]-PENDING.md` — written only once when user requests final output
-- **Final output:** root or specified location — written only after user approval of pending analysis
-
-**MUST NOT:**
-- Write new findings to any `-PENDING.md` or draft output file — these are output artifacts, not research records
-- Edit any pending analysis file during the research phase, even to "update" it with new findings
-
----
-
-## What to Capture
-
-Capture ALL of the following:
-
-**Facts:**
-- Technical specifications
-- Configuration requirements
-- API behaviors
-- System characteristics
-- Documented features
-
-**Observations:**
-- Patterns noticed during examination
-- Anomalies or inconsistencies
-- Relationships between components
-- User behaviors or preferences
-
-**Theories:**
-- Hypotheses about why something works a certain way
-- Proposed explanations for observed behaviors
-- Potential root causes of issues
-
-**Dead ends:**
-- Approaches attempted that didn't work
-- Hypotheses that were disproven
-- Resources that weren't helpful (with reasons why)
+## Index Maintenance
 
 **MUST:**
-- Include source reference for traceability
-- Timestamp each entry
-- Be specific and concrete
-- Capture negative findings (what didn't work)
+- Maintain `.memory/[topic]/[topic]-index.md` as single source of truth for all findings
+- Add findings to findings table only after capturing in fact file
+- Organise findings table by Topic (primary) and Name (secondary)
+- Link findings to their actual location in fact files
 
 **MUST NOT:**
-- Filter findings during capture (filtering happens during synthesis)
-- Skip documenting failed approaches
-- Assume findings are "too obvious" to capture
+- Create per-subtopic indices; all findings route through main topic index
 
----
-
-## Appending to Fact Files
+## Clarification Handling
 
 **MUST:**
-- Use Write tool to create new fact file if it doesn't exist
-- Use Edit tool to append new entries to existing fact files
-- Update analysis index after appending
-- Continue research without pausing for approval
+- Append clarifications as new FINDING-YYYY-MM-DD-N entries
+- Link clarifications to original findings via `Clarifies:` reference
+- Leave original findings unchanged
+- Store clarifications in same fact file as originals
 
-**Append workflow:**
-1. Read existing fact file to get current sequence number
-2. Create new FINDING entry with next sequence number
-3. Append using Edit tool
-4. Update index with new timestamp
+## Documentation-First Compliance
+
+**MUST:**
+- Enforce that all findings reference authoritative sources
+- Reject findings without proper source citations
+
+## Verification Invocation
+
+**MUST:**
+- Invoke verify-analysis subagent immediately after recording the finding
+- Invoke synchronously in isolated context (do not return to research workflow until verification completes)
+- Pass finding-id and topic to verify-analysis subagent
+- Wait for verification to complete before proceeding
+- Return verification status in response to research workflow:
+  - If verified: Return status "captured" with VERIFIED metadata and source URL
+  - If disproven: Accept disproven archive from verify-analysis; return status "rejected"
+  - If unverifiable: Return status "captured" with [NOT YET VERIFIED] tag
+
+**Verification is a mandatory blocking operation.** Do not return to the research workflow with a finding that has not been submitted to verify-analysis for verification.
 
 ---
 
-## When User Reviews Findings
+# Invocation Contract
 
-**During user review:**
-- Archive a finding immediately to the `-disproven.md` file when the user disproves it
-- Incorporate user feedback without interrupting research flow
-- Do NOT pause research to ask for approval on individual findings
-- Focus on breadth and depth of capture
+## Single Finding Per Invocation
 
-**MUST NOT:**
-- Delete disproven findings (archive them instead - see [disproven-archive.md](disproven-archive.md))
-- Stop research flow for approval requests
-- Edit findings based on user feedback (append clarifications instead)
+Fact-capture is designed as a **single-concern, single-fact operation**:
+
+- **One invocation = one finding recorded**
+- Fact-capture accepts a single finding observation and records it
+- Fact-capture returns immediately after recording (or when duplicate detected)
+- No batch operations; research workflows invoke once per finding
+
+## Return Value
+
+Fact-capture MUST return status to the invoking research workflow:
+
+```
+Return:
+- status: "captured" | "rejected" | "duplicate"
+- finding-id: FINDING-YYYY-MM-DD-N (if captured or duplicate)
+- reason: [explanation if rejected or duplicate]
+- verification-status: [NOT YET VERIFIED | VERIFIED on YYYY-MM-DD by source-url | REJECTED on YYYY-MM-DD by reason]
+```
+
+**Status meanings:**
+- `captured`: Finding was successfully recorded, verified synchronously
+- `duplicate`: Finding already exists; same FINDING-YYYY-MM-DD-N returned with existing verification status
+- `rejected`: Finding was rejected (missing source citation, or disproven during verification); not recorded
+
+---
+
+# Downstream Operations (You Invoke These)
+
+**You are responsible for invoking verification via subagents, maintaining independent agent context for isolation:**
+
+## Synchronous Verification Invocation
+
+After recording a finding, invoke verify-analysis subagent (synchronously, in isolated context):
+
+```
+Invoke verify-analysis subagent with:
+- action: "verify-fact"
+- finding-id: FINDING-YYYY-MM-DD-N
+- topic: [topic-slug]
+```
+
+**When verify-analysis completes:**
+- If verified: Return with verification status VERIFIED and source URL
+- If disproven: verify-analysis archives to `-disproven.md`; you return rejection status
+- If unverifiable: Return with [NOT YET VERIFIED] tag
+
+**verify-analysis responsibilities (in independent context):**
+- Verify finding content against authoritative sources
+- Archive findings to `-disproven.md` if false
+- Update finding tags with verification metadata
+- Report results to you
+
+---
+
+# Your Guarantees (Idempotence)
+
+**You MUST be idempotent and absolute:**
+
+1. **Multiple invocations of the same finding are safe**: When invoked twice with identical parameters, record the finding once (do not duplicate)
+
+2. **Finding references are globally consistent**: When invoked with a reference to another finding by ID (e.g., `clarifies: FINDING-2026-04-04-01`), work consistently regardless of invocation order
+
+3. **Fact files remain in valid state**: Do NOT leave fact files in incomplete or inconsistent states
+
+4. **Index always reflects actual findings**: Update index synchronously with fact capture; never let index and fact files diverge
+
+5. **File location migrations are transparent**: When a finding is moved to a new subtopic file due to size thresholds, keep the finding reference (e.g., `FINDING-2026-04-04-01`) valid and consistent
+
+---
+
+# Research Workflow Restrictions
+
+Research workflows (procedural-research, analytical-research) **MUST NOT**:
+
+- Write directly to fact files
+- Manage file structure or folder organisation
+- Update indices manually
+- Format fact entries
+- Create finding identifiers
+- Add verification tags
+- Handle file size management
+- Create or manage subtopics
+- Extract or link terms
+- Archive disproven findings
+- Verify facts or terms
+
+Research workflows **MUST** invoke you for all recording and maintenance tasks. Verification depends on downstream flows (verify-analysis, term-capture).
+
+---
+
+# Implementation Details
+
+**CRITICAL:** This specification defines what YOU MUST DO (not HOW you implement it).
+
+Implementation details (which tools you use, file I/O patterns, parsing logic, etc.) are encapsulated within you and **MUST NOT be visible to research workflows**.
+
+Research workflows invoke you by name with defined parameters. You are a black box to them.
+
+---
+
+# Flow Idempotence Examples
+
+**Example 1: Duplicate invocation**
+```
+First invocation:
+- topic: github-api
+- observation: "REST API returns 200 on success"
+- source: https://docs.github.com/en/rest
+
+Second invocation with identical parameters:
+- Result: Finding not duplicated; same FINDING-YYYY-MM-DD-N used
+```
+
+**Example 2: Clarification ordering**
+```
+Research captures: FINDING-2026-04-04-01 (initial observation)
+Research captures: FINDING-2026-04-04-02 (clarifies FINDING-2026-04-04-01)
+Research captures: FINDING-2026-04-04-03 (clarifies FINDING-2026-04-04-01)
+
+Result: All clarifications properly linked and ordered, links remain valid regardless of invocation sequence
+```
+
+**Example 3: Downstream invocation**
+```
+Fact-capture records: FINDING-2026-04-04-01
+→ Fact-capture invokes term-capture flow for concept extraction
+→ Term-capture creates TERM-[topic]-YYYY-MM-DD-N
+→ Fact-capture invokes verify-analysis for term verification
+→ verify-analysis updates term with verification status
+→ Finding remains unchanged; all updates flow through downstream operations
+```
+
+---

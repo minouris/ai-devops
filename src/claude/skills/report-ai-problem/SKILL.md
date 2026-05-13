@@ -1,0 +1,47 @@
+---
+name: report-ai-problem
+description: Report AI behavioural problems as GitHub issues with root cause analysis and label classification
+allowed-tools: Bash, Read, Grep, Glob
+---
+
+# Report AI Problem
+
+Report incidents where you have acted incorrectly or against the user's intent. Create or update GitHub issues on the `minouris/ai-devops` repository with structured root cause analysis, rule violation identification, and applicable cause labels.
+
+## Trigger
+
+You MUST offer to invoke this skill when the user declares that you have:
+- Done something incorrect or unintended
+- Violated a rule or instruction
+- Acted without authorisation
+- Made false claims or fabricated information
+- Lost context or forgotten requirements
+- Proceeded without waiting for approval
+
+Ask the user: "Would you like me to report this as an AI problem issue?"
+
+If the user declines, stop.
+
+## Workflow
+
+Execute the following flows in order:
+
+1. **Gather incident details** — see [gather-incident.md](references/gather-incident.md)
+2. **Gather lost context and system prompt** — see [gather-context.md](references/gather-context.md)
+3. **Identify rule violations and contributing factors** — see [identify-violations.md](../analyse-ai-problem/references/identify-violations.md)
+4. **Classify root causes** — see [classify-causes.md](../analyse-ai-problem/references/classify-causes.md)
+5. **Compose the issue** — see [compose-issue.md](references/compose-issue.md)
+6. **Present report and confirm** — see [present-report.md](references/present-report.md)
+7. **Submit the issue** — see [submit-issue.md](references/submit-issue.md)
+
+## Requirements
+
+**MUST:**
+- Complete all flows before submitting
+- Present the full analysis report to the user in chat before any GitHub action
+- Obtain explicit user confirmation before submitting
+
+**MUST NOT:**
+- Skip any flow
+- Submit without user confirmation
+- Include personal data, secrets, or non-AI file identifiers in the issue

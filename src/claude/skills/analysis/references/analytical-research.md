@@ -1,12 +1,35 @@
 # Analytical Research Workflow
 
-**This file is loaded when: The agent needs to examine artifacts systematically and synthesise findings into analysis.**
+**This file is loaded when: You need to examine artifacts systematically and capture research findings.**
 
 ---
 
-## Embedded Rules
+# Embedded Rules
 
-### Documentation-First (MANDATORY)
+## Two-Stage Text Search (MANDATORY)
+
+When searching for information within artifacts and documentation, use a two-stage approach before concluding that information is unavailable.
+
+**Stage 1 — Keyword search:**
+- Use Grep or search tools as the initial approach
+- Try multiple related terms, synonyms, and variations
+- Search for feature names, configuration keys, code patterns
+
+**If Stage 1 yields no results or only false positives, proceed to Stage 2:**
+
+**Stage 2 — Direct file examination:**
+- Read the full relevant files or sections directly using Read tool
+- Design rationales, configuration logic, and architectural decisions are frequently expressed in natural language comments
+- Do NOT report that information cannot be found until Stage 2 has been completed
+
+**MUST NOT:**
+- Report information as unavailable after only a keyword search
+- Treat search/grep returning zero results as confirmation that information does not exist
+- Skip file examination when keyword search yields no results
+
+---
+
+## Documentation-First (MANDATORY)
 
 **MUST:**
 - Search for and reference official documentation sources
@@ -21,17 +44,42 @@
 
 ---
 
-## When to Use This Workflow
+# Separation of Concerns
+
+## Your Responsibilities
+
+When you execute analytical-research, you are responsible ONLY for:
+- Clarifying research scope and objectives
+- Conducting systematic examination of artifacts
+- Performing two-stage text searches
+- Collecting raw findings and observations
+- **Invoking the fact-capture flow** to record findings
+
+## What Fact-Capture Does
+
+**Do NOT** attempt fact-capture implementation:
+- DO NOT format findings entries
+- DO NOT manage fact file structure
+- DO NOT handle verification tags or timestamps
+- DO NOT update indices
+- DO NOT extract or verify terms
+- DO NOT archive disproven findings
+
+You MUST delegate all fact recording, verification, and maintenance to the fact-capture flow.
+
+---
+
+# When to Use This Workflow
 
 - Examining codebase systematically
 - Analysing project artifacts (commits, issues, documentation)
 - Capturing research findings with proper citation
-- Creating evidence-based technical analysis
-- Any task requiring systematic investigation and synthesis
+- Building structured knowledge from artifacts
+- Any task requiring systematic investigation and discovery
 
 ---
 
-## Workflow Steps
+# Workflow Steps
 
 1. **Clarify scope**: Ask which projects/domains to examine and what to look for
 
@@ -41,134 +89,73 @@
 
 4. **Systematic examination**: Examine each artifact using Read, Grep, Glob tools
 
-5. **Capture findings**: Capture ALL findings in fact file(s):
-   - Main topic: `.memory/[topic]-facts.md`
-   - Subtopics: `.memory/[topic]-[subtopic]-facts.md`
-   - Capture facts, observations, theories, hypotheses, dead ends
+5. **Capture findings**: For each finding or observation, invoke the fact-capture flow:
 
-6. **Maintain index**: Track the fact file and its companions in `.memory/[topic]-index.md`
+   **Fact-Capture Flow Invocation:**
+   ```
+   Invoke fact-capture flow with:
+   - topic: [topic-slug]
+   - observation: [finding description - fact, observation, theory, hypothesis, dead end, or note]
+   - source: [citation to authoritative source, URL, file path, or "User observation"]
+   - subtopic: [optional: if finding belongs to a specific subtopic category]
+   - clarifies: [optional: FINDING-YYYY-MM-DD-N if this clarifies an existing finding]
+   ```
 
-7. **Handle disproven findings**: When user disproves a finding, archive it immediately to `-disproven.md` file
+   **When you invoke fact-capture for a finding:**
 
-8. **Keep building**: Keep building fact files without pausing for approval
+   Fact-capture performs:
+   - Generating FINDING-YYYY-MM-DD-N identifiers
+   - Creating/appending to fact files with proper structure
+   - Adding Captured timestamps (YYYY-MM-DD HH:MM)
+   - Adding Verified tags [NOT YET VERIFIED - requires verification workflow]
+   - Managing file locations and folder organisation
+   - Maintaining the main topic index
+   - Handling subtopic creation when thresholds are exceeded
 
-9. **Wait for request**: Do NOT create analysis until the user explicitly requests one
+6. **Continue research**: Keep capturing findings without pausing for approval. The fact-capture flow handles all recording, verification, and maintenance.
+
+7. **Handle disproven findings**: When user disproves a finding during review, invoke the fact-capture flow with:
+   ```
+   Invoke fact-capture flow with:
+   - action: archive-disproven
+   - finding-id: FINDING-YYYY-MM-DD-N
+   - reason: [user explanation of why finding is disproven]
+   ```
+
+   **When you invoke fact-capture to archive a disproven finding:**
+
+   Fact-capture performs:
+   - Moving the finding to the `-disproven.md` archive
+   - Recording the disproof metadata
+   - Updating the index
 
 ---
 
-## Fact Capture Format
+# Fact Capture Interface
 
-**Entry format:**
-```markdown
-### FINDING-YYYY-MM-DD-N
-**Captured:** YYYY-MM-DD HH:MM
-**Source:** [file/documentation/observation]
+See [fact-capture.md](fact-capture.md) for:
+- Complete flow invocation specification
+- Idempotence guarantees
+- File structure contracts
+- Verification workflow integration
+- Term extraction and linking requirements
 
-[Finding description - fact, observation, theory, hypothesis, or note]
+**CRITICAL:** Do not read fact-capture.md as a guideline. It defines the fact-capture flow contract. Research workflows invoke this flow; they do not implement it.
 
-[Optional: Additional context, implications, or questions]
+---
+
+# Clarifying Existing Facts
+
+When new information affects or refines an existing fact, invoke the fact-capture flow with the `clarifies` parameter:
+
+```
+Invoke fact-capture flow with:
+- topic: [topic-slug]
+- observation: [clarifying information]
+- source: [source of clarification]
+- clarifies: FINDING-2026-02-24-3  (the finding being clarified)
 ```
 
-**When to create subtopic files:**
-
-When a topic has distinct areas requiring separate fact files, create `.memory/[topic]-[subtopic]-facts.md`. The main topic prefix is mandatory.
-
-**Example structure:**
-```
-.memory/
-├── ai-problems-analysis-facts.md                    # Main topic
-├── ai-problems-analysis-hallucination-facts.md     # Subtopic
-├── ai-problems-analysis-overeagerness-facts.md     # Subtopic
-└── ai-problems-analysis-index.md                    # Index linking all
-```
+Fact-capture appends the clarification as a new finding with proper linking.
 
 ---
-
-## Clarifying Existing Facts
-
-When new information (from further research or supplied by the user) affects or refines an existing fact:
-
-**MUST:**
-- Append it as a new finding with a reference to the fact it clarifies (`Clarifies: FINDING-YYYY-MM-DD-N`)
-- Leave the original finding unchanged
-- Continue appending further clarifications as additional new findings
-
-**MUST NOT:**
-- Edit or merge new information into an existing finding during the research phase
-- Treat a clarification as a correction to be applied immediately
-
-Clarifications are applied to their base facts during the verification step, in reverse chronological order, so that later clarifications can supersede earlier ones before any are merged.
-
-**Example:**
-```markdown
-### FINDING-2026-02-24-5
-**Captured:** 2026-02-24 16:20
-**Source:** User clarification
-**Clarifies:** FINDING-2026-02-23-3
-
-The API endpoint supports rate limiting of 100 requests/minute, not 60 as initially documented.
-
-Confirmed via testing in production environment.
-```
-
----
-
-## File Boundaries (MANDATORY)
-
-**During research phase:**
-
-- **Fact files** (`.memory/[topic]-facts.md` or `.memory/[topic]-[subtopic]-facts.md`) — the ONLY files you write to during research
-- **Pending analysis** (`.memory/[NAME]-PENDING.md`) — read-only during research; written only once when user requests final output
-- **Final output** (root or specified location) — written only after user approval of pending analysis
-
-**MUST NOT:**
-- Write new findings to any `-PENDING.md` or draft output file
-- Edit any pending analysis file during the research phase
-
----
-
-## Index Maintenance
-
-After appending to fact files or archiving disproven findings, update `.memory/[topic]-index.md`.
-
-**Index format:**
-```markdown
-# [topic] Index
-
-**Last Updated:** YYYY-MM-DD HH:MM
-
----
-
-## Fact Files
-
-- [.memory/[topic]-facts.md](.memory/[topic]-facts.md) - [Brief description]
-  - Last updated: YYYY-MM-DD HH:MM
-  - Disproven: [.memory/[topic]-facts-disproven.md](.memory/[topic]-facts-disproven.md) (N findings)
-
-- [.memory/[topic]-[subtopic]-facts.md](.memory/[topic]-[subtopic]-facts.md) - [Brief description]
-  - Last updated: YYYY-MM-DD HH:MM
-
----
-
-## Analysis Outputs
-
-- [`[ANALYSIS-NAME].md`]([ANALYSIS-NAME].md) - [Description]
-  - Generated: YYYY-MM-DD HH:MM
-  - Sources: [list of fact files used]
-```
-
----
-
-## Final Output Creation
-
-Do NOT create final output until the user explicitly requests it.
-
-Final output is an analysis document with citations (e.g., `ai-programming-problems-analysis.md`).
-
-When user requests final output:
-1. Check research completeness (see [final-output.md](final-output.md))
-2. Run [verify-memory-facts](../../../src/claude/prompts/verify-memory-facts.md) on all fact files
-3. Apply clarifications to base facts before verification
-4. Synthesise verified findings into coherent narrative
-5. Present draft in `.memory/[ANALYSIS-NAME]-PENDING.md`
-6. After user approval, create final analysis in specified location
